@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('mcmMapDirectives', ['Config'])
-	.directive('mcmMap', ['$timeout', 'ConfigMap', function($timeout, ConfigMap){
+	.directive('mcmMap', ['$timeout', '$rootScope', 'ConfigMap', function($timeout, $rootScope, ConfigMap){
 
 
 		// http://docs.angularjs.org/guide/directive
@@ -20,11 +20,28 @@ angular.module('mcmMapDirectives', ['Config'])
 					getContainer: function(){
 						return $element.find('.map-container');
 					},
+					mapEntityClicked: function(mapEntity /*, mapEntityDom*/){
+						$scope.$apply(function () {
+							var eventName = "mapEntitySelectedEvent";
+							$rootScope.$broadcast(eventName, mapEntity);
+						});
+					},
 					timeout: $timeout
 				};
 
+				var entityStyles = {
+					"object": {
+						typeClass: "map_entity_object",
+						icon: "O"
+					},
+					"process": {
+						typeClass: "map_entity_process",
+						icon: "P"
+					}
+				};
+
 				var model = null;
-				var mcmMap = new mcm.Map(ConfigMap, mcmMapClientInterface);
+				var mcmMap = new mcm.Map(ConfigMap, mcmMapClientInterface, entityStyles);
 				mcmMap.init();
 
 				var eventName = "modelLoadedEvent";
@@ -39,7 +56,7 @@ angular.module('mcmMapDirectives', ['Config'])
 			}
     	};
 	}])
-	.directive('mcmMapTools', ["$timeout", function($timeout){
+	.directive('mcmMapTools', ["$timeout", 'ConfigMapToolset', function($timeout, ConfigMapToolset){
 		console.log("[mcmMapTools] loading directive");
 		return {
 			restrict: 'AE',
@@ -50,55 +67,118 @@ angular.module('mcmMapDirectives', ['Config'])
 			// expression: http://docs.angularjs.org/guide/expression
 			templateUrl: '../components/mcmMap/partials/mcmMap-tools.tpl.html',
 			controller: function ( $scope, $element) {
-				$scope.tools = [
-					{
-						type: "Assumption",
-						icon: "A"
+				var toolsetClientInterface = {
+					getContainer: function(){
+						return $element.find('ul');
 					},
-					{
-						type: "Variable",
-						icon: "V"
+					getData: function(){
+						return $scope.tools;
 					},
-					{
-						type: "Grid",
-						icon: "G"
-					}
-				];
-
-				var offset = 0;
-				var positionItems = function(){
-					console.log("[positionItems]");
-					d3.select($element.find('ul').get(0)).selectAll("li")
-						.style("top", function(){
-							var position = offset + "px";
-							offset += 50;
-							return position;
-						});
-				};
-				$timeout(positionItems, 10);
-
-				var manipulationEnded = function(){
-					console.log("tool:manipulationEnded");
+					timeout: $timeout
 				};
 
-				var draggingConfig = {
-					draggTargetElement: true,
-					target: {
-						refCategory: '.draggable_tool',
-						opacity:  0.5,
-						zIndex: 10,
-						cloningContainer: $element.find('ul').get(0), // getting native dom element from jQuery selector
-						leaveAtDraggedPosition: false,
-						callbacks: {
-							onend: manipulationEnded
+				var entityListRules = {
+					"unselected": [
+						{
+							id: "assumption",
+							name: "assumption",
+							type: "assumption",
+							icon: "A"
+						},
+						{
+							id: "object",
+							name: "object",
+							type: "object",
+							icon: "O"
+						},
+						{
+							id: "process",
+							name: "process",
+							type: "process",
+							icon: "P"
+						},
+						{
+							id: "grid",
+							name: "grid",
+							type: "grid",
+							icon: "G"
 						}
-					},
-					debug: {
-						origVsClone: false
-					}
+					],
+					"object": [
+						{
+							id: "assumption",
+							name: "assumption",
+							type: "assumption",
+							icon: "A"
+						},
+						{
+							id: "object",
+							name: "object",
+							type: "object",
+							icon: "O"
+						},
+						{
+							id: "process",
+							name: "process",
+							type: "process",
+							icon: "P"
+						},
+						{
+							id: "variable",
+							name: "variable",
+							type: "variable",
+							icon: "V"
+						},
+						{
+							id: "grid",
+							name: "grid",
+							type: "grid",
+							icon: "G"
+						}
+					],
+					"process": [
+						{
+							id: "assumption",
+							name: "assumption",
+							type: "assumption",
+							icon: "A"
+						},
+						{
+							id: "object",
+							name: "object",
+							type: "object",
+							icon: "O"
+						},
+						{
+							id: "grid",
+							name: "grid",
+							type: "grid",
+							icon: "G"
+						}
+					]
 				};
 
-				interaction.MoveAndDrag.InitializeDragging(draggingConfig);
+				$scope.tools = [];
+				$scope.tools.length = 0;
+				var entities = entityListRules.unselected;
+				for(var i in entities){
+					$scope.tools.push(entities[i]);
+				}
+
+				var toolset = new mcm.EntitiesToolset(ConfigMapToolset, toolsetClientInterface);
+				toolset.init();
+
+				var eventName = "mapEntitySelectedEvent";
+
+				$scope.$on(eventName, function(e, mapEntity) {
+					console.log("[mcmMapTools.controller::$on] ModelMap  mapEntity: %s", JSON.stringify(mapEntity));
+					$scope.tools.length = 0;
+					var entities = entityListRules[mapEntity ? mapEntity.type : "unselected"];
+					for(var i in entities){
+						$scope.tools.push(entities[i]);
+					}
+					toolset.update();
+				});
     		}
     	};
 	}])

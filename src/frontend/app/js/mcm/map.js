@@ -1,9 +1,10 @@
 (function () { // This prevents problems when concatenating scripts that aren't strict.
 'use strict';
 
-var Map =  mcm.Map = function(config, client){
+var Map =  mcm.Map = function(config, client, entityStyles){
 	this.config = config;
 	this.client = client;
+	this.entityStyles = entityStyles;
 
 	this.mapContainer = null;
 	this.model = null;
@@ -11,6 +12,7 @@ var Map =  mcm.Map = function(config, client){
 	this.edgeViewList = [];
 	this.mapSvgD3 = null;
 	this.mapHtmlD3 = null;
+	this.selectedNode = null;
 };
 
 Map.prototype.init = function() {
@@ -27,12 +29,26 @@ Map.prototype.init = function() {
 			}else{
 				if(this.config.nodes.html.show){
 					this.mapSvgD3 = d3.select(this.mapContainer.get(0)).append("svg")
-						.attr("class", "map_svg");
+						.attr("class", "map_svg")
+						.on("click", function(){
+							that.clickNode(null, this);
+							// cancle bubbling up
+							// http://stackoverflow.com/questions/11674886/stoppropagation-with-svg-element-and-g
+							d3.event.cancelBubble = true;
+							//d3.event.sourceEvent.stopPropagation();
+						});
 				}
 
 				if(this.config.nodes.html.show){
 					this.mapHtmlD3 = d3.select(this.mapContainer.get(0)).append("div")
-						.attr("class", "map_html");
+						.attr("class", "map_html")
+						.on("click", function(){
+							that.clickNode(null, this);
+							// cancle bubbling up
+							// http://stackoverflow.com/questions/11674886/stoppropagation-with-svg-element-and-g
+							d3.event.cancelBubble = true;
+							//d3.event.sourceEvent.stopPropagation();
+						});
 				}
 
 				this.placeModels(this.model);
@@ -78,12 +94,12 @@ Map.prototype.init = function() {
 
 	interaction.MoveAndDrag.InitializeDragging(draggingConfig);
 
-	var draggAndDropEnded = function(targetD3, draggedIn){
+	var draggAndDropEnded = function(targetD3, relatedTargetD3, draggedIn){
 		var d = targetD3 ? targetD3.datum() : null;
-		console.log("draggAndDropEnded [%s]: %s", d ? d.name : null, draggedIn);
+		var dRelated = relatedTargetD3 ? relatedTargetD3.datum() : null;
+		console.log("draggAndDropEnded [%s into %s]: %s", dRelated ? dRelated.name : null, d ? d.name : null, draggedIn);
 		if(draggedIn){
-			var d = targetD3.datum();
-			d.draggedInNo++;
+			if(d) d.draggedInNo++;
 			that.update(that.model.nodes[0]);
 		}
 	};
@@ -113,6 +129,42 @@ Map.prototype.init = function() {
 	};
 
 	interaction.MoveAndDrag.InitializeDraggingIn(draggingInConfig);
+};
+
+// Select node on node click
+Map.prototype.clickNode = function(d, dom) {
+	// select clicked
+	var isSelected = d ? d.isSelected : false;
+	var domD3 = d3.select(dom);
+
+	// unselect all nodes
+	var nodesHtml = this.mapHtmlD3.selectAll("div." + this.config.nodes.html.refCategory);
+	nodesHtml.classed({
+		"selected": false,
+		"unselected": true
+	});
+	this.model.nodes.forEach(function(d){d.isSelected = false;});
+
+	if(isSelected){
+		if(d) d.isSelected = false;
+		this.selectedNode = null;
+	}else{
+		if(d && dom){
+			// var nodeHtml = nodesHtml[0];
+			domD3.classed({
+				"selected": true,
+				"unselected": false
+			});
+			d.isSelected = true;
+			this.selectedNode = d;
+		}else{
+			this.selectedNode = null;
+		}
+	}
+
+	this.client.mapEntityClicked(this.selectedNode ? d : null, dom);
+	//this.update(this.rootNode);
+	return false;
 };
 
 Map.prototype.placeModels = function(model){
@@ -214,13 +266,24 @@ Map.prototype.updateHtml = function(nodes, source) {
 	// Enter the nodes
 	// we create a div that will contain both visual representation of a node (circle) and text
 	var nodeHtmlEnter = nodeHtml.enter().append("div")
-		.attr("class", this.config.nodes.html.refCategory + " node_unselected draggable_map_entity dropzone");
+		.attr("class", function(d){
+			return that.config.nodes.html.refCategory +
+			" node_unselected draggable_map_entity dropzone " +
+			that.entityStyles[d.type].typeClass;
+		});
 		// .on("dblclick", this.clickDoubleNode.bind(this))
 		// .on("click", this.clickNode.bind(this));
 
 	// position node on enter at the source position
 	// (it is either parent or another precessor)
 	nodeHtmlEnter
+		.on("click", function(d){
+			that.clickNode(d, this);
+			// cancle bubbling up
+			// http://stackoverflow.com/questions/11674886/stoppropagation-with-svg-element-and-g
+			d3.event.cancelBubble = true;
+			// d3.event.sourceEvent.stopPropagation();
+		})
 		.style("left", function(d) {
 			var x = null;
 			if(that.config.transitions.enter.animate.position){
@@ -284,6 +347,12 @@ Map.prototype.updateHtml = function(nodes, source) {
 			.attr("class", "status")
 				.html(function(d){
 					return "" + d.draggedInNo;
+				});
+	nodeHtmlEnter
+		.append("div")
+			.attr("class", "type")
+				.html(function(d){
+					return "" + that.entityStyles[d.type].icon;
 				});
 
 	nodeHtmlEnter

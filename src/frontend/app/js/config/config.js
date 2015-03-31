@@ -80,12 +80,16 @@ var map = {
 	}
 };
 
+var mapToolset = {
+};
+
 //var env = envs['json'];
-// var env = envs.server;
-var env = envs.json;
+// var env = envs.json;
+var env = envs.server;
 
 angular.module('Config', [])
 	.constant("ENV", env)
-	.constant("ConfigMap", map);
+	.constant("ConfigMap", map)
+	.constant("ConfigMapToolset", mapToolset);
 
 }()); // end of 'use strict';

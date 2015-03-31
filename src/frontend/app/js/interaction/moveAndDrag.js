@@ -106,7 +106,7 @@ MoveAndDrag.InitializeDragging = function (config) {
 					targetD3.style("left", (isNaN(parseInt(targetD3.style("left"))) ? 0 : parseInt(targetD3.style("left"))) + event.dx + "px");
 					targetD3.style("top", (isNaN(parseInt(targetD3.style("top"))) ? 0 : parseInt(targetD3.style("top"))) + event.dy + "px");
 				}
-				if(d){
+				if(d && d.visual){
 					// update manual values for datum
 					d.visual.dimensions.sizes.x += event.dx;
 					d.visual.dimensions.sizes.y += event.dy;
@@ -214,7 +214,7 @@ MoveAndDrag.InitializeDraggingIn = function (config) {
 			droppedIn = true;
 			if(config.debug.draggingStatus && config.draggable.messages.dropped) event.relatedTarget.textContent = config.draggable.messages.dropped;
 			if(typeof config.draggable.callbacks.onend == 'function'){
-				config.draggable.callbacks.onend(d3.select(droppedInTarget), true);
+				config.draggable.callbacks.onend(d3.select(droppedInTarget), d3.select(event.relatedTarget), true);
 			}
 		},
 		ondropdeactivate: function (event) {

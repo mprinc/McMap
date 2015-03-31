@@ -153,11 +153,17 @@ $map: layout(12 1/4 fluid float inside);
 .map_svg{
 	height: 100%;
 	width: 100%;
+	position: absolute;
+	/*background-color: #ffffaa;*/
+	z-index: 1;
 }
 
 .map_html{
 	height: 100%;
-	width: 100%;	
+	width: 100%;
+	position: absolute;
+	/*background-color: #ffffaa;*/
+	z-index: 2;
 }
 
 .map_entity{
@@ -180,24 +186,58 @@ $map: layout(12 1/4 fluid float inside);
 		top: -10px;
 		background-color: yellow;
 		border: 2px solid red;
-		padding-left: 2px;
-		padding-right: 2px;
+		padding-left: 4px;
+		padding-right: 4px;
 		padding-top: 0px;
 		padding-bottom: 0px;
 		text-align: center;
 		font-weight: bold;
 		@include border-radius(10px, 10px);
 	}
-
+	.type {
+		position: absolute;
+		right: -15px;
+		bottom: -15px;
+		background-color: rgba(200, 200, 255, 0.5);
+		border: 2px solid rgba(100, 100, 255, 0.25);
+		padding-left: 5px;
+		padding-right: 5px;
+		padding-top: 0px;
+		padding-bottom: 0px;
+		text-align: center;
+		font-weight: bold;
+		font-size: 20px;
+		color: #555f;
+		font-style: italic;
+		@include border-radius(5px, 5px);
+	}
 	.name {
 		position: relative;
 		padding: 3px;
 		/*background-color: yellow;*/
 	}
 
-	.has_children{
+	&.has_children{
 	}
-	.has_no_children{
+
+	&.has_no_children{
+	}
+
+	&.selected{
+		border-color: #ffa;
+		border-width: 3px;
+	}
+
+	&.unselected{
+	}
+
+	/* entity stylings */
+	&.map_entity_object{
+		background-color: #aaa;
+	}
+
+	&.map_entity_process{
+		background-color: #aaf;
 	}
 }
 

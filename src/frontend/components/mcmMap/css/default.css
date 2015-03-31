@@ -173,14 +173,20 @@
 /* line 153, ../sass/default.scss */
 .map_svg {
   height: 100%;
-  width: 100%; }
+  width: 100%;
+  position: absolute;
+  /*background-color: #ffffaa;*/
+  z-index: 1; }
 
-/* line 158, ../sass/default.scss */
+/* line 161, ../sass/default.scss */
 .map_html {
   height: 100%;
-  width: 100%; }
+  width: 100%;
+  position: absolute;
+  /*background-color: #ffffaa;*/
+  z-index: 2; }
 
-/* line 163, ../sass/default.scss */
+/* line 169, ../sass/default.scss */
 .map_entity {
   width: 100px;
   height: 50px;
@@ -197,16 +203,17 @@
   /* color h-shadow v-shadow blur spread color inset*/
   -moz-box-shadow: 2px 1px 3px 1px rgba(150, 150, 255, 0.75);
   -webkit-box-shadow: 2px 1px 3px 1px rgba(150, 150, 255, 0.75);
-  box-shadow: 2px 1px 3px 1px rgba(150, 150, 255, 0.75); }
-  /* line 177, ../sass/default.scss */
+  box-shadow: 2px 1px 3px 1px rgba(150, 150, 255, 0.75);
+  /* entity stylings */ }
+  /* line 183, ../sass/default.scss */
   .map_entity .status {
     position: absolute;
     left: -10px;
     top: -10px;
     background-color: yellow;
     border: 2px solid red;
-    padding-left: 2px;
-    padding-right: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
     padding-top: 0px;
     padding-bottom: 0px;
     text-align: center;
@@ -214,23 +221,52 @@
     -moz-border-radius: 10px / 10px;
     -webkit-border-radius: 10px 10px;
     border-radius: 10px / 10px; }
-  /* line 192, ../sass/default.scss */
+  /* line 197, ../sass/default.scss */
+  .map_entity .type {
+    position: absolute;
+    right: -15px;
+    bottom: -15px;
+    background-color: rgba(200, 200, 255, 0.5);
+    border: 2px solid rgba(100, 100, 255, 0.25);
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: #555f;
+    font-style: italic;
+    -moz-border-radius: 5px / 5px;
+    -webkit-border-radius: 5px 5px;
+    border-radius: 5px / 5px; }
+  /* line 214, ../sass/default.scss */
   .map_entity .name {
     position: relative;
     padding: 3px;
     /*background-color: yellow;*/ }
+  /* line 226, ../sass/default.scss */
+  .map_entity.selected {
+    border-color: #ffa;
+    border-width: 3px; }
+  /* line 235, ../sass/default.scss */
+  .map_entity.map_entity_object {
+    background-color: #aaa; }
+  /* line 239, ../sass/default.scss */
+  .map_entity.map_entity_process {
+    background-color: #aaf; }
 
 /* ------------------------
  mcm_map_list
 ------------------------ */
-/* line 212, ../sass/default.scss */
+/* line 252, ../sass/default.scss */
 .mcm_map_list {
   z-index: 9; }
 
 /* ------------------------
  interaction
 ------------------------ */
-/* line 220, ../sass/default.scss */
+/* line 260, ../sass/default.scss */
 .dropzone {
   background-color: #ccc;
   border-radius: 4px;
@@ -238,18 +274,18 @@
   padding: 10px;
   transition: background-color 0.3s; }
 
-/* line 228, ../sass/default.scss */
+/* line 268, ../sass/default.scss */
 .drop-active {
   border: 3px dotted red; }
 
-/* line 232, ../sass/default.scss */
+/* line 272, ../sass/default.scss */
 .drop-target {
   background-color: #4bf;
   border-color: #f88;
   border-style: solid;
   border-width: 5px; }
 
-/* line 239, ../sass/default.scss */
+/* line 279, ../sass/default.scss */
 .drag-drop {
   display: inline-block;
   min-width: 40px;
@@ -261,6 +297,6 @@
   transform: translate(0px, 0px);
   transition: background-color 0.3s; }
 
-/* line 254, ../sass/default.scss */
+/* line 294, ../sass/default.scss */
 .drag-drop.can-drop {
   border: 3px solid green; }

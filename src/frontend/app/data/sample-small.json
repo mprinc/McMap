@@ -16,8 +16,8 @@
 					"isOpen": true,
 					"dimensions": {
 						"sizes": {
-							"y": 0,
-							"x": 0,
+							"y": 100,
+							"x": 150,
 							"width": 200,
 							"height": 200
 						}
@@ -67,8 +67,8 @@
 					"isOpen": true,
 					"dimensions": {
 						"sizes": {
-							"y": 450,
-							"x": 350,
+							"y": 350,
+							"x": 450,
 							"width": 120,
 							"height": 75
 						}
