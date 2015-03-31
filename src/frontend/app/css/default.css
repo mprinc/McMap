@@ -1,0 +1,75 @@
+/*http://stackoverflow.com/questions/8061166/syntax-to-include-separate-sass-file*/
+/* @import "normalize"; */
+/*
+http://compass-style.org/examples/compass/css3/box_sizing/
+http://stackoverflow.com/questions/10808413/css3-box-sizing-margin-box-why-not
+*/
+/* line 8, ../sass/default.scss */
+* {
+  margin: 0px;
+  padding: 0px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+@media print {
+  /* line 15, ../sass/default.scss */
+  html, body {
+    height: auto; } }
+/* line 20, ../sass/default.scss */
+html {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  /* without this we will lose map in the narrowest (vertical) layout */
+  overflow-y: scroll; }
+
+/* line 28, ../sass/default.scss */
+body {
+  font: 18px Helvetica, Arial;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll; }
+
+/* line 36, ../sass/default.scss */
+#container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  /*background-color: #dddd00;
+  border: solid 1px #aaaa00;*/
+  overflow-x: hidden;
+  overflow-y: scroll;
+  /* This is the default clearfix from Compass. You can opt to use other clearfix methods */
+  overflow: hidden;
+  *zoom: 1;
+  /* The Container Mixin */
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto; }
+  /* line 12, ../../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/susy-2.2.2/sass/susy/output/support/_clearfix.scss */
+  #container:after {
+    content: " ";
+    display: block;
+    clear: both; }
+
+/* line 51, ../sass/default.scss */
+.clickable {
+  cursor: pointer; }
+
+/* line 55, ../sass/default.scss */
+.clickable:hover {
+  /*text-decoration: underline;*/
+  /* http://compass-style.org/reference/compass/css3/box_shadow/#mixin-box-shadow */
+  /* color h-shadow v-shadow blur spread color inset*/
+  -moz-box-shadow: 2px 1px 3px 1px rgba(100, 100, 255, 0.75);
+  -webkit-box-shadow: 2px 1px 3px 1px rgba(100, 100, 255, 0.75);
+  box-shadow: 2px 1px 3px 1px rgba(100, 100, 255, 0.75); }
+
+/* necessary for BOOTSTRAP-ANGULAR intregation
+ * http://angular-ui.github.io/bootstrap/
+ */
+/* line 66, ../sass/default.scss */
+.nav, .pagination, .carousel, .panel-title a {
+  cursor: pointer; }

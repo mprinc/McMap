@@ -1,6 +1,14 @@
+# CSS
+.sass-cache
 # Logs
 logs
 *.log
+
+#libs
+lib/
+
+#tests
+scripts/
 
 # Runtime data
 pids

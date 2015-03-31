@@ -1,0 +1,255 @@
+/*http://stackoverflow.com/questions/8061166/syntax-to-include-separate-sass-file*/
+@import "../../../app/sass/include";
+
+$color_tool_border: gray;
+
+$susy: (
+	columns: 12,
+	gutters: 1/4,
+	math: fluid,
+	output: float,
+	gutter-position: inside,
+
+	debug: (
+		image: hide,
+		color: red,
+		output: background,
+		toggle: top right,
+	),
+);
+
+$map: layout(12 1/4 fluid float inside);
+
+@include breakpoint($small) {
+	.mcm_map_tools{
+		height: 100%;
+		min-height: 100%;
+		@include span(2 at 1); 
+	}
+
+	.mcm_map{
+		height: 100%;
+		min-height: 100%;
+		@include span(10 at 3);
+	}
+
+	.mcm_map_list{
+		height: 100%;
+		min-height: 100%;
+		/*@include span(3 at 1); */
+	}
+}
+
+@include breakpoint($medium) {
+	.mcm_map_tools{
+		@include span(1 at 1);
+	}
+
+	.mcm_map{
+		@include span(9 at 2);
+	}
+
+	.mcm_map_list{
+		@include span(2 at 10);
+	}
+}
+
+@include breakpoint($large) {
+	.mcm_map_tools{
+		@include span(1 at 1); 
+	}
+
+	.mcm_map{
+		/* make #content content occupying 2 cells less on large screens */
+		@include span(9 at 2);
+	}
+
+	.mcm_map_list{
+		@include span(2 at 10); 
+	}
+}
+
+.mcm_map_index{
+	position: relative;
+	height: 100%;
+	width: 100%;
+	/*background-color: #dddd00;
+	border: solid 1px #aaaa00;*/
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+/* ------------------------
+ mcm_map_tools
+------------------------ */
+
+.mcm_map_tools{
+	z-index: 10;
+	position: relative;
+	height: 100%;
+	/* neccessery to both dimensions be visible, to make dragging visible outside the dom borders */
+	overflow: visible;
+	/*	overflow-x: visible;
+		overflow-y: scroll;
+	*/
+	ul {
+		/* neccessery to both dimensions be visible, to make dragging visible outside the dom borders */
+		overflow: visible;
+		/*	overflow-x: visible;can-drop
+			overflow-y: scroll;
+		*/
+		position: relative;
+
+		li {
+			position: absolute;
+			list-style-type: none;
+			display: block;
+			border: 1px solid $color_tool_border;
+			padding: 10px;
+			margin: 3px;
+			@include border-radius(10px, 10px);
+			/* http://compass-style.org/reference/compass/css3/box_shadow/#mixin-box-shadow */
+			/* color h-shadow v-shadow blur spread color inset*/
+			@include box-shadow(4px 3px 7px 2px rgba(150, 150, 255, 0.75));
+		}
+	}
+}
+
+.draggable_tool{
+
+}
+/* ------------------------
+ mcm_map
+------------------------ */
+
+.mcm_map{
+	z-index: 8;
+	position: relative;
+	height: 100%;
+	overflow: scroll;
+}
+
+@media print {
+/*	#map-canvas {
+		height: 650px;
+	}
+*/
+}
+
+.map-container{
+	position: relative;
+	height: 100%;
+	width: 100%;
+	z-index: 5;
+	position:relative;
+	background-color: #ddddff;
+	border: solid 1px #aaaaff;
+	overflow-x: scroll;
+	overflow-y: scroll;
+	@include border-radius(10px, 10px);
+}
+
+.map_svg{
+	height: 100%;
+	width: 100%;
+}
+
+.map_html{
+	height: 100%;
+	width: 100%;	
+}
+
+.map_entity{
+	width: 100px;
+	height: 50px;
+	position: absolute;
+	background-color: #ccf;
+	border: 3px solid gray;
+	padding: 10px;
+	margin: 3px;
+	z-index: 1;
+	@include border-radius(10px, 10px);
+	/* http://compass-style.org/reference/compass/css3/box_shadow/#mixin-box-shadow */
+	/* color h-shadow v-shadow blur spread color inset*/
+	@include box-shadow(2px 1px 3px 1px rgba(150, 150, 255, 0.75));
+
+	.status {
+		position: absolute;
+		left: -10px;
+		top: -10px;
+		background-color: yellow;
+		border: 2px solid red;
+		padding-left: 2px;
+		padding-right: 2px;
+		padding-top: 0px;
+		padding-bottom: 0px;
+		text-align: center;
+		font-weight: bold;
+		@include border-radius(10px, 10px);
+	}
+
+	.name {
+		position: relative;
+		padding: 3px;
+		/*background-color: yellow;*/
+	}
+
+	.has_children{
+	}
+	.has_no_children{
+	}
+}
+
+.draggable_map_entity{
+
+}
+
+/* ------------------------
+ mcm_map_list
+------------------------ */
+
+.mcm_map_list{
+	z-index: 9;
+}
+
+/* ------------------------
+ interaction
+------------------------ */
+
+.dropzone {
+	background-color: #ccc;
+	border-radius: 4px;
+	margin: 10px auto 30px;
+	padding: 10px;
+	transition: background-color 0.3s;
+}
+
+.drop-active {
+	border: 3px dotted red;
+}
+
+.drop-target {
+	background-color: #4bf;
+	border-color: #f88;
+	border-style: solid;
+	border-width: 5px;
+}
+
+.drag-drop {
+	display: inline-block;
+	min-width: 40px;
+	padding: 2em 0.5em;
+
+	color: #fff;
+	background-color: #29e;
+	border: solid 2px #fff;
+
+	-webkit-transform: translate(0px, 0px);
+	transform: translate(0px, 0px);
+
+	transition: background-color 0.3s;
+}
+
+.drag-drop.can-drop {
+	border: 3px solid green;
+}

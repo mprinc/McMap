@@ -1,0 +1,66 @@
+/*http://stackoverflow.com/questions/8061166/syntax-to-include-separate-sass-file*/
+@import "include";
+
+/*
+http://compass-style.org/examples/compass/css3/box_sizing/
+http://stackoverflow.com/questions/10808413/css3-box-sizing-margin-box-why-not
+*/
+* {
+	margin: 0px;
+	padding: 0px;
+	@include box-sizing(border-box);
+}
+
+@media print {
+	html, body {
+		height: auto;
+	}
+}
+
+html {
+	height: 100%;
+	width: 100%;
+	overflow-x: hidden;
+	/* without this we will lose map in the narrowest (vertical) layout */
+	overflow-y: scroll;
+}
+
+body {
+	font: 18px Helvetica, Arial;
+	height: 100%;
+	width: 100%;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+#container{
+	position: relative;
+	height: 100%;
+	width: 100%;
+	/*background-color: #dddd00;
+	border: solid 1px #aaaa00;*/
+	overflow-x: hidden;
+	overflow-y: scroll;
+
+	/* This is the default clearfix from Compass. You can opt to use other clearfix methods */
+	@include clearfix;
+	/* The Container Mixin */
+	@include container( 100% );
+}
+
+.clickable{
+	cursor: pointer;
+}
+
+.clickable:hover{
+	/*text-decoration: underline;*/
+
+	/* http://compass-style.org/reference/compass/css3/box_shadow/#mixin-box-shadow */
+	/* color h-shadow v-shadow blur spread color inset*/
+	@include box-shadow(2px 1px 3px 1px rgba(100, 100, 255, 0.75));
+}
+
+/* necessary for BOOTSTRAP-ANGULAR intregation
+ * http://angular-ui.github.io/bootstrap/
+ */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

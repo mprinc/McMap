@@ -1,0 +1,47 @@
+{
+	"name": "McModelar-frontend",
+	"version": "0.0.5",
+	"private": true,
+	"scripts": {
+		"start": "open http://localhost:8310/app/index.html; node ./scripts/web-server.js 8310 ..",
+		"test": "node_modules/protractor/bin/protractor tests/e2e-config.js",
+		"test-a": "node_modules/mocha/bin/mocha tests/unit-tests.js",
+		"hello": "echo 'Hello'"
+	},
+	"dependencies": {
+	},
+	"devDependencies": {
+		"grunt": "~0.4.5",
+		"grunt-contrib-concat": "~0.5.0",
+		"grunt-contrib-jshint": "~0.10.0",
+		"grunt-contrib-nodeunit": "~0.4.1",
+		"grunt-contrib-uglify": "~0.5.0",
+		"grunt-contrib-watch": "~0.5.0",
+		"grunt-contrib-sass": "~0.5.0",
+		"grunt-contrib-compass": "~0.5.0",
+		"grunt-protractor-runner": "~1.2.1",
+		"grunt-karma": "~0.10.1",
+		"grunt-concurrent": "~1.0.0",
+		"load-grunt-tasks": "~3.1.0",
+		"grunt-notify": "~0.4.1",
+
+		"requirejs": "*",
+		"mocha": "*",
+		"chai": "*",
+		"chai-as-promised": "*",
+		"karma": "*",
+		"karma-requirejs": "*",
+		"karma-mocha": "*",
+		"karma-chai": "*",
+		"karma-sinon": "*",
+		"karma-chai-plugins": "*",
+		"karma-ng-html2js-preprocessor": "*",
+		"protractor": "*",
+
+		"karma-chrome-launcher": "^0.1.7",
+		"karma-firefox-launcher": "^0.1.3",
+		"karma-mocha": "^0.1.10",
+		"karma-safari-launcher": "^0.1.1",
+		"karma-coverage": "*"
+	}
+}

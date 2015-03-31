@@ -1,0 +1,112 @@
+{
+	"model": {
+		"properties": {
+			"name": "Anna's Model",
+			"date": "2015.03.22.",
+			"authors": "Anna Kelbert",
+			"rootNodeId": 1
+		},
+		"nodes": [
+			{
+				"id": 1,
+				"name": "Water",
+				"type": "object",
+				"visual": {
+					"isClosed": false,
+					"isOpen": true,
+					"dimensions": {
+						"sizes": {
+							"y": 10,
+							"x": 50,
+							"width": 200,
+							"height": 200
+						}
+					}
+				}
+			},
+			{
+				"id": 2,
+				"name": "Channel",
+				"type": "object",
+				"visual": {
+					"isClosed": false,
+					"isOpen": true,
+					"dimensions": {
+						"sizes": {
+							"y": 100,
+							"x": 500,
+							"width": 175,
+							"height": 50
+						}
+					}
+				}
+			},
+			{
+				"id": 3,
+				"name": "Obstacle",
+				"type": "object",
+				"visual": {
+					"isClosed": false,
+					"isOpen": true,
+					"dimensions": {
+						"sizes": {
+							"y": 300,
+							"x": 20,
+							"width": 100,
+							"height": 75
+						}
+					}
+				}
+			},
+			{
+				"id": 4,
+				"name": "Process flow",
+				"type": "process",
+				"visual": {
+					"isClosed": false,
+					"isOpen": true,
+					"dimensions": {
+						"sizes": {
+							"y": 450,
+							"x": 350,
+							"width": 120,
+							"height": 75
+						}
+					}
+				}
+			}
+		],
+		"edges": [
+			{
+				"id": 1,
+				"name": "foster",
+				"sourceId": 1,
+				"targetId": 2
+			},
+			{
+				"id": 2,
+				"name": "inhibits",
+				"sourceId": 1,
+				"targetId": 6
+			},
+			{
+				"id": 3,
+				"name": "supports",
+				"sourceId": 2,
+				"targetId": 3
+			},
+			{
+				"id": 4,
+				"name": "insights",
+				"sourceId": 2,
+				"targetId": 4
+			},
+			{
+				"id": 5,
+				"name": "inhibits",
+				"sourceId": 6,
+				"targetId": 5
+			}
+		]
+	}
+}
