@@ -15,10 +15,9 @@ var MoveAndDrag =  interaction.MoveAndDrag = function(){
  * @param {Object} config contains all parameters relevant for the initialization
 */
 
-var staticPlaceholder = null;
-var movingPlaceholder = null;
-
-MoveAndDrag.InitializeManipulation = function (config) {
+MoveAndDrag.InitializeDragging = function (config) {
+	var staticPlaceholder = null;
+	var movingPlaceholder = null;
 
 	// target elements with the "draggable" class
 	interact(config.target.refCategory)
@@ -109,10 +108,10 @@ MoveAndDrag.InitializeManipulation = function (config) {
 				}
 				if(d){
 					// update manual values for datum
-					d.visual.dimensions.sizes.x = d.x + event.dx;
-					d.visual.dimensions.sizes.y = d.y + event.dy;
-					d.x = d.x + event.dx;
-					d.y = d.y + event.dy;
+					d.visual.dimensions.sizes.x += event.dx;
+					d.visual.dimensions.sizes.y += event.dy;
+					d.x += event.dx;
+					d.y += event.dy;
 				}
 
 				// var textEl = event.target.querySelector('p');
@@ -146,16 +145,16 @@ MoveAndDrag.InitializeManipulation = function (config) {
 				movingPlaceholder = null;
 
 				if(typeof config.target.callbacks.onend == 'function'){
-					config.target.callbacks.onend();
+					config.target.callbacks.onend(targetD3);
 				}
 		}
 	});
-	console.log("[InitializeManipulation]");
+	console.log("[InitializeDragging]");
 };
 
 /**
  * @ngdoc object
- * @name InitializeDragging
+ * @name InitializeDraggingIn
  * @function
  *
  * @description
@@ -164,9 +163,12 @@ MoveAndDrag.InitializeManipulation = function (config) {
  * @param {Object} config contains all parameters relevant for the initialization
 */
 
-var draggedIn = false;
-var draggedInTarget = null;
-MoveAndDrag.InitializeDragging = function (config) {
+MoveAndDrag.InitializeDraggingIn = function (config) {
+	var draggedIn = false;
+	var draggedInTarget = null;
+	var droppedIn = false;
+	var droppedInTarget = null;
+
 	/* The dragging code for '.draggable' from the demo above
 	* applies to this demo as well so it doesn't have to be repeated. */
 
@@ -208,19 +210,21 @@ MoveAndDrag.InitializeDragging = function (config) {
 			}
 		},
 		ondrop: function (event) {
+			droppedInTarget = event.target;
+			droppedIn = true;
 			if(config.debug.draggingStatus && config.draggable.messages.dropped) event.relatedTarget.textContent = config.draggable.messages.dropped;
+			if(typeof config.draggable.callbacks.onend == 'function'){
+				config.draggable.callbacks.onend(d3.select(droppedInTarget), true);
+			}
 		},
 		ondropdeactivate: function (event) {
 			// remove active dropzone feedback
 			event.target.classList.remove(config.dropzone.activeClass);
 			event.target.classList.remove(config.dropzone.dragenteredClass);
 			event.relatedTarget.classList.remove(config.draggable.candropClass);
-			if(typeof config.draggable.callbacks.onend == 'function'){
-				config.draggable.callbacks.onend(d3.select(event.target), draggedIn && draggedInTarget == event.target);
-			}
 		}
 	});
-	console.log("[InitializeDragging]");
+	console.log("[InitializeDraggingIn]");
 };
 
 }()); // end of 'use strict';

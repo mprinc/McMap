@@ -81,7 +81,7 @@ angular.module('mcmMapDirectives', ['Config'])
 					console.log("tool:manipulationEnded");
 				};
 
-				var manipulationConfig = {
+				var draggingConfig = {
 					draggTargetElement: true,
 					target: {
 						refCategory: '.draggable_tool',
@@ -98,7 +98,7 @@ angular.module('mcmMapDirectives', ['Config'])
 					}
 				};
 
-				interaction.MoveAndDrag.InitializeManipulation(manipulationConfig);
+				interaction.MoveAndDrag.InitializeDragging(draggingConfig);
     		}
     	};
 	}])

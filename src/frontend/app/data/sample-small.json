@@ -16,8 +16,8 @@
 					"isOpen": true,
 					"dimensions": {
 						"sizes": {
-							"y": 10,
-							"x": 50,
+							"y": 0,
+							"x": 0,
 							"width": 200,
 							"height": 200
 						}

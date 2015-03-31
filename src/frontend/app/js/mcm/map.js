@@ -53,11 +53,13 @@ Map.prototype.init = function() {
 
 	mcmMapInitialize.bind(this)();
 
-	var manipulationEnded = function(){
-		console.log("map_entity:manipulationEnded");
+	var manipulationEnded = function(targetD3){
+		var d = targetD3 ? targetD3.datum() : null;
+		console.log("map_entity:manipulationEnded [%s]", d ? d.name : null);
+		that.update(that.model.nodes[0]);
 	};
 
-	var manipulationConfig = {
+	var draggingConfig = {
 		draggTargetElement: true,
 		target: {
 			refCategory: '.draggable_map_entity',
@@ -74,10 +76,11 @@ Map.prototype.init = function() {
 		}
 	};
 
-	interaction.MoveAndDrag.InitializeManipulation(manipulationConfig);
+	interaction.MoveAndDrag.InitializeDragging(draggingConfig);
 
 	var draggAndDropEnded = function(targetD3, draggedIn){
-		console.log("draggAndDropEnded [%s]: %s", targetD3.datum().name, draggedIn);
+		var d = targetD3 ? targetD3.datum() : null;
+		console.log("draggAndDropEnded [%s]: %s", d ? d.name : null, draggedIn);
 		if(draggedIn){
 			var d = targetD3.datum();
 			d.draggedInNo++;
@@ -85,7 +88,7 @@ Map.prototype.init = function() {
 		}
 	};
 
-	var draggingConfig = {
+	var draggingInConfig = {
 		dropzone: {
 			refCategory: '.dropzone',
 			overlap: 0.5,
@@ -109,7 +112,7 @@ Map.prototype.init = function() {
 		}
 	};
 
-	interaction.MoveAndDrag.InitializeDragging(draggingConfig);
+	interaction.MoveAndDrag.InitializeDraggingIn(draggingInConfig);
 };
 
 Map.prototype.placeModels = function(model){
@@ -141,20 +144,20 @@ Map.prototype.processNodes = function(nodes){
 
 		if(viewspec == "viewspec_manual"){
 			// update x and y to manual coordinates if present
-			if(d.visual && d.visual.dimensions && d.visual.dimensions.sizes && d.visual.dimensions.sizes.x){
+			if(d.visual && d.visual.dimensions && d.visual.dimensions.sizes && "x" in d.visual.dimensions.sizes){
 				d.x = d.visual.dimensions.sizes.x;
 			}
-			if(d.visual && d.visual.dimensions && d.visual.dimensions.sizes && d.visual.dimensions.sizes.y){
+			if(d.visual && d.visual.dimensions && d.visual.dimensions.sizes && "y" in d.visual.dimensions.sizes){
 				d.y = d.visual.dimensions.sizes.y;
 			}
 
 			// update width and height to manual values if present
-			if(d.visual && d.visual.dimensions && d.visual.dimensions.sizes && d.visual.dimensions.sizes.width){
+			if(d.visual && d.visual.dimensions && d.visual.dimensions.sizes && "width" in d.visual.dimensions.sizes){
 				d.width = d.visual.dimensions.sizes.width;
 			}else{
 				d.width = sizes.width;
 			}
-			if(d.visual && d.visual.dimensions && d.visual.dimensions.sizes && d.visual.dimensions.sizes.width){
+			if(d.visual && d.visual.dimensions && d.visual.dimensions.sizes && "height" in d.visual.dimensions.sizes){
 				d.height = d.visual.dimensions.sizes.height;
 			}else{
 				d.height = sizes.height;
@@ -219,19 +222,6 @@ Map.prototype.updateHtml = function(nodes, source) {
 	// (it is either parent or another precessor)
 	nodeHtmlEnter
 		.style("left", function(d) {
-			var y = null;
-			if(that.config.transitions.enter.animate.position){
-				if(that.config.transitions.enter.referToToggling){
-					y = source.y0;
-				}else{
-					y = d.parent ? d.parent.y0 : d.y0;
-				}
-			}else{
-				y = d.y;
-			}
-			return y + "px";
-		})
-		.style("top", function(d) {
 			var x = null;
 			if(that.config.transitions.enter.animate.position){
 				if(that.config.transitions.enter.referToToggling){
@@ -244,6 +234,19 @@ Map.prototype.updateHtml = function(nodes, source) {
 			}
 			// console.log("[nodeHtmlEnter] d: %s, x: %s", d.name, x);
 			return x + "px";
+		})
+		.style("top", function(d) {
+			var y = null;
+			if(that.config.transitions.enter.animate.position){
+				if(that.config.transitions.enter.referToToggling){
+					y = source.y0;
+				}else{
+					y = d.parent ? d.parent.y0 : d.y0;
+				}
+			}else{
+				y = d.y;
+			}
+			return y + "px";
 		})
 		.style("width", function(d) {
 			var width = null;
@@ -336,13 +339,13 @@ Map.prototype.updateHtmlTransitions = function(source, nodeHtmlDatasets){
 			});
 
 	(this.config.transitions.update.animate.position ? nodeHtmlUpdateTransition : nodeHtmlUpdate)
-		.style("left", function(d){
+		.style("top", function(d){
 			return d.y + "px";
 		})
 		// .each("start", function(d){
 		// 	console.log("[nodeHtmlUpdateTransition] STARTED: d: %s, xCurrent: %s", d.name, d3.select(this).style("top"));
 		// })
-		.style("top", function(d){
+		.style("left", function(d){
 			var x = that.getHtmlNodePosition(d);
 			// x = d.x;
 			// console.log("[nodeHtmlUpdateTransition] d: %s, xCurrent: %s, xNew: %s", d.name, d3.select(this).style("top"), x);
