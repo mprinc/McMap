@@ -129,6 +129,7 @@
       display: block;
       border: 1px solid gray;
       padding: 10px;
+      padding-right: 25px;
       margin: 3px;
       -moz-border-radius: 10px / 10px;
       -webkit-border-radius: 10px 10px;
@@ -142,7 +143,7 @@
 /* ------------------------
  mcm_map
 ------------------------ */
-/* line 125, ../sass/default.scss */
+/* line 126, ../sass/default.scss */
 .mcm_map {
   z-index: 8;
   position: relative;
@@ -154,7 +155,7 @@
   		height: 650px;
   	}
   */ }
-/* line 139, ../sass/default.scss */
+/* line 140, ../sass/default.scss */
 .map-container {
   position: relative;
   height: 100%;
@@ -169,17 +170,17 @@
   -webkit-border-radius: 10px 10px;
   border-radius: 10px / 10px; }
 
-/* line 152, ../sass/default.scss */
+/* line 153, ../sass/default.scss */
 .map_svg {
   height: 100%;
   width: 100%; }
 
-/* line 157, ../sass/default.scss */
+/* line 158, ../sass/default.scss */
 .map_html {
   height: 100%;
   width: 100%; }
 
-/* line 162, ../sass/default.scss */
+/* line 163, ../sass/default.scss */
 .map_entity {
   width: 100px;
   height: 50px;
@@ -197,7 +198,7 @@
   -moz-box-shadow: 2px 1px 3px 1px rgba(150, 150, 255, 0.75);
   -webkit-box-shadow: 2px 1px 3px 1px rgba(150, 150, 255, 0.75);
   box-shadow: 2px 1px 3px 1px rgba(150, 150, 255, 0.75); }
-  /* line 176, ../sass/default.scss */
+  /* line 177, ../sass/default.scss */
   .map_entity .status {
     position: absolute;
     left: -10px;
@@ -213,7 +214,7 @@
     -moz-border-radius: 10px / 10px;
     -webkit-border-radius: 10px 10px;
     border-radius: 10px / 10px; }
-  /* line 191, ../sass/default.scss */
+  /* line 192, ../sass/default.scss */
   .map_entity .name {
     position: relative;
     padding: 3px;
@@ -222,14 +223,14 @@
 /* ------------------------
  mcm_map_list
 ------------------------ */
-/* line 211, ../sass/default.scss */
+/* line 212, ../sass/default.scss */
 .mcm_map_list {
   z-index: 9; }
 
 /* ------------------------
  interaction
 ------------------------ */
-/* line 219, ../sass/default.scss */
+/* line 220, ../sass/default.scss */
 .dropzone {
   background-color: #ccc;
   border-radius: 4px;
@@ -237,18 +238,18 @@
   padding: 10px;
   transition: background-color 0.3s; }
 
-/* line 227, ../sass/default.scss */
+/* line 228, ../sass/default.scss */
 .drop-active {
   border: 3px dotted red; }
 
-/* line 231, ../sass/default.scss */
+/* line 232, ../sass/default.scss */
 .drop-target {
   background-color: #4bf;
   border-color: #f88;
   border-style: solid;
   border-width: 5px; }
 
-/* line 238, ../sass/default.scss */
+/* line 239, ../sass/default.scss */
 .drag-drop {
   display: inline-block;
   min-width: 40px;
@@ -260,6 +261,6 @@
   transform: translate(0px, 0px);
   transition: background-color 0.3s; }
 
-/* line 253, ../sass/default.scss */
+/* line 254, ../sass/default.scss */
 .drag-drop.can-drop {
   border: 3px solid green; }

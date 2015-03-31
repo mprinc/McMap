@@ -106,6 +106,7 @@ $map: layout(12 1/4 fluid float inside);
 			display: block;
 			border: 1px solid $color_tool_border;
 			padding: 10px;
+			padding-right: 25px;
 			margin: 3px;
 			@include border-radius(10px, 10px);
 			/* http://compass-style.org/reference/compass/css3/box_shadow/#mixin-box-shadow */
