@@ -3,7 +3,7 @@
 	"version": "0.0.5",
 	"private": true,
 	"scripts": {
-		"start": "open http://localhost:8310/app/index.html; node ./scripts/web-server.js 8310 ..",
+		"start": "open http://localhost:8310/app/index-dev.html; node ./scripts/web-server.js 8310 ..",
 		"test": "node_modules/protractor/bin/protractor tests/e2e-config.js",
 		"test-a": "node_modules/mocha/bin/mocha tests/unit-tests.js",
 		"hello": "echo 'Hello'"

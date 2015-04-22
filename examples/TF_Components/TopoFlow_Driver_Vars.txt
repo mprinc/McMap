@@ -1,0 +1,35 @@
+atmosphere_water, precipitation_leq-volume_flux, domain_time_integral_of, vol_P,      [m3],      input
+atmosphere_water, precipitation_leq-volume_flux, domain_time_max,         P_max,,     [m s-1],   input
+basin_outlet_water_flow, half_of_fanning_friction_factor, -,              f_outlet,   [1],       input
+basin_outlet_water_x-section, mean_depth, -,                              d_outlet,   [m],       input
+basin_outlet_water_x-section, depth, peak_time_of,                        Td_peak,    [min],     input
+basin_outlet_water_x-section, volume_flow_rate, peak_time_of,             T_peak,     [min],     input
+basin_outlet_water_x-section, volume_flux, peak_time_of,                  Tu_peak,    [min],     input
+basin_outlet_water_x-section, volume_flow_rate, time_integral_of,         vol_Q,      [m3],      input
+basin_outlet_water_x-section, mean_depth, time_max_of,                    d_peak,     [m],       input
+basin_outlet_water_x-section, volume_flow_rate, time_max_of,              Q_peak,     [m3 s-1],  input
+basin_outlet_water_x-section, volume_flux, time_max_of,                   u_peak,     [m s-1],   input
+basin_outlet_water_x-section, volume_flow_rate, -,                        Q_outlet,   [m3 s-1],  input
+basin_outlet_water_x-section, volume_flux, -,                             u_outlet,   [m s-1],   input
+channel_bottom_water_flow, log_law_roughness_length, domain_max_of,       z0val_max,  [m],       input
+channel_bottom_water_flow, log_law_roughness_length, domain_min_of,       z0val_min,  [m],       input  
+channel_model, time_step, -,                                              channel_dt, [s],       input
+channel_water_flow, manning_n_parameter, domain_max_of,                   nval_max,   [m-1/3 s], input
+channel_water_flow, manning_n_parameter, domain_min_of,                   nval_min,   [m-1/3 s], input       
+channel_water_x-section, mean_depth, domain_max_of,                       d_max,      [m],       input
+channel_water_x-section, volume_flow_rate, domain_max_of,                 Q_max,      [m3 s-1],  input
+channel_water_x-section, volume_flux, domain_max_of,                      u_max,      [m s-1],   input
+channel_water_x-section, mean_depth, domain_min_of,                       d_min,      [m],       input
+channel_water_x-section, volume_flow_rate, domain_min_of,                 Q_min,      [m3 s-1],  input
+channel_water_x-section, volume_flux, domain_min_of,                      u_min,      [m s-1],   input        
+glacier_ice, melt_volume_flux, domain_time_integral_of,                   vol_MR,     [m3],      input
+land_surface_water, baseflow_volume_flux, -,                              GW,         [m s-1],   input
+land_surface_water, baseflow_volume_flux, domain_time_integral_of,        vol_GW,     [m3],      input
+land_surface_water, evaporation_volume_flux, domain_time_integral_of,     vol_ET,     [m3],      input
+land_surface_water, runoff_volume_flux, domain_time_integral_of,          vol_R,      [m3],      input
+land_surface_water, runoff_volume_flux, -,                                R,          [m s-1],   input       
+snowpack, melt_volume_flux, domain_time_integral_of,                      vol_SM,     [m3],      input    
+soil_surface_water, infiltration_volume_flux, domain_time_integral_of,    vol_IN,     [m3],      input
+soil_water_sat-zone_top, recharge_volume_flux, domain_time_integral_of,   vol_Rg,     [m3],      input
+
+model, time_step, -,                                                      dt,         [s],       output

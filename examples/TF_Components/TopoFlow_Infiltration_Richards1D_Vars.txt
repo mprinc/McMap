@@ -1,0 +1,30 @@
+atmosphere_water, precipitation_leq-volume_flux, -,  P,       [m s-1], input
+glacier_ice, melt_volume_flux, -,                    MR,      [m s-1], input
+land_surface, elevation, -,                          elev,    [m],     input
+land_surface_water, evaporation_volume_flux, -,      ET,      [m s-1], input
+snowpack, melt_volume_flux, -,                       SM,      [m s-1], input
+soil_water_sat-zone_top_surface, elevation, -,       h_table, [m],     input
+
+model, time_step, -,                                 dt,      [s], config/output
+soil_water, brooks-corey_eta_parameter, -,           eta,     [1], config/output
+soil_water, brooks-corey_lambda_parameter, -,        lam,     [1], config/output
+soil_water, brooks-corey-smith_c_parameter, -,       c,       [1], config/output
+soil_water, brooks-corey-smith_pressure_head_offset_parameter, -, pA, [m], config/output
+soil_water, bubbling_pressure_head, -,               pB,  [m],     config/output
+soil_water, hygroscopic_volume_fraction, -,          qH,  [1],     config/output
+soil_water, initial_hydraulic_conductivity, -,       Ki,  [m s-1], config/output
+soil_water, initial_volume_fraction, -,              qi,  [1],     config/output
+soil_water, residual_volume_fraction, -,             qr,  [1],     config/output
+soil_water, saturated_hydraulic_conductivity, -,     Ks,  [m s-1], config/output
+soil_water, saturated_volume_fraction, -,            qs,  [1],     config/output
+
+soil_surface_water, infiltration_volume_flux, domain_time_integral_of, vol_IN, [m3], output
+soil_surface_water, infiltration_volume_flux, -,     IN, [m s-1], output
+soil_surface_water, volume_fraction, -,              q0, [1],     output
+soil_water, hydraulic_conductivity, -,               K,  [m s-1], output  
+soil_water, pressure_head, -,                        p,  [m],     output
+soil_water, volume_fraction, -,                      q,  [1],     output
+soil_water_flow, darcy_velocity, z_component_of,     v,  [m s-1], output
+soil_water_sat-zone_top, recharge_volume_flux, domain_time_integral_of, vol_Rg, [m3], output
+soil_water_sat-zone_top, recharge_volume_flux, -,    Rg, [m s-1], output
+soil_water_wetting-front, depth, -,                  Zw, [m],     output

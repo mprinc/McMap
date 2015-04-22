@@ -1,0 +1,20 @@
+atmosphere_water, precipitation_leq-volume_flux, -, P,    [m s-1], input
+glacier_ice, melt_volume_flux, -,                   MR,   [m s-1], input
+land_surface, elevation, -,                         elev, [m],     input
+land_surface_water, evaporation_volume_flux, -,     ET,   [m s-1], input
+snowpack, melt_volume_flux, -,                      SM,   [m s-1], input
+soil_water_sat-zone_top_surface, elevation, -,      h_table, [m],  input
+
+model, time_step, -, dt, [s], output
+soil_surface_water, infiltration_volume_flux, time_integral_of, I, [m], output
+soil_surface_water, infiltration_volume_flux, -, IN, [m s-1], output
+soil_surface_water, infiltration_volume_flux, domain_time_integral_of, vol_IN, [m3], output
+soil_water, green-ampt_capillary_length, -,  G, [m], config/output
+soil_water, potential_infiltration_volume_flux, -, fc, [m s-1], output
+soil_water, initial_hydraulic_conductivity, -, Ki, [m s-1], output
+soil_water, initial_volume_fraction, -, qi, [1], output
+soil_water, saturated_hydraulic_conductivity, -1, Ks, [m s-1], output
+soil_water, saturated_volume_fraction, -, qs, [1], output
+soil_water_flow, darcy_velocity, z_component_of, v, [m s-1], output
+soil_water_sat-zone_top, recharge_volume_flux, domain_time_integral_of, vol_Rg, [m3], output
+soil_water_sat-zone_top, recharge_volume_flux, -, Rg, [m s-1], output

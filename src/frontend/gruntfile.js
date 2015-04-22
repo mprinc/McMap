@@ -31,10 +31,13 @@ module.exports = function(grunt) {
 					module: true,
 					d3: true,
 					interact: true,
+					KeyboardJS: true,
+					window: true,
 
 					// application related global objects
 					interaction: true,
-					mcm: true
+					mcm: true,
+					knalledge: true
 				}
 			}
 		},

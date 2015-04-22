@@ -1,0 +1,10 @@
+
+glacier_ice,         melt_volume_flux, domain_time_integral_of, vol_MR, [m3], output
+glacier_ice,         melt_volume_flux, -, MR, [m s-1], output
+glacier_top_surface, elevation,        -, Zi, [m],  output
+glacier_ice,         thickness,        -, H,  [m],  output
+model_grid_cell,     x_length,         -, dx, [m],  output
+model_grid_cell,     y_length,         -, dy, [m],  output
+model,               time_step,        -, dt, [yr], output
+
+land_surface, elevation, -, Zb, [m], config/output

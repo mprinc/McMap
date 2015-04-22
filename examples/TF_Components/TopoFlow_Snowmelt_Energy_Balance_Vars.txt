@@ -1,0 +1,15 @@
+atmosphere_bottom_air, mass-per-volume_density, -,              rho_air,  [kg m-3],     input
+atmosphere_bottom_air, mass-specific_isobaric_heat_capacity, -, Cp_air,   [J kg-1 K-1], input
+atmosphere_water, snowfall_leq-volume_flux, -,                  P_snow,   [m s-1],      input
+land_surface, temperature, -,                                   T_surf,   [deg_C],      input     
+water-liquid, mass-per-volume_density, -,                       rho_H2O,  [kg m-3],     input
+
+model, time_step, -,                                            dt,       [s],          config/output
+snowpack, depth, -,                                             h_snow,   [m],          output
+snowpack, melt_volume_flux, domain_time_integral_of,            vol_SM,   [m3],         output
+snowpack, initial_depth, -,                                     h0_snow,  [m],          config/output
+snowpack, initial_liquid-equivalent_depth, -,                   h0_swe,   [m],          config/output
+snowpack, liquid-equivalent_depth, -,                           h_swe,    [m],          output
+snowpack, melt_volume_flux, -,                                  SM,       [m s-1],      output
+snowpack, mass-per-volume_density, z_mean_of,                   rho_snow, [kg m-3],     config/output
+snowpack, mass-specific_isobaric_heat_capacity, z_mean_of,      Cp_snow,  [J kg-1 K-1], config/output

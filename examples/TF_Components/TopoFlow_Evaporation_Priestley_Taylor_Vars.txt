@@ -1,0 +1,13 @@
+atmosphere_bottom_air, temperature, -,                     T_air,    [deg_C], input
+land_surface, temperature, -,                              T_surf,   [deg_C], input
+land_surface_net-longwave-radiation, energy_flux, -,       Qn_LW,    [W m-2], input
+land_surface_net-shortwave-radiation, energy_flux, -,      Qn_SW,    [W m-2], input
+land_surface_soil, conduction_heat_flux, -,                Qc,       [W m-2], output
+land_surface_water, evaporation_volume_flux, domain_time_integral_of, vol_ET, [m3], output   
+land_surface_water, evaporation_volume_flux, _,            ET,       [m s-1], output
+model, time_step, -,                                       dt,       [s], output
+land_surface, elevation, -,                                DEM,      [m], config
+land_surface_water, priestley-taylor_alpha_coefficient, -, alpha,    [1], config
+soil, reference_depth_temperature, -,                      T_soil_x, [deg_C], config
+soil, temperature_reference_depth, -,                      soil_x,   [m], config
+soil, thermal_conductivity, -,                             K_soil,   [W m-1 deg_C-1], config

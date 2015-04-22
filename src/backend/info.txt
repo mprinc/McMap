@@ -1,0 +1,17 @@
+info
+
+cd backend
+
+ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/models/ models
+ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/modules/ modules
+ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/tools/ tools
+ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/node_modules/ node_modules
+ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
+
+cp -r /Users/sasha/Documents/data/development/KnAllEdge/src/backend/config .
+cp /Users/sasha/Documents/data/development/KnAllEdge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
+cp /Users/sasha/Documents/data/development/KnAllEdge/src/backend/package.json package.json
+
+cd backend/tools
+node createDemoData.js ../../frontend/app/data/sample-small.json
+node tools/createDemoData.js ../frontend/app/data/sample-small.json

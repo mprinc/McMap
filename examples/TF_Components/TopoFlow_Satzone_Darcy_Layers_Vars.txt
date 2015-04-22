@@ -1,0 +1,22 @@
+channel_water_x-section, mean_depth, -,            d,  [m],     input
+land_surface_water, evaporation_volume_flux, _,    ET, [m s-1], input
+soil_water_sat-zone_top, recharge_volume_flux, -,  Rg, [m s-1], input
+
+land_surface, elevation, -, elev, [m], config/output
+land_surface_water, baseflow_volume_flux, -,   GW, [m s-1], output 
+land_surface_water, baseflow_volume_flux, domain_time_integral_of, vol_GW, [m3], output
+model, time_step, -,                           dt,         [s], config/output
+model_soil_layer-0, porosity, -,               qs_layer_0, [1], output
+model_soil_layer-0, saturated_thickness, -,    y_layer_0,  [m], output
+model_soil_layer_0, thickness, -,              th_layer_0, [m], output
+model_soil_layer-1, porosity, -,               qs_layer_1, [1], output
+model_soil_layer-1, saturated_thickness, -,    y_layer_1,  [m], output
+model_soil_layer-1, thickness, -,              th_layer_1, [m], output
+model_soil_layer-2, porosity, -,               qs_layer_2, [1], output
+model_soil_layer-2, saturated_thickness, -,    y_layer_2,  [m], output
+model_soil_layer-2, thickness, -,              th_layer_2, [m], output
+soil_top-layer, porosity,  -,                  qs_layer_0, [1], output
+soil_top-layer, saturated_thickness, -,        y_layer_0,  [m], output
+soil_top-layer, thickness, -,                  th_layer_0  [m], output
+soil_water_sat-zone_top_surface, elevation, -, h_table,    [m], output
+soil_water_sat-zone_top_surface, initial_elevation, -, h0_table,    [m], output

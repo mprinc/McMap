@@ -1,0 +1,51 @@
+snowpack, depth,  -,                          h_snow,   [m],      input
+snowpack, liquid-equivalent_depth, -,         h_swe,    [m],      input
+snowpack, melt_volume_flux, -,                SM,       [m s-1],  input
+snowpack, mass-per-volume_density, z_mean_of, rho_snow, [kg m-3], input
+
+atmosphere_aerosol_dust, reduction_of_transmittance, -,                   dust_atten,    [1],          output
+atmosphere_air-column_water-vapor, liquid-equivalent_depth, -,            W_p,           [m],          config/output
+atmosphere_bottom_air, brutsaert_emissivity_canopy_factor, -,             canopy_factor, [1],          config/output
+atmosphere_bottom_air, brutsaert_emissivity_cloud_factor, -,              cloud_factor,  [1],          config/output
+atmosphere_bottom_air, bulk_latent_heat_aerodynamic_conductance, -,       De,            [m s-1],      output
+atmosphere_bottom_air, bulk_sensible_heat_aerodynamic_conductance, -,     Dh,            [m s-1],      output
+atmosphere_bottom_air, emissivity, -,                                     em_air,        [1],          output               
+atmosphere_bottom_air, mass-per-volume_density, -,                        rho_air,       [kg m-3],     output
+atmosphere_bottom_air, mass-specific_isobaric_heat_capacity, -,           Cp_air,        [J kg-1 K-1], output
+atmosphere_bottom_air, neutral_bulk_heat_aerodynamic_conductance, -,      Dn,            [m s-1],      output
+atmosphere_bottom_air, pressure, -,                                       p0,            [mbar],       output
+atmosphere_bottom_air, temperature, -,                                    T_air,         [deg_C],      config/output
+atmosphere_bottom_air_flow, bulk_richardson_number, -,                    Ri,            [1],          output       
+atmosphere_bottom_air_flow, log_law_roughness_length, -,                  z0_air,        [m],          output
+atmosphere_bottom_air_flow, reference_height_speed, -,                    uz,            [m s-1],      config/output
+atmosphere_bottom_air_flow, speed_reference_height, -,                    z,             [m],          config/output
+atmosphere_bottom_air_land_net-latent-heat, energy_flux, -,               Qe,            [W m-2],      output
+atmosphere_bottom_air_land_net-sensible-heat, energy_flux, -,             Qh,            [W m-2],      output  
+atmosphere_bottom_air_water-vapor, dew_point_temperature, -,              T_dew,         [deg_C],      config/output
+atmosphere_bottom_air_water-vapor, partial_pressure, -,                   e_air,         [mbar],       output
+atmosphere_bottom_air_water-vapor, relative_saturation, -,                RH,            [1],          config/output
+atmosphere_bottom_air_water-vapor, saturated_partial_pressure, -,         e_sat_air,     [mbar],       output
+atmosphere_water, precipitation_leq-volume_flux, domain_time_integral_of, vol_P,         [m3],         output
+atmosphere_water, precipitation_leq-volume_flux, domain_time_max_of,      P_max,         [m s-1],      output      
+atmosphere_water, precipitation_leq-volume_flux, -,                       P,             [m s-1],      config/output
+atmosphere_water, rainfall_volume_flux, -,                                P_rain,        [m s-1],      output    
+atmosphere_water, snowfall_leq-volume_flux, -,                            P_snow,        [m s-1],      output
+earth, standard_gravity_constant, -,                                      g,             [m s-2],      output
+land_surface, albedo, -,                                                  albedo,        [1],          config/output
+land_surface, aspect_angle, -,                                            alpha,         [radians],    config/output
+land_surface, emissivity, -,                                              em_surf,       [1],          output
+land_surface, latitude, -,                                                lat_deg,       [degrees],    config/output
+land_surface, longitude, -,                                               lon_deg,       [degrees],    config/output
+land_surface, slope_angle, -,                                             beta,          [radians],    output
+land_surface, temperature, -,                                             T_surf,        [deg_C],      output
+land_surface_air_water-vapor, partial_pressure, -,                        e_surf,        [mbar],       output
+land_surface_air_water-vapor, saturated_partial_pressure, -,              e_sat_surf,    [mbar],       output
+land_surface_net-longwave-radiation, energy_flux, -,                      Qn_LW,         [W m-2],      output
+land_surface_net-shortwave-radiation, energy_flux, -,                     Qn_SW,         [W m-2],      output
+land_surface_net-total-energy, energy_flux, -,                            Q_sum,         [W m-2],      output
+model, time_step, -,                                                      dt,            [s],          config/output
+physics, stefan_boltzmann_constant, -,                                    sigma,         [W m-2 K-4],  output
+physics, von_karman_constant, -,                                          kappa,         [1],          output
+water, mass-specific_latent_fusion_heat, -,                               Lf,            [J kg-1],     output
+water, mass-specific_latent_vaporization_heat, -,                         Lv,            [J kg-1],     output
+water-liquid, mass-per-volume_density, -,                                 rho_H2O,       [kg m-3],     output

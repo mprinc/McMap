@@ -106,12 +106,13 @@ MoveAndDrag.InitializeDragging = function (config) {
 					targetD3.style("left", (isNaN(parseInt(targetD3.style("left"))) ? 0 : parseInt(targetD3.style("left"))) + event.dx + "px");
 					targetD3.style("top", (isNaN(parseInt(targetD3.style("top"))) ? 0 : parseInt(targetD3.style("top"))) + event.dy + "px");
 				}
-				if(d && d.visual){
+				if(d){
 					// update manual values for datum
-					d.visual.dimensions.sizes.x += event.dx;
-					d.visual.dimensions.sizes.y += event.dy;
 					d.x += event.dx;
 					d.y += event.dy;
+
+					d.xM = d.x;
+					d.yM = d.y;
 				}
 
 				// var textEl = event.target.querySelector('p');
@@ -140,6 +141,7 @@ MoveAndDrag.InitializeDragging = function (config) {
 					clonedD3 = movingPlaceholder;
 				}
 				clonedD3.remove();
+				clonedD3 = null;
 
 				staticPlaceholder = null;
 				movingPlaceholder = null;
@@ -225,6 +227,36 @@ MoveAndDrag.InitializeDraggingIn = function (config) {
 		}
 	});
 	console.log("[InitializeDraggingIn]");
+};
+
+MoveAndDrag.InitializeResizing = function (config) {
+	interact("."+config.target.refClass)
+	// .draggable({
+	// 	onmove: window.dragMoveListener
+	// })
+	.resizable({
+		edges: { left: true, right: true, bottom: true, top: true }
+	})
+	.on('resizemove', function (event) {
+		var target = event.target,
+		x = (parseFloat(target.getAttribute('data-x')) || 0),
+		y = (parseFloat(target.getAttribute('data-y')) || 0);
+
+		// update the element's style
+		target.style.width  = event.rect.width + 'px';
+		target.style.height = event.rect.height + 'px';
+
+		// translate when resizing from top or left edges
+		x += event.deltaRect.left;
+		y += event.deltaRect.top;
+
+		target.style.webkitTransform = target.style.transform =
+		'translate(' + x + 'px,' + y + 'px)';
+
+		target.setAttribute('data-x', x);
+		target.setAttribute('data-y', y);
+		if(config.debug.size) target.textContent = event.rect.width + '×' + event.rect.height;
+	});
 };
 
 }()); // end of 'use strict';

@@ -11,6 +11,8 @@ angular.module('McModelarApp',[
 
 	, 'mcmMapDirectives' // KnAllEdge Map component
 	, 'mcmMapServices'
+	, 'knalledgeMapDirectives' // KnAllEdge Map component
+	, 'knalledgeMapServices'
 ])
 // routes
 .config(['$routeProvider', function($routeProvider) {

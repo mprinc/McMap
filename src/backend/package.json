@@ -1,0 +1,30 @@
+{
+    "name": "Bukvik-WEB-backend",
+    "description": "Bukvik is a project that is supporting research flow in a collaborative manner.",
+    "version": "0.0.5",
+    "private": true,
+    "scripts": {
+    	"start": "node KnAllEdgeBackend 8042"
+    },
+    "dependencies": {
+        "express": "3.x",
+        "express-resource": "1.x",
+		"bluebird": "latest",
+        "async": "x",
+        "sequelize": "x",
+        "mysql": "2.x",
+        "mongodb": "^1.4.31",
+        "mongoose": "^3.8.23",
+
+        "passport":"latest",
+		"passport-local" : "latest",
+		"passport-facebook" : "latest",
+		"passport-twitter" : "latest",
+		"passport-google-oauth" : "latest",
+
+		"connect-flash" : "latest"
+    },
+	"devDependencies": {
+		"node-inspector": "~0.8.3"
+	}
+}

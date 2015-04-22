@@ -1,0 +1,13 @@
+atmosphere_bottom_air, temperature, -,                      T_air,  [deg_C], input
+atmosphere_bottom_air_land_net-latent-heat, energy_flux, -, Qe,     [W m-2], input
+land_surface_net-total-energy, energy_flux, -,              Q_sum,  [W m-2], input
+land_surface, temperature, -,                               T_surf, [deg_C], input
+snowpack, depth, -,                                         h_snow, [m], input
+land_surface_soil, conduction_heat_flux, -,                 Qc,     [W m-2], output 
+land_surface_water, evaporation_volume_flux, domain_time_integral_of, vol_ET, [m3], output   
+land_surface_water, evaporation_volume_flux, _,             ET,     [m s-1], output
+model, time_step, -,                                        dt, [s], output
+land_surface, elevation, -,                                 DEM, [m], config
+soil, reference_depth_temperature, -,                       T_soil_x, [deg_C], config
+soil, temperature_reference_depth, -,                       soil_x, [m], config
+soil, thermal_conductivity, -,                              K_soil, [W m-1 K-1], config

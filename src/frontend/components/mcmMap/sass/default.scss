@@ -3,6 +3,10 @@
 
 $color_tool_border: gray;
 
+$variable_font_size: 0.99999em;
+$variable_border_size: 2px;
+$variable_color: #00ff00;
+
 $susy: (
 	columns: 12,
 	gutters: 1/4,
@@ -194,6 +198,102 @@ $map: layout(12 1/4 fluid float inside);
 		font-weight: bold;
 		@include border-radius(10px, 10px);
 	}
+	.var_in {
+		position: absolute;
+		left: -$variable_font_size/2;
+		bottom: 15px;
+
+		font-size: $variable_font_size;
+		text-align: center;
+		font-weight: bold;
+
+		padding-left: 0.3*$variable_font_size;
+		padding-right: 0.3*$variable_font_size;
+		padding-top: 0px;
+		padding-bottom: 0px;
+
+		/* http://sassme.arc90.com/ */
+		background-color: lighten($variable_color, 25%);
+		border: $variable_border_size solid darken($variable_color, 25%);
+		color: darken($variable_color, 30%);
+		@include border-top-right-radius($variable_font_size/2);
+		@include border-bottom-right-radius($variable_font_size/2);
+
+/*		&:before {
+			@include box-sizing(content-box);
+			content: '';
+			position: absolute;
+			top: -$variable_border_size;
+			left: -$variable_font_size/2;
+			color: red;
+			height: 50%;
+			width: $variable_font_size/2;
+			background: red;
+			border: $variable_border_size solid red;
+			@include skew(25deg, 0deg);
+		}
+		&:after {
+			@include box-sizing(content-box);
+			content: '';
+			position: absolute;
+			bottom: -$variable_border_size;
+			left: -$variable_font_size/2;
+			color: red;
+			height: 50%;
+			width: $variable_font_size/2;
+			background: red;
+			border: $variable_border_size solid red;
+			@include skew(-25deg, 0deg);
+		}
+*/	}
+	.var_out {
+		position: absolute;
+		right: -$variable_font_size/2;
+		bottom: 15px;
+/*		height: $variable_font_size;
+*/
+		font-size: $variable_font_size;
+		text-align: center;
+		font-weight: bold;
+
+		padding-left: 0.3*$variable_font_size;
+		padding-right: 0.3*$variable_font_size;
+		padding-top: 0px;
+		padding-bottom: 0px;
+
+		background-color: lighten($variable_color, 25%);
+		border: $variable_border_size solid darken($variable_color, 25%);
+		color: darken($variable_color, 30%);
+		@include border-top-right-radius($variable_font_size/2);
+		@include border-bottom-right-radius($variable_font_size/2);
+
+/*		&:before {
+			@include box-sizing(content-box);
+			content: '';
+			position: absolute;
+			top: -$variable_border_size;
+			left: -$variable_font_size/2;
+			color: red;
+			height: 50%;
+			width: $variable_font_size/2;
+			background: red;
+			border: $variable_border_size solid red;
+			@include skew(25deg, 0deg);
+		}
+		&:after {
+			@include box-sizing(content-box);
+			content: '';
+			position: absolute;
+			bottom: -$variable_border_size;
+			left: -$variable_font_size/2;
+			color: red;
+			height: 50%;
+			width: $variable_font_size/2;
+			background: red;
+			border: $variable_border_size solid red;
+			@include skew(-25deg, 0deg);
+		}*/
+	}
 	.type {
 		position: absolute;
 		right: -15px;
@@ -231,13 +331,22 @@ $map: layout(12 1/4 fluid float inside);
 	&.unselected{
 	}
 
-	/* entity stylings */
+/* entity stylings */
+
+	&.map_entity_model{
+		background-color: #888;
+	}
+
 	&.map_entity_object{
-		background-color: #aaa;
+		background-color: #ccc;
 	}
 
 	&.map_entity_process{
 		background-color: #aaf;
+	}
+
+	&.resizable_map_entity{
+		
 	}
 }
 
@@ -293,4 +402,167 @@ $map: layout(12 1/4 fluid float inside);
 
 .drag-drop.can-drop {
 	border: 3px solid green;
+}
+
+/*
+	mcm_map_select_sub_entity
+*/
+
+$select_sub_entity_color: #888888;
+$select_sub_entity_entity_color: #8888FF;
+$select_sub_entity_title_size: 1em;
+
+.mcm_map_select_sub_entity{
+	position: absolute;
+	width: 80%;
+	z-index: 100;
+	left: 50%;
+	margin-left: -40%;
+	top: 10%;
+	height: 80%;
+	/* https://www.safaribooksonline.com/library/view/sass-and-compass/9781849694544/ch04s09.html 
+	https://robots.thoughtbot.com/controlling-color-with-sass-color-functions
+	*/
+	border: 3px solid transparentize(darken($select_sub_entity_color, 25%), 0.5);
+	background-color: transparentize($select_sub_entity_color, 0.25);
+	@include border-radius(15px);
+	/* color h-shadow v-shadow blur spread color inset*/
+	@include box-shadow(10px 10px 5px 5px transparentize(darken($select_sub_entity_color, 15%), 0.75));
+
+	.mcm_title{
+		border-bottom: 3px solid darken($select_sub_entity_color, 25%);
+		background-color: $select_sub_entity_color;
+		text-align: center;
+		color: lighten($select_sub_entity_color, 35%);
+		font-weight: bold;
+		padding-top: 3px;
+		padding-bottom: 3px;
+		height: $select_sub_entity_title_size*1.5;
+		@include border-top-right-radius(15px);
+		@include border-top-left-radius(15px);
+	}
+
+	.mcm_close{
+		position: absolute;
+		background-color: #dddddd;
+		border: solid 3px #555555;
+		font-weight: bold;
+		color: #888888;
+		font-size: $select_sub_entity_title_size;
+		padding: 0.1*$select_sub_entity_title_size;
+		padding-left: $select_sub_entity_title_size;
+		padding-right: $select_sub_entity_title_size;
+		@include border-radius(15px);
+		right: $select_sub_entity_title_size*0.1;
+		top: $select_sub_entity_title_size*0.1;
+		z-index: 101;
+
+		cursor: pointer;
+
+		&:hover{
+			background-color: #ffffff;
+		}
+	}
+
+	.mcm_path{
+		display: block;
+		border: 1px solid blue;
+		@include border-top-right-radius(15px);
+		@include border-top-left-radius(15px);
+		height: $select_sub_entity_title_size;
+
+		.mcm_label{
+			display: inline-block;
+			border-right: 1px solid orange;
+			width: 5em;
+		}
+		.mcm_value{
+			display: inline-block;			
+		}
+	}
+
+	ul {
+		/* neccessery to both dimensions be visible, to make dragging visible outside the dom borders */
+		overflow-y: scroll;
+		position: relative;
+		padding-left: 20%;
+		padding-right: 20%;
+
+		li {
+			list-style-type: none;
+			display: block;
+			background-color: lighten($select_sub_entity_entity_color, 5%);
+			border: 1px solid $select_sub_entity_entity_color;
+			margin: 25px 10px;
+			padding: 10px;
+			padding-right: 25px;
+			@include border-radius(10px, 10px);
+			cursor: pointer;
+			text-align: center;
+			color: lighten($select_sub_entity_entity_color, 15%);
+			/* http://compass-style.org/reference/compass/css3/box_shadow/#mixin-box-shadow */
+			/* color h-shadow v-shadow blur spread color inset*/
+			@include box-shadow(3px 2px 3px 1px rgba(150, 150, 255, 0.75));
+
+			@include transition-property(color);
+			@include transition-property(background-color);
+			@include transition-duration(0.3s);
+			@include transition-timing-function(ease-in);
+
+			&:hover{
+				background-color: lighten($select_sub_entity_entity_color, 10%);
+				color: darken($select_sub_entity_entity_color, 5%);
+			}
+		}
+	}
+
+	.buttons{
+		text-align: center;
+	}
+
+	.knalledge_map_selectable{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		top: $select_sub_entity_title_size* (1.5 + 1);
+
+		.knalledge_map_select_sub_entity{
+			position: relative;
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+}
+
+$mcm_map_list_border: #888888;
+
+.mcm_map_list{
+	.mcm_title{
+		display: block;
+		border: 2px solid $mcm_map_list_border;
+		background-color: lighten($mcm_map_list_border, 20%);
+		@include border-top-right-radius(10px);
+		@include border-top-left-radius(10px);
+		transition: background-color 0.3s;
+
+		.mcm_icon{
+			display: inline-block;
+			border-right: 2px solid $mcm_map_list_border;
+			width: 5em;
+			padding-left: 1em;
+			padding-right: 0.3em;
+		}
+		.mcm_name{
+			display: inline-block;
+			padding-right: 1em;
+			padding-left: 0.3em;
+		}
+	}
+	.mcm_title_closed{
+		@include border-bottom-right-radius(10px);
+		@include border-bottom-left-radius(10px);
+		background-color: lighten($mcm_map_list_border, 10%);
+	}
 }

@@ -1,0 +1,23 @@
+atmosphere_water, rainfall_volume_flux, geologic_time_average_of,      R,  [m yr-1],  output
+bedrock, uplift_rate, -,                                               U,  [mm yr-1], output
+channel_water_x-section, volume_flow_rate, -,                          Q,  [m3 yr-1], output
+channel_water_x-section, volume_flow_rate_law_area_exponent, -,        p,  [1],       output
+channel_water_total-sediment, volume_flow_rate, -,                     Qs, [m3 yr-1], output
+channel_water_total-sediment, volume_flow_rate_law_area_exponent, -,   m,  [1],       output
+channel_water_total-sediment, volume_flow_rate_law_coefficient,   -,   K,  [m3(1-m) yr(m-1)], output
+channel_water_total-sediment, volume_flow_rate_law_slope_exponent, -,  n,  [1],       output
+land_surface, elevation, domain_max_of; increment_of,                  dz_max, [m], output
+land_surface, elevation, -,                                            z,  [m], output
+land_surface, elevation, increment_of,                                 dz, [m], output
+land_surface, initial_elevation,  -,                                   z0, [m], output
+land_surface, slope, -,                                                S, [1], output
+land_surface, elevation, time_derivative_of,                           dz_dt, [m yr-1], output
+land_surface_base-level, elevation, time_derivative_of,                BLR, [mm yr-1], config/output
+land_surface_contour-segment, total_contributing_area, _,              A,  [m2], output
+model, time_step, -,                                                   dt, [yr], config/output
+model_grid_cell, area, -,                                              da, [m2], output
+model_grid_cell, d8_flow_width,  -,                                    dw, [m],  output
+model_grid_cell, d8_flow_length, -,                                    ds, [m],  output
+model_grid_cell, diameter, -,                                          dd, [m],  output
+model_grid_cell, x_length, -,                                          dx, [m],  output
+model_grid_cell, y_length, -,                                          dy, [m],  output

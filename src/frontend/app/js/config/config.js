@@ -43,6 +43,62 @@ var map = {
 			}
 		}
 	},
+	interaction: {
+		resizingConfig: {
+			target: {
+				refClass: 'resizable_map_entity',
+				opacity:  0.5,
+				zIndex: 10,
+				cloningContainer: null, // getting native dom element from jQuery selector (set in code)
+				leaveAtDraggedPosition: true,
+				callbacks: {
+					onend: null, // (set in code)
+				}
+			},
+			debug: {
+				size: false
+			}
+		},
+		draggingConfig: {
+			draggTargetElement: true,
+			target: {
+				refCategory: '.draggable_map_entity',
+				opacity:  0.5,
+				zIndex: 10,
+				cloningContainer: null, // getting native dom element from jQuery selector (set in code)
+				leaveAtDraggedPosition: true,
+				callbacks: {
+					onend: null //  (set in code)
+				}
+			},
+			debug: {
+				origVsClone: false
+			}
+		},
+		draggingInConfig: {
+			dropzone: {
+				refCategory: '.dropzone',
+				overlap: 0.5,
+				dragenteredClass: 'drop-target',
+				activeClass: 'drop-active'
+			},
+			draggable: {
+				refCategory: '.yes-drop',
+				candropClass: 'can-drop',
+				messages: {
+					in: 'Dragged in',
+					out: 'Dragged out',
+					dropped: 'Dropped'
+				},
+				callbacks: {
+					onend: null //  (set in code)
+				}
+			},
+			debug: {
+				draggingStatus: false
+			}
+		}
+	},
 	view: {
 		viewspec: 'viewspec_manual'
 	},
@@ -85,7 +141,8 @@ var mapToolset = {
 
 //var env = envs['json'];
 // var env = envs.json;
-var env = envs.server;
+// var env = envs.server;
+var env = envs.localhost;
 
 angular.module('Config', [])
 	.constant("ENV", env)
