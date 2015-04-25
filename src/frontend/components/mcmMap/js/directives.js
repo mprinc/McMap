@@ -16,18 +16,28 @@ angular.module('mcmMapDirectives', ['Config'])
 			// expression: http://docs.angularjs.org/guide/expression
 			templateUrl: '../components/mcmMap/partials/mcmMap.tpl.html',
 			controller: function ( $scope, $element) {
+				var toolEntityClicked = null;
+				var mapEntityClicked = null;
+				var inMapEntityDraggedIn = false;
+
 				var mcmMapClientInterface = {
 					getContainer: function(){
 						return $element.find('.map-container');
 					},
 					mapEntityClicked: function(mapEntity /*, mapEntityDom*/){
 						$scope.$apply(function () {
+							mapEntityClicked = mapEntity;
 							var eventName = "mapEntitySelectedEvent";
 							$rootScope.$broadcast(eventName, mapEntity);
 						});
 					},
 					mapEntityDraggedIn: function(mapEntity, decoratingEntity){
+						// we need this to avoid double calling
+						// the first on dragging in and second on clicking on the tool entity
+						inMapEntityDraggedIn = true;
 						$scope.$apply(function () {
+							toolEntityClicked = null;
+
 							console.log("Adding entity");
 							var directiveScope = $scope.$new(); // $new is not super necessary
 							// create popup directive
@@ -39,6 +49,9 @@ angular.module('mcmMapDirectives', ['Config'])
 							directiveScope.map = mcmMap;
 							directiveScope.entityRoot = mapEntity;
 							directiveScope.entityDecorating = decoratingEntity;
+							directiveScope.addigCanceled = function(){
+								inMapEntityDraggedIn = false;
+							},
 							directiveScope.addedEntity = function(addingInEntity){
 								console.log("Added entity to addingInEntity: %s", JSON.stringify(addingInEntity));
 
@@ -106,6 +119,14 @@ angular.module('mcmMapDirectives', ['Config'])
 						model = eventModel;
 					});
 				});
+
+				eventName = "mapToolEntityClickedEvent";
+				$scope.$on(eventName, function(e, toolEntity) {
+					toolEntityClicked = toolEntity;
+					if(mapEntityClicked && toolEntityClicked && !inMapEntityDraggedIn){
+						mcmMapClientInterface.mapEntityDraggedIn(mapEntityClicked, toolEntityClicked);
+					}
+				});
 			}
     	};
 	}])
@@ -118,51 +139,108 @@ angular.module('mcmMapDirectives', ['Config'])
 			// expression: http://docs.angularjs.org/guide/expression
 			templateUrl: '../components/mcmMap/partials/mcmMap-selectSubEntity.tpl.html',
 			controller: function ( $scope, $element) {
+				var kNodesById = [];
+				var kEdgesById = [];
 
-				var buildTree = function(entityRoot, entityDecorating){
-					var buildSubTree = function(parentKNode, entityDecorating, subTree){
+				var checkIfNodeOrSubchildrenAreSelectable = function(kNode, entityDecorating){
+					// check if node itself is selectable
+					var nodeSelectable;
+					// returns a list of entities that entity type accept
+					var allowedSubEntities = McmMapSchemaService.getAllowedSubEntities(kNode.type);
+					if(allowedSubEntities[entityDecorating.type]){
+						nodeSelectable = true;
+					}else{
+						nodeSelectable = false;
+					}
+
+					// build subree structure from children and check if any of subchildren is possible to decorate with entityDecorating
+					var selectableInChildren = false;
+					var edgeTypes = KnalledgeMapService.getChildrenEdgeTypes(kNode);
+					for(var edgeType in edgeTypes){
+
+						// iterate through children (of one edgeType and recirsively call buildSubTree and 
+						//	check if any of children or subchildren is possible to drop in the entityDecorating)
+						var kChildren = KnalledgeMapService.getChildrenNodes(kNode, edgeType);
+						var selectableInSubTypeChildren = false;
+						for(var childId in kChildren){
+							var selectableInChild = checkIfNodeOrSubchildrenAreSelectable(kChildren[childId], entityDecorating);
+							selectableInSubTypeChildren = selectableInSubTypeChildren || selectableInChild;
+						}
+						selectableInChildren = selectableInChildren || selectableInSubTypeChildren;
+					}
+					nodeSelectable = nodeSelectable || selectableInChildren;
+
+					// if parent or any of children is possible to decorate with the entityDecorating
+					return nodeSelectable;
+				};
+				var buildTree = function(entityRoot, entityDecorating, kNodesById, kEdgesById){
+					var buildSubTree = function(parentKNode, kNode, entityDecorating, subTree, kNodesById, kEdgesById){
 						if(!("children" in subTree)) subTree.children = [];
+						if(!('visual' in kNode)) kNode.visual = {};
+						kNode.visual.isOpen = true;
 
-						var parentVKNode = new knalledge.VKNode();
-						parentVKNode.kNode = parentKNode;
+						var selectable = checkIfNodeOrSubchildrenAreSelectable(kNode, entityDecorating);
+						if(selectable){
+							// this node will be added after we get confirmation of any possibility to add it
+							// (either it is possible to drop entityDecorating on, or any of its children)
 
-						var allowedSubEntities = McmMapSchemaService.getAllowedSubEntities(parentKNode.type);
-						// selectable property tells if the specific node in the tree is possible to decorate with entityDecorating
-						if(allowedSubEntities[entityDecorating.type]){
-							parentVKNode.selectable = true;
-						}else{
-							parentVKNode.selectable = false;
+							subTree.children.push(kNode);
+							kNodesById.push(kNode);
+
+							// creating edge between parent and child and adding it to list of edges
+							if(parentKNode){
+								var kEdge = new knalledge.KEdge();
+								kEdge.name = "";
+								kEdge.sourceId = parentKNode._id;
+								kEdge.targetId = kNode._id;
+
+								kEdgesById.push(kEdge);
+							}
 						}
 
 						// build subree structure from children and check if any of subchildren is possible to decorate with entityDecorating
 						var selectableInChildren = false;
-						var edgeTypes = KnalledgeMapService.getChildrenEdgeTypes(parentKNode);
+						var edgeTypes = KnalledgeMapService.getChildrenEdgeTypes(kNode);
 						for(var edgeType in edgeTypes){
-							var subTypeKNode = new knalledge.KNode();
-							subTypeKNode.name = edgeType;
-							
-							var subTypeVKNode = new knalledge.VKNode();
-							subTypeVKNode.kNode = subTypeKNode;
 
-							var children = KnalledgeMapService.getChildrenNodes(parentKNode, edgeType);
+							// iterate through children (of one edgeType and recirsively call buildSubTree and 
+							//	check if any of children or subchildren is possible to drop in the entityDecorating)
+							var kChildren = KnalledgeMapService.getChildrenNodes(kNode, edgeType);
 							var selectableInSubTypeChildren = false;
-							for(var childId in children){
-								var selectableInChild = buildSubTree(children[childId], entityDecorating, subTypeVKNode);
+							for(var childId in kChildren){
+								var selectableInChild = checkIfNodeOrSubchildrenAreSelectable(kNode, entityDecorating);
 								selectableInSubTypeChildren = selectableInSubTypeChildren || selectableInChild;
 							}
-							if(selectableInSubTypeChildren){
-								if(!("children" in parentVKNode)) parentVKNode.children = [];
-								parentVKNode.children.push(subTypeVKNode);
-							}
-							selectableInChildren = selectableInChildren || selectableInSubTypeChildren;
-						}
 
-						var parentVKNodeSelectable = parentVKNode.selectable || selectableInChildren;
-						// if parent or any of children is possible to decorate with entityDecorating we put parent in the tree
-						if(parentVKNodeSelectable){
-							subTree.children.push(parentVKNode);
+							if(selectableInSubTypeChildren){
+								if(!("children" in kNode)) kNode.children = [];
+
+								// node that represents group of subentities (var-in, var-out, ...)
+								var subTypeKNode = new knalledge.KNode();
+								subTypeKNode.name = McmMapSchemaService.getEdgeDesc(edgeType).predicates;
+								subTypeKNode.visual = {
+									isOpen: true
+								}
+								
+								// adding subtype node into parent ...
+								kNode.children.push(subTypeKNode);
+								// ... and list of all nodes
+								kNodesById.push(subTypeKNode);
+
+								// creating edge between parent node and subtype node and adding it to the list of all edges
+								var kEdge = new knalledge.KEdge();
+								kEdge.name = "";
+								kEdge.sourceId = kNode._id;
+								kEdge.targetId = subTypeKNode._id;
+
+								kEdgesById.push(kEdge);
+
+								// call each child in subtype to fill in subtree with itself and subchildren
+								for(var childId in kChildren){
+									buildSubTree(subTypeKNode, kChildren[childId], entityDecorating, subTypeKNode, kNodesById, kEdgesById);
+								}
+							}
 						}
-						return parentVKNodeSelectable;
 					};
 
 					var treeHolder = {
@@ -170,28 +248,41 @@ angular.module('mcmMapDirectives', ['Config'])
 					};
 					var tree = null;
 
-					buildSubTree(entityRoot.kNode, entityDecorating, treeHolder);
+					buildSubTree(null, entityRoot.kNode, entityDecorating, treeHolder, kNodesById, kEdgesById);
 					if(treeHolder.children.length > 0){
 						tree = treeHolder.children[0];
 					}
 					return tree;
 				};
 
-				var vkMap = buildTree($scope.entityRoot, $scope.entityDecorating);
+				var vkMap = buildTree($scope.entityRoot, $scope.entityDecorating, kNodesById, kEdgesById);
 
 				$scope.mapConfigForInjecting = {
 					tree: {
 						viewspec: "viewspec_tree", // "viewspec_tree" // "viewspec_manual"
 						fixedDepth: {
-							enabled: true,
+							enabled: false,
 							levelDepth: 150
+						},
+						sizing: {
+							setNodeSize: false,
+							nodeSize: [400, 200]
+						},
+						margin: {
+							top: 10,
+							left: 20,
+							right: 100,
+							bottom: 10
+						},
+						mapService: {
+							enabled: false
 						}
 					},
 					nodes: {
 						html: {
 							dimensions: {
 								sizes: {
-									width: 85
+									width: 100
 								}
 							}
 						},
@@ -204,8 +295,20 @@ angular.module('mcmMapDirectives', ['Config'])
 					}
 				};
 
+				var properties = {
+					name: "Selectable tree of subentities",
+					date: "",
+					authors: "MCM Model",
+					mapId: "",
+					rootNodeId: vkMap._id
+				};
 				$scope.mapDataForInjecting = {
 					vkMap: vkMap,
+					map: {
+						properties: properties,
+						nodes: kNodesById,
+						edges: kEdgesById
+					},
 					selectedNode: vkMap // the root node in the tree
 				};
 
@@ -215,6 +318,7 @@ angular.module('mcmMapDirectives', ['Config'])
 				$scope.cancelled = function(){
 					//console.log("Canceled");
 					$element.remove();
+					$scope.addigCanceled();
 				};
 
 				$scope.submitted = function(){
@@ -225,8 +329,8 @@ angular.module('mcmMapDirectives', ['Config'])
     		}
     	};
 	}])
-	.directive('mcmMapTools', ["$timeout", 'ConfigMapToolset', 'McmMapSchemaService', 
-		function($timeout, ConfigMapToolset, McmMapSchemaService){
+	.directive('mcmMapTools', ["$rootScope", "$timeout", 'ConfigMapToolset', 'McmMapSchemaService', 
+		function($rootScope, $timeout, ConfigMapToolset, McmMapSchemaService){
 		console.log("[mcmMapTools] loading directive");
 		return {
 			restrict: 'AE',
@@ -236,12 +340,23 @@ angular.module('mcmMapDirectives', ['Config'])
 			// expression: http://docs.angularjs.org/guide/expression
 			templateUrl: '../components/mcmMap/partials/mcmMap-tools.tpl.html',
 			controller: function ( $scope, $element) {
+				var clickedToolEntity = null;
 				var toolsetClientInterface = {
 					getContainer: function(){
 						return $element.find('ul');
 					},
 					getData: function(){
 						return $scope.tools;
+					},
+					toolEntityClicked: function(toolEntity){
+						if(clickedToolEntity == toolEntity){
+							clickedToolEntity = null;
+						}else{
+							clickedToolEntity = toolEntity;
+						}
+						var eventName = "mapToolEntityClickedEvent";
+						$rootScope.$broadcast(eventName, clickedToolEntity);
+
 					},
 					timeout: $timeout
 				};
@@ -272,7 +387,7 @@ angular.module('mcmMapDirectives', ['Config'])
     		}
     	};
 	}])
-	.directive('mcmMapList', [function(){
+	.directive('mcmMapList', ['KnalledgeMapService', function(KnalledgeMapService){
 		// http://docs.angularjs.org/guide/directive
 		return {
 			restrict: 'AE',
@@ -282,11 +397,14 @@ angular.module('mcmMapDirectives', ['Config'])
 			// expression: http://docs.angularjs.org/guide/expression
 			templateUrl: '../components/mcmMap/partials/mcmMap-list.tpl.html',
 			controller: function ( $scope ) {
+				var mcmMapModel = null;
+				var mcmMap = null;
 
 				var eventName = "mapEntitySelectedEvent";
 				$scope.$on(eventName, function(e, mapEntity) {
 					if(mapEntity){
-						console.log("[mcmMapTools.controller::$on] ModelMap  mapEntity (%s): %s", mapEntity.kNode.type, mapEntity.kNode.name);
+						console.log("[mcmMapList.controller::$on] ModelMap  mapEntity (%s): %s", mapEntity.kNode.type, mapEntity.kNode.name);
+						//KnalledgeMapService
 					}
 				});
 
@@ -296,16 +414,23 @@ angular.module('mcmMapDirectives', ['Config'])
 						eventModel.map.nodes.length, JSON.stringify(eventModel.map.nodes));
 					console.log("[mcmMapTools.controller::$on] ModelMap  edges(len: %d): %s",
 						eventModel.map.edges.length, JSON.stringify(eventModel.map.edges));
+					mcmMapModel = eventModel.map;
 
-				});
+					mcmMap = new mcm.list.Map(d3.select($element.find(".map-container").get(0)),
+						ConfigMap, mcmMapClientInterface, schema, KnalledgeMapService);
 
-				var eventName = "modelChangedEvent";
-				$scope.$on(eventName, function(e, eventModel) {
-					console.log("[mcmMapTools.controller::$on] ModelMap  nodes(len: %d): %s",
-						eventModel.map.nodes.length, JSON.stringify(eventModel.map.nodes));
-					console.log("[mcmMapTools.controller::$on] ModelMap  edges(len: %d): %s",
-						eventModel.map.edges.length, JSON.stringify(eventModel.map.edges));
+					var eventName = "modelLoadedEvent";
+					$scope.$on(eventName, function(e, eventModel) {
+						console.log("[mcmMap.controller::$on] ModelMap  nodes(len: %d): %s",
+							eventModel.map.nodes.length, JSON.stringify(eventModel.map.nodes));
+						console.log("[mcmMap.controller::$on] ModelMap  edges(len: %d): %s",
+							eventModel.map.edges.length, JSON.stringify(eventModel.map.edges));
 
+						mcmMap.init(function(){
+							mcmMap.processData(eventModel);
+							model = eventModel;
+						});
+					});
 				});
     		}	
     	};

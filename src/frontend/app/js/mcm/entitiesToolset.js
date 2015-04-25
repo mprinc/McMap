@@ -9,7 +9,7 @@ var EntitiesToolset =  mcm.EntitiesToolset = function(config, client){
 EntitiesToolset.prototype.init = function() {
 	// var that = this;
 
-	var manipulationEnded = function(){
+	var manipulationEnded = function(targetD3, relatedTargetD3, draggedIn){
 		console.log("tool:manipulationEnded");
 	};
 
@@ -35,7 +35,7 @@ EntitiesToolset.prototype.init = function() {
 };
 
 EntitiesToolset.prototype.update = function() {
-	// var that = this;
+	var that = this;
 	var offset = 0;
 	var positionItems = function(){
 		var data = this.client.getData();
@@ -48,6 +48,9 @@ EntitiesToolset.prototype.update = function() {
 				var position = offset + "px";
 				offset += 50;
 				return position;
+			})
+			.on("click", function(d){
+				that.client.toolEntityClicked(d);
 			});
 	};
 

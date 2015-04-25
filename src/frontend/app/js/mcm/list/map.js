@@ -1,7 +1,7 @@
 (function () { // This prevents problems when concatenating scripts that aren't strict.
 'use strict';
 
-var Map =  mcm.Map = function(parentDom, config, clientApi, schema, mapService){
+var Map =  mcm.list.Map = function(parentDom, config, clientApi, schema, mapService){
 	this.config = config;
 	this.clientApi = clientApi;
 	this.entityStyles = schema.entityStyles;
@@ -14,7 +14,8 @@ var Map =  mcm.Map = function(parentDom, config, clientApi, schema, mapService){
 	var mapVisualizationApi = {
 		timeout: this.clientApi.timeout
 	};
-	this.mapVisualization = new mcm.MapVisualization(this.parentDom, mapVisualizationApi, this.mapStructure, this.config.transitions, this.config.nodes, this.config.edges, this.config.interaction.resizingConfig, this.schema);
+	this.mapVisualization = new mcm.list.MapVisualization(this.parentDom, mapVisualizationApi, this.mapStructure, 
+		this.config.transitions, this.config.nodes, this.config.edges, this.config.interaction.resizingConfig, this.schema);
 	var mapLayoutApi = {
 		update: this.mapVisualization.update.bind(this.mapVisualization),
 		getDom: this.mapVisualization.getDom.bind(this.mapVisualization),

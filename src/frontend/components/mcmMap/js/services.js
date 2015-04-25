@@ -91,6 +91,50 @@ mcmMapServices.provider('McmMapSchemaService', {
 				icon: "G"
 			}
 		};
+
+		var edgesDescs = {
+			containsObject: {
+				id: "containsObject",
+				name: "containsObject",
+				type: "containsObject",
+				icon: "O",
+				predicate: "object",
+				predicates: "objects"
+			},
+			containsProcess: {
+				id: "containsProcess",
+				name: "containsProcess",
+				type: "containsProcess",
+				icon: "P",
+				predicate: "process",
+				predicates: "processes"
+			},
+			containsVariableIn: {
+				id: "containsVariableIn",
+				name: "containsVariableIn",
+				type: "containsVariableIn",
+				icon: "IV",
+				predicate: "in-var",
+				predicates: "in-vars"
+			},
+			containsVariableOut: {
+				id: "containsVariableOut",
+				name: "containsVariableOut",
+				type: "containsVariableOut",
+				icon: "OV",
+				predicate: "out-var",
+				predicates: "out-vars"
+			},
+			containsAssumption: {
+				id: "containsAssumption",
+				name: "containsAssumption",
+				type: "containsAssumption",
+				icon: "A",
+				predicate: "assumption",
+				predicates: "assumptions"
+			}
+		};
+
 			// var that = this;
 		return {
 			// rootNodeId: "55268521fb9a901e442172f9",
@@ -109,7 +153,15 @@ mcmMapServices.provider('McmMapSchemaService', {
 
 			getEntityDesc: function(entity){
 				return entitiesDescs[entity];
-			}
+			},
+			getEdgesDescs: function(){
+				return edgesDescs;
+			},
+
+			getEdgeDesc: function(edgeType){
+				return edgesDescs[edgeType];
+			},
+
 		};
 	}]
 });
