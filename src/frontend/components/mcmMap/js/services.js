@@ -10,15 +10,15 @@ mcmMapServices.provider('McmMapSchemaService', {
 	function(/*$q, $rootScope*/) {
 		var entitiesStyles = {
 			"model": {
-				typeClass: "map_entity_model",
+				typeClass: "entity_model",
 				icon: "M"
 			},
 			"object": {
-				typeClass: "map_entity_object",
+				typeClass: "entity_object",
 				icon: "O"
 			},
 			"process": {
-				typeClass: "map_entity_process",
+				typeClass: "entity_process",
 				icon: "P"
 			}
 		};

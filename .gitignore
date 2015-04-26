@@ -5,10 +5,10 @@ logs
 *.log
 
 #libs
-lib/
+#lib/
 
 #tests
-scripts/
+#scripts/
 
 # Runtime data
 pids

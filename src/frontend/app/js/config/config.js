@@ -43,6 +43,20 @@ var map = {
 			}
 		}
 	},
+	edges: {
+		show: false,
+		labels: {
+			show: true
+		}
+	},
+	tree: {
+		margin: {
+			top: 10,
+			left: 20,
+			right: 100,
+			bottom: 10
+		}
+	},
 	interaction: {
 		resizingConfig: {
 			target: {
@@ -137,6 +151,78 @@ var map = {
 };
 
 var mapToolset = {
+	nodes: {
+		html: {
+			refCategory: 'tool_entity',
+			dimensions: {
+				sizes: {
+					y: 0,
+					x: 0,
+					width: "100%",
+					height: "50px"
+				}
+			}
+		}
+	},
+	interaction: {
+		draggingInConfig: {
+			dropzone: {
+				refCategory: '.dropzone',
+				overlap: 0.5,
+				dragenteredClass: 'drop-target',
+				activeClass: 'drop-active'
+			},
+			draggable: {
+				refCategory: '.yes-drop',
+				candropClass: 'can-drop',
+				messages: {
+					in: 'Dragged in',
+					out: 'Dragged out',
+					dropped: 'Dropped'
+				},
+				callbacks: {
+					onend: null //  (set in code)
+				}
+			},
+			debug: {
+				draggingStatus: false
+			}
+		}
+	},
+	view: {
+	},
+	transitions: {
+		enter: {
+			duration: 1000,
+			// if set to true, entering elements will enter from the node that is expanding
+			// (no matter if it is parent or grandparent, ...)
+			// otherwise it elements will enter from the parent node
+			referToToggling: false,
+			animate: {
+				position: false,
+				opacity: true
+			}
+		},
+		update: {
+			duration: 500,
+			referToToggling: false,
+			animate: {
+				position: false,
+				opacity: true
+			}
+		},
+		exit: {
+			duration: 750,
+			// if set to true, exiting elements will exit to the node that is collapsing
+			// (no matter if it is parent or grandparent, ...)
+			// otherwise it elements will exit to the parent node
+			referToToggling: false,
+			animate: {
+				position: false,
+				opacity: true
+			}
+		}
+	}
 };
 
 //var env = envs['json'];

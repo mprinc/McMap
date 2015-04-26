@@ -333,15 +333,15 @@ $map: layout(12 1/4 fluid float inside);
 
 /* entity stylings */
 
-	&.map_entity_model{
+	&.entity_model{
 		background-color: #888;
 	}
 
-	&.map_entity_object{
+	&.entity_object{
 		background-color: #ccc;
 	}
 
-	&.map_entity_process{
+	&.entity_process{
 		background-color: #aaf;
 	}
 
@@ -360,6 +360,29 @@ $map: layout(12 1/4 fluid float inside);
 
 .mcm_map_list{
 	z-index: 9;
+	.list{
+		margin: 5px;
+
+		.entity{
+			border: 1px solid #aaa;
+			@include border-radius(5px, 5px);
+			margin-bottom: 3px;
+			padding: 3px;
+		}
+
+		.entity_model{
+			background-color: #888;
+		}
+
+		.entity_object{
+			background-color: #ccc;
+		}
+
+		.entity_process{
+			background-color: #aaf;
+		}
+
+	}
 }
 
 /* ------------------------
@@ -367,11 +390,11 @@ $map: layout(12 1/4 fluid float inside);
 ------------------------ */
 
 .dropzone {
-	background-color: #ccc;
+/*	background-color: #ccc;
 	border-radius: 4px;
 	margin: 10px auto 30px;
 	padding: 10px;
-	transition: background-color 0.3s;
+*/	transition: background-color 0.3s;
 }
 
 .drop-active {

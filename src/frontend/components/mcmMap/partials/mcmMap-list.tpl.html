@@ -3,17 +3,5 @@
 	<span class="mcm_name">Water</span>
 </div>
 
-<div class=".map-container">
+<div class="list">
 </div>
-
-<ul>
-	<li ng-repeat="entity in entities" entity="entity" class="" ng-click="entityClicked(entity, $event, this)">
-		<span>({{entity.icon}})</span>
-	</li>
-
-	<p class="buttons">
-		<button class="btn btn-primary" type="submit" ng-click="submitted()">Add {{decoratingEntity.name}}</button>
-		<button class="btn btn-warning" ng-click="cancelled()">Cancel</button>
-	</p>
-
-</ul>

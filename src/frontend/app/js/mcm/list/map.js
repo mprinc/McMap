@@ -15,13 +15,14 @@ var Map =  mcm.list.Map = function(parentDom, config, clientApi, schema, mapServ
 		timeout: this.clientApi.timeout
 	};
 	this.mapVisualization = new mcm.list.MapVisualization(this.parentDom, mapVisualizationApi, this.mapStructure, 
-		this.config.transitions, this.config.nodes, this.config.edges, this.config.interaction.resizingConfig, this.schema);
+		this.config.transitions, this.config.nodes, this.config.edges, this.schema);
+
 	var mapLayoutApi = {
 		update: this.mapVisualization.update.bind(this.mapVisualization),
 		getDom: this.mapVisualization.getDom.bind(this.mapVisualization),
-		mapEntityClicked: this.clientApi.mapEntityClicked,
+		mapEntityClicked: this.clientApi.mapEntityClicked
 	};
-	this.mapLayout = new mcm.MapLayout(this.mapStructure, this.config.view, this.config.nodes, this.config.tree, mapLayoutApi, this.state, this.schema);
+	this.mapLayout = new mcm.list.MapLayout(this.mapStructure, this.config.view, this.config.nodes, this.config.tree, mapLayoutApi, this.schema);
 
 	// this.keyboardInteraction = null;
 };
@@ -65,18 +66,6 @@ Map.prototype.initializeManipulation = function() {
 		console.log("map_entity:manipulationEnded [%s]", d ? d.kNode.name : null);
 		that.update(that.mapStructure.rootNode);
 	};
-
-	this.draggingConfig = this.config.interaction.draggingConfig;
-	this.draggingConfig.target.cloningContainer =  that.mapVisualization.dom.divMapHtml.node();
-	this.draggingConfig.target.callbacks.onend = manipulationEnded;
-
-	interaction.MoveAndDrag.InitializeDragging(this.draggingConfig);
-
-	this.resizingConfig = this.config.interaction.resizingConfig;
-	this.resizingConfig.target.cloningContainer = that.mapVisualization.dom.divMapHtml.node();
-	this.resizingConfig.target.callbacks.onend = manipulationEnded;
-
-	interaction.MoveAndDrag.InitializeResizing(this.resizingConfig);
 
 	var draggAndDropEnded = function(targetD3, relatedTargetD3, draggedIn){
 		var d = targetD3 ? targetD3.datum() : null;
