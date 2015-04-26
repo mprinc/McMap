@@ -387,7 +387,7 @@ angular.module('mcmMapDirectives', ['Config'])
     		}
     	};
 	}])
-	.directive('mcmMapList', ['KnalledgeMapService', function(KnalledgeMapService){
+	.directive('mcmMapList', ['$timeout', 'ConfigMapToolset', 'KnalledgeMapService', 'McmMapSchemaService', function($timeout, ConfigMapToolset, KnalledgeMapService, McmMapSchemaService){
 		// http://docs.angularjs.org/guide/directive
 		return {
 			restrict: 'AE',
@@ -396,7 +396,7 @@ angular.module('mcmMapDirectives', ['Config'])
 			// ng-if directive: http://docs.angularjs.org/api/ng.directive:ngIf
 			// expression: http://docs.angularjs.org/guide/expression
 			templateUrl: '../components/mcmMap/partials/mcmMap-list.tpl.html',
-			controller: function ( $scope ) {
+			controller: function ( $scope, $element ) {
 				var mcmMapModel = null;
 				var mcmMap = null;
 
@@ -404,9 +404,16 @@ angular.module('mcmMapDirectives', ['Config'])
 				$scope.$on(eventName, function(e, mapEntity) {
 					if(mapEntity){
 						console.log("[mcmMapList.controller::$on] ModelMap  mapEntity (%s): %s", mapEntity.kNode.type, mapEntity.kNode.name);
-						//KnalledgeMapService
+						//KnalledgeMapService	
 					}
 				});
+
+				var mcmMapClientInterface = {
+					mapEntityClicked: function(){
+
+					},
+					timeout: $timeout
+				};
 
 				var eventName = "modelLoadedEvent";
 				$scope.$on(eventName, function(e, eventModel) {
@@ -416,20 +423,12 @@ angular.module('mcmMapDirectives', ['Config'])
 						eventModel.map.edges.length, JSON.stringify(eventModel.map.edges));
 					mcmMapModel = eventModel.map;
 
-					mcmMap = new mcm.list.Map(d3.select($element.find(".map-container").get(0)),
-						ConfigMap, mcmMapClientInterface, schema, KnalledgeMapService);
+					mcmMap = new mcm.list.Map(d3.select($element.get(0)),
+						ConfigMapToolset, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapService);
 
-					var eventName = "modelLoadedEvent";
-					$scope.$on(eventName, function(e, eventModel) {
-						console.log("[mcmMap.controller::$on] ModelMap  nodes(len: %d): %s",
-							eventModel.map.nodes.length, JSON.stringify(eventModel.map.nodes));
-						console.log("[mcmMap.controller::$on] ModelMap  edges(len: %d): %s",
-							eventModel.map.edges.length, JSON.stringify(eventModel.map.edges));
-
-						mcmMap.init(function(){
-							mcmMap.processData(eventModel);
-							model = eventModel;
-						});
+					mcmMap.init(function(){
+						mcmMapModel = eventModel;
+						mcmMap.processData(mcmMapModel);
 					});
 				});
     		}	

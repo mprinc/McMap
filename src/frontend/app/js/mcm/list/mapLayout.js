@@ -1,13 +1,12 @@
 (function () { // This prevents problems when concatenating scripts that aren't strict.
 'use strict';
 
-var MapLayout =  mcm.list.MapLayout = function(structure, configView, configNodes, configTree, clientApi, state, schema){
+var MapLayout =  mcm.list.MapLayout = function(structure, configView, configNodes, configTree, clientApi, schema){
 	this.structure = structure;
 	this.configView = configView;
 	this.configNodes = configNodes;
 	this.configTree = configTree;
 	this.clientApi = clientApi;
-	this.state = state;
 	this.schema = schema;
 	this.nodes = null;
 	this.links = null;
@@ -23,13 +22,25 @@ MapLayout.prototype.getChildren = function(d){
 	for(var i in this.structure.edgesById){
 		if(this.structure.edgesById[i].kEdge.sourceId == d.kNode._id){
 			var vkNode = this.structure.getVKNodeByKId(this.structure.edgesById[i].kEdge.targetId);
-			if(! (vkNode.kNode.type in this.schema.entityStyles)){
+			if(! (vkNode.kNode.type in this.schema.getEntitiesStyles())){
 				continue;
 			}
 			children.push(vkNode);
 		}
 	}
 	return children;
+};
+
+MapLayout.prototype.getAllNodesHtml = function(){
+	return this.dom.divList.selectAll("div.node_html");
+};
+
+// Returns view representation (dom) from datum d
+MapLayout.prototype.getDomFromDatum = function(d) {
+	var dom = this.getAllNodesHtml()
+		.data([d], function(d){return d.id;});
+	if(dom.size() != 1) return null;
+	else return dom;
 };
 
 MapLayout.prototype.init = function(mapSize){
@@ -49,7 +60,7 @@ MapLayout.prototype.clickNode = function(d, dom) {
 	var domD3 = d3.select(dom);
 
 	// unselect all nodes
-	var nodesHtml = this.dom.divMapHtml.selectAll("div." + this.configNodes.html.refCategory);
+	var nodesHtml = this.dom.divList.selectAll("div." + this.configNodes.html.refCategory);
 	nodesHtml.classed({
 		"selected": false,
 		"unselected": true
@@ -101,46 +112,9 @@ MapLayout.prototype.generateTree = function(source){
 	this.nodes = this.tree.nodes(source);//.reverse();
 	this.links = this.tree.links(this.nodes);
 
-	var viewspec = this.configView.viewspec;
-	var sizes = this.configNodes.html.dimensions.sizes;
 	this.nodes.forEach(function(d) {
 		if(d.parent && d.parent == "null"){
 			d.parent = null;
-		}
-
-		if(viewspec == "viewspec_manual"){
-			// update x and y to manual coordinates if present
-			if('xM' in d){
-				d.x = d.xM;
-			}
-			if('yM' in d){
-				d.y = d.yM;
-			}
-
-			// update width and height to manual values if present
-			if('widthM' in d){
-				d.width = d.widthM;
-			}else{
-				d.width = sizes.width;
-			}
-			if('heightM' in d){
-				d.height = d.heightM;
-			}else{
-				d.height = sizes.height;
-			}
-
-			// make it sure that x0 and y0 exist for newly entered nodes
-			if(!("x0" in d) || !("y0" in d)){
-				d.x0 = d.x;
-				d.y0 = d.y;
-			}
-			// make it sure that width0 and height0 exist for newly entered nodes
-			if(!("width0" in d)){
-				d.width0 = d.width;
-			}
-			if(!("height0" in d)){
-				d.height0 = d.height;
-			}
 		}
 	});
 
