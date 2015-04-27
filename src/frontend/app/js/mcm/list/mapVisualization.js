@@ -82,7 +82,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 			// http://stackoverflow.com/questions/11674886/stoppropagation-with-svg-element-and-g
 			d3.event.cancelBubble = true;
 			// d3.event.sourceEvent.stopPropagation();
-		})
+		});
 		// .style("left", function(d) {
 		// 	var x = null;
 		// 	if(that.configTransitions.enter.animate.position){

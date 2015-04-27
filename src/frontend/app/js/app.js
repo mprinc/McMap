@@ -13,6 +13,8 @@ angular.module('McModelarApp',[
 	, 'mcmMapServices'
 	, 'knalledgeMapDirectives' // KnAllEdge Map component
 	, 'knalledgeMapServices'
+	, 'mcmMapsDirectives' // KnAllEdge Map component
+	
 ])
 // routes
 .config(['$routeProvider', function($routeProvider) {
@@ -20,10 +22,14 @@ angular.module('McModelarApp',[
 	.when('/map', {
 		templateUrl: '../components/mcmMap/partials/index.tpl.html'
 	})
+	.when('/maps', {
+		templateUrl: '../components/mcmMaps/partials/index.tpl.html'
+	})
 	.otherwise({
-		redirectTo: '/map'
+		redirectTo: '/maps'
 	});
 }])
+
 // Disabling Debug Data
 // https://docs.angularjs.org/guide/production#disabling-debug-data
 //.config(['$compileProvider', function ($compileProvider) {
