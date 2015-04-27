@@ -129,6 +129,25 @@ MapLayout.prototype.generateTree = function(subtreeRoot){
 			d.parent = null;
 		}
 	});
+
+	// this.printTree(this.nodes);
+};
+
+MapLayout.prototype.printTree = function(nodes) {
+	var minX = 0, maxX = 0, minY = 0, maxY = 0;
+	console.log("%d nodes", nodes.length);
+	for(var i=0; i<nodes.length; i++){
+		var node = nodes[i];
+		var height = ('height' in node) ? node.height : 0;
+		var width = ('width' in node) ? node.width : 0;
+		var name = node.kNode ? node.kNode.name : "(no name)";
+		console.log("\tnode [%d] \"%s\": x:%s, y:%s, width:%s, height: %s)", i, name, node.x, node.y, node.width, node.height);
+		if(node.x - height/2 < minX) minX = node.x - height/2;
+		if(node.x + height/2 > maxX) maxX = node.x + height/2;
+		if(node.y - width/2 < minY) minY = node.y - width/2;
+		if(node.y + width/2 > maxY) maxY = node.y + width/2;
+	}
+	console.log("Dimensions: (minX: %s, maxX: %s, minY: %s, maxY: %s)", minX, maxX, minY, maxY);
 };
 
 MapLayout.prototype.getHtmlNodePosition = function(d){

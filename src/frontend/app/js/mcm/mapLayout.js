@@ -234,7 +234,7 @@ MapLayout.prototype.printTree = function(nodes) {
 		var node = nodes[i];
 		var height = ('height' in node) ? node.height : 0;
 		var width = ('width' in node) ? node.width : 0;
-		var name = node.kNode ? node.kNode.name : "(no name)"
+		var name = node.kNode ? node.kNode.name : "(no name)";
 		console.log("\tnode [%d] \"%s\": x:%s, y:%s, width:%s, height: %s)", i, name, node.x, node.y, node.width, node.height);
 		if(node.x - height/2 < minX) minX = node.x - height/2;
 		if(node.x + height/2 > maxX) maxX = node.x + height/2;
