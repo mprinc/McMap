@@ -175,7 +175,7 @@ angular.module('mcmMapDirectives', ['Config'])
 			}
     	};
 	}])
-	.directive('mcmMapSelectAssumption', ['McmMapSchemaService', 'KnalledgeMapVOsService', function(McmMapSchemaService, KnalledgeMapVOsService){ // mcm_map_select_sub_entity
+	.directive('mcmMapSelectAssumption', ['McmMapAssumptionService', function(McmMapAssumptionService){ // mcm_map_select_sub_entity
 		return {
 			restrict: 'AE',
 			// scope: {
@@ -185,6 +185,7 @@ angular.module('mcmMapDirectives', ['Config'])
 			templateUrl: '../components/mcmMap/partials/mcmMap-selectAssumption.tpl.html',
 			controller: function ( $scope, $element) {
 
+				
 
 				$scope.title = "Select decoration entity";
 				$scope.path = "Name";
@@ -192,37 +193,42 @@ angular.module('mcmMapDirectives', ['Config'])
 					name: null
 				}
 
-				$scope.itemsFull = [
-					{
-						name: "assumption_1"
-					},
-					{
-						name: "assumption_2"
-					},
-					{
-						name: "assumption_3"
-					}
-				];
+				
+				// $scope.itemsFull = [
+				// 	{
+				// 		name: "assumption_1"
+				// 	},
+				// 	{
+				// 		name: "assumption_2"
+				// 	},
+				// 	{
+				// 		name: "assumption_3"
+				// 	}
+				// ];
 
 				$scope.items = [
 				];
 
-				var populateItems = function(itemsFull, items, subName){
-					// We are not allowed to delete
-					items.length = 0;
-					for(var i in itemsFull){
-						var item = itemsFull[i];
-						if(!subName || item.name.indexOf(subName) >= 0){
-							items.push(item);
-						}
-					}
+				var populateItems = function(items, subName){
+					console.log("getAssumptionsDesByName(%s)", subName);
+					$scope.items = McmMapAssumptionService.getAssumptionsDesByName(subName);
+					console.log("$scope.items IN: " + $scope.items);
+					
+					// items.length = 0;
+					// for(var i in itemsFull){
+					// 	var item = itemsFull[i];
+					// 	if(!subName || item.name.indexOf(subName) >= 0){
+					// 		items.push(item);
+					// 	}
+					// }
 				}
 
-				populateItems($scope.itemsFull, $scope.items, null);
+				populateItems($scope.items, null);
 
 				$scope.nameChanged = function(){
-					console.log("New searching assumption name: %s", $scope.item.name);
-					populateItems($scope.itemsFull, $scope.items, $scope.item.name);
+					//console.log("New searching assumption name: %s", $scope.item.name);
+					populateItems($scope.items, $scope.item.name);
+					console.log("$scope.items: " + $scope.items);
 				}
 				$scope.cancelled = function(){
 					//console.log("Canceled");

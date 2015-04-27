@@ -248,9 +248,64 @@ mcmMapServices.provider('McmMapSchemaService', {
 			getEdgeDesc: function(edgeType){
 				return edgesDescs[edgeType];
 			},
+		};
+	}]
+});
+
+mcmMapServices.provider('McmMapAssumptionService', {
+	// privateData: "privatno",
+	$get: [/*'$q', '$rootScope', */
+	function(/*$q, $rootScope*/) {
+		var assumptionsDescs = [
+			{
+				name: "assumption_1"
+			},
+			{
+				name: "assumption_2"
+			},
+			{
+				name: "assumption_3"
+			},
+			{
+				name: "assumption_12"
+			},
+			{
+				name: "assumption_13"
+			},
+			{
+				name: "assumption_123"
+			},
+			{
+				name: "assumption_14"
+			},
+			{
+				name: "assumption_145"
+			},
+			{
+				name: "assumption_12345"
+			}
+		];
+
+		// var that = this;
+		return {
+			getAssumptionsDescs: function(){
+				return assumptionsDescs;
+			},
+
+			getAssumptionsDesByName: function(nameSubStr){
+				var returnedAssumptions = [];
+				for(var i in assumptionsDescs){
+					var assumption = assumptionsDescs[i];
+					if(assumption.name.indexOf(nameSubStr) > -1){
+						returnedAssumptions.push(assumption);
+					}
+				}
+				return returnedAssumptions;
+			},
 
 		};
 	}]
 });
+
 
 }()); // end of 'use strict';
