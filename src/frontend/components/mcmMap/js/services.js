@@ -11,15 +11,18 @@ mcmMapServices.provider('McmMapSchemaService', {
 		var entitiesStyles = {
 			"model": {
 				typeClass: "entity_model",
-				icon: "M"
+				icon: "MC",
+				icon_fa: "suitcase"
 			},
 			"object": {
 				typeClass: "entity_object",
-				icon: "O"
+				icon: "O",
+				icon_fa: "tablet"
 			},
 			"process": {
 				typeClass: "entity_process",
-				icon: "P"
+				icon: "P",
+				icon_fa: "car"
 			}
 		};
 
@@ -47,7 +50,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 			process:  {
 				assumption: true,
 				object: true,
-				grid: true
+				variable: true
 			},
 			assumption: {
 			}
@@ -58,7 +61,16 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "model",
 				name: "model",
 				type: "model",
-				icon: "M"
+				icon: "MC",
+				contains: {
+					containsObject: {
+
+					},
+					containsAssumption: {
+
+					}
+
+				}
 			},
 			assumption: {
 				id: "assumption",
@@ -70,7 +82,24 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "object",
 				name: "object",
 				type: "object",
-				icon: "O"
+				icon: "O",
+				contains: {
+					containsObject: {
+
+					},
+					containsProcess: {
+
+					},
+					containsVariableIn: {
+
+					},
+					containsVariableOut: {
+
+					},
+					containsAssumption: {
+
+					}
+				}
 			},
 			variable: {
 				id: "variable",
@@ -82,13 +111,55 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "process",
 				name: "process",
 				type: "process",
-				icon: "P"
+				icon: "P",
+				contains: {
+					containsObject: {
+
+					},
+					containsVariableIn: {
+
+					},
+					containsVariableOut: {
+
+					},
+					containsAssumption: {
+
+					}
+				}
 			},
 			grid: {
 				id: "grid",
 				name: "grid",
 				type: "grid",
 				icon: "G"
+			}
+		};
+
+		var edgesStyles = {
+			"containsObject": {
+				typeClass: "edge_contains_object",
+				icon: "MC",
+				icon_fa: "suitcase"
+			},
+			"containsProcess": {
+				typeClass: "edge_contains_process",
+				icon: "O",
+				icon_fa: "tablet"
+			},
+			"containsVariableIn": {
+				typeClass: "edge_contains_variable_in",
+				icon: "P",
+				icon_fa: "car"
+			},
+			"containsVariableOut": {
+				typeClass: "edge_contains_variable_out",
+				icon: "P",
+				icon_fa: "car"
+			},
+			"containsAssumption": {
+				typeClass: "edge_contains_assumption",
+				icon: "P",
+				icon_fa: "car"
 			}
 		};
 
@@ -135,7 +206,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 			}
 		};
 
-			// var that = this;
+		// var that = this;
 		return {
 			// rootNodeId: "55268521fb9a901e442172f9",
 
@@ -153,6 +224,13 @@ mcmMapServices.provider('McmMapSchemaService', {
 
 			getEntityDesc: function(entity){
 				return entitiesDescs[entity];
+			},
+
+			getEdgesStyles: function(){
+				return edgesStyles;
+			},
+			getEdgeStyle: function(edge){
+				return edgesStyles[edge];
 			},
 			getEdgesDescs: function(){
 				return edgesDescs;

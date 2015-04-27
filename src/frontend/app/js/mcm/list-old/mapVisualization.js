@@ -41,7 +41,7 @@ MapVisualization.prototype.getDom = function(){
 };
 
 MapVisualization.prototype.update = function(source, callback) {
-	this.mapLayout.generateTree(source);
+	this.mapLayout.generateTree(this.mapStructure.rootNode);
 	var that = this;
 	// this.mapLayout.generateTree(this.mapStructure.rootNode);
 	var nodeHtmlDatasets = this.updateHtml(source); // we need to update html nodes to calculate node heights in order to center them verticaly
@@ -58,8 +58,6 @@ MapVisualization.prototype.update = function(source, callback) {
 MapVisualization.prototype.updateHtml = function(source) {
 	var that = this;
 
-	this.dom.divList.selectAll("div." + this.configNodes.html.refCategory).remove();
-
 	var nodeHtml = this.dom.divList.selectAll("div." + this.configNodes.html.refCategory)
 		.data(this.mapLayout.nodes, function(d) {
 			return d.id;
@@ -70,8 +68,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 		.attr("class", function(d){
 			return that.configNodes.html.refCategory +
 			" node_unselected dropzone entity " +
-			// that.schema.getEntityStyle(d.type).typeClass;
-			that.schema.getEdgeStyle(d.type).typeClass;
+			that.schema.getEntityStyle(d.kNode.type).typeClass;
 		});
 		// .on("dblclick", this.clickDoubleNode.bind(this))
 		// .on("click", this.clickNode.bind(this));
@@ -167,9 +164,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 	// Name
 	nodeHtml.select(".name span")
 		.html(function(d){
-			var children = that.mapStructure.getChildrenNodes(d.parent, d.type);
-			return '<i style="margin:6px;" class="fa fa-'+that.schema.getEdgeStyle(d.type).icon_fa+'"></i>' + d.name + 
-				((children.length > 0) ? " <b>(" + children.length + ")</b>" : "");
+			return '<i style="margin:6px;" class="fa fa-'+that.schema.getEntityStyle(d.kNode.type).icon_fa+'"></i>' + d.kNode.name;
 		});
 
 // 	// Status

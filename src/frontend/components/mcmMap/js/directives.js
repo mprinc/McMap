@@ -400,20 +400,28 @@ angular.module('mcmMapDirectives', ['Config'])
 				var mcmMapModel = null;
 				var mcmMap = null;
 
-				var eventName = "mapEntitySelectedEvent";
-				$scope.$on(eventName, function(e, mapEntity) {
-					if(mapEntity){
-						console.log("[mcmMapList.controller::$on] ModelMap  mapEntity (%s): %s", mapEntity.kNode.type, mapEntity.kNode.name);
-						//KnalledgeMapService	
-					}
-				});
-
 				var mcmMapClientInterface = {
 					mapEntityClicked: function(){
 
 					},
 					timeout: $timeout
 				};
+
+				mcmMap = new mcm.list.Map(d3.select($element.get(0)),
+					ConfigMapToolset, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapService);
+
+				$scope.currentEntity = {
+					name: ""
+				};
+
+				var eventName = "mapEntitySelectedEvent";
+				$scope.$on(eventName, function(e, mapEntity) {
+					if(mapEntity){
+						console.log("[mcmMapList.controller::$on] ModelMap  mapEntity (%s): %s", mapEntity.kNode.type, mapEntity.kNode.name);
+						$scope.currentEntity.name = mapEntity.kNode.name;
+						mcmMap.changeSubtreeRoot(mapEntity);
+					}
+				});
 
 				var eventName = "modelLoadedEvent";
 				$scope.$on(eventName, function(e, eventModel) {
@@ -422,14 +430,11 @@ angular.module('mcmMapDirectives', ['Config'])
 					console.log("[mcmMapTools.controller::$on] ModelMap  edges(len: %d): %s",
 						eventModel.map.edges.length, JSON.stringify(eventModel.map.edges));
 					mcmMapModel = eventModel.map;
-
-					mcmMap = new mcm.list.Map(d3.select($element.get(0)),
-						ConfigMapToolset, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapService);
-
 					mcmMap.init(function(){
 						mcmMapModel = eventModel;
 						mcmMap.processData(mcmMapModel);
 					});
+
 				});
     		}	
     	};

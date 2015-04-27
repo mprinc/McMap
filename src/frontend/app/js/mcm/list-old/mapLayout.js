@@ -1,8 +1,8 @@
 (function () { // This prevents problems when concatenating scripts that aren't strict.
 'use strict';
 
-var MapLayout =  mcm.list.MapLayout = function(mapStructure, configView, configNodes, configTree, clientApi, schema){
-	this.mapStructure = mapStructure;
+var MapLayout =  mcm.list.MapLayout = function(structure, configView, configNodes, configTree, clientApi, schema){
+	this.structure = structure;
 	this.configView = configView;
 	this.configNodes = configNodes;
 	this.configTree = configTree;
@@ -19,9 +19,9 @@ MapLayout.prototype.getChildren = function(d){
 	// TODO: Maybe support closing nodes
 	//if(!d.isOpen) return children;
 
-	for(var i in this.mapStructure.edgesById){
-		if(this.mapStructure.edgesById[i].kEdge.sourceId == d.kNode._id){
-			var vkNode = this.mapStructure.getVKNodeByKId(this.mapStructure.edgesById[i].kEdge.targetId);
+	for(var i in this.structure.edgesById){
+		if(this.structure.edgesById[i].kEdge.sourceId == d.kNode._id){
+			var vkNode = this.structure.getVKNodeByKId(this.structure.edgesById[i].kEdge.targetId);
 			if(! (vkNode.kNode.type in this.schema.getEntitiesStyles())){
 				continue;
 			}
@@ -29,6 +29,10 @@ MapLayout.prototype.getChildren = function(d){
 		}
 	}
 	return children;
+};
+
+MapLayout.prototype.getAllNodesHtml = function(){
+	return this.dom.divList.selectAll("div.node_html");
 };
 
 // Returns view representation (dom) from datum d
@@ -85,50 +89,53 @@ MapLayout.prototype.clickNode = function(d, dom) {
 	return false;
 };
 
-MapLayout.prototype.processData = function(subtreeRoot) {
-	if(!subtreeRoot) subtreeRoot = this.mapStructure.rootNode;
-	this.generateTree(subtreeRoot);
-	this.clickNode(subtreeRoot);
-	this.clientApi.update(subtreeRoot);
+MapLayout.prototype.processData = function() {
+	this.generateTree(this.structure.rootNode);
+	this.clickNode(this.structure.rootNode);
+	this.clientApi.update(this.structure.rootNode);
 };
 
-MapLayout.prototype.generateTree = function(subtreeRoot){
-	// Compute the new tree layout.
-	this.nodes = [];
-	var entityDesc = this.schema.getEntityDesc(subtreeRoot.kNode.type);
-	var id = 0;
-	for(var edgeType in entityDesc.contains){
-		var label = this.schema.getEdgeDesc(edgeType).predicates;
-		var node = {
-			name: label,
-			type: edgeType,
-			depth: 1,
-			parent: subtreeRoot,
-			id: id++
-		};
-		this.nodes.push(node);
-
-		var subEntities = this.mapStructure.getChildrenNodes(subtreeRoot, edgeType);
-		for(var subEntityName in subEntities){
-			var node = {
-				name: label,
-				type: edgeType,
-				depth: 2,
-				parent: node,
-				id: id++
-			};
-			this.nodes.push(node);
-		}
+MapLayout.prototype.generateTree = function(source){
+	if(this.nodes){
+		// Normalize for fixed-depth.
+		this.nodes.forEach(function(d) {
+		    if(!('draggedInNo' in d)) d.draggedInNo = 0;
+			// Stash the old positions and widths for transition.
+		    if('x' in d) d.x0 = d.x;
+		    if('y' in d) d.y0 = d.y;
+		    if('width' in d) d.width0 = d.width;
+		    if('height' in d) d.height0 = d.height;
+		});
 	}
 
-	// this.nodes = this.tree.nodes(subtreeRoot);//.reverse();
-	// this.links = this.tree.links(this.nodes);
+	// Compute the new tree layout.
+	this.nodes = this.tree.nodes(source);//.reverse();
+	this.links = this.tree.links(this.nodes);
 
 	this.nodes.forEach(function(d) {
 		if(d.parent && d.parent == "null"){
 			d.parent = null;
 		}
 	});
+
+	this.printTree(this.nodes);
+};
+
+MapLayout.prototype.printTree = function(nodes) {
+	var minX = 0, maxX = 0, minY = 0, maxY = 0;
+	console.log("%d nodes", nodes.length);
+	for(var i=0; i<nodes.length; i++){
+		var node = nodes[i];
+		var height = ('height' in node) ? node.height : 0;
+		var width = ('width' in node) ? node.width : 0;
+		var name = node.kNode ? node.kNode.name : "(no name)"
+		console.log("\tnode [%d] \"%s\": x:%s, y:%s, width:%s, height: %s)", i, name, node.x, node.y, node.width, node.height);
+		if(node.x - height/2 < minX) minX = node.x - height/2;
+		if(node.x + height/2 > maxX) maxX = node.x + height/2;
+		if(node.y - width/2 < minY) minY = node.y - width/2;
+		if(node.y + width/2 > maxY) maxY = node.y + width/2;
+	}
+	console.log("Dimensions: (minX: %s, maxX: %s, minY: %s, maxY: %s)", minX, maxX, minY, maxY);
 };
 
 MapLayout.prototype.getHtmlNodePosition = function(d){

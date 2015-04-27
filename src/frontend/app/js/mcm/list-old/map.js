@@ -56,10 +56,6 @@ Map.prototype.processData = function(mapData) {
 	this.mapLayout.processData();
 };
 
-Map.prototype.changeSubtreeRoot = function(subtreeRoot) {
-	this.mapLayout.processData(subtreeRoot);
-};
-
 // http://interactjs.io/
 // http://interactjs.io/docs/#interactables
 Map.prototype.initializeManipulation = function() {

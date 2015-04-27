@@ -1,6 +1,17 @@
 /*http://stackoverflow.com/questions/8061166/syntax-to-include-separate-sass-file*/
 @import "../../../app/sass/include";
+@import "/Library/Ruby/Gems/2.0.0/gems/font-awesome-sass-4.3.2.1/assets/stylesheets/font-awesome";
 
+@font-face {
+	font-family: "FontAwesome";
+	src: url("../../../app/fonts/font-awesome/fontawesome-webfont.eot");
+	src: url("../../../app/fonts/font-awesome/fontawesome-webfont.eot") format("embedded-opentype"),
+	url("../../../app/fonts/font-awesome/fontawesome-webfont.woff") format("woff"),
+	url("../../../app/fonts/font-awesome/fontawesome-webfont.ttf") format("truetype"),
+	url("../../../app/fonts/font-awesome/fontawesome-webfont.svg") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
 $color_tool_border: gray;
 
 $variable_font_size: 0.99999em;
@@ -358,8 +369,44 @@ $map: layout(12 1/4 fluid float inside);
  mcm_map_list
 ------------------------ */
 
+$mcm_map_list_border: #888888;
+
 .mcm_map_list{
 	z-index: 9;
+
+	.mcm_title{
+		margin: 3px;
+		display: block;
+		border: 2px solid $mcm_map_list_border;
+		background-color: lighten($mcm_map_list_border, 20%);
+		@include border-top-right-radius(10px);
+		@include border-top-left-radius(10px);
+		transition: background-color 0.3s;
+
+		.mcm_icon{
+			display: inline-block;
+			border-right: 2px solid $mcm_map_list_border;
+			width: 2em;
+			padding-left: 0.3em;
+			padding-right: 0.3em;
+		}
+		.mcm_name{
+			display: inline-block;
+			padding-right: 1em;
+			padding-left: 0.3em;
+		}
+	}
+
+	.mcm_title_open{
+		border-bottom-width: 3px;
+	}
+
+	.mcm_title_closed{
+		@include border-bottom-right-radius(10px);
+		@include border-bottom-left-radius(10px);
+		background-color: lighten($mcm_map_list_border, 10%);
+	}
+
 	.list{
 		margin: 5px;
 
@@ -381,7 +428,6 @@ $map: layout(12 1/4 fluid float inside);
 		.entity_process{
 			background-color: #aaf;
 		}
-
 	}
 }
 
@@ -557,35 +603,4 @@ $select_sub_entity_title_size: 1em;
 		}
 	}
 
-}
-
-$mcm_map_list_border: #888888;
-
-.mcm_map_list{
-	.mcm_title{
-		display: block;
-		border: 2px solid $mcm_map_list_border;
-		background-color: lighten($mcm_map_list_border, 20%);
-		@include border-top-right-radius(10px);
-		@include border-top-left-radius(10px);
-		transition: background-color 0.3s;
-
-		.mcm_icon{
-			display: inline-block;
-			border-right: 2px solid $mcm_map_list_border;
-			width: 5em;
-			padding-left: 1em;
-			padding-right: 0.3em;
-		}
-		.mcm_name{
-			display: inline-block;
-			padding-right: 1em;
-			padding-left: 0.3em;
-		}
-	}
-	.mcm_title_closed{
-		@include border-bottom-right-radius(10px);
-		@include border-bottom-left-radius(10px);
-		background-color: lighten($mcm_map_list_border, 10%);
-	}
 }

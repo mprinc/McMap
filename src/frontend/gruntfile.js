@@ -109,6 +109,29 @@ module.exports = function(grunt) {
 					require: ["susy", "breakpoint"],
 					trace: true
 				}
+			},
+			maps_dist: { // target
+				options: { // Target options
+					// config: 'config/config.rb',
+					sassDir: ['components/mcmMaps/sass'],
+					cssDir: ['components/mcmMaps/css'],
+					outputStyle: "nested",
+					environment: 'production',
+					noLineComments: true,
+					require: ["susy", "breakpoint"],
+					trace: true
+				}
+			},
+			maps_dev: { // Another target
+				options: {
+					sassDir: ['components/mcmMaps/sass'],
+					cssDir: ['components/mcmMaps/css'],
+					outputStyle: "nested", // expanded, nested, compact, compressed
+					environment: 'development',
+					noLineComments: false,
+					require: ["susy", "breakpoint"],
+					trace: true
+				}
 			}
 		},
 		concat: {
@@ -149,19 +172,23 @@ module.exports = function(grunt) {
 			map_css: {
 				files: ['components/mcmMap/sass/**/*.{scss,sass}'],
 				tasks: ['compass:map_dev', 'notify:watch_css'],
+			},
+			maps_css: {
+				files: ['components/mcmMaps/sass/**/*.{scss,sass}'],
+				tasks: ['compass:maps_dev', 'notify:watch_css'],
 			}
 		},
 		concurrent: {
 			watch: {
-				tasks: ['watch:js', 'watch:app_css', 'watch:map_css'],
+				tasks: ['watch:js', 'watch:app_css', 'watch:map_css', 'watch:maps_css'],
 				options: { logConcurrentOutput: true }
 			},
 			dev: {
-				tasks: ['jshint', 'compass:app_dev', 'compass:map_dev'],
+				tasks: ['jshint', 'compass:app_dev', 'compass:map_dev', 'compass:maps_dev'],
 				options: { logConcurrentOutput: true }
 			},
 			dist: {
-				tasks: ['jshint', 'compass:app_dist', 'compass:map_dist'],
+				tasks: ['jshint', 'compass:app_dist', 'compass:map_dist', 'compass:map_dist'],
 				options: { logConcurrentOutput: true }
 			}
 		},
