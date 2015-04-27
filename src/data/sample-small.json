@@ -76,7 +76,13 @@
 			{
 				"_id": "5532f5fb98b4e4789002d29a",
 				"name": "",
-				"type": "variable"
+				"type": "variable",
+				"dataContent": {
+					"entity": {
+						"quantity": "linear_law",
+						"operators": "max_of"
+					}
+				}
 			},
 			{
 				"_id": "5532f5fb98b4e4789002d29b",
@@ -86,7 +92,12 @@
 			{
 				"_id": "5532f5fb98b4e4789002d29c",
 				"name": "",
-				"type": "variable"
+				"type": "variable",
+				"dataContent": {
+					"entity": {
+						"quantity": "linear_law"
+					}
+				}
 			},
 			{
 				"_id": "5532f5fb98b4e4789002d29d",
@@ -123,7 +134,7 @@
 				"targetId": "5532f5fb98b4e4789002d2a0"
 			},
 			{
-				"_id": "ec3000000000000000000005",
+				"_id": "ec3000000000000000000001",
 				"name": "",
 				"type": "containsObject",
 				"sourceId": "5532f5fb98b4e4789002d2a0",

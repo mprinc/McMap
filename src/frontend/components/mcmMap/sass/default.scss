@@ -20,7 +20,7 @@ $variable_color: #00ff00;
 
 $susy: (
 	columns: 12,
-	gutters: 1/4,
+	gutters: 1/8,
 	math: fluid,
 	output: float,
 	gutter-position: inside,
@@ -70,13 +70,13 @@ $map: layout(12 1/4 fluid float inside);
 }
 
 @include breakpoint($large) {
-	.mcm_map_tools{
-		@include span(1 at 1); 
-	}
-
 	.mcm_map{
 		/* make #content content occupying 2 cells less on large screens */
-		@include span(9 at 2);
+		@include span(9 at 1);
+	}
+
+	.mcm_map_tools{
+		@include span(1 at 9);
 	}
 
 	.mcm_map_list{
@@ -209,6 +209,7 @@ $map: layout(12 1/4 fluid float inside);
 		font-weight: bold;
 		@include border-radius(10px, 10px);
 	}
+
 	.var_in {
 		position: absolute;
 		left: -$variable_font_size/2;
@@ -428,6 +429,69 @@ $mcm_map_list_border: #888888;
 		.entity_process{
 			background-color: #aaf;
 		}
+
+		$entity_variable_color: #ffffcc;
+		$entity_settings_color: #ccffff;
+		.entity_variable{
+			background-color: $entity_variable_color;
+			overflow-x: hidden;
+			position: relative;
+			display: block;
+			width: 100%;
+			.container{
+				width: 200%;
+				.name{
+					position: relative;
+					display: inline-block;
+					width: 50%;
+					span {
+					}
+				}
+				div{
+					@include transition-property(color);
+					@include transition-property(right);
+					@include transition-duration(0.3s);
+					@include transition-timing-function(ease-in);
+				}
+				.settings{
+					position: relative;
+					display: inline-block;
+					width: 50%;
+					right: 1.5em;
+					top: 0em;
+					background-color: $entity_settings_color;
+					border: 2px solid darken($entity_settings_color, 25%);
+					padding-left: 4px;
+					padding-right: 4px;
+					padding-top: 0px;
+					padding-bottom: 0px;
+					text-align: left;
+					font-weight: bold;
+					@include border-top-left-radius(10px);
+					@include border-bottom-left-radius(10px);
+		
+					@include transition-property(color);
+					@include transition-property(right);
+					@include transition-duration(0.3s);
+					@include transition-timing-function(ease-in);
+
+					.setting{
+						cursor: pointer;
+					}
+					.setting_ic, .setting_bc, .setting_sd, .setting_q, .setting_o{
+						font-size: 0.8em;
+						padding: 2px;
+						padding-left: 4px;
+						padding-right: 4px;
+						margin: 1px;
+						border: 1px solid $mcm_map_list_border;
+						@include border-radius(7px, 7px);
+					}
+				}
+			}
+		}
+
+
 	}
 }
 

@@ -151,8 +151,21 @@ MapVisualization.prototype.updateHtml = function(source) {
 	// Name
 	nodeHtmlEnter
 		.append("div")
-			.attr("class", "name")
-			.append("span");
+			.attr("class", "container")
+			.append("div")
+				.attr("class", "name")
+				.append("span");
+
+	// Input Variables
+	nodeHtmlEnter.select(".container").each(function(d) {
+		var container = d3.select(this);
+		switch(d.type){
+			case 'variable':
+				container.append("div")
+					.attr("class", "settings");
+				break;
+		}
+	});
 
 // 	// Status
 // 	nodeHtmlEnter
@@ -182,13 +195,151 @@ MapVisualization.prototype.updateHtml = function(source) {
 					// var children = that.mapStructure.getChildrenNodes(d.parent, d.type);
 					// return '<i style="margin:6px;" class="fa fa-'+that.schema.getEdgeStyle(d.type).icon_fa+'"></i>' + d.name + 
 					// 	((children.length > 0) ? " <b>(" + children.length + ")</b>" : "");
-					return d.name;
+					var label = "";
+					switch(d.type){
+						case "variable":
+							if(d.name) label += d.name;
+							if(d.kNode.dataContent && d.kNode.dataContent.entity && ('quantity' in d.kNode.dataContent.entity)){
+								label += ":" + d.kNode.dataContent.entity.quantity;
+							}
+							if(d.kNode.dataContent && d.kNode.dataContent.entity && ('operators' in d.kNode.dataContent.entity)){
+								label += ":" + d.kNode.dataContent.entity.operators;
+							}
+							if(label == ""){
+								label = "...";
+							}
+							break;
+						default:
+							label = d.name;
+							break;					
+					}
+					return label;
 				case "edge":
 					var children = that.mapStructure.getChildrenNodes(d.parent, d.type);
 					return '<i style="margin:6px;" class="fa fa-'+that.schema.getEdgeStyle(d.type).icon_fa+'"></i>' + d.name + 
 						((children.length > 0) ? " <b>(" + children.length + ")</b>" : "");
 			}
+		})
+	// Settings
+	nodeHtml.select(".settings")
+		// http://stackoverflow.com/questions/18205034/d3-adding-data-attribute-conditionally
+		// http://grokbase.com/t/gg/d3-js/13bc0xr5s8/drawing-circles-conditionally#20131112vgo76k6bofdnloldcihh642t7i
+		.each(function(d) {
+			switch(d.type){
+				case 'variable':
+					var settings = d3.select(this);
+
+					settings.append("span")
+						.attr("class", "setting")
+						.html(function(d){
+							var content = "";
+							switch(d.type){
+								case "variable":
+									content = '<i style="margin:0.2em;" class="fa fa-align-justify"></i>';
+									break;
+							}
+							return content;
+						})
+						.on("click", function(d){
+							if(d.settingsOpen){
+								// acting on "div.settings"
+								d3.select(this.parentElement).style("right", null);
+								d.settingsOpen = false;
+							}else{
+								d3.select(this.parentElement).style("right", "50%");
+								d.settingsOpen = true;
+							}
+						});
+
+					settings.append("span")
+						.attr("class", "setting setting_ic")
+						.style("opacity", function(d){
+							return (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.ic) ? "1.0" : "0.25"
+						})
+						.html(function(d){
+							var content = 'IC';
+							return content;
+						})
+						.on("click", function(d){
+							if(d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.ic){
+								// acting on "div.settings"
+								d3.select(this).style("opacity", "0.25");
+								d.kNode.dataContent.entity.ic = false;
+							}else{
+								d3.select(this).style("opacity", "1.0");
+								if(!d.kNode.dataContent) d.kNode.dataContent = {};
+								if(!d.kNode.dataContent.entity) d.kNode.dataContent.entity = {};
+								d.kNode.dataContent.entity.ic = true;
+							}
+						});
+					settings.append("span")
+						.attr("class", "setting setting_bc")
+						.style("opacity", function(d){
+							return (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.bc) ? "1.0" : "0.25"
+						})
+						.html(function(d){
+							var content = "BC";
+							return content;
+						})
+						.on("click", function(d){
+							if(d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.bc){
+								// acting on "div.settings"
+								d3.select(this).style("opacity", "0.25");
+								d.kNode.dataContent.entity.bc = false;
+							}else{
+								d3.select(this).style("opacity", "1.0");
+								if(!d.kNode.dataContent) d.kNode.dataContent = {};
+								if(!d.kNode.dataContent.entity) d.kNode.dataContent.entity = {};
+								d.kNode.dataContent.entity.bc = true;
+							}
+						});
+					settings.append("span")
+						.attr("class", "setting setting_sd")
+						.style("opacity", function(d){
+							return (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.sd) ? "1.0" : "0.25"
+						})
+						.html(function(d){
+							var content = "SD";
+							return content;
+						})
+						.on("click", function(d){
+							if(d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.sd){
+								// acting on "div.settings"
+								d3.select(this).style("opacity", "0.25");
+								d.kNode.dataContent.entity.sd = false;
+							}else{
+								d3.select(this).style("opacity", "1.0");
+								if(!d.kNode.dataContent) d.kNode.dataContent = {};
+								if(!d.kNode.dataContent.entity) d.kNode.dataContent.entity = {};
+								d.kNode.dataContent.entity.sd = true;
+							}
+						});
+					settings.append("span")
+						.attr("class", "setting setting_q")
+						.style("opacity", function(d){
+							return (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.quantity) ? "1.0" : "0.25"
+						})
+						.html(function(d){
+							var content = "Q";
+							return content;
+						})
+						.on("click", function(d){
+						});
+					settings.append("span")
+						.attr("class", "setting setting_o")
+						.style("opacity", function(d){
+							return (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.operators) ? "1.0" : "0.25"
+						})
+						.html(function(d){
+							var content = "O";
+							return content;
+						})
+						.on("click", function(d){
+						});
+					break;
+			}
 		});
+;
 
 // 	// Status
 // 	nodeHtml.select(".status")

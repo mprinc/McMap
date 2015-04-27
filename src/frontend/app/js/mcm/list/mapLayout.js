@@ -119,6 +119,8 @@ MapLayout.prototype.generateTree = function(subtreeRoot){
 				type: subEntity.kNode.type,
 				depth: 2,
 				parent: edgeNode,
+				kNode: subEntity.kNode,
+				vkNode: subEntity,
 				id: nodeId++
 			};
 			this.nodes.push(node);
