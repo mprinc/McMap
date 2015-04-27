@@ -51,6 +51,7 @@ angular.module('mcmMapDirectives', ['Config'])
 							directiveScope.entityDecorating = decoratingEntity;
 							directiveScope.addigCanceled = function(){
 								inMapEntityDraggedIn = false;
+								mcmMapClientInterface.selectEntity();
 							},
 							directiveScope.addedEntity = function(addingInEntity){
 								console.log("Added entity to addingInEntity: %s", JSON.stringify(addingInEntity));
@@ -85,6 +86,56 @@ angular.module('mcmMapDirectives', ['Config'])
 							}.bind(this);
 						});
 					},
+					selectEntity: function(mapEntity, decoratingEntity){
+						// we need this to avoid double calling
+						// the first on dragging in and second on clicking on the tool entity
+						inMapEntityDraggedIn = true;
+						toolEntityClicked = null;
+
+						console.log("selecting assumption");
+						var directiveScope = $scope.$new(); // $new is not super necessary
+						// create popup directive
+						var directiveLink = $compile("<div mcm_map_select_assumption class='mcm_map_select_assumption'></div>");
+						// link HTML containing the directive
+						var directiveElement = directiveLink(directiveScope);
+						$element.append(directiveElement);
+
+						directiveScope.mapEntity = mapEntity;
+						directiveScope.selectingCanceled = function(){
+							inMapEntityDraggedIn = false;
+						},
+						directiveScope.selectedAssumption = function(addingInEntity){
+							console.log("Added entity to addingInEntity: %s", JSON.stringify(addingInEntity));
+
+							addingInEntity.draggedInNo++;
+							var relationship = {
+								"name": "",
+							};
+							var entity = {
+							};
+
+							if(decoratingEntity.type == 'variable'){
+								entity.name = "variable";
+								entity.type = "variable";
+								relationship.type = mcm.Map.CONTAINS_VARIABLE_OUT;
+							}
+							if(decoratingEntity.type == 'assumption'){
+								entity.name = "assumption";
+								entity.type = "assumption";
+								relationship.type = mcm.Map.CONTAINS_ASSUMPTION_OUT;
+							}
+
+							mcmMap.addChildNode(addingInEntity, entity, relationship);
+
+							// var updated = function(nodeFromServer){
+							// 	console.log("[knalledgeMap::kMapClientInterface::addImage::addedImage::created'] createNode: " + nodeFromServer);
+							// 	if(callback){callback(nodeFromServer);}
+							// 	knalledgeMap.update(node);
+							// };
+							// KnalledgeNodeService.update(node).$promise
+							// 	.then(updated);
+						}.bind(this);
+					}
 					timeout: $timeout
 				};
 
