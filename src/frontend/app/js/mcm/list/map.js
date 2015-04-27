@@ -44,7 +44,7 @@ Map.prototype.init = function(callback) {
 	this.mapVisualization.init(this.mapLayout, callback);
 	this.mapLayout.init(mapSize);
 	// this.initializeKeyboard();
-	this.initializeManipulation();
+	// this.initializeManipulation();
 };
 
 Map.prototype.update = function(node) {

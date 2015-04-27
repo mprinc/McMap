@@ -56,6 +56,8 @@ angular.module('mcmMapDirectives', ['Config'])
 							directiveScope.addedEntity = function(addingInEntity){
 								console.log("Added entity to addingInEntity: %s", JSON.stringify(addingInEntity));
 
+								mcmMapClientInterface.selectEntity(addingInEntity);
+
 								addingInEntity.draggedInNo++;
 								var relationship = {
 									"name": "",
@@ -86,12 +88,9 @@ angular.module('mcmMapDirectives', ['Config'])
 							}.bind(this);
 						});
 					},
-					selectEntity: function(mapEntity, decoratingEntity){
+					selectEntity: function(mapEntity){
 						// we need this to avoid double calling
 						// the first on dragging in and second on clicking on the tool entity
-						inMapEntityDraggedIn = true;
-						toolEntityClicked = null;
-
 						console.log("selecting assumption");
 						var directiveScope = $scope.$new(); // $new is not super necessary
 						// create popup directive
@@ -102,7 +101,6 @@ angular.module('mcmMapDirectives', ['Config'])
 
 						directiveScope.mapEntity = mapEntity;
 						directiveScope.selectingCanceled = function(){
-							inMapEntityDraggedIn = false;
 						},
 						directiveScope.selectedAssumption = function(addingInEntity){
 							console.log("Added entity to addingInEntity: %s", JSON.stringify(addingInEntity));
@@ -175,6 +173,69 @@ angular.module('mcmMapDirectives', ['Config'])
 					}
 				});
 			}
+    	};
+	}])
+	.directive('mcmMapSelectAssumption', ['McmMapSchemaService', 'KnalledgeMapService', function(McmMapSchemaService, KnalledgeMapService){ // mcm_map_select_sub_entity
+		return {
+			restrict: 'AE',
+			// scope: {
+			// },
+			// ng-if directive: http://docs.angularjs.org/api/ng.directive:ngIf
+			// expression: http://docs.angularjs.org/guide/expression
+			templateUrl: '../components/mcmMap/partials/mcmMap-selectAssumption.tpl.html',
+			controller: function ( $scope, $element) {
+
+
+				$scope.title = "Select decoration entity";
+				$scope.path = "Name";
+				$scope.item = {
+					name: null
+				}
+
+				$scope.itemsFull = [
+					{
+						name: "assumption_1"
+					},
+					{
+						name: "assumption_2"
+					},
+					{
+						name: "assumption_3"
+					}
+				];
+
+				$scope.items = [
+				];
+
+				var populateItems = function(itemsFull, items, subName){
+					// We are not allowed to delete
+					items.length = 0;
+					for(var i in itemsFull){
+						var item = itemsFull[i];
+						if(!subName || item.name.indexOf(subName) >= 0){
+							items.push(item);
+						}
+					}
+				}
+
+				populateItems($scope.itemsFull, $scope.items, null);
+
+				$scope.nameChanged = function(){
+					console.log("New searching assumption name: %s", $scope.item.name);
+					populateItems($scope.itemsFull, $scope.items, $scope.item.name);
+				}
+				$scope.cancelled = function(){
+					//console.log("Canceled");
+					$element.remove();
+					$scope.selectingCanceled();
+				};
+
+				$scope.submitted = function(){
+					console.log("Submitted");
+					$scope.selectedAssumption($scope.selected.ref);
+					$element.remove();
+				};
+    		}
     	};
 	}])
 	.directive('mcmMapSelectSubEntity', ['McmMapSchemaService', 'KnalledgeMapService', function(McmMapSchemaService, KnalledgeMapService){ // mcm_map_select_sub_entity
