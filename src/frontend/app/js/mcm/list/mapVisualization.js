@@ -68,10 +68,20 @@ MapVisualization.prototype.updateHtml = function(source) {
 	// Enter the nodes
 	var nodeHtmlEnter = nodeHtml.enter().append("div")
 		.attr("class", function(d){
-			return that.configNodes.html.refCategory +
-			" node_unselected dropzone entity " +
+			var classes = that.configNodes.html.refCategory +
+			" node_unselected dropzone entity ";
 			// that.schema.getEntityStyle(d.type).typeClass;
-			that.schema.getEdgeStyle(d.type).typeClass;
+
+			switch(d.objectType){
+				case "node":
+					classes += that.schema.getEntityStyle(d.type).typeClass;
+					break;
+				case "edge":
+					classes += that.schema.getEdgeStyle(d.type).typeClass;
+					break;
+			}
+
+			return classes;
 		});
 		// .on("dblclick", this.clickDoubleNode.bind(this))
 		// .on("click", this.clickNode.bind(this));
@@ -87,7 +97,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 			// d3.event.sourceEvent.stopPropagation();
 		})
 		.style("margin-left", function(d) {
-			var width = d.depth * 3;
+			var width = d.depth * 5;
 			return width + "px";
 		});
 		// .style("left", function(d) {
@@ -167,9 +177,17 @@ MapVisualization.prototype.updateHtml = function(source) {
 	// Name
 	nodeHtml.select(".name span")
 		.html(function(d){
-			var children = that.mapStructure.getChildrenNodes(d.parent, d.type);
-			return '<i style="margin:6px;" class="fa fa-'+that.schema.getEdgeStyle(d.type).icon_fa+'"></i>' + d.name + 
-				((children.length > 0) ? " <b>(" + children.length + ")</b>" : "");
+			switch(d.objectType){
+				case "node":
+					// var children = that.mapStructure.getChildrenNodes(d.parent, d.type);
+					// return '<i style="margin:6px;" class="fa fa-'+that.schema.getEdgeStyle(d.type).icon_fa+'"></i>' + d.name + 
+					// 	((children.length > 0) ? " <b>(" + children.length + ")</b>" : "");
+					return d.name;
+				case "edge":
+					var children = that.mapStructure.getChildrenNodes(d.parent, d.type);
+					return '<i style="margin:6px;" class="fa fa-'+that.schema.getEdgeStyle(d.type).icon_fa+'"></i>' + d.name + 
+						((children.length > 0) ? " <b>(" + children.length + ")</b>" : "");
+			}
 		});
 
 // 	// Status

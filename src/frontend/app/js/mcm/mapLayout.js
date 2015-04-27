@@ -23,7 +23,8 @@ MapLayout.prototype.getChildren = function(d){
 	for(var i in this.structure.edgesById){
 		if(this.structure.edgesById[i].kEdge.sourceId == d.kNode._id){
 			var vkNode = this.structure.getVKNodeByKId(this.structure.edgesById[i].kEdge.targetId);
-			if(! (vkNode.kNode.type in this.schema.entityStyles)){
+			var entityStle = this.schema.getEntityStyle(vkNode.kNode.type);
+			if(! entityStle || !entityStle.isShownOnMap){
 				continue;
 			}
 			children.push(vkNode);

@@ -10,16 +10,25 @@ mcmMapServices.provider('McmMapSchemaService', {
 	function(/*$q, $rootScope*/) {
 		var entitiesStyles = {
 			"model": {
+				isShownOnMap: true,
 				typeClass: "entity_model",
 				icon: "MC",
 				icon_fa: "suitcase"
 			},
 			"object": {
+				isShownOnMap: true,
 				typeClass: "entity_object",
 				icon: "O",
 				icon_fa: "tablet"
 			},
+			"variable": {
+				isShownOnMap: false,
+				typeClass: "entity_variable",
+				icon: "V",
+				icon_fa: "bolt"
+			},
 			"process": {
+				isShownOnMap: true,
 				typeClass: "entity_process",
 				icon: "P",
 				icon_fa: "car"

@@ -22,7 +22,8 @@ MapLayout.prototype.getChildren = function(d){
 	for(var i in this.mapStructure.edgesById){
 		if(this.mapStructure.edgesById[i].kEdge.sourceId == d.kNode._id){
 			var vkNode = this.mapStructure.getVKNodeByKId(this.mapStructure.edgesById[i].kEdge.targetId);
-			if(! (vkNode.kNode.type in this.schema.getEntitiesStyles())){
+			var entityStle = this.schema.getEntityStyle(vkNode.kNode.type);
+			if(! entityStle || !entityStle.isShownOnMap){
 				continue;
 			}
 			children.push(vkNode);
@@ -96,26 +97,29 @@ MapLayout.prototype.generateTree = function(subtreeRoot){
 	// Compute the new tree layout.
 	this.nodes = [];
 	var entityDesc = this.schema.getEntityDesc(subtreeRoot.kNode.type);
-	var id = 0;
+	var nodeId = 0;
 	for(var edgeType in entityDesc.contains){
 		var label = this.schema.getEdgeDesc(edgeType).predicates;
-		var node = {
+		var edgeNode = {
 			name: label,
+			objectType: "edge",
 			type: edgeType,
 			depth: 1,
 			parent: subtreeRoot,
-			id: id++
+			id: nodeId++
 		};
-		this.nodes.push(node);
+		this.nodes.push(edgeNode);
 
 		var subEntities = this.mapStructure.getChildrenNodes(subtreeRoot, edgeType);
-		for(var subEntityName in subEntities){
+		for(var id in subEntities){
+			var subEntity = subEntities[id];
 			var node = {
-				name: label,
-				type: edgeType,
+				name: subEntity.kNode.name,
+				objectType: "node",
+				type: subEntity.kNode.type,
 				depth: 2,
-				parent: node,
-				id: id++
+				parent: edgeNode,
+				id: nodeId++
 			};
 			this.nodes.push(node);
 		}
