@@ -135,7 +135,7 @@ angular.module('mcmMapDirectives', ['Config'])
 							// KnalledgeNodeService.update(node).$promise
 							// 	.then(updated);
 						}.bind(this);
-					}
+					},
 					timeout: $timeout
 				};
 
