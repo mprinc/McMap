@@ -306,7 +306,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 		.attr("class", function(d){
 			return that.configNodes.html.refCategory +
 			" node_unselected draggable_map_entity dropzone " +
-			that.schema.entityStyles[d.kNode.type].typeClass +
+			that.schema.getEntityStyle(d.kNode.type).typeClass +
 			" " + that.resizingConfig.target.refClass;
 		});
 		// .on("dblclick", this.clickDoubleNode.bind(this))
@@ -422,7 +422,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 	// Type
 	nodeHtml.select(".type")
 		.html(function(d){
-			return "" + that.schema.entityStyles[d.kNode.type].icon;
+			return "" + that.schema.getEntityStyle(d.kNode.type).icon;
 		});
 
 	// Input Variables

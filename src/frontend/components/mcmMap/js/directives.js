@@ -150,13 +150,9 @@ angular.module('mcmMapDirectives', ['Config'])
 
 				KnalledgeMapService.loadData(mapProperties);
 
-				var schema = {
-					entityStyles: McmMapSchemaService.getEntitiesStyles()
-				};
-
 				var model = null;
 				var mcmMap = new mcm.Map(d3.select($element.find(".map-container").get(0)),
-					ConfigMap, mcmMapClientInterface, schema, KnalledgeMapService);
+					ConfigMap, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapService);
 
 				var eventName = "modelLoadedEvent";
 				$scope.$on(eventName, function(e, eventModel) {
