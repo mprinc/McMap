@@ -5,28 +5,27 @@
   width: 80%;
   margin-left: 10%;
   margin-right: 10%; }
-
-/* line 12, ../sass/default.scss */
-.list {
-  margin: 5px;
-  border: 1px solid #aaa;
-  -moz-border-radius: 5px / 5px;
-  -webkit-border-radius: 5px 5px;
-  border-radius: 5px / 5px;
-  margin-bottom: 3px;
-  padding: 3px;
-  background-color: #888;
-  /*background-color: #ccc;
-  background-color: #aaf;*/ }
-  /* line 22, ../sass/default.scss */
-  .list th {
-    background-color: #aaf;
-    border: 1px solid black;
-    padding: 3px; }
-  /* line 27, ../sass/default.scss */
-  .list td {
-    border: 1px solid black;
-    padding: 3px; }
+  /* line 11, ../sass/default.scss */
+  .mapsList .list {
+    margin: 5px;
+    border: 1px solid #aaa;
+    -moz-border-radius: 5px / 5px;
+    -webkit-border-radius: 5px 5px;
+    border-radius: 5px / 5px;
+    margin-bottom: 3px;
+    padding: 3px;
+    background-color: #888;
+    /*background-color: #ccc;
+    background-color: #aaf;*/ }
+    /* line 21, ../sass/default.scss */
+    .mapsList .list th {
+      background-color: #aaf;
+      border: 1px solid black;
+      padding: 3px; }
+    /* line 26, ../sass/default.scss */
+    .mapsList .list td {
+      border: 1px solid black;
+      padding: 3px; }
 
 /*
 .mcm_map_tools{
