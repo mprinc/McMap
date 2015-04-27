@@ -2355,8 +2355,8 @@
     box-sizing: border-box;
     width: 16.66667%;
     float: left;
-    padding-left: 0.83333%;
-    padding-right: 0.83333%; }
+    padding-left: 0.46296%;
+    padding-right: 0.46296%; }
 
   /* line 45, ../sass/default.scss */
   .mcm_map {
@@ -2367,8 +2367,8 @@
     box-sizing: border-box;
     width: 83.33333%;
     float: right;
-    padding-left: 0.83333%;
-    padding-right: 0.83333%; }
+    padding-left: 0.46296%;
+    padding-right: 0.46296%; }
 
   /* line 51, ../sass/default.scss */
   .mcm_map_list {
@@ -2383,8 +2383,8 @@
     box-sizing: border-box;
     width: 8.33333%;
     float: left;
-    padding-left: 0.83333%;
-    padding-right: 0.83333%; }
+    padding-left: 0.46296%;
+    padding-right: 0.46296%; }
 
   /* line 63, ../sass/default.scss */
   .mcm_map {
@@ -2393,8 +2393,8 @@
     box-sizing: border-box;
     width: 75%;
     float: left;
-    padding-left: 0.83333%;
-    padding-right: 0.83333%; }
+    padding-left: 0.46296%;
+    padding-right: 0.46296%; }
 
   /* line 67, ../sass/default.scss */
   .mcm_map_list {
@@ -2403,20 +2403,10 @@
     box-sizing: border-box;
     width: 16.66667%;
     float: left;
-    padding-left: 0.83333%;
-    padding-right: 0.83333%; } }
+    padding-left: 0.46296%;
+    padding-right: 0.46296%; } }
 @media (min-width: 1400px) {
   /* line 73, ../sass/default.scss */
-  .mcm_map_tools {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 8.33333%;
-    float: left;
-    padding-left: 0.83333%;
-    padding-right: 0.83333%; }
-
-  /* line 77, ../sass/default.scss */
   .mcm_map {
     /* make #content content occupying 2 cells less on large screens */
     -moz-box-sizing: border-box;
@@ -2424,8 +2414,18 @@
     box-sizing: border-box;
     width: 75%;
     float: left;
-    padding-left: 0.83333%;
-    padding-right: 0.83333%; }
+    padding-left: 0.46296%;
+    padding-right: 0.46296%; }
+
+  /* line 78, ../sass/default.scss */
+  .mcm_map_tools {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 8.33333%;
+    float: left;
+    padding-left: 0.46296%;
+    padding-right: 0.46296%; }
 
   /* line 82, ../sass/default.scss */
   .mcm_map_list {
@@ -2434,8 +2434,8 @@
     box-sizing: border-box;
     width: 16.66667%;
     float: left;
-    padding-left: 0.83333%;
-    padding-right: 0.83333%; } }
+    padding-left: 0.46296%;
+    padding-right: 0.46296%; } }
 /* line 87, ../sass/default.scss */
 .mcm_map_index {
   position: relative;
@@ -2566,7 +2566,7 @@
     -moz-border-radius: 10px / 10px;
     -webkit-border-radius: 10px 10px;
     border-radius: 10px / 10px; }
-  /* line 212, ../sass/default.scss */
+  /* line 213, ../sass/default.scss */
   .map_entity .var_in {
     position: absolute;
     left: -0.5em;
@@ -2615,7 +2615,7 @@
     			@include skew(-25deg, 0deg);
     		}
     */ }
-  /* line 260, ../sass/default.scss */
+  /* line 261, ../sass/default.scss */
   .map_entity .var_out {
     position: absolute;
     right: -0.5em;
@@ -2664,7 +2664,7 @@
     			border: $variable_border_size solid red;
     			@include skew(-25deg, 0deg);
     		}*/ }
-  /* line 308, ../sass/default.scss */
+  /* line 309, ../sass/default.scss */
   .map_entity .type {
     position: absolute;
     right: -15px;
@@ -2683,32 +2683,32 @@
     -moz-border-radius: 5px / 5px;
     -webkit-border-radius: 5px 5px;
     border-radius: 5px / 5px; }
-  /* line 325, ../sass/default.scss */
+  /* line 326, ../sass/default.scss */
   .map_entity .name {
     position: relative;
     padding: 3px;
     /*background-color: yellow;*/ }
-  /* line 337, ../sass/default.scss */
+  /* line 338, ../sass/default.scss */
   .map_entity.selected {
     border-color: #ffa;
     border-width: 3px; }
-  /* line 347, ../sass/default.scss */
+  /* line 348, ../sass/default.scss */
   .map_entity.entity_model {
     background-color: #888; }
-  /* line 351, ../sass/default.scss */
+  /* line 352, ../sass/default.scss */
   .map_entity.entity_object {
     background-color: #ccc; }
-  /* line 355, ../sass/default.scss */
+  /* line 356, ../sass/default.scss */
   .map_entity.entity_process {
     background-color: #aaf; }
 
 /* ------------------------
  mcm_map_list
 ------------------------ */
-/* line 374, ../sass/default.scss */
+/* line 375, ../sass/default.scss */
 .mcm_map_list {
   z-index: 9; }
-  /* line 377, ../sass/default.scss */
+  /* line 378, ../sass/default.scss */
   .mcm_map_list .mcm_title {
     margin: 3px;
     display: block;
@@ -2721,22 +2721,22 @@
     -webkit-border-top-left-radius: 10px;
     border-top-left-radius: 10px;
     transition: background-color 0.3s; }
-    /* line 386, ../sass/default.scss */
+    /* line 387, ../sass/default.scss */
     .mcm_map_list .mcm_title .mcm_icon {
       display: inline-block;
       border-right: 2px solid #888888;
       width: 2em;
       padding-left: 0.3em;
       padding-right: 0.3em; }
-    /* line 393, ../sass/default.scss */
+    /* line 394, ../sass/default.scss */
     .mcm_map_list .mcm_title .mcm_name {
       display: inline-block;
       padding-right: 1em;
       padding-left: 0.3em; }
-  /* line 400, ../sass/default.scss */
+  /* line 401, ../sass/default.scss */
   .mcm_map_list .mcm_title_open {
     border-bottom-width: 3px; }
-  /* line 404, ../sass/default.scss */
+  /* line 405, ../sass/default.scss */
   .mcm_map_list .mcm_title_closed {
     -moz-border-radius-bottomright: 10px;
     -webkit-border-bottom-right-radius: 10px;
@@ -2745,10 +2745,10 @@
     -webkit-border-bottom-left-radius: 10px;
     border-bottom-left-radius: 10px;
     background-color: #a2a2a2; }
-  /* line 410, ../sass/default.scss */
+  /* line 411, ../sass/default.scss */
   .mcm_map_list .list {
     margin: 5px; }
-    /* line 413, ../sass/default.scss */
+    /* line 414, ../sass/default.scss */
     .mcm_map_list .list .entity {
       border: 1px solid #aaa;
       -moz-border-radius: 5px / 5px;
@@ -2756,20 +2756,104 @@
       border-radius: 5px / 5px;
       margin-bottom: 3px;
       padding: 3px; }
-    /* line 420, ../sass/default.scss */
+    /* line 421, ../sass/default.scss */
     .mcm_map_list .list .entity_model {
       background-color: #888; }
-    /* line 424, ../sass/default.scss */
+    /* line 425, ../sass/default.scss */
     .mcm_map_list .list .entity_object {
       background-color: #ccc; }
-    /* line 428, ../sass/default.scss */
+    /* line 429, ../sass/default.scss */
     .mcm_map_list .list .entity_process {
       background-color: #aaf; }
+    /* line 435, ../sass/default.scss */
+    .mcm_map_list .list .entity_variable {
+      background-color: #ffffcc;
+      overflow-x: hidden;
+      position: relative;
+      display: block;
+      width: 100%; }
+      /* line 441, ../sass/default.scss */
+      .mcm_map_list .list .entity_variable .container {
+        width: 200%; }
+        /* line 443, ../sass/default.scss */
+        .mcm_map_list .list .entity_variable .container .name {
+          position: relative;
+          display: inline-block;
+          width: 50%; }
+        /* line 450, ../sass/default.scss */
+        .mcm_map_list .list .entity_variable .container div {
+          -moz-transition-property: color;
+          -o-transition-property: color;
+          -webkit-transition-property: color;
+          transition-property: color;
+          -moz-transition-property: right;
+          -o-transition-property: right;
+          -webkit-transition-property: right;
+          transition-property: right;
+          -moz-transition-duration: 0.3s;
+          -o-transition-duration: 0.3s;
+          -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+          -moz-transition-timing-function: ease-in;
+          -o-transition-timing-function: ease-in;
+          -webkit-transition-timing-function: ease-in;
+          transition-timing-function: ease-in; }
+        /* line 456, ../sass/default.scss */
+        .mcm_map_list .list .entity_variable .container .settings {
+          position: relative;
+          display: inline-block;
+          width: 50%;
+          right: 1.5em;
+          top: 0em;
+          background-color: #ccffff;
+          border: 2px solid #4dffff;
+          padding-left: 4px;
+          padding-right: 4px;
+          padding-top: 0px;
+          padding-bottom: 0px;
+          text-align: left;
+          font-weight: bold;
+          -moz-border-radius-topleft: 10px;
+          -webkit-border-top-left-radius: 10px;
+          border-top-left-radius: 10px;
+          -moz-border-radius-bottomleft: 10px;
+          -webkit-border-bottom-left-radius: 10px;
+          border-bottom-left-radius: 10px;
+          -moz-transition-property: color;
+          -o-transition-property: color;
+          -webkit-transition-property: color;
+          transition-property: color;
+          -moz-transition-property: right;
+          -o-transition-property: right;
+          -webkit-transition-property: right;
+          transition-property: right;
+          -moz-transition-duration: 0.3s;
+          -o-transition-duration: 0.3s;
+          -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+          -moz-transition-timing-function: ease-in;
+          -o-transition-timing-function: ease-in;
+          -webkit-transition-timing-function: ease-in;
+          transition-timing-function: ease-in; }
+          /* line 478, ../sass/default.scss */
+          .mcm_map_list .list .entity_variable .container .settings .setting {
+            cursor: pointer; }
+          /* line 481, ../sass/default.scss */
+          .mcm_map_list .list .entity_variable .container .settings .setting_ic, .mcm_map_list .list .entity_variable .container .settings .setting_bc, .mcm_map_list .list .entity_variable .container .settings .setting_sd, .mcm_map_list .list .entity_variable .container .settings .setting_q, .mcm_map_list .list .entity_variable .container .settings .setting_o {
+            font-size: 0.8em;
+            padding: 2px;
+            padding-left: 4px;
+            padding-right: 4px;
+            margin: 1px;
+            border: 1px solid #888888;
+            -moz-border-radius: 7px / 7px;
+            -webkit-border-radius: 7px 7px;
+            border-radius: 7px / 7px; }
 
 /* ------------------------
  interaction
 ------------------------ */
-/* line 438, ../sass/default.scss */
+/* line 502, ../sass/default.scss */
 .dropzone {
   /*	background-color: #ccc;
   	border-radius: 4px;
@@ -2778,18 +2862,18 @@
   */
   transition: background-color 0.3s; }
 
-/* line 446, ../sass/default.scss */
+/* line 510, ../sass/default.scss */
 .drop-active {
   border: 3px dotted red; }
 
-/* line 450, ../sass/default.scss */
+/* line 514, ../sass/default.scss */
 .drop-target {
   background-color: #4bf;
   border-color: #f88;
   border-style: solid;
   border-width: 5px; }
 
-/* line 457, ../sass/default.scss */
+/* line 521, ../sass/default.scss */
 .drag-drop {
   display: inline-block;
   min-width: 40px;
@@ -2801,14 +2885,14 @@
   transform: translate(0px, 0px);
   transition: background-color 0.3s; }
 
-/* line 472, ../sass/default.scss */
+/* line 536, ../sass/default.scss */
 .drag-drop.can-drop {
   border: 3px solid green; }
 
 /*
 	mcm_map_select_assumption
 */
-/* line 483, ../sass/default.scss */
+/* line 547, ../sass/default.scss */
 .mcm_map_select_assumption {
   position: absolute;
   width: 80%;
@@ -2830,7 +2914,7 @@
   -moz-box-shadow: 10px 10px 5px 5px rgba(98, 98, 98, 0.25);
   -webkit-box-shadow: 10px 10px 5px 5px rgba(98, 98, 98, 0.25);
   box-shadow: 10px 10px 5px 5px rgba(98, 98, 98, 0.25); }
-  /* line 502, ../sass/default.scss */
+  /* line 566, ../sass/default.scss */
   .mcm_map_select_assumption .mcm_title {
     border-bottom: 3px solid #484848;
     background-color: #888888;
@@ -2846,7 +2930,7 @@
     -moz-border-radius-topleft: 15px;
     -webkit-border-top-left-radius: 15px;
     border-top-left-radius: 15px; }
-  /* line 515, ../sass/default.scss */
+  /* line 579, ../sass/default.scss */
   .mcm_map_select_assumption .mcm_close {
     position: absolute;
     background-color: #dddddd;
@@ -2864,10 +2948,10 @@
     top: 0.1em;
     z-index: 101;
     cursor: pointer; }
-    /* line 532, ../sass/default.scss */
+    /* line 596, ../sass/default.scss */
     .mcm_map_select_assumption .mcm_close:hover {
       background-color: #ffffff; }
-  /* line 537, ../sass/default.scss */
+  /* line 601, ../sass/default.scss */
   .mcm_map_select_assumption .mcm_path {
     display: block;
     border: 1px solid blue;
@@ -2878,45 +2962,45 @@
     -webkit-border-top-left-radius: 15px;
     border-top-left-radius: 15px;
     height: 1em; }
-    /* line 544, ../sass/default.scss */
+    /* line 608, ../sass/default.scss */
     .mcm_map_select_assumption .mcm_path .mcm_label {
       display: inline-block;
       border-right: 1px solid orange;
       width: 5em; }
-    /* line 549, ../sass/default.scss */
+    /* line 613, ../sass/default.scss */
     .mcm_map_select_assumption .mcm_path .mcm_value {
       display: inline-block; }
-  /* line 554, ../sass/default.scss */
+  /* line 618, ../sass/default.scss */
   .mcm_map_select_assumption .assumption_name {
     margin-top: 10px; }
-  /* line 557, ../sass/default.scss */
+  /* line 621, ../sass/default.scss */
   .mcm_map_select_assumption .assumptions {
     text-align: center;
     margin: 15px; }
-    /* line 562, ../sass/default.scss */
+    /* line 626, ../sass/default.scss */
     .mcm_map_select_assumption .assumptions .list .title_name {
       font-weight: bold;
       color: white;
       background-color: #aaaaaa; }
-    /* line 567, ../sass/default.scss */
+    /* line 631, ../sass/default.scss */
     .mcm_map_select_assumption .assumptions .list th, .mcm_map_select_assumption .assumptions .list td {
       padding: 5px;
       border-bottom: 1px solid black; }
-    /* line 573, ../sass/default.scss */
+    /* line 637, ../sass/default.scss */
     .mcm_map_select_assumption .assumptions .list td:hover {
       background-color: #cccccc; }
-    /* line 578, ../sass/default.scss */
+    /* line 642, ../sass/default.scss */
     .mcm_map_select_assumption .assumptions .list a {
       color: white;
       cursor: pointer; }
-  /* line 585, ../sass/default.scss */
+  /* line 649, ../sass/default.scss */
   .mcm_map_select_assumption ul {
     /* neccessery to both dimensions be visible, to make dragging visible outside the dom borders */
     overflow-y: scroll;
     position: relative;
     padding-left: 20%;
     padding-right: 20%; }
-    /* line 592, ../sass/default.scss */
+    /* line 656, ../sass/default.scss */
     .mcm_map_select_assumption ul li {
       list-style-type: none;
       display: block;
@@ -2952,18 +3036,18 @@
       -o-transition-timing-function: ease-in;
       -webkit-transition-timing-function: ease-in;
       transition-timing-function: ease-in; }
-      /* line 613, ../sass/default.scss */
+      /* line 677, ../sass/default.scss */
       .mcm_map_select_assumption ul li:hover {
         background-color: #bbbbff;
         color: #6e6eff; }
-  /* line 620, ../sass/default.scss */
+  /* line 684, ../sass/default.scss */
   .mcm_map_select_assumption .buttons {
     text-align: center; }
 
 /*
 	mcm_map_select_sub_entity
 */
-/* line 633, ../sass/default.scss */
+/* line 697, ../sass/default.scss */
 .mcm_map_select_sub_entity {
   position: absolute;
   width: 80%;
@@ -2984,7 +3068,7 @@
   -moz-box-shadow: 10px 10px 5px 5px rgba(98, 98, 98, 0.25);
   -webkit-box-shadow: 10px 10px 5px 5px rgba(98, 98, 98, 0.25);
   box-shadow: 10px 10px 5px 5px rgba(98, 98, 98, 0.25); }
-  /* line 650, ../sass/default.scss */
+  /* line 714, ../sass/default.scss */
   .mcm_map_select_sub_entity .mcm_title {
     border-bottom: 3px solid #484848;
     background-color: #888888;
@@ -3000,7 +3084,7 @@
     -moz-border-radius-topleft: 15px;
     -webkit-border-top-left-radius: 15px;
     border-top-left-radius: 15px; }
-  /* line 663, ../sass/default.scss */
+  /* line 727, ../sass/default.scss */
   .mcm_map_select_sub_entity .mcm_close {
     position: absolute;
     background-color: #dddddd;
@@ -3018,10 +3102,10 @@
     top: 0.1em;
     z-index: 101;
     cursor: pointer; }
-    /* line 680, ../sass/default.scss */
+    /* line 744, ../sass/default.scss */
     .mcm_map_select_sub_entity .mcm_close:hover {
       background-color: #ffffff; }
-  /* line 685, ../sass/default.scss */
+  /* line 749, ../sass/default.scss */
   .mcm_map_select_sub_entity .mcm_path {
     display: block;
     border: 1px solid blue;
@@ -3032,22 +3116,22 @@
     -webkit-border-top-left-radius: 15px;
     border-top-left-radius: 15px;
     height: 1em; }
-    /* line 692, ../sass/default.scss */
+    /* line 756, ../sass/default.scss */
     .mcm_map_select_sub_entity .mcm_path .mcm_label {
       display: inline-block;
       border-right: 1px solid orange;
       width: 5em; }
-    /* line 697, ../sass/default.scss */
+    /* line 761, ../sass/default.scss */
     .mcm_map_select_sub_entity .mcm_path .mcm_value {
       display: inline-block; }
-  /* line 702, ../sass/default.scss */
+  /* line 766, ../sass/default.scss */
   .mcm_map_select_sub_entity ul {
     /* neccessery to both dimensions be visible, to make dragging visible outside the dom borders */
     overflow-y: scroll;
     position: relative;
     padding-left: 20%;
     padding-right: 20%; }
-    /* line 709, ../sass/default.scss */
+    /* line 773, ../sass/default.scss */
     .mcm_map_select_sub_entity ul li {
       list-style-type: none;
       display: block;
@@ -3083,21 +3167,21 @@
       -o-transition-timing-function: ease-in;
       -webkit-transition-timing-function: ease-in;
       transition-timing-function: ease-in; }
-      /* line 730, ../sass/default.scss */
+      /* line 794, ../sass/default.scss */
       .mcm_map_select_sub_entity ul li:hover {
         background-color: #bbbbff;
         color: #6e6eff; }
-  /* line 737, ../sass/default.scss */
+  /* line 801, ../sass/default.scss */
   .mcm_map_select_sub_entity .buttons {
     text-align: center; }
-  /* line 741, ../sass/default.scss */
+  /* line 805, ../sass/default.scss */
   .mcm_map_select_sub_entity .knalledge_map_selectable {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     top: 2.5em; }
-    /* line 748, ../sass/default.scss */
+    /* line 812, ../sass/default.scss */
     .mcm_map_select_sub_entity .knalledge_map_selectable .knalledge_map_select_sub_entity {
       position: relative;
       width: 100%;

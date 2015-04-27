@@ -15,6 +15,12 @@ var MapLayout =  mcm.MapLayout = function(structure, configView, configNodes, co
 	this.tree = null;
 };
 
+MapLayout.CONTAINS_OBJECT = "containsObject";
+MapLayout.CONTAINS_PROCESS = "containsProcess";
+MapLayout.CONTAINS_VARIABLE_IN = "containsVariableIn";
+MapLayout.CONTAINS_VARIABLE_OUT = "containsVariableOut";
+MapLayout.CONTAINS_ASSUMPTION_OUT = "containsAssumption";
+
 MapLayout.prototype.getChildren = function(d){
 	var children = [];
 	// TODO: Maybe support closing nodes

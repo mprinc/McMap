@@ -428,13 +428,15 @@ MapVisualization.prototype.updateHtml = function(source) {
 	// Input Variables
 	nodeHtml.select(".var_in")
 		.html(function(d){
-			return "" + that.mapStructure.getChildrenNodes(d, Map.CONTAINS_VARIABLE_IN).length;
+			var varIns = that.mapStructure.getChildrenNodes(d, mcm.MapLayout.CONTAINS_VARIABLE_IN);
+			return "" + varIns.length;
 		});
 
 	// Output Variables
 	nodeHtml.select(".var_out")
 		.html(function(d){
-			return "" + that.mapStructure.getChildrenNodes(d, Map.CONTAINS_VARIABLE_OUT).length;
+			var varOuts = that.mapStructure.getChildrenNodes(d, mcm.MapLayout.CONTAINS_VARIABLE_OUT);
+			return "" + varOuts.length;
 		});
 
 	if(this.configTransitions.enter.animate.opacity){
