@@ -2,8 +2,8 @@
 'use strict';
 
 angular.module('mcmMapDirectives', ['Config'])
-	.directive('mcmMap', ['$timeout', '$rootScope', 'ConfigMap', '$compile', 'McmMapSchemaService', 'KnalledgeMapService',
-		function($timeout, $rootScope, ConfigMap, $compile, McmMapSchemaService, KnalledgeMapService){
+	.directive('mcmMap', ['$timeout', '$rootScope', 'ConfigMap', '$compile', 'McmMapSchemaService', 'KnalledgeMapVOsService',
+		function($timeout, $rootScope, ConfigMap, $compile, McmMapSchemaService, KnalledgeMapVOsService){
 
 
 		// http://docs.angularjs.org/guide/directive
@@ -146,11 +146,11 @@ angular.module('mcmMapDirectives', ['Config'])
 					rootNodeId: "5532f5fb98b4e4789002d290"
 				};
 
-				KnalledgeMapService.loadData(mapProperties);
+				KnalledgeMapVOsService.loadData(mapProperties);
 
 				var model = null;
 				var mcmMap = new mcm.Map(d3.select($element.find(".map-container").get(0)),
-					ConfigMap, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapService);
+					ConfigMap, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapVOsService);
 
 				var eventName = "modelLoadedEvent";
 				$scope.$on(eventName, function(e, eventModel) {
@@ -175,7 +175,7 @@ angular.module('mcmMapDirectives', ['Config'])
 			}
     	};
 	}])
-	.directive('mcmMapSelectAssumption', ['McmMapSchemaService', 'KnalledgeMapService', function(McmMapSchemaService, KnalledgeMapService){ // mcm_map_select_sub_entity
+	.directive('mcmMapSelectAssumption', ['McmMapSchemaService', 'KnalledgeMapVOsService', function(McmMapSchemaService, KnalledgeMapVOsService){ // mcm_map_select_sub_entity
 		return {
 			restrict: 'AE',
 			// scope: {
@@ -238,7 +238,7 @@ angular.module('mcmMapDirectives', ['Config'])
     		}
     	};
 	}])
-	.directive('mcmMapSelectSubEntity', ['McmMapSchemaService', 'KnalledgeMapService', function(McmMapSchemaService, KnalledgeMapService){ // mcm_map_select_sub_entity
+	.directive('mcmMapSelectSubEntity', ['McmMapSchemaService', 'KnalledgeMapVOsService', function(McmMapSchemaService, KnalledgeMapVOsService){ // mcm_map_select_sub_entity
 		return {
 			restrict: 'AE',
 			// scope: {
@@ -263,12 +263,12 @@ angular.module('mcmMapDirectives', ['Config'])
 
 					// build subree structure from children and check if any of subchildren is possible to decorate with entityDecorating
 					var selectableInChildren = false;
-					var edgeTypes = KnalledgeMapService.getChildrenEdgeTypes(kNode);
+					var edgeTypes = KnalledgeMapVOsService.getChildrenEdgeTypes(kNode);
 					for(var edgeType in edgeTypes){
 
 						// iterate through children (of one edgeType and recirsively call buildSubTree and 
 						//	check if any of children or subchildren is possible to drop in the entityDecorating)
-						var kChildren = KnalledgeMapService.getChildrenNodes(kNode, edgeType);
+						var kChildren = KnalledgeMapVOsService.getChildrenNodes(kNode, edgeType);
 						var selectableInSubTypeChildren = false;
 						for(var childId in kChildren){
 							var selectableInChild = checkIfNodeOrSubchildrenAreSelectable(kChildren[childId], entityDecorating);
@@ -308,12 +308,12 @@ angular.module('mcmMapDirectives', ['Config'])
 
 						// build subree structure from children and check if any of subchildren is possible to decorate with entityDecorating
 						var selectableInChildren = false;
-						var edgeTypes = KnalledgeMapService.getChildrenEdgeTypes(kNode);
+						var edgeTypes = KnalledgeMapVOsService.getChildrenEdgeTypes(kNode);
 						for(var edgeType in edgeTypes){
 
 							// iterate through children (of one edgeType and recirsively call buildSubTree and 
 							//	check if any of children or subchildren is possible to drop in the entityDecorating)
-							var kChildren = KnalledgeMapService.getChildrenNodes(kNode, edgeType);
+							var kChildren = KnalledgeMapVOsService.getChildrenNodes(kNode, edgeType);
 							var selectableInSubTypeChildren = false;
 							for(var childId in kChildren){
 								var selectableInChild = checkIfNodeOrSubchildrenAreSelectable(kNode, entityDecorating);

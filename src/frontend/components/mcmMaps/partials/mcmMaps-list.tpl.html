@@ -1,4 +1,27 @@
 <div class="mapsList">
+	<div id='showCreateNewMap'>
+		<div ng-class="{ 'displayNone': modeCreating == true }" ng-click="showCreateNewMap()" class="mcmButton">Create a New Model Component</div>
+	
+	</div>
+	<div id='creatingNewMap' ng-class="{ 'displayNone': modeCreating == false }">
+		<form>
+			<fieldset class='creatingNewMapFS'>
+				<legend>New Model</legend>
+				<div><span>Model Component Name</span><input class="image_url" type="text" placeholder="Model Component Name" ng-model="image.url" /></div>
+				
+				<p class="dimensions">
+					<input type="text" placeholder="width" ng-model="image.width"/> x <input type="text" placeholder="height" ng-model="image.height"/>
+				</p>
+		<!-- 		<label class="checkbox"><input type="checkbox"> Keep apsect-ratio</label>
+		 -->
+		 		<p class="buttons">
+					<button class="btn btn-warning" ng-click="cancelled()">Cancel</button>
+					<button class="btn btn-primary" type="submit" ng-click="createNew()">Create Model</button>
+				</p>
+			</fieldset>
+		</form>
+	
+	</div>
 	<span>Existing models:</span>
 	<table class="list">
 		<tr><th class="mcm_icon">id</th><th class="mcm_name">name</th></tr>

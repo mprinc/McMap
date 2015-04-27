@@ -17,7 +17,24 @@ angular.module('mcmMapsDirectives', ['Config'])
 				KnalledgeMapService.query().$promise.then(function(maps){
 					$scope.maps = maps;
 					console.log('maps:'+JSON.stringify($scope.maps));
-				})
+				});
+
+				$scope.showCreateNewMap = function(){
+					console.log("showCreateNewMap");
+					$scope.modeCreating = true;
+				};
+
+				$scope.modeCreating = false;
+
+				$scope.cancelled = function(){
+					console.log("Canceled");
+					$scope.modeCreating = false;
+				};
+
+				$scope.createNew = function(){
+					console.log("createNew");
+					$scope.modeCreating = false;
+				};
 
 
 				var clickedToolEntity = null;
