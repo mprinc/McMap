@@ -14,7 +14,7 @@ angular.module('mcmMapsDirectives', ['Config'])
 			// expression: http://docs.angularjs.org/guide/expression
 			templateUrl: '../components/mcmMaps/partials/mcmMaps-list.tpl.html',
 			controller: function ( $scope, $element) {
-				$scope.mapToCreate = new knalledge.KMap();
+				$scope.mapToCreate = null;
 				KnalledgeMapService.query().$promise.then(function(maps){
 					$scope.maps = maps;
 					console.log('maps:'+JSON.stringify($scope.maps));
@@ -22,6 +22,7 @@ angular.module('mcmMapsDirectives', ['Config'])
 
 				$scope.showCreateNewMap = function(){
 					console.log("showCreateNewMap");
+					$scope.mapToCreate = new knalledge.KMap();
 					$scope.modeCreating = true;
 				};
 
@@ -33,11 +34,12 @@ angular.module('mcmMapsDirectives', ['Config'])
 				};
 
 				$scope.createNew = function(){
+					var mapCreated = function(mapFromServer) {
+						console.log("mapCreated:");//+ JSON.stringify(mapFromServer));
+					}
 					console.log("createNew");
 					$scope.modeCreating = false;
-					var kMap = 
-
-					KnalledgeMapService.createNew()
+					KnalledgeMapService.create($scope.mapToCreate,mapCreated);
 				};
 
 
