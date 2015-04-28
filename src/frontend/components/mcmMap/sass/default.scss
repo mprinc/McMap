@@ -36,16 +36,16 @@ $susy: (
 $map: layout(12 1/4 fluid float inside);
 
 @include breakpoint($small) {
-	.mcm_map_tools{
-		height: 100%;
-		min-height: 100%;
-		@include span(2 at 1); 
-	}
-
 	.mcm_map{
 		height: 100%;
 		min-height: 100%;
-		@include span(10 at 3);
+		@include span(10 at 1);
+	}
+
+	.mcm_map_tools{
+		height: 100%;
+		min-height: 100%;
+		@include span(2 at 11); 
 	}
 
 	.mcm_map_list{
@@ -56,16 +56,16 @@ $map: layout(12 1/4 fluid float inside);
 }
 
 @include breakpoint($medium) {
-	.mcm_map_tools{
-		@include span(1 at 1);
+	.mcm_map{
+		@include span(9 at 1);
 	}
 
-	.mcm_map{
-		@include span(9 at 2);
+	.mcm_map_tools{
+		@include span(1 at 10);
 	}
 
 	.mcm_map_list{
-		@include span(2 at 10);
+		@include span(2 at 11);
 	}
 }
 
@@ -76,11 +76,11 @@ $map: layout(12 1/4 fluid float inside);
 	}
 
 	.mcm_map_tools{
-		@include span(1 at 9);
+		@include span(1 at 10);
 	}
 
 	.mcm_map_list{
-		@include span(2 at 10); 
+		@include span(2 at 11); 
 	}
 }
 
