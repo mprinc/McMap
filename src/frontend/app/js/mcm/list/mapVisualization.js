@@ -73,7 +73,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 			// that.schema.getEntityStyle(d.type).typeClass;
 
 			switch(d.objectType){
-				case "node":
+				case "entity":
 					classes += that.schema.getEntityStyle(d.type).typeClass;
 					break;
 				case "edge":
@@ -192,7 +192,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 	nodeHtml.select(".name span")
 		.html(function(d){
 			switch(d.objectType){
-				case "node":
+				case "entity":
 					// var children = that.mapStructure.getChildrenNodes(d.parent, d.type);
 					// return '<i style="margin:6px;" class="fa fa-'+that.schema.getEdgeStyle(d.type).icon_fa+'"></i>' + d.name + 
 					// 	((children.length > 0) ? " <b>(" + children.length + ")</b>" : "");

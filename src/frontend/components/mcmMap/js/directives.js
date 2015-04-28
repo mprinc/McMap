@@ -283,8 +283,8 @@ angular.module('mcmMapDirectives', ['Config'])
 						//	check if any of children or subchildren is possible to drop in the entityDecorating)
 						var kChildren = KnalledgeMapVOsService.getChildrenNodes(kNode, edgeType);
 						var selectableInSubTypeChildren = false;
-						for(var childId in kChildren){
-							var selectableInChild = checkIfNodeOrSubchildrenAreSelectable(kChildren[childId], entityDecorating);
+						for(var kChildId in kChildren){
+							var selectableInChild = checkIfNodeOrSubchildrenAreSelectable(kChildren[kChildId], entityDecorating);
 							selectableInSubTypeChildren = selectableInSubTypeChildren || selectableInChild;
 						}
 						selectableInChildren = selectableInChildren || selectableInSubTypeChildren;
@@ -307,6 +307,7 @@ angular.module('mcmMapDirectives', ['Config'])
 
 							subTree.children.push(kNode);
 							kNodesById.push(kNode);
+							kNode.visual.selectable = true;
 
 							// creating edge between parent and child and adding it to list of edges
 							if(parentKNode){
@@ -328,8 +329,9 @@ angular.module('mcmMapDirectives', ['Config'])
 							//	check if any of children or subchildren is possible to drop in the entityDecorating)
 							var kChildren = KnalledgeMapVOsService.getChildrenNodes(kNode, edgeType);
 							var selectableInSubTypeChildren = false;
-							for(var childId in kChildren){
-								var selectableInChild = checkIfNodeOrSubchildrenAreSelectable(kNode, entityDecorating);
+							for(var kChildId in kChildren){
+								var kChild = kChildren[kChildId];
+								var selectableInChild = checkIfNodeOrSubchildrenAreSelectable(kChild, entityDecorating);
 								selectableInSubTypeChildren = selectableInSubTypeChildren || selectableInChild;
 							}
 
@@ -340,7 +342,9 @@ angular.module('mcmMapDirectives', ['Config'])
 								var subTypeKNode = new knalledge.KNode();
 								subTypeKNode.name = McmMapSchemaService.getEdgeDesc(edgeType).predicates;
 								subTypeKNode.visual = {
-									isOpen: true
+									isOpen: true,
+									selectable: false
+
 								}
 								
 								// adding subtype node into parent ...
@@ -357,8 +361,8 @@ angular.module('mcmMapDirectives', ['Config'])
 								kEdgesById.push(kEdge);
 
 								// call each child in subtype to fill in subtree with itself and subchildren
-								for(var childId in kChildren){
-									buildSubTree(subTypeKNode, kChildren[childId], entityDecorating, subTypeKNode, kNodesById, kEdgesById);
+								for(var kChildId in kChildren){
+									buildSubTree(subTypeKNode, kChildren[kChildId], entityDecorating, subTypeKNode, kNodesById, kEdgesById);
 								}
 							}
 						}
@@ -386,8 +390,8 @@ angular.module('mcmMapDirectives', ['Config'])
 							levelDepth: 150
 						},
 						sizing: {
-							setNodeSize: false,
-							nodeSize: [400, 200]
+							setNodeSize: true,
+							nodeSize: [200, 100]
 						},
 						margin: {
 							top: 10,

@@ -100,7 +100,7 @@ MapLayout.prototype.generateTree = function(subtreeRoot){
 	var nodeId = 0;
 	for(var edgeType in entityDesc.contains){
 		var label = this.schema.getEdgeDesc(edgeType).predicates;
-		var edgeNode = {
+		var edgeNode = { // visualization-node that represents edge
 			name: label,
 			objectType: "edge",
 			type: edgeType,
@@ -113,9 +113,9 @@ MapLayout.prototype.generateTree = function(subtreeRoot){
 		var subEntities = this.mapStructure.getChildrenNodes(subtreeRoot, edgeType);
 		for(var id in subEntities){
 			var subEntity = subEntities[id];
-			var node = {
+			var nodeEntity = { // visualization-node that represents entity
 				name: subEntity.kNode.name,
-				objectType: "node",
+				objectType: "entity",
 				type: subEntity.kNode.type,
 				depth: 2,
 				parent: edgeNode,
@@ -123,7 +123,7 @@ MapLayout.prototype.generateTree = function(subtreeRoot){
 				vkNode: subEntity,
 				id: nodeId++
 			};
-			this.nodes.push(node);
+			this.nodes.push(nodeEntity);
 		}
 	}
 

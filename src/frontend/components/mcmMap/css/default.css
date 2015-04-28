@@ -3176,16 +3176,41 @@
         color: #6e6eff; }
   /* line 810, ../sass/default.scss */
   .mcm_map_select_sub_entity .buttons {
-    text-align: center; }
-  /* line 814, ../sass/default.scss */
+    text-align: center;
+    height: 3em;
+    padding-top: 1em; }
+  /* line 816, ../sass/default.scss */
   .mcm_map_select_sub_entity .knalledge_map_selectable {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    top: 2.5em; }
-    /* line 821, ../sass/default.scss */
+    top: 5.5em;
+    /*
+    Overwriting standard knalledge settings
+    */ }
+    /* line 823, ../sass/default.scss */
     .mcm_map_select_sub_entity .knalledge_map_selectable .knalledge_map_select_sub_entity {
       position: relative;
       width: 100%;
       height: 100%; }
+    /* line 833, ../sass/default.scss */
+    .mcm_map_select_sub_entity .knalledge_map_selectable .knalledge_map_container .node_unselected {
+      border-style: transparent; }
+    /* line 837, ../sass/default.scss */
+    .mcm_map_select_sub_entity .knalledge_map_selectable .knalledge_map_container .node_unselectable {
+      border-style: dashed;
+      opacity: 0.5;
+      font-weight: normal; }
+    /* line 843, ../sass/default.scss */
+    .mcm_map_select_sub_entity .knalledge_map_selectable .knalledge_map_container .node_selectable {
+      border-style: solid;
+      background-color: rgba(200, 200, 255, 0.5); }
+    /* line 848, ../sass/default.scss */
+    .mcm_map_select_sub_entity .knalledge_map_selectable .knalledge_map_container .node_selected {
+      border-style: solid;
+      border-color: #0000aa;
+      border-width: 3px;
+      -moz-box-shadow: 5px 5px 3px 3px rgba(80, 80, 255, 0.75);
+      -webkit-box-shadow: 5px 5px 3px 3px rgba(80, 80, 255, 0.75);
+      box-shadow: 5px 5px 3px 3px rgba(80, 80, 255, 0.75); }

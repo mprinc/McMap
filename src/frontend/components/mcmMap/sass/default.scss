@@ -809,6 +809,8 @@ $select_sub_entity_title_size: 1em;
 
 	.buttons{
 		text-align: center;
+		height: 3em;
+		padding-top: 1em;
 	}
 
 	.knalledge_map_selectable{
@@ -816,12 +818,40 @@ $select_sub_entity_title_size: 1em;
 		bottom: 0;
 		left: 0;
 		right: 0;
-		top: $select_sub_entity_title_size* (1.5 + 1);
+		top: $select_sub_entity_title_size* (1.5 + 1) + 3em;
 
 		.knalledge_map_select_sub_entity{
 			position: relative;
 			width: 100%;
 			height: 100%;
+		}
+
+		/*
+		Overwriting standard knalledge settings
+		*/
+		.knalledge_map_container{
+			.node_unselected{
+				border-style: transparent;
+			}
+
+			.node_unselectable{
+				border-style: dashed;
+				opacity: 0.5;
+				font-weight: normal;
+			}
+
+			.node_selectable{
+				border-style: solid;
+				background-color: rgba(200, 200, 255, 0.5);
+			}
+
+			.node_selected{
+				border-style: solid;
+				border-color: #0000aa;
+				border-width: 3px;
+				@include box-shadow(5px 5px 3px 3px rgba(80, 80, 255, 0.75));
+			}
+
 		}
 	}
 }
