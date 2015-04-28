@@ -112,7 +112,7 @@ angular.module('mcmMapDirectives', ['Config'])
 							};
 							var entity = {
 							};
-
+							
 							if(decoratingEntity.type == 'variable'){
 								entity.name = "variable";
 								entity.type = "variable";
@@ -188,7 +188,7 @@ angular.module('mcmMapDirectives', ['Config'])
 
 				
 				$scope.selectedItem = null;
-				$scope.title = "Select decoration entity";
+				$scope.title = "Select assumption";
 				$scope.path = "Name";
 				$scope.item = {
 					name: null

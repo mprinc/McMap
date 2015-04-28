@@ -283,6 +283,18 @@ mcmMapServices.provider('McmMapAssumptionService', {
 			},
 			{
 				name: "assumption_12345"
+			},
+			{
+				name: "assumption_1235"
+			},
+			{
+				name: "assumption_143"
+			},
+			{
+				name: "assumption_1451"
+			},
+			{
+				name: "assumption_1245"
 			}
 		];
 

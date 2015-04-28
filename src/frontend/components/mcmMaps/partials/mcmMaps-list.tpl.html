@@ -7,10 +7,13 @@
 		<form>
 			<fieldset class='creatingNewMap'>
 				<legend>New Model</legend>
-				<div><span>Model Component Name</span><input class="image_url" type="text" placeholder="Model Component Name" ng-model="image.url" /></div>
+				<div><span>Model Component Name</span><input type="text" ng-model="mapToCreate.name" /></div>
+				<div><span>Part of Model</span><input class="image_url" type="text" placeholder="Model Component Name" ng-model="mapToCreate.url" /></div>
+				<div><span>Model Version</span><input class="image_url" type="text" placeholder="Model Component Name" ng-model="mapToCreate.url" /></div>
+				<div><span>Authors</span><input class="image_url" type="text" placeholder="Model Component Name" ng-model="mapToCreate.url" /></div>
 				
 				<p class="dimensions">
-					<input type="text" placeholder="width" ng-model="image.width"/> x <input type="text" placeholder="height" ng-model="image.height"/>
+					<input type="text" placeholder="width" ng-model="mapToCreate.width"/> x <input type="text" placeholder="height" ng-model="mapToCreate.height"/>
 				</p>
 		<!-- 		<label class="checkbox"><input type="checkbox"> Keep apsect-ratio</label>
 		 -->

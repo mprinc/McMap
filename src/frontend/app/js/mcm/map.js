@@ -55,6 +55,8 @@ Map.prototype.initializeManipulation = function() {
 
 	var manipulationEnded = function(targetD3){
 		var d = targetD3 ? targetD3.datum() : null;
+		that.mapStructure.updateNode(d, knalledge.MapStructure.UPDATE_NODE_DIMENSIONS);
+
 		console.log("map_entity:manipulationEnded [%s]", d ? d.kNode.name : null);
 		that.update(that.mapStructure.rootNode);
 	};
