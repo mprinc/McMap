@@ -14,8 +14,8 @@
 	<!-- <span>Assumptions:</span> -->
 	<table class="list">
 		<tr><th class="title_name">Assumptions</th></tr>
-		<tr ng-repeat="item in items" data-ng-class="{'active-selection': item.name == selectedItem}">
-			<td><a data-ng-click="selectItem(item.name)">{{item.name}}</a></td>
+		<tr ng-repeat="item in items" data-ng-class="{'active-selection': item.name == selectedItem.name}">
+			<td><a data-ng-click="selectItem(item)">{{item.name}}</a></td>
 		</tr>
 	</table>
 </div>
