@@ -101,6 +101,7 @@ angular.module('mcmMapDirectives', ['Config'])
 
 						directiveScope.mapEntity = mapEntity;
 						directiveScope.selectingCanceled = function(){
+							console.log("selectingCanceled");
 						},
 						directiveScope.selectedAssumption = function(addingInEntity){
 							console.log("Added entity to addingInEntity: %s", JSON.stringify(addingInEntity));
@@ -186,13 +187,12 @@ angular.module('mcmMapDirectives', ['Config'])
 			controller: function ( $scope, $element) {
 
 				
-
+				$scope.selectedItem = null;
 				$scope.title = "Select decoration entity";
 				$scope.path = "Name";
 				$scope.item = {
 					name: null
 				}
-
 				
 				// $scope.itemsFull = [
 				// 	{
@@ -206,10 +206,14 @@ angular.module('mcmMapDirectives', ['Config'])
 				// 	}
 				// ];
 
-				$scope.items = [
-				];
+				
 
-				var populateItems = function(items, subName){
+				$scope.selectItem = function(name) {
+				    $scope.selectedItem = name;
+				    console.log("$scope.selectedItem = " + name);
+				};
+
+				var populateItems = function(subName){
 					console.log("getAssumptionsDesByName(%s)", subName);
 					$scope.items = McmMapAssumptionService.getAssumptionsDesByName(subName);
 					console.log("$scope.items IN: " + $scope.items);
@@ -223,23 +227,26 @@ angular.module('mcmMapDirectives', ['Config'])
 					// }
 				}
 
-				populateItems($scope.items, null);
+				populateItems("");
 
 				$scope.nameChanged = function(){
 					//console.log("New searching assumption name: %s", $scope.item.name);
-					populateItems($scope.items, $scope.item.name);
+					populateItems($scope.item.name);
 					console.log("$scope.items: " + $scope.items);
 				}
 				$scope.cancelled = function(){
 					//console.log("Canceled");
-					$element.remove();
+					$element.remove(); //TODO: sta je ovo?
 					$scope.selectingCanceled();
 				};
 
 				$scope.submitted = function(){
 					console.log("Submitted");
-					$scope.selectedAssumption($scope.selected.ref);
-					$element.remove();
+					if($scope.selectedItem !== null && $scope.selectedItem !== ""){
+						$scope.selectedAssumption($scope.selectedItem);
+						$element.remove();
+					}
+					window.alert('Please, select an ssumption');
 				};
     		}
     	};

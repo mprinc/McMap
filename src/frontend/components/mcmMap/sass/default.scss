@@ -622,6 +622,10 @@ $select_sub_entity_title_size: 1em;
 		text-align: center;
 		margin: 15px;
 
+		.active-selection{
+			background-color: #eee;
+		}
+
 		.list{
 			.title_name{
 				font-weight: bold;
