@@ -1,7 +1,5 @@
 <div class="mapsList">
-	<div class='showCreateNewMap' ng-class="{ 'displayNone': modeCreating == true }">
-		<div class="btn btn-primary" ng-click="showCreateNewMap()">Create a New Model Component</div>
-	</div>
+	<h1>Model Components</h1>
 	<div class='creatingNewMap' ng-class="{ 'displayNone': modeCreating == false }">
 		<form>
 			<fieldset>
@@ -35,5 +33,8 @@
 	</div>
 	<p class="buttons">
 		<button class="btn btn-primary" type="submit" ng-click="openMap()">Open Map</button>
+		<span class='showCreateNewMap' ng-class="{ 'displayNone': modeCreating == true }">
+			<button class="btn btn-primary" ng-click="showCreateNewMap()">Create a New Model Component</button>
+		</span>
 	</p>
 </div>

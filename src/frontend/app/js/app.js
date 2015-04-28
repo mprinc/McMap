@@ -22,12 +22,11 @@ angular.module('McModelarApp',[
 	.when('/map', {
 		templateUrl: '../components/mcmMap/partials/index.tpl.html'
 	})
-	.when('/maps', {
-		templateUrl: '../components/mcmMaps/partials/index.tpl.html'
-	})
 	.when('/map/id/:id', {
 		templateUrl: '../components/mcmMap/partials/index.tpl.html'
-		//,controller: 'CreationsListCtrl' // we do not specify controller her (but in template) since there will be more than one in the template
+	})
+	.when('/maps', {
+		templateUrl: '../components/mcmMaps/partials/index.tpl.html'
 	})
 	.otherwise({
 		redirectTo: '/maps'

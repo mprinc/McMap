@@ -22,7 +22,7 @@ var Map =  mcm.Map = function(parentDom, config, clientApi, schema, mapService){
 	};
 	this.mapLayout = new mcm.MapLayout(this.mapStructure, this.config.view, this.config.nodes, this.config.tree, mapLayoutApi, this.state, this.schema);
 
-	// this.keyboardInteraction = null;
+	this.keyboardInteraction = null;
 };
 
 Map.prototype.init = function(callback) {
@@ -35,7 +35,7 @@ Map.prototype.init = function(callback) {
 	//	http://stackoverflow.com/questions/20940854/how-to-load-data-from-an-internal-json-array-rather-than-from-an-external-resour
 	this.mapVisualization.init(this.mapLayout, callback);
 	this.mapLayout.init(mapSize);
-	// this.initializeKeyboard();
+	this.initializeKeyboard();
 	this.initializeManipulation();
 };
 
@@ -46,6 +46,23 @@ Map.prototype.update = function(node) {
 Map.prototype.processData = function(mapData) {
 	this.mapStructure.processData(mapData, 0, this.parentDom.attr("height") / 2);
 	this.mapLayout.processData();
+};
+
+Map.prototype.initializeKeyboard = function() {
+	// var that = this;
+
+	if(!this.config.keyboardInteraction.enabled) return;
+
+	var keyboardClientInterface = {
+		getSelectedNode: function(){
+			return this.mapStructure.getSelectedNode();
+		}.bind(this),
+		update: this.mapVisualization.update.bind(this.mapVisualization),
+		deleteNode: this.mapStructure.deleteNode.bind(this.mapStructure)
+	};
+
+	this.keyboardInteraction = new interaction.Keyboard(keyboardClientInterface);
+	this.keyboardInteraction.init();
 };
 
 // http://interactjs.io/

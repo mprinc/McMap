@@ -68,6 +68,9 @@
     .mapsList .list td {
       border: 1px solid black;
       padding: 5px; }
+  /* line 81, ../sass/default.scss */
+  .mapsList .buttons {
+    text-align: left; }
 
 /*
 .mcm_map_tools{
