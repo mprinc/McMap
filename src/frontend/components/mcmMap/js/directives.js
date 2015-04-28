@@ -20,7 +20,7 @@ angular.module('mcmMapDirectives', ['Config'])
 				var mapEntityClicked = null;
 				var inMapEntityDraggedIn = false;
 				var mapId = $routeParams.id;
-				console.log("mapId: " + mapId);
+				console.log("mcmMapDirectives::mapId: " + mapId);
 
 				var mcmMapClientInterface = {
 					getContainer: function(){
