@@ -208,9 +208,9 @@ angular.module('mcmMapDirectives', ['Config'])
 
 				
 
-				$scope.selectItem = function(name) {
-				    $scope.selectedItem = name;
-				    console.log("$scope.selectedItem = " + name);
+				$scope.selectItem = function(item) {
+				    $scope.selectedItem = item;
+				    console.log("$scope.selectedItem = " + JSON.stringify(item));
 				};
 
 				var populateItems = function(subName){
@@ -242,7 +242,7 @@ angular.module('mcmMapDirectives', ['Config'])
 
 				$scope.submitted = function(){
 					console.log("Submitted");
-					if($scope.selectedItem !== null && $scope.selectedItem !== ""){
+					if($scope.selectedItem !== null && $scope.selectedItem !== undefined){
 						$scope.selectedAssumption($scope.selectedItem);
 						$element.remove();
 					}
