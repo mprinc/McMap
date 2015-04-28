@@ -653,6 +653,11 @@ $select_sub_entity_title_size: 1em;
 				text-align: center;
 				background-color: #aaaaaa;
 			}
+			tr{
+				 &:hover{
+			     cursor: pointer;
+			  }
+			}
 			th, td {
 				padding: 5px;
 				border-bottom: 1px solid black;

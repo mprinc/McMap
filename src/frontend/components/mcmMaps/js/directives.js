@@ -14,7 +14,7 @@ angular.module('mcmMapsDirectives', ['Config'])
 			// expression: http://docs.angularjs.org/guide/expression
 			templateUrl: '../components/mcmMaps/partials/mcmMaps-list.tpl.html',
 			controller: function ( $scope, $element) {
-				$scope.mapToCreate = null;
+				$scope.mapToCreate = new knalledge.KMap();
 				KnalledgeMapService.query().$promise.then(function(maps){
 					$scope.maps = maps;
 					console.log('maps:'+JSON.stringify($scope.maps));
@@ -35,6 +35,9 @@ angular.module('mcmMapsDirectives', ['Config'])
 				$scope.createNew = function(){
 					console.log("createNew");
 					$scope.modeCreating = false;
+					var kMap = 
+
+					KnalledgeMapService.createNew()
 				};
 
 

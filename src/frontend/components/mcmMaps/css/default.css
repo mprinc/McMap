@@ -15,7 +15,7 @@
     background-color: #ffffff; }
 
 /* line 19, ../sass/default.scss */
-.creatingNewMapFS {
+.creatingNewMap {
   display: block;
   margin-left: 2px;
   margin-right: 2px;
@@ -23,16 +23,16 @@
   padding-bottom: 0.625em;
   padding-left: 0.75em;
   padding-right: 0.75em;
-  border: 2px groove #333; }
-
-/* line 30, ../sass/default.scss */
-.displayNone {
-  display: none; }
-
-/* line 34, ../sass/default.scss */
-#creatingNewMap {
+  border: 2px groove #333;
   border: solid 1px #000;
   padding: 10px; }
+  /* line 30, ../sass/default.scss */
+  .creatingNewMap label {
+    width: 20em; }
+
+/* line 35, ../sass/default.scss */
+.displayNone {
+  display: none; }
 
 /* line 44, ../sass/default.scss */
 .mapsList {

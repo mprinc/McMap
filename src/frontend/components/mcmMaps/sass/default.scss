@@ -16,7 +16,7 @@
 	}
 }
 
-.creatingNewMapFS { 
+.creatingNewMap { 
     display: block;
     margin-left: 2px;
     margin-right: 2px;
@@ -25,18 +25,18 @@
     padding-left: 0.75em;
     padding-right: 0.75em;
     border: 2px groove #333;
+    border: solid 1px #000;
+	padding:10px;
+	label{
+		width: 20em;
+	}
 }
 
 .displayNone{
 	display: none;
 }
 
-#creatingNewMap{
-	border: solid 1px #000;
-	padding:10px;
-}
-
-#showCreateNewMap{
+.showCreateNewMap{
 
 }
 

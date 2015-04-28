@@ -1,20 +1,15 @@
 <div class="mapsList">
-	<div id='showCreateNewMap'>
+	<div class='showCreateNewMap'>
 		<div ng-class="{ 'displayNone': modeCreating == true }" ng-click="showCreateNewMap()" class="mcmButton">Create a New Model Component</div>
-	
 	</div>
-	<div id='creatingNewMap' ng-class="{ 'displayNone': modeCreating == false }">
+	<div class='creatingNewMap' ng-class="{ 'displayNone': modeCreating == false }">
 		<form>
-			<fieldset class='creatingNewMap'>
+			<fieldset>
 				<legend>New Model</legend>
-				<div><span>Model Component Name</span><input type="text" ng-model="mapToCreate.name" /></div>
-				<div><span>Part of Model</span><input class="image_url" type="text" placeholder="Model Component Name" ng-model="mapToCreate.url" /></div>
-				<div><span>Model Version</span><input class="image_url" type="text" placeholder="Model Component Name" ng-model="mapToCreate.url" /></div>
-				<div><span>Authors</span><input class="image_url" type="text" placeholder="Model Component Name" ng-model="mapToCreate.url" /></div>
-				
-				<p class="dimensions">
-					<input type="text" placeholder="width" ng-model="mapToCreate.width"/> x <input type="text" placeholder="height" ng-model="mapToCreate.height"/>
-				</p>
+				<div><label>Model Component Name</label><input type="text" ng-model="mapToCreate.name" /></div>
+				<div><label>Part of Model</label><input class="image_url" type="text" ng-model="mapToCreate.url" /></div>
+				<div><label>Model Version</label><input class="image_url" type="text" ng-model="mapToCreate.url" /></div>
+				<div><label>Authors</label><input class="image_url" type="text" ng-model="mapToCreate.url" /></div>
 		<!-- 		<label class="checkbox"><input type="checkbox"> Keep apsect-ratio</label>
 		 -->
 		 		<p class="buttons">
