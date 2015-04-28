@@ -1,6 +1,6 @@
 <div class="mapsList">
-	<div class='showCreateNewMap'>
-		<div ng-class="{ 'displayNone': modeCreating == true }" ng-click="showCreateNewMap()" class="mcmButton">Create a New Model Component</div>
+	<div class='showCreateNewMap' ng-class="{ 'displayNone': modeCreating == true }">
+		<div class="btn btn-primary" ng-click="showCreateNewMap()">Create a New Model Component</div>
 	</div>
 	<div class='creatingNewMap' ng-class="{ 'displayNone': modeCreating == false }">
 		<form>
@@ -20,17 +20,20 @@
 		</form>
 	
 	</div>
-	<span>Existing models:</span>
-	<table class="list">
-		<tr><th class="mcm_name">Name</th><th class="mcm_authors">Authors</th><th class="creation_date">Creation Date</th><th class="mcm_domains">Domains</th></tr>
-		<tr ng-click="selectItem(item)" ng-repeat="item in items" data-ng-class="{'active-selection': item._id == selectedItem._id}">
-			<td>{{item.name}}</td>
-			<td>{{item.dataContent.mcm.authors}}</td>
-			<td>{{item.createdAt}}</td>
-			<td>&nbsp;</td>
-		</tr>
-	</table>
+	<div>
+		<br/>
+		<span>Existing models:</span>
+		<table class="list">
+			<tr><th class="mcm_name">Name</th><th class="mcm_authors">Authors</th><th class="creation_date">Creation Date</th><th class="mcm_domains">Domains</th></tr>
+			<tr ng-click="selectItem(item)" ng-repeat="item in items" data-ng-class="{'active-selection': item._id == selectedItem._id}">
+				<td>{{item.name}}</td>
+				<td>{{item.dataContent.mcm.authors}}</td>
+				<td>{{item.createdAt}}</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+	</div>
 	<p class="buttons">
-	<button class="btn btn-primary" type="submit" ng-click="openMap()">Open Map</button>
-</p>
+		<button class="btn btn-primary" type="submit" ng-click="openMap()">Open Map</button>
+	</p>
 </div>
