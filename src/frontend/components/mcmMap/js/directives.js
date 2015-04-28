@@ -151,7 +151,7 @@ angular.module('mcmMapDirectives', ['Config'])
 				$scope.path = "Name";
 				$scope.item = {
 					name: null
-				}
+				};
 				
 				// $scope.itemsFull = [
 				// 	{
@@ -184,7 +184,7 @@ angular.module('mcmMapDirectives', ['Config'])
 					// 		items.push(item);
 					// 	}
 					// }
-				}
+				};
 
 				populateItems("");
 
@@ -192,7 +192,7 @@ angular.module('mcmMapDirectives', ['Config'])
 					//console.log("New searching assumption name: %s", $scope.item.name);
 					populateItems($scope.item.name);
 					console.log("$scope.items: " + $scope.items);
-				}
+				};
 				$scope.cancelled = function(){
 					//console.log("Canceled");
 					$element.remove(); //TODO: sta je ovo?
@@ -282,7 +282,7 @@ angular.module('mcmMapDirectives', ['Config'])
 						}
 
 						// build subree structure from children and check if any of subchildren is possible to decorate with entityDecorating
-						var selectableInChildren = false;
+						//var selectableInChildren = false;
 						var edgeTypes = KnalledgeMapVOsService.getChildrenEdgeTypes(kNode);
 						for(var edgeType in edgeTypes){
 
@@ -306,7 +306,7 @@ angular.module('mcmMapDirectives', ['Config'])
 									isOpen: true,
 									selectable: false
 
-								}
+								};
 								
 								// adding subtype node into parent ...
 								kNode.children.push(subTypeKNode);
@@ -405,11 +405,11 @@ angular.module('mcmMapDirectives', ['Config'])
 				$scope.selectedNode = {
 					selected: false,
 					vkNode: null
-				}
+				};
 				$scope.nodeSelected = function(vkNode, dom){
 					$scope.selectedNode.vkNode = vkNode;
 					$scope.selectedNode.selected = true;
-				}
+				};
 
 				$scope.cancelled = function(){
 					//console.log("Canceled");
@@ -518,7 +518,7 @@ angular.module('mcmMapDirectives', ['Config'])
 					}
 				});
 
-				var eventName = "modelLoadedEvent";
+				eventName = "modelLoadedEvent";
 				$scope.$on(eventName, function(e, eventModel) {
 					console.log("[mcmMapTools.controller::$on] ModelMap  nodes(len: %d): %s",
 						eventModel.map.nodes.length, JSON.stringify(eventModel.map.nodes));

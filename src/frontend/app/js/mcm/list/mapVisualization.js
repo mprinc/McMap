@@ -206,7 +206,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 							if(d.kNode.dataContent && d.kNode.dataContent.entity && ('quantity' in d.kNode.dataContent.entity)){
 								label += "_" + d.kNode.dataContent.entity.quantity;
 							}
-							if(label == ""){
+							if(label === ""){
 								label = "...";
 							}
 							break;
@@ -220,7 +220,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 					return '<i style="margin:6px;" class="fa fa-'+that.schema.getEdgeStyle(d.type).icon_fa+'"></i>' + d.name + 
 						((children.length > 0) ? " <b>(" + children.length + ")</b>" : "");
 			}
-		})
+		});
 	// Settings
 	nodeHtml.select(".settings")
 		// http://stackoverflow.com/questions/18205034/d3-adding-data-attribute-conditionally
@@ -252,7 +252,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 					settings.append("span")
 						.attr("class", "setting setting_ic")
 						.style("opacity", function(d){
-							return (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.ic) ? "1.0" : "0.25"
+							return (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.ic) ? "1.0" : "0.25";
 						})
 						.html(function(d){
 							var content = 'IC';
@@ -274,7 +274,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 					settings.append("span")
 						.attr("class", "setting setting_bc")
 						.style("opacity", function(d){
-							return (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.bc) ? "1.0" : "0.25"
+							return (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.bc) ? "1.0" : "0.25";
 						})
 						.html(function(d){
 							var content = "BC";
@@ -296,7 +296,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 					settings.append("span")
 						.attr("class", "setting setting_sd")
 						.style("opacity", function(d){
-							return (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.sd) ? "1.0" : "0.25"
+							return (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.sd) ? "1.0" : "0.25";
 						})
 						.html(function(d){
 							var content = "SD";
@@ -318,7 +318,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 					settings.append("span")
 						.attr("class", "setting setting_o")
 						.style("opacity", function(d){
-							return (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.operators) ? "1.0" : "0.25"
+							return (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.operators) ? "1.0" : "0.25";
 						})
 						.html(function(d){
 							var content = "O";
@@ -329,7 +329,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 					settings.append("span")
 						.attr("class", "setting setting_q")
 						.style("opacity", function(d){
-							return (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.quantity) ? "1.0" : "0.25"
+							return (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.quantity) ? "1.0" : "0.25";
 						})
 						.html(function(d){
 							var content = "Q";
@@ -348,7 +348,6 @@ MapVisualization.prototype.updateHtml = function(source) {
 				.on("click", function(d){
 				});
 		});
-;
 
 // 	// Status
 // 	nodeHtml.select(".status")
