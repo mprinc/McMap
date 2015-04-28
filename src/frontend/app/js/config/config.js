@@ -113,6 +113,9 @@ var map = {
 			}
 		}
 	},
+	keyboardInteraction: {
+		enabled: true
+	},
 	view: {
 		viewspec: 'viewspec_manual'
 	},
