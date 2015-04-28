@@ -71,7 +71,7 @@ angular.module('mcmMapDirectives', ['Config'])
 								// createEdgeAndNodes: function(sourcekNode, kEdge, targetkNode)
 								// KnalledgeMapVOsService.createNodeWithEdge(vkAddedInEntity.kNode, kEdgeRelationship, kNodeEntity);
 
-								// mcmMapClientInterface.selectEntity();
+								mcmMapClientInterface.selectEntity();
 							}.bind(this);
 						});
 					},
