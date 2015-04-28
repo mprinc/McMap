@@ -48,13 +48,13 @@ angular.module('mcmMapsDirectives', ['Config'])
 
 				$scope.selectItem = function(item) {
 				    $scope.selectedItem = item;
-				    console.log("$scope.selectedItem = " + JSON.stringify(item));
+				    console.log("$scope.selectedItem = " + $scope.selectedItem.name + ": " + $scope.selectedItem._id);
 				};
 
 				$scope.openMap = function() {
 				    console.log("openMap");
 					if($scope.selectedItem !== null && $scope.selectedItem !== undefined){
-						console.log("openning Model:" + $scope.selectedItem.name);
+						console.log("openning Model:" + $scope.selectedItem.name + ": " + $scope.selectedItem._id);
 						//openMap($scope.selectedItem);
 						// $element.remove();
 					}
