@@ -11,11 +11,11 @@
 <input class="assumption_name" type="text" placeholder="type assumption name ..." ng-model="item.name" ng-change="nameChanged()"/>
 
 <div class="assumptions">
-	<span>Assumptions:</span>
+	<!-- <span>Assumptions:</span> -->
 	<table class="list">
-		<tr><th class="title_name">id</th></tr>
-		<tr ng-repeat="item in items" class="">
-			<td><a ng-href="">{{item.name}}</a></td>
+		<tr><th class="title_name">Assumptions</th></tr>
+		<tr ng-repeat="item in items" data-ng-class="{'active-selection': item.name == selectedItem}">
+			<td><a data-ng-click="selectItem(item.name)">{{item.name}}</a></td>
 		</tr>
 	</table>
 </div>
