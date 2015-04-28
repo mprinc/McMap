@@ -508,7 +508,7 @@ angular.module('mcmMapDirectives', ['Config'])
     		}
     	};
 	}])
-	.directive('mcmMapList', ['$timeout', 'ConfigMapToolset', 'KnalledgeMapService', 'McmMapSchemaService', function($timeout, ConfigMapToolset, KnalledgeMapService, McmMapSchemaService){
+	.directive('mcmMapList', ['$timeout', 'ConfigMapToolset', 'KnalledgeMapVOsService', 'McmMapSchemaService', function($timeout, ConfigMapToolset, KnalledgeMapVOsService, McmMapSchemaService){
 		// http://docs.angularjs.org/guide/directive
 		return {
 			restrict: 'AE',
@@ -529,7 +529,7 @@ angular.module('mcmMapDirectives', ['Config'])
 				};
 
 				mcmMap = new mcm.list.Map(d3.select($element.get(0)),
-					ConfigMapToolset, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapService);
+					ConfigMapToolset, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapVOsService);
 
 				$scope.currentEntity = {
 					name: ""
@@ -550,7 +550,7 @@ angular.module('mcmMapDirectives', ['Config'])
 						eventModel.map.nodes.length, JSON.stringify(eventModel.map.nodes));
 					console.log("[mcmMapTools.controller::$on] ModelMap  edges(len: %d): %s",
 						eventModel.map.edges.length, JSON.stringify(eventModel.map.edges));
-					mcmMapModel = eventModel.map;
+					mcmMapModel = eventModel;
 					mcmMap.init(function(){
 						mcmMapModel = eventModel;
 						mcmMap.processData(mcmMapModel);

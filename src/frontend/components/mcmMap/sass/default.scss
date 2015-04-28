@@ -411,29 +411,13 @@ $mcm_map_list_border: #888888;
 	.list{
 		margin: 5px;
 
+		$entity_settings_color: #ccffff;
 		.entity{
 			border: 1px solid #aaa;
 			@include border-radius(5px, 5px);
 			margin-bottom: 3px;
 			padding: 3px;
-		}
 
-		.entity_model{
-			background-color: #888;
-		}
-
-		.entity_object{
-			background-color: #ccc;
-		}
-
-		.entity_process{
-			background-color: #aaf;
-		}
-
-		$entity_variable_color: #ffffcc;
-		$entity_settings_color: #ccffff;
-		.entity_variable{
-			background-color: $entity_variable_color;
 			overflow-x: hidden;
 			position: relative;
 			display: block;
@@ -478,6 +462,27 @@ $mcm_map_list_border: #888888;
 					.setting{
 						cursor: pointer;
 					}
+				}
+			}
+		}
+
+		.entity_model{
+			background-color: #888;
+		}
+
+		.entity_object{
+			background-color: #ccc;
+		}
+
+		.entity_process{
+			background-color: #aaf;
+		}
+
+		$entity_variable_color: #ffffcc;
+		.entity_variable{
+			background-color: $entity_variable_color;
+			.container{
+				.settings{
 					.setting_ic, .setting_bc, .setting_sd, .setting_q, .setting_o{
 						font-size: 0.8em;
 						padding: 2px;

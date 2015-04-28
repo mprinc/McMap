@@ -161,6 +161,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 		var container = d3.select(this);
 		switch(d.type){
 			case 'variable':
+			case 'process':
 				container.append("div")
 					.attr("class", "settings");
 				break;
@@ -225,31 +226,29 @@ MapVisualization.prototype.updateHtml = function(source) {
 		// http://stackoverflow.com/questions/18205034/d3-adding-data-attribute-conditionally
 		// http://grokbase.com/t/gg/d3-js/13bc0xr5s8/drawing-circles-conditionally#20131112vgo76k6bofdnloldcihh642t7i
 		.each(function(d) {
+
+			var settings = d3.select(this);
+
+			settings.append("span")
+				.attr("class", "setting")
+				.html(function(d){
+					var content = "";
+					content = '<i style="margin:0.2em;" class="fa fa-pencil"></i>';
+					return content;
+				})
+				.on("click", function(d){
+					if(d.settingsOpen){
+						// acting on "div.settings"
+						d3.select(this.parentElement).style("right", null);
+						d.settingsOpen = false;
+					}else{
+						d3.select(this.parentElement).style("right", "50%");
+						d.settingsOpen = true;
+					}
+				});
+
 			switch(d.type){
 				case 'variable':
-					var settings = d3.select(this);
-
-					settings.append("span")
-						.attr("class", "setting")
-						.html(function(d){
-							var content = "";
-							switch(d.type){
-								case "variable":
-									content = '<i style="margin:0.2em;" class="fa fa-align-justify"></i>';
-									break;
-							}
-							return content;
-						})
-						.on("click", function(d){
-							if(d.settingsOpen){
-								// acting on "div.settings"
-								d3.select(this.parentElement).style("right", null);
-								d.settingsOpen = false;
-							}else{
-								d3.select(this.parentElement).style("right", "50%");
-								d.settingsOpen = true;
-							}
-						});
 
 					settings.append("span")
 						.attr("class", "setting setting_ic")
@@ -338,6 +337,14 @@ MapVisualization.prototype.updateHtml = function(source) {
 						});
 					break;
 			}
+			settings.append("span")
+				.attr("class", "setting")
+				.html(function(d){
+					var content = '<i style="margin:0.2em;" class="fa fa-trash-o"></i>';
+					return content;
+				})
+				.on("click", function(d){
+				});
 		});
 ;
 
