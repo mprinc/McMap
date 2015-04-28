@@ -13,25 +13,30 @@ mcmMapServices.provider('McmMapSchemaService', {
 				isShownOnMap: true,
 				typeClass: "entity_model",
 				icon: "MC",
-				icon_fa: "suitcase"
+				icon_fa: "suitcase",
+				predicate: "containsModel"
 			},
 			"object": {
 				isShownOnMap: true,
 				typeClass: "entity_object",
 				icon: "O",
-				icon_fa: "tablet"
+				icon_fa: "tablet",
+				predicate: "containsObject"
 			},
 			"variable": {
 				isShownOnMap: false,
 				typeClass: "entity_variable",
 				icon: "V",
-				icon_fa: "bolt"
+				icon_fa: "bolt",
+				predicate: "containsVariable",
+				predicates: ["containsVariableIn", "containsVariableOut"]
 			},
 			"process": {
 				isShownOnMap: true,
 				typeClass: "entity_process",
 				icon: "P",
-				icon_fa: "car"
+				icon_fa: "car",
+				predicate: "containsProcess"
 			}
 		};
 
@@ -66,6 +71,20 @@ mcmMapServices.provider('McmMapSchemaService', {
 		};
 
 		var entitiesDescs = {
+			unselected: {
+				id: "unselected",
+				name: "unselected",
+				type: "unselected",
+				icon: "<?>",
+				contains: {
+					containsModel: {
+
+					},
+					containsGrid: {
+
+					}
+				}
+			},
 			model: {
 				id: "model",
 				name: "model",
@@ -173,45 +192,61 @@ mcmMapServices.provider('McmMapSchemaService', {
 		};
 
 		var edgesDescs = {
+			containsModel: {
+				id: "containsModel",
+				name: "containsModel",
+				type: "containsModel",
+				icon: "M",
+				object: "model",
+				objects: "models"
+			},
+			containsGrid: {
+				id: "containsGrid",
+				name: "containsGrid",
+				type: "containsGrid",
+				icon: "G",
+				object: "grid",
+				objects: "grids"
+			},
 			containsObject: {
 				id: "containsObject",
 				name: "containsObject",
 				type: "containsObject",
 				icon: "O",
-				predicate: "object",
-				predicates: "objects"
+				object: "object",
+				objects: "objects"
 			},
 			containsProcess: {
 				id: "containsProcess",
 				name: "containsProcess",
 				type: "containsProcess",
 				icon: "P",
-				predicate: "process",
-				predicates: "processes"
+				object: "process",
+				objects: "processes"
 			},
 			containsVariableIn: {
 				id: "containsVariableIn",
 				name: "containsVariableIn",
 				type: "containsVariableIn",
 				icon: "IV",
-				predicate: "in-var",
-				predicates: "in-vars"
+				object: "variable",
+				objects: "in-vars"
 			},
 			containsVariableOut: {
 				id: "containsVariableOut",
 				name: "containsVariableOut",
 				type: "containsVariableOut",
 				icon: "OV",
-				predicate: "out-var",
-				predicates: "out-vars"
+				object: "variable",
+				objects: "out-vars"
 			},
 			containsAssumption: {
 				id: "containsAssumption",
 				name: "containsAssumption",
 				type: "containsAssumption",
 				icon: "A",
-				predicate: "assumption",
-				predicates: "assumptions"
+				object: "assumption",
+				objects: "assumptions"
 			}
 		};
 

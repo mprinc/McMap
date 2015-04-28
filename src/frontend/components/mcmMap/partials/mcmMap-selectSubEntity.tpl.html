@@ -7,9 +7,12 @@
 </div>
  -->
  <div class="knalledge_map_selectable">
-	<div knalledge_map class="knalledge_map_select_sub_entity" map-config="mapConfigForInjecting" map-data="mapDataForInjecting" node-selected=""></div>
+	<div knalledge_map class="knalledge_map_select_sub_entity" map-config="mapConfigForInjecting" map-data="mapDataForInjecting" node-selected="nodeSelected(vkNode, dom)"></div>
 </div>
 <p class="buttons">
 	<button class="btn btn-primary" type="submit" ng-click="submitted()">Add {{entityDecorating.name}}</button>
 	<button class="btn btn-warning" ng-click="cancelled()">Cancel</button>
+</p>
+<p class="selected_entity">
+	<span class="title">Selected entity: </span><span class="value">{{selectedNode.vkNode.kNode.name}}</span>
 </p>

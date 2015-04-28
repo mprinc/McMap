@@ -123,6 +123,8 @@ $map: layout(12 1/4 fluid float inside);
 			padding: 10px;
 			padding-right: 25px;
 			margin: 3px;
+			min-width: 5em;
+			text-align: center;
 			@include border-radius(10px, 10px);
 			/* http://compass-style.org/reference/compass/css3/box_shadow/#mixin-box-shadow */
 			/* color h-shadow v-shadow blur spread color inset*/
@@ -825,8 +827,20 @@ $select_sub_entity_title_size: 1em;
 
 	.buttons{
 		text-align: center;
-		height: 3em;
+		height: 2.5em;
 		padding-top: 1em;
+	}
+
+	.selected_entity{
+		text-align: center;
+		font-weight: bold;
+		padding-top: 0.1em;
+		.title{
+			color: black;
+		}
+		.value{
+			color: white;
+		}
 	}
 
 	.knalledge_map_selectable{
@@ -834,7 +848,7 @@ $select_sub_entity_title_size: 1em;
 		bottom: 0;
 		left: 0;
 		right: 0;
-		top: $select_sub_entity_title_size* (1.5 + 1) + 3em;
+		top: $select_sub_entity_title_size* (1.5 + 1) + 4em;
 
 		.knalledge_map_select_sub_entity{
 			position: relative;

@@ -31,7 +31,7 @@ angular.module('mcmMapDirectives', ['Config'])
 							$rootScope.$broadcast(eventName, mapEntity);
 						});
 					},
-					mapEntityDraggedIn: function(mapEntity, decoratingEntity){
+					mapEntityDraggedIn: function(mapEntity, decoratingEdge){
 						// we need this to avoid double calling
 						// the first on dragging in and second on clicking on the tool entity
 						inMapEntityDraggedIn = true;
@@ -48,43 +48,28 @@ angular.module('mcmMapDirectives', ['Config'])
 
 							directiveScope.map = mcmMap;
 							directiveScope.entityRoot = mapEntity;
-							directiveScope.entityDecorating = decoratingEntity;
+							directiveScope.decoratingEdge = decoratingEdge;
 							directiveScope.addigCanceled = function(){
 								inMapEntityDraggedIn = false;
-								mcmMapClientInterface.selectEntity();
 							},
-							directiveScope.addedEntity = function(addingInEntity){
-								console.log("Added entity to addingInEntity: %s", JSON.stringify(addingInEntity));
+							directiveScope.addedEntity = function(vkAddedInEntity){
+								console.log("Added entity to vkAddedInEntity (%s): %s", vkAddedInEntity.kNode.type, vkAddedInEntity.kNode.name);
 
-								mcmMapClientInterface.selectEntity(addingInEntity);
+								vkAddedInEntity.draggedInNo++;
 
-								addingInEntity.draggedInNo++;
-								var relationship = {
-									"name": "",
-								};
-								var entity = {
-								};
+								var kEdgeRelationship = new knalledge.KEdge();
+								kEdgeRelationship.name = "";
 
-								if(decoratingEntity.type == 'variable'){
-									entity.name = "variable";
-									entity.type = "variable";
-									relationship.type = mcm.Map.CONTAINS_VARIABLE_OUT;
-								}
-								if(decoratingEntity.type == 'assumption'){
-									entity.name = "assumption";
-									entity.type = "assumption";
-									relationship.type = mcm.Map.CONTAINS_ASSUMPTION_OUT;
-								}
+								var kNodeEntity = new knalledge.KNode();
+								kNodeEntity.name = decoratingEdge.object;
+								kNodeEntity.type = decoratingEdge.object;
 
-								mcmMap.addChildNode(addingInEntity, entity, relationship);
+								kEdgeRelationship.type = decoratingEdge.name;
 
-								// var updated = function(nodeFromServer){
-								// 	console.log("[knalledgeMap::kMapClientInterface::addImage::addedImage::created'] createNode: " + nodeFromServer);
-								// 	if(callback){callback(nodeFromServer);}
-								// 	knalledgeMap.update(node);
-								// };
-								// KnalledgeNodeService.update(node).$promise
-								// 	.then(updated);
+								// createEdgeAndNodes: function(sourcekNode, kEdge, targetkNode)
+								// KnalledgeMapVOsService.createNodeWithEdge(vkAddedInEntity.kNode, kEdgeRelationship, kNodeEntity);
+
+								// mcmMapClientInterface.selectEntity();
 							}.bind(this);
 						});
 					},
@@ -105,26 +90,6 @@ angular.module('mcmMapDirectives', ['Config'])
 						},
 						directiveScope.selectedAssumption = function(addingInEntity){
 							console.log("Added entity to addingInEntity: %s", JSON.stringify(addingInEntity));
-
-							addingInEntity.draggedInNo++;
-							var relationship = {
-								"name": "",
-							};
-							var entity = {
-							};
-							
-							if(decoratingEntity.type == 'variable'){
-								entity.name = "variable";
-								entity.type = "variable";
-								relationship.type = mcm.Map.CONTAINS_VARIABLE_OUT;
-							}
-							if(decoratingEntity.type == 'assumption'){
-								entity.name = "assumption";
-								entity.type = "assumption";
-								relationship.type = mcm.Map.CONTAINS_ASSUMPTION_OUT;
-							}
-
-							mcmMap.addChildNode(addingInEntity, entity, relationship);
 
 							// var updated = function(nodeFromServer){
 							// 	console.log("[knalledgeMap::kMapClientInterface::addImage::addedImage::created'] createNode: " + nodeFromServer);
@@ -340,7 +305,7 @@ angular.module('mcmMapDirectives', ['Config'])
 
 								// node that represents group of subentities (var-in, var-out, ...)
 								var subTypeKNode = new knalledge.KNode();
-								subTypeKNode.name = McmMapSchemaService.getEdgeDesc(edgeType).predicates;
+								subTypeKNode.name = McmMapSchemaService.getEdgeDesc(edgeType).objects;
 								subTypeKNode.visual = {
 									isOpen: true,
 									selectable: false
@@ -380,7 +345,9 @@ angular.module('mcmMapDirectives', ['Config'])
 					return tree;
 				};
 
-				var vkMap = buildTree($scope.entityRoot, $scope.entityDecorating, kNodesById, kEdgesById);
+				var entityDecorating = McmMapSchemaService.getEntityDesc($scope.decoratingEdge.object);
+
+				var vkMap = buildTree($scope.entityRoot, entityDecorating, kNodesById, kEdgesById);
 
 				$scope.mapConfigForInjecting = {
 					tree: {
@@ -439,6 +406,14 @@ angular.module('mcmMapDirectives', ['Config'])
 
 				$scope.title = "Select decoration entity";
 				$scope.path = "Name";
+				$scope.selectedNode = {
+					selected: false,
+					vkNode: null
+				}
+				$scope.nodeSelected = function(vkNode, dom){
+					$scope.selectedNode.vkNode = vkNode;
+					$scope.selectedNode.selected = true;
+				}
 
 				$scope.cancelled = function(){
 					//console.log("Canceled");
@@ -448,7 +423,7 @@ angular.module('mcmMapDirectives', ['Config'])
 
 				$scope.submitted = function(){
 					console.log("Submitted");
-					$scope.addedEntity($scope.selectedNode.ref);
+					$scope.addedEntity($scope.selectedNode.vkNode);
 					$element.remove();
 				};
     		}
@@ -488,24 +463,23 @@ angular.module('mcmMapDirectives', ['Config'])
 
 				$scope.tools = [];
 				$scope.tools.length = 0;
-				var entities = McmMapSchemaService.getAllowedSubEntities('unselected');
-				for(var entityName in entities){
-					$scope.tools.push(McmMapSchemaService.getEntityDesc(entityName));
+				var entity = McmMapSchemaService.getEntityDesc('unselected');
+				for(var edgeName in entity.contains){
+					$scope.tools.push(McmMapSchemaService.getEdgeDesc(edgeName));
 				}
 
 				var toolset = new mcm.EntitiesToolset(ConfigMapToolset, toolsetClientInterface);
 				toolset.init();
 
 				var eventName = "mapEntitySelectedEvent";
-
 				$scope.$on(eventName, function(e, mapEntity) {
 					if(mapEntity){
 						console.log("[mcmMapTools.controller::$on] ModelMap  mapEntity (%s): %s", mapEntity.kNode.type, mapEntity.kNode.name);
 					}
 					$scope.tools.length = 0;
-					var entities = McmMapSchemaService.getAllowedSubEntities(mapEntity ? mapEntity.kNode.type : "unselected");
-					for(var entityName in entities){
-						$scope.tools.push(McmMapSchemaService.getEntityDesc(entityName));
+					var entity = McmMapSchemaService.getEntityDesc(mapEntity ? mapEntity.kNode.type : "unselected");
+					for(var edgeName in entity.contains){
+						$scope.tools.push(McmMapSchemaService.getEdgeDesc(edgeName));
 					}
 					toolset.update();
 				});

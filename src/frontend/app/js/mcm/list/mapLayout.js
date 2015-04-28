@@ -99,7 +99,7 @@ MapLayout.prototype.generateTree = function(subtreeRoot){
 	var entityDesc = this.schema.getEntityDesc(subtreeRoot.kNode.type);
 	var nodeId = 0;
 	for(var edgeType in entityDesc.contains){
-		var label = this.schema.getEdgeDesc(edgeType).predicates;
+		var label = this.schema.getEdgeDesc(edgeType).objects;
 		var edgeNode = { // visualization-node that represents edge
 			name: label,
 			objectType: "edge",
