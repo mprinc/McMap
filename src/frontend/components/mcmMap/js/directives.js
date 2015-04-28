@@ -2,8 +2,8 @@
 'use strict';
 
 angular.module('mcmMapDirectives', ['Config'])
-	.directive('mcmMap', ['$timeout', '$rootScope', 'ConfigMap', '$compile', 'McmMapSchemaService', 'KnalledgeMapVOsService',
-		function($timeout, $rootScope, ConfigMap, $compile, McmMapSchemaService, KnalledgeMapVOsService){
+	.directive('mcmMap', ['$timeout', '$rootScope', '$routeParams', 'ConfigMap', '$compile', 'McmMapSchemaService', 'KnalledgeMapVOsService',
+		function($timeout, $rootScope, $routeParams, ConfigMap, $compile, McmMapSchemaService, KnalledgeMapVOsService){
 
 
 		// http://docs.angularjs.org/guide/directive
@@ -19,6 +19,8 @@ angular.module('mcmMapDirectives', ['Config'])
 				var toolEntityClicked = null;
 				var mapEntityClicked = null;
 				var inMapEntityDraggedIn = false;
+				var mapId = $routeParams.id;
+				console.log("mapId: " + mapId);
 
 				var mcmMapClientInterface = {
 					getContainer: function(){

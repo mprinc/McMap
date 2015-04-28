@@ -3,8 +3,8 @@
 
 angular.module('mcmMapsDirectives', ['Config'])
 	
-	.directive('mcmMapsList', ["$rootScope", "$timeout", 'ConfigMapToolset', 'KnalledgeMapService', 
-		function($rootScope, $timeout, ConfigMapToolset, KnalledgeMapService){
+	.directive('mcmMapsList', ["$rootScope", "$timeout", "$location", 'ConfigMapToolset', 'KnalledgeMapService', 
+		function($rootScope, $timeout, $location, ConfigMapToolset, KnalledgeMapService){
 		console.log("[mcmMapsList] loading directive");
 		return {
 			restrict: 'AE',
@@ -55,6 +55,8 @@ angular.module('mcmMapsDirectives', ['Config'])
 				    console.log("openMap");
 					if($scope.selectedItem !== null && $scope.selectedItem !== undefined){
 						console.log("openning Model:" + $scope.selectedItem.name + ": " + $scope.selectedItem._id);
+						console.log("#/map/id/" + $scope.selectedItem._id);
+						$location.path("#/map/id/" + $scope.selectedItem._id);
 						//openMap($scope.selectedItem);
 						// $element.remove();
 					}
