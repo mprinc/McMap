@@ -557,6 +557,7 @@ $select_sub_entity_title_size: 1em;
 	margin-left: -40%;
 	top: 10%;
 	height: 80%;
+	min-height: 300px;
 	padding: 15px;
 
 	/* https://www.safaribooksonline.com/library/view/sass-and-compass/9781849694544/ch04s09.html 
@@ -622,19 +623,34 @@ $select_sub_entity_title_size: 1em;
 
 	.assumption_name{
 		margin-top: 10px;
+		margin-left: 10px;
+		padding: 5px;
+		text-align: center;
+		size:100;
+		font-size: 22px;
+		width: 80%;
+		margin-left: 10%;
+		margin-right: 10%;
 	}
 	.assumptions{
+		height: 50%;
 		text-align: center;
 		margin: 15px;
+		overflow-y: auto;
 
 		.active-selection{
 			background-color: #eee;
 		}
 
 		.list{
+			width: 80%;
+			margin-left: 10%;
+			margin-right: 10%;
+			text-align: center;
 			.title_name{
 				font-weight: bold;
 				color: white;
+				text-align: center;
 				background-color: #aaaaaa;
 			}
 			th, td {

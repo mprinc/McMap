@@ -249,7 +249,6 @@ MapVisualization.prototype.updateHtml = function(source) {
 
 			switch(d.type){
 				case 'variable':
-
 					settings.append("span")
 						.attr("class", "setting setting_ic")
 						.style("opacity", function(d){
@@ -270,6 +269,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 								if(!d.kNode.dataContent.entity) d.kNode.dataContent.entity = {};
 								d.kNode.dataContent.entity.ic = true;
 							}
+							that.mapStructure.updateNode(d, that.mapStructure.UPDATE_DATA_CONTENT);
 						});
 					settings.append("span")
 						.attr("class", "setting setting_bc")
@@ -291,6 +291,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 								if(!d.kNode.dataContent.entity) d.kNode.dataContent.entity = {};
 								d.kNode.dataContent.entity.bc = true;
 							}
+							that.mapStructure.updateNode(d, that.mapStructure.UPDATE_DATA_CONTENT);
 						});
 					settings.append("span")
 						.attr("class", "setting setting_sd")
@@ -312,6 +313,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 								if(!d.kNode.dataContent.entity) d.kNode.dataContent.entity = {};
 								d.kNode.dataContent.entity.sd = true;
 							}
+							that.mapStructure.updateNode(d, that.mapStructure.UPDATE_DATA_CONTENT);
 						});
 					settings.append("span")
 						.attr("class", "setting setting_q")
