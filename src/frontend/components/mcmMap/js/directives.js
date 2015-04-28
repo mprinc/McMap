@@ -2,8 +2,8 @@
 'use strict';
 
 angular.module('mcmMapDirectives', ['Config'])
-	.directive('mcmMap', ['$timeout', '$rootScope', 'ConfigMap', '$compile', 'McmMapSchemaService', 'KnalledgeMapVOsService',
-		function($timeout, $rootScope, ConfigMap, $compile, McmMapSchemaService, KnalledgeMapVOsService){
+	.directive('mcmMap', ['$timeout', '$rootScope', '$routeParams', 'ConfigMap', '$compile', 'McmMapSchemaService', 'KnalledgeMapVOsService',
+		function($timeout, $rootScope, $routeParams, ConfigMap, $compile, McmMapSchemaService, KnalledgeMapVOsService){
 
 
 		// http://docs.angularjs.org/guide/directive
@@ -19,6 +19,8 @@ angular.module('mcmMapDirectives', ['Config'])
 				var toolEntityClicked = null;
 				var mapEntityClicked = null;
 				var inMapEntityDraggedIn = false;
+				var mapId = $routeParams.id;
+				console.log("mapId: " + mapId);
 
 				var mcmMapClientInterface = {
 					getContainer: function(){
@@ -91,13 +93,6 @@ angular.module('mcmMapDirectives', ['Config'])
 						directiveScope.selectedAssumption = function(addingInEntity){
 							console.log("Added entity to addingInEntity: %s", JSON.stringify(addingInEntity));
 
-							// var updated = function(nodeFromServer){
-							// 	console.log("[knalledgeMap::kMapClientInterface::addImage::addedImage::created'] createNode: " + nodeFromServer);
-							// 	if(callback){callback(nodeFromServer);}
-							// 	knalledgeMap.update(node);
-							// };
-							// KnalledgeNodeService.update(node).$promise
-							// 	.then(updated);
 						}.bind(this);
 					},
 					timeout: $timeout
@@ -211,7 +206,9 @@ angular.module('mcmMapDirectives', ['Config'])
 						$scope.selectedAssumption($scope.selectedItem);
 						$element.remove();
 					}
-					window.alert('Please, select an ssumption');
+					else{
+						window.alert('Please, select an ssumption');
+					}
 				};
     		}
     	};
