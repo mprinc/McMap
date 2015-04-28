@@ -52,12 +52,19 @@
     background-color: #888;
     /*background-color: #ccc;
     background-color: #aaf;*/ }
-    /* line 60, ../sass/default.scss */
+    /* line 53, ../sass/default.scss */
+    .mapsList .list .active-selection {
+      background-color: #eee; }
+    /* line 57, ../sass/default.scss */
+    .mapsList .list tr:hover {
+      cursor: pointer;
+      background-color: #cccccc; }
+    /* line 69, ../sass/default.scss */
     .mapsList .list th {
       background-color: #aaf;
       border: 1px solid black;
       padding: 5px; }
-    /* line 65, ../sass/default.scss */
+    /* line 74, ../sass/default.scss */
     .mapsList .list td {
       border: 1px solid black;
       padding: 5px; }

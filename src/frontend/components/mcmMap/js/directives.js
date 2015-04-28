@@ -112,7 +112,7 @@ angular.module('mcmMapDirectives', ['Config'])
 							};
 							var entity = {
 							};
-							
+
 							if(decoratingEntity.type == 'variable'){
 								entity.name = "variable";
 								entity.type = "variable";
@@ -246,7 +246,9 @@ angular.module('mcmMapDirectives', ['Config'])
 						$scope.selectedAssumption($scope.selectedItem);
 						$element.remove();
 					}
-					window.alert('Please, select an ssumption');
+					else{
+						window.alert('Please, select an ssumption');
+					}
 				};
     		}
     	};

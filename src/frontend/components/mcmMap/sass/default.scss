@@ -638,15 +638,14 @@ $select_sub_entity_title_size: 1em;
 		margin: 15px;
 		overflow-y: auto;
 
-		.active-selection{
-			background-color: #eee;
-		}
-
 		.list{
 			width: 80%;
 			margin-left: 10%;
 			margin-right: 10%;
 			text-align: center;
+			.active-selection{
+				background-color: #eee;
+			}
 			.title_name{
 				font-weight: bold;
 				color: white;
@@ -656,17 +655,12 @@ $select_sub_entity_title_size: 1em;
 			tr{
 				 &:hover{
 			     cursor: pointer;
+			     background-color: #cccccc;
 			  }
 			}
 			th, td {
 				padding: 5px;
 				border-bottom: 1px solid black;
-			}
-
-			td {
-				&:hover{
-					background-color: #cccccc;
-				}
 			}
 
 			a{

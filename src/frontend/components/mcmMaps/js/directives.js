@@ -15,8 +15,12 @@ angular.module('mcmMapsDirectives', ['Config'])
 			templateUrl: '../components/mcmMaps/partials/mcmMaps-list.tpl.html',
 			controller: function ( $scope, $element) {
 				$scope.mapToCreate = null;
+				$scope.modeCreating = false;
+				$scope.items = null;
+				$scope.selectedItem = null;
+
 				KnalledgeMapService.query().$promise.then(function(maps){
-					$scope.maps = maps;
+					$scope.items = maps;
 					console.log('maps:'+JSON.stringify($scope.maps));
 				});
 
@@ -26,8 +30,6 @@ angular.module('mcmMapsDirectives', ['Config'])
 					$scope.modeCreating = true;
 				};
 
-				$scope.modeCreating = false;
-
 				$scope.cancelled = function(){
 					console.log("Canceled");
 					$scope.modeCreating = false;
@@ -36,36 +38,54 @@ angular.module('mcmMapsDirectives', ['Config'])
 				$scope.createNew = function(){
 					var mapCreated = function(mapFromServer) {
 						console.log("mapCreated:");//+ JSON.stringify(mapFromServer));
+						$scope.items.push(mapFromServer);
+						$scope.selectedItem = mapFromServer;
 					}
 					console.log("createNew");
 					$scope.modeCreating = false;
 					KnalledgeMapService.create($scope.mapToCreate,mapCreated);
 				};
 
-
-				var clickedToolEntity = null;
-				var toolsetClientInterface = {
-					getContainer: function(){
-						return $element.find('ul');
-					},
-					getData: function(){
-						return $scope.tools;
-					},
-					toolEntityClicked: function(toolEntity){
-						if(clickedToolEntity == toolEntity){
-							clickedToolEntity = null;
-						}else{
-							clickedToolEntity = toolEntity;
-						}
-						var eventName = "mapToolEntityClickedEvent";
-						$rootScope.$broadcast(eventName, clickedToolEntity);
-
-					},
-					timeout: $timeout
+				$scope.selectItem = function(item) {
+				    $scope.selectedItem = item;
+				    console.log("$scope.selectedItem = " + JSON.stringify(item));
 				};
 
-				$scope.tools = [];
-				$scope.tools.length = 0;
+				$scope.openMap = function() {
+				    console.log("openMap");
+					if($scope.selectedItem !== null && $scope.selectedItem !== undefined){
+						console.log("openning Model:" + $scope.selectedItem.name);
+						//openMap($scope.selectedItem);
+						// $element.remove();
+					}
+					else{
+						window.alert('Please, select a Model');
+					}
+				};
+
+				// var clickedToolEntity = null;
+				// var toolsetClientInterface = {
+				// 	getContainer: function(){
+				// 		return $element.find('ul');
+				// 	},
+				// 	getData: function(){
+				// 		return $scope.tools;
+				// 	},
+				// 	toolEntityClicked: function(toolEntity){
+				// 		if(clickedToolEntity == toolEntity){
+				// 			clickedToolEntity = null;
+				// 		}else{
+				// 			clickedToolEntity = toolEntity;
+				// 		}
+				// 		var eventName = "mapToolEntityClickedEvent";
+				// 		$rootScope.$broadcast(eventName, clickedToolEntity);
+
+				// 	},
+				// 	timeout: $timeout
+				// };
+
+				// $scope.tools = [];
+				// $scope.tools.length = 0;
 				// var entities = McmMapSchemaService.getAllowedSubEntities('unselected');
 				// for(var entityName in entities){
 				// 	$scope.tools.push(McmMapSchemaService.getEntityDesc(entityName));

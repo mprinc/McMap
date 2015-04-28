@@ -50,6 +50,15 @@
 		margin: 5px;
 		text: 18px;
 
+		.active-selection{
+			background-color: #eee;
+		}
+		tr{
+			 &:hover{
+		     	cursor: pointer;
+		     	background-color: #cccccc;
+		  }
+		}
 		border: 1px solid #aaa;
 		@include border-radius(5px, 5px);
 		margin-bottom: 3px;
