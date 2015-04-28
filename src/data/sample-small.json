@@ -62,7 +62,7 @@
 			},
 			{
 				"_id": "5532f5fb98b4e4789002d2a3",
-				"name": "Process flow",
+				"name": "flow",
 				"type": "process",
 				"visual": {
 					"isClosed": false,

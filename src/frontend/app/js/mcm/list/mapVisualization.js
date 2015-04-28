@@ -200,11 +200,11 @@ MapVisualization.prototype.updateHtml = function(source) {
 					switch(d.type){
 						case "variable":
 							if(d.name) label += d.name;
-							if(d.kNode.dataContent && d.kNode.dataContent.entity && ('quantity' in d.kNode.dataContent.entity)){
-								label += ":" + d.kNode.dataContent.entity.quantity;
-							}
 							if(d.kNode.dataContent && d.kNode.dataContent.entity && ('operators' in d.kNode.dataContent.entity)){
-								label += ":" + d.kNode.dataContent.entity.operators;
+								label += /* "__" + */ d.kNode.dataContent.entity.operators;
+							}
+							if(d.kNode.dataContent && d.kNode.dataContent.entity && ('quantity' in d.kNode.dataContent.entity)){
+								label += "_" + d.kNode.dataContent.entity.quantity;
 							}
 							if(label == ""){
 								label = "...";
@@ -316,23 +316,23 @@ MapVisualization.prototype.updateHtml = function(source) {
 							that.mapStructure.updateNode(d, that.mapStructure.UPDATE_DATA_CONTENT);
 						});
 					settings.append("span")
-						.attr("class", "setting setting_q")
-						.style("opacity", function(d){
-							return (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.quantity) ? "1.0" : "0.25"
-						})
-						.html(function(d){
-							var content = "Q";
-							return content;
-						})
-						.on("click", function(d){
-						});
-					settings.append("span")
 						.attr("class", "setting setting_o")
 						.style("opacity", function(d){
 							return (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.operators) ? "1.0" : "0.25"
 						})
 						.html(function(d){
 							var content = "O";
+							return content;
+						})
+						.on("click", function(d){
+						});
+					settings.append("span")
+						.attr("class", "setting setting_q")
+						.style("opacity", function(d){
+							return (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.quantity) ? "1.0" : "0.25"
+						})
+						.html(function(d){
+							var content = "Q";
 							return content;
 						})
 						.on("click", function(d){
