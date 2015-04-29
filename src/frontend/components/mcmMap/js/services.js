@@ -42,9 +42,9 @@ mcmMapServices.provider('McmMapSchemaService', {
 
 		var allowedSubEntitiesForAll = {
 			unselected: {
-				model: true
+				model_component: true
 			},
-			model: {
+			model_component: {
 				assumption: true,
 				object: true,
 				process: true,
@@ -85,7 +85,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 					}
 				}
 			},
-			model: {
+			model_component: {
 				id: "model_component",
 				name: "model_component",
 				type: "model_component",
