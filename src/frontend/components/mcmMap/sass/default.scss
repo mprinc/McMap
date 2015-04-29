@@ -712,6 +712,811 @@ $select_sub_entity_title_size: 1em;
 	}
 }
 
+.mcm_map_select_variable_quantity{
+	position: absolute;
+	width: 80%;
+	z-index: 100;
+	left: 50%;
+	margin-left: -40%;
+	top: 10%;
+	height: 80%;
+	min-height: 300px;
+	padding: 15px;
+
+	/* https://www.safaribooksonline.com/library/view/sass-and-compass/9781849694544/ch04s09.html 
+	https://robots.thoughtbot.com/controlling-color-with-sass-color-functions
+	*/
+	border: 3px solid transparentize(darken($select_sub_entity_color, 25%), 0.5);
+	background-color: transparentize($select_sub_entity_color, 0.05);
+	@include border-radius(15px);
+	/* color h-shadow v-shadow blur spread color inset*/
+	@include box-shadow(10px 10px 5px 5px transparentize(darken($select_sub_entity_color, 15%), 0.75));
+
+	.mcm_title{
+		border-bottom: 3px solid darken($select_sub_entity_color, 25%);
+		background-color: $select_sub_entity_color;
+		text-align: center;
+		color: lighten($select_sub_entity_color, 35%);
+		font-weight: bold;
+		padding-top: 3px;
+		padding-bottom: 3px;
+		height: $select_sub_entity_title_size*1.5;
+		@include border-top-right-radius(15px);
+		@include border-top-left-radius(15px);
+	}
+
+	.mcm_close{
+		position: absolute;
+		background-color: #dddddd;
+		border: solid 3px #555555;
+		font-weight: bold;
+		color: #888888;
+		font-size: $select_sub_entity_title_size;
+		padding: 0.1*$select_sub_entity_title_size;
+		padding-left: $select_sub_entity_title_size;
+		padding-right: $select_sub_entity_title_size;
+		@include border-radius(15px);
+		right: $select_sub_entity_title_size*0.1;
+		top: $select_sub_entity_title_size*0.1;
+		z-index: 101;
+
+		cursor: pointer;
+
+		&:hover{
+			background-color: #ffffff;
+		}
+	}
+
+	.mcm_path{
+		display: block;
+		border: 1px solid blue;
+		@include border-top-right-radius(15px);
+		@include border-top-left-radius(15px);
+		height: $select_sub_entity_title_size;
+
+		.mcm_label{
+			display: inline-block;
+			border-right: 1px solid orange;
+			width: 5em;
+		}
+		.mcm_value{
+			display: inline-block;			
+		}
+	}
+
+	.variable_quantity_name{
+		margin-top: 10px;
+		margin-left: 10px;
+		padding: 5px;
+		text-align: center;
+		size:100;
+		font-size: 22px;
+		width: 80%;
+		margin-left: 10%;
+		margin-right: 10%;
+	}
+	.variable_quantitys{
+		height: 50%;
+		text-align: center;
+		margin: 15px;
+		overflow-y: auto;
+
+		.list{
+			width: 80%;
+			margin-left: 10%;
+			margin-right: 10%;
+			text-align: center;
+			.active-selection{
+				background-color: #eee;
+			}
+			.title_name{
+				font-weight: bold;
+				color: white;
+				text-align: center;
+				background-color: #aaaaaa;
+			}
+			tr{
+				 &:hover{
+			     cursor: pointer;
+			     background-color: #cccccc;
+			  }
+			}
+			th, td {
+				padding: 5px;
+				border-bottom: 1px solid black;
+			}
+
+			a{
+				color: white;
+				cursor: pointer;
+			}
+		}
+	}
+
+	ul {
+		/* neccessery to both dimensions be visible, to make dragging visible outside the dom borders */
+		overflow-y: scroll;
+		position: relative;
+		padding-left: 20%;
+		padding-right: 20%;
+
+		li {
+			list-style-type: none;
+			display: block;
+			background-color: lighten($select_sub_entity_entity_color, 5%);
+			border: 1px solid $select_sub_entity_entity_color;
+			margin: 25px 10px;
+			padding: 10px;
+			padding-right: 25px;
+			@include border-radius(10px, 10px);
+			cursor: pointer;
+			text-align: center;
+			color: lighten($select_sub_entity_entity_color, 15%);
+			/* http://compass-style.org/reference/compass/css3/box_shadow/#mixin-box-shadow */
+			/* color h-shadow v-shadow blur spread color inset*/
+			@include box-shadow(3px 2px 3px 1px rgba(150, 150, 255, 0.75));
+
+			@include transition-property(color);
+			@include transition-property(background-color);
+			@include transition-duration(0.3s);
+			@include transition-timing-function(ease-in);
+
+			&:hover{
+				background-color: lighten($select_sub_entity_entity_color, 10%);
+				color: darken($select_sub_entity_entity_color, 5%);
+			}
+		}
+	}
+
+	.buttons{
+		text-align: center;
+	}
+}
+
+.mcm_map_select_variable_operator{
+	position: absolute;
+	width: 80%;
+	z-index: 100;
+	left: 50%;
+	margin-left: -40%;
+	top: 10%;
+	height: 80%;
+	min-height: 300px;
+	padding: 15px;
+
+	/* https://www.safaribooksonline.com/library/view/sass-and-compass/9781849694544/ch04s09.html 
+	https://robots.thoughtbot.com/controlling-color-with-sass-color-functions
+	*/
+	border: 3px solid transparentize(darken($select_sub_entity_color, 25%), 0.5);
+	background-color: transparentize($select_sub_entity_color, 0.05);
+	@include border-radius(15px);
+	/* color h-shadow v-shadow blur spread color inset*/
+	@include box-shadow(10px 10px 5px 5px transparentize(darken($select_sub_entity_color, 15%), 0.75));
+
+	.mcm_title{
+		border-bottom: 3px solid darken($select_sub_entity_color, 25%);
+		background-color: $select_sub_entity_color;
+		text-align: center;
+		color: lighten($select_sub_entity_color, 35%);
+		font-weight: bold;
+		padding-top: 3px;
+		padding-bottom: 3px;
+		height: $select_sub_entity_title_size*1.5;
+		@include border-top-right-radius(15px);
+		@include border-top-left-radius(15px);
+	}
+
+	.mcm_close{
+		position: absolute;
+		background-color: #dddddd;
+		border: solid 3px #555555;
+		font-weight: bold;
+		color: #888888;
+		font-size: $select_sub_entity_title_size;
+		padding: 0.1*$select_sub_entity_title_size;
+		padding-left: $select_sub_entity_title_size;
+		padding-right: $select_sub_entity_title_size;
+		@include border-radius(15px);
+		right: $select_sub_entity_title_size*0.1;
+		top: $select_sub_entity_title_size*0.1;
+		z-index: 101;
+
+		cursor: pointer;
+
+		&:hover{
+			background-color: #ffffff;
+		}
+	}
+
+	.mcm_path{
+		display: block;
+		border: 1px solid blue;
+		@include border-top-right-radius(15px);
+		@include border-top-left-radius(15px);
+		height: $select_sub_entity_title_size;
+
+		.mcm_label{
+			display: inline-block;
+			border-right: 1px solid orange;
+			width: 5em;
+		}
+		.mcm_value{
+			display: inline-block;			
+		}
+	}
+
+	.variable_operator_name{
+		margin-top: 10px;
+		margin-left: 10px;
+		padding: 5px;
+		text-align: center;
+		size:100;
+		font-size: 22px;
+		width: 80%;
+		margin-left: 10%;
+		margin-right: 10%;
+	}
+	.variable_operators{
+		height: 50%;
+		text-align: center;
+		margin: 15px;
+		overflow-y: auto;
+
+		.list{
+			width: 80%;
+			margin-left: 10%;
+			margin-right: 10%;
+			text-align: center;
+			.active-selection{
+				background-color: #eee;
+			}
+			.title_name{
+				font-weight: bold;
+				color: white;
+				text-align: center;
+				background-color: #aaaaaa;
+			}
+			tr{
+				 &:hover{
+			     cursor: pointer;
+			     background-color: #cccccc;
+			  }
+			}
+			th, td {
+				padding: 5px;
+				border-bottom: 1px solid black;
+			}
+
+			a{
+				color: white;
+				cursor: pointer;
+			}
+		}
+	}
+
+	ul {
+		/* neccessery to both dimensions be visible, to make dragging visible outside the dom borders */
+		overflow-y: scroll;
+		position: relative;
+		padding-left: 20%;
+		padding-right: 20%;
+
+		li {
+			list-style-type: none;
+			display: block;
+			background-color: lighten($select_sub_entity_entity_color, 5%);
+			border: 1px solid $select_sub_entity_entity_color;
+			margin: 25px 10px;
+			padding: 10px;
+			padding-right: 25px;
+			@include border-radius(10px, 10px);
+			cursor: pointer;
+			text-align: center;
+			color: lighten($select_sub_entity_entity_color, 15%);
+			/* http://compass-style.org/reference/compass/css3/box_shadow/#mixin-box-shadow */
+			/* color h-shadow v-shadow blur spread color inset*/
+			@include box-shadow(3px 2px 3px 1px rgba(150, 150, 255, 0.75));
+
+			@include transition-property(color);
+			@include transition-property(background-color);
+			@include transition-duration(0.3s);
+			@include transition-timing-function(ease-in);
+
+			&:hover{
+				background-color: lighten($select_sub_entity_entity_color, 10%);
+				color: darken($select_sub_entity_entity_color, 5%);
+			}
+		}
+	}
+
+	.buttons{
+		text-align: center;
+	}
+}
+
+.mcm_map_select_object{
+	position: absolute;
+	width: 80%;
+	z-index: 100;
+	left: 50%;
+	margin-left: -40%;
+	top: 10%;
+	height: 80%;
+	min-height: 300px;
+	padding: 15px;
+
+	/* https://www.safaribooksonline.com/library/view/sass-and-compass/9781849694544/ch04s09.html 
+	https://robots.thoughtbot.com/controlling-color-with-sass-color-functions
+	*/
+	border: 3px solid transparentize(darken($select_sub_entity_color, 25%), 0.5);
+	background-color: transparentize($select_sub_entity_color, 0.05);
+	@include border-radius(15px);
+	/* color h-shadow v-shadow blur spread color inset*/
+	@include box-shadow(10px 10px 5px 5px transparentize(darken($select_sub_entity_color, 15%), 0.75));
+
+	.mcm_title{
+		border-bottom: 3px solid darken($select_sub_entity_color, 25%);
+		background-color: $select_sub_entity_color;
+		text-align: center;
+		color: lighten($select_sub_entity_color, 35%);
+		font-weight: bold;
+		padding-top: 3px;
+		padding-bottom: 3px;
+		height: $select_sub_entity_title_size*1.5;
+		@include border-top-right-radius(15px);
+		@include border-top-left-radius(15px);
+	}
+
+	.mcm_close{
+		position: absolute;
+		background-color: #dddddd;
+		border: solid 3px #555555;
+		font-weight: bold;
+		color: #888888;
+		font-size: $select_sub_entity_title_size;
+		padding: 0.1*$select_sub_entity_title_size;
+		padding-left: $select_sub_entity_title_size;
+		padding-right: $select_sub_entity_title_size;
+		@include border-radius(15px);
+		right: $select_sub_entity_title_size*0.1;
+		top: $select_sub_entity_title_size*0.1;
+		z-index: 101;
+
+		cursor: pointer;
+
+		&:hover{
+			background-color: #ffffff;
+		}
+	}
+
+	.mcm_path{
+		display: block;
+		border: 1px solid blue;
+		@include border-top-right-radius(15px);
+		@include border-top-left-radius(15px);
+		height: $select_sub_entity_title_size;
+
+		.mcm_label{
+			display: inline-block;
+			border-right: 1px solid orange;
+			width: 5em;
+		}
+		.mcm_value{
+			display: inline-block;			
+		}
+	}
+
+	.object_name{
+		margin-top: 10px;
+		margin-left: 10px;
+		padding: 5px;
+		text-align: center;
+		size:100;
+		font-size: 22px;
+		width: 80%;
+		margin-left: 10%;
+		margin-right: 10%;
+	}
+	.objects{
+		height: 50%;
+		text-align: center;
+		margin: 15px;
+		overflow-y: auto;
+
+		.list{
+			width: 80%;
+			margin-left: 10%;
+			margin-right: 10%;
+			text-align: center;
+			.active-selection{
+				background-color: #eee;
+			}
+			.title_name{
+				font-weight: bold;
+				color: white;
+				text-align: center;
+				background-color: #aaaaaa;
+			}
+			tr{
+				 &:hover{
+			     cursor: pointer;
+			     background-color: #cccccc;
+			  }
+			}
+			th, td {
+				padding: 5px;
+				border-bottom: 1px solid black;
+			}
+
+			a{
+				color: white;
+				cursor: pointer;
+			}
+		}
+	}
+
+	ul {
+		/* neccessery to both dimensions be visible, to make dragging visible outside the dom borders */
+		overflow-y: scroll;
+		position: relative;
+		padding-left: 20%;
+		padding-right: 20%;
+
+		li {
+			list-style-type: none;
+			display: block;
+			background-color: lighten($select_sub_entity_entity_color, 5%);
+			border: 1px solid $select_sub_entity_entity_color;
+			margin: 25px 10px;
+			padding: 10px;
+			padding-right: 25px;
+			@include border-radius(10px, 10px);
+			cursor: pointer;
+			text-align: center;
+			color: lighten($select_sub_entity_entity_color, 15%);
+			/* http://compass-style.org/reference/compass/css3/box_shadow/#mixin-box-shadow */
+			/* color h-shadow v-shadow blur spread color inset*/
+			@include box-shadow(3px 2px 3px 1px rgba(150, 150, 255, 0.75));
+
+			@include transition-property(color);
+			@include transition-property(background-color);
+			@include transition-duration(0.3s);
+			@include transition-timing-function(ease-in);
+
+			&:hover{
+				background-color: lighten($select_sub_entity_entity_color, 10%);
+				color: darken($select_sub_entity_entity_color, 5%);
+			}
+		}
+	}
+
+	.buttons{
+		text-align: center;
+	}
+}
+
+.mcm_map_select_process{
+	position: absolute;
+	width: 80%;
+	z-index: 100;
+	left: 50%;
+	margin-left: -40%;
+	top: 10%;
+	height: 80%;
+	min-height: 300px;
+	padding: 15px;
+
+	/* https://www.safaribooksonline.com/library/view/sass-and-compass/9781849694544/ch04s09.html 
+	https://robots.thoughtbot.com/controlling-color-with-sass-color-functions
+	*/
+	border: 3px solid transparentize(darken($select_sub_entity_color, 25%), 0.5);
+	background-color: transparentize($select_sub_entity_color, 0.05);
+	@include border-radius(15px);
+	/* color h-shadow v-shadow blur spread color inset*/
+	@include box-shadow(10px 10px 5px 5px transparentize(darken($select_sub_entity_color, 15%), 0.75));
+
+	.mcm_title{
+		border-bottom: 3px solid darken($select_sub_entity_color, 25%);
+		background-color: $select_sub_entity_color;
+		text-align: center;
+		color: lighten($select_sub_entity_color, 35%);
+		font-weight: bold;
+		padding-top: 3px;
+		padding-bottom: 3px;
+		height: $select_sub_entity_title_size*1.5;
+		@include border-top-right-radius(15px);
+		@include border-top-left-radius(15px);
+	}
+
+	.mcm_close{
+		position: absolute;
+		background-color: #dddddd;
+		border: solid 3px #555555;
+		font-weight: bold;
+		color: #888888;
+		font-size: $select_sub_entity_title_size;
+		padding: 0.1*$select_sub_entity_title_size;
+		padding-left: $select_sub_entity_title_size;
+		padding-right: $select_sub_entity_title_size;
+		@include border-radius(15px);
+		right: $select_sub_entity_title_size*0.1;
+		top: $select_sub_entity_title_size*0.1;
+		z-index: 101;
+
+		cursor: pointer;
+
+		&:hover{
+			background-color: #ffffff;
+		}
+	}
+
+	.mcm_path{
+		display: block;
+		border: 1px solid blue;
+		@include border-top-right-radius(15px);
+		@include border-top-left-radius(15px);
+		height: $select_sub_entity_title_size;
+
+		.mcm_label{
+			display: inline-block;
+			border-right: 1px solid orange;
+			width: 5em;
+		}
+		.mcm_value{
+			display: inline-block;			
+		}
+	}
+
+	.process_name{
+		margin-top: 10px;
+		margin-left: 10px;
+		padding: 5px;
+		text-align: center;
+		size:100;
+		font-size: 22px;
+		width: 80%;
+		margin-left: 10%;
+		margin-right: 10%;
+	}
+	.processs{
+		height: 50%;
+		text-align: center;
+		margin: 15px;
+		overflow-y: auto;
+
+		.list{
+			width: 80%;
+			margin-left: 10%;
+			margin-right: 10%;
+			text-align: center;
+			.active-selection{
+				background-color: #eee;
+			}
+			.title_name{
+				font-weight: bold;
+				color: white;
+				text-align: center;
+				background-color: #aaaaaa;
+			}
+			tr{
+				 &:hover{
+			     cursor: pointer;
+			     background-color: #cccccc;
+			  }
+			}
+			th, td {
+				padding: 5px;
+				border-bottom: 1px solid black;
+			}
+
+			a{
+				color: white;
+				cursor: pointer;
+			}
+		}
+	}
+
+	ul {
+		/* neccessery to both dimensions be visible, to make dragging visible outside the dom borders */
+		overflow-y: scroll;
+		position: relative;
+		padding-left: 20%;
+		padding-right: 20%;
+
+		li {
+			list-style-type: none;
+			display: block;
+			background-color: lighten($select_sub_entity_entity_color, 5%);
+			border: 1px solid $select_sub_entity_entity_color;
+			margin: 25px 10px;
+			padding: 10px;
+			padding-right: 25px;
+			@include border-radius(10px, 10px);
+			cursor: pointer;
+			text-align: center;
+			color: lighten($select_sub_entity_entity_color, 15%);
+			/* http://compass-style.org/reference/compass/css3/box_shadow/#mixin-box-shadow */
+			/* color h-shadow v-shadow blur spread color inset*/
+			@include box-shadow(3px 2px 3px 1px rgba(150, 150, 255, 0.75));
+
+			@include transition-property(color);
+			@include transition-property(background-color);
+			@include transition-duration(0.3s);
+			@include transition-timing-function(ease-in);
+
+			&:hover{
+				background-color: lighten($select_sub_entity_entity_color, 10%);
+				color: darken($select_sub_entity_entity_color, 5%);
+			}
+		}
+	}
+
+	.buttons{
+		text-align: center;
+	}
+}
+
+.mcm_map_select_grid{
+	position: absolute;
+	width: 80%;
+	z-index: 100;
+	left: 50%;
+	margin-left: -40%;
+	top: 10%;
+	height: 80%;
+	min-height: 300px;
+	padding: 15px;
+
+	/* https://www.safaribooksonline.com/library/view/sass-and-compass/9781849694544/ch04s09.html 
+	https://robots.thoughtbot.com/controlling-color-with-sass-color-functions
+	*/
+	border: 3px solid transparentize(darken($select_sub_entity_color, 25%), 0.5);
+	background-color: transparentize($select_sub_entity_color, 0.05);
+	@include border-radius(15px);
+	/* color h-shadow v-shadow blur spread color inset*/
+	@include box-shadow(10px 10px 5px 5px transparentize(darken($select_sub_entity_color, 15%), 0.75));
+
+	.mcm_title{
+		border-bottom: 3px solid darken($select_sub_entity_color, 25%);
+		background-color: $select_sub_entity_color;
+		text-align: center;
+		color: lighten($select_sub_entity_color, 35%);
+		font-weight: bold;
+		padding-top: 3px;
+		padding-bottom: 3px;
+		height: $select_sub_entity_title_size*1.5;
+		@include border-top-right-radius(15px);
+		@include border-top-left-radius(15px);
+	}
+
+	.mcm_close{
+		position: absolute;
+		background-color: #dddddd;
+		border: solid 3px #555555;
+		font-weight: bold;
+		color: #888888;
+		font-size: $select_sub_entity_title_size;
+		padding: 0.1*$select_sub_entity_title_size;
+		padding-left: $select_sub_entity_title_size;
+		padding-right: $select_sub_entity_title_size;
+		@include border-radius(15px);
+		right: $select_sub_entity_title_size*0.1;
+		top: $select_sub_entity_title_size*0.1;
+		z-index: 101;
+
+		cursor: pointer;
+
+		&:hover{
+			background-color: #ffffff;
+		}
+	}
+
+	.mcm_path{
+		display: block;
+		border: 1px solid blue;
+		@include border-top-right-radius(15px);
+		@include border-top-left-radius(15px);
+		height: $select_sub_entity_title_size;
+
+		.mcm_label{
+			display: inline-block;
+			border-right: 1px solid orange;
+			width: 5em;
+		}
+		.mcm_value{
+			display: inline-block;			
+		}
+	}
+
+	.grid_name{
+		margin-top: 10px;
+		margin-left: 10px;
+		padding: 5px;
+		text-align: center;
+		size:100;
+		font-size: 22px;
+		width: 80%;
+		margin-left: 10%;
+		margin-right: 10%;
+	}
+	.grids{
+		height: 50%;
+		text-align: center;
+		margin: 15px;
+		overflow-y: auto;
+
+		.list{
+			width: 80%;
+			margin-left: 10%;
+			margin-right: 10%;
+			text-align: center;
+			.active-selection{
+				background-color: #eee;
+			}
+			.title_name{
+				font-weight: bold;
+				color: white;
+				text-align: center;
+				background-color: #aaaaaa;
+			}
+			tr{
+				 &:hover{
+			     cursor: pointer;
+			     background-color: #cccccc;
+			  }
+			}
+			th, td {
+				padding: 5px;
+				border-bottom: 1px solid black;
+			}
+
+			a{
+				color: white;
+				cursor: pointer;
+			}
+		}
+	}
+
+	ul {
+		/* neccessery to both dimensions be visible, to make dragging visible outside the dom borders */
+		overflow-y: scroll;
+		position: relative;
+		padding-left: 20%;
+		padding-right: 20%;
+
+		li {
+			list-style-type: none;
+			display: block;
+			background-color: lighten($select_sub_entity_entity_color, 5%);
+			border: 1px solid $select_sub_entity_entity_color;
+			margin: 25px 10px;
+			padding: 10px;
+			padding-right: 25px;
+			@include border-radius(10px, 10px);
+			cursor: pointer;
+			text-align: center;
+			color: lighten($select_sub_entity_entity_color, 15%);
+			/* http://compass-style.org/reference/compass/css3/box_shadow/#mixin-box-shadow */
+			/* color h-shadow v-shadow blur spread color inset*/
+			@include box-shadow(3px 2px 3px 1px rgba(150, 150, 255, 0.75));
+
+			@include transition-property(color);
+			@include transition-property(background-color);
+			@include transition-duration(0.3s);
+			@include transition-timing-function(ease-in);
+
+			&:hover{
+				background-color: lighten($select_sub_entity_entity_color, 10%);
+				color: darken($select_sub_entity_entity_color, 5%);
+			}
+		}
+	}
+
+	.buttons{
+		text-align: center;
+	}
+}
+
 /*
 	mcm_map_select_sub_entity
 */

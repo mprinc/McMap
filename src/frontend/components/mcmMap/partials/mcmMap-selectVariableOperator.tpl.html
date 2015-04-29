@@ -1,0 +1,26 @@
+<div class="mcm_title">{{title}}
+	<div class="mcm_close" ng-click="cancelled()">X</div>
+</div>
+<!-- <div class="mcm_path">
+	<div class="mcm_label">Path:</div>
+	<div class="mcm_value">{{path}}</div>
+</div> -->
+<div class="list">
+</div>
+
+<input class="variable_operator_name" type="text" placeholder="type variable operator name ..." ng-model="item.name" ng-change="nameChanged()"/>
+
+<div class="variable_operators">
+	<!-- <span>Variable Operators:</span> -->
+	<table class="list" >
+		<tr><th class="title_name">Variable Operators</th></tr>
+		<tr data-ng-click="selectItem(item)" ng-repeat="item in items" data-ng-class="{'active-selection': item.name == selectedItem.name}">
+			<td>{{item.name}}</td>
+		</tr>
+	</table>
+</div>
+
+<p class="buttons">
+	<button class="btn btn-primary" type="submit" ng-click="submitted()">Add Variable Operator</button>
+	<button class="btn btn-warning" ng-click="cancelled()">Cancel</button>
+</p>
