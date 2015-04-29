@@ -39,8 +39,8 @@ Map.prototype.init = function(callback) {
 	this.initializeManipulation();
 };
 
-Map.prototype.update = function(node) {
-	this.mapVisualization.update(node);
+Map.prototype.update = function(node, callback) {
+	this.mapVisualization.update(node, callback);
 };
 
 Map.prototype.processData = function(mapData) {

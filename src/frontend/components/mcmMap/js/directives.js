@@ -19,6 +19,9 @@ angular.module('mcmMapDirectives', ['Config'])
 				var toolEntityClicked = null;
 				var mapEntityClicked = null;
 				var inMapEntityDraggedIn = false;
+				var model = null;
+				var mcmMap = null;
+
 				if(typeof $routeParams.id === "undefined"){
 					window.alert("mapId not provided. You will be redirected to screen for map selection.");
 					//TODO:
@@ -74,6 +77,10 @@ angular.module('mcmMapDirectives', ['Config'])
 								kEdgeRelationship.type = decoratingEdge.name;
 
 								KnalledgeMapVOsService.createNodeWithEdge(vkAddedInEntity.kNode, kEdgeRelationship, kNodeEntity);
+								mcmMap.update(null, function(){
+									// that.clientApi.setSelectedNode(null); //TODO: set to parent
+								});
+
 
 								mcmMapClientInterface.selectEntity();
 							}.bind(this);
@@ -119,8 +126,8 @@ angular.module('mcmMapDirectives', ['Config'])
 				// 	rootNodeId: "5532f5fb98b4e4789002d290"
 				// };
 
-				var model = null;
-				var mcmMap = new mcm.Map(d3.select($element.find(".map-container").get(0)),
+				model = null;
+				mcmMap = new mcm.Map(d3.select($element.find(".map-container").get(0)),
 					ConfigMap, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapVOsService);
 
 				var eventName = "modelLoadedEvent";
@@ -187,7 +194,7 @@ angular.module('mcmMapDirectives', ['Config'])
 					console.log("getAssumptionsDesByName(%s)", subName);
 					$scope.items = McmMapAssumptionService.getAssumptionsDesByName(subName);
 					console.log("$scope.items IN: " + $scope.items);
-					
+
 					// items.length = 0;
 					// for(var i in itemsFull){
 					// 	var item = itemsFull[i];
@@ -403,8 +410,8 @@ angular.module('mcmMapDirectives', ['Config'])
 				};
 				$scope.mapDataForInjecting = {
 					vkMap: vkMap,
+					properties: properties,
 					map: {
-						properties: properties,
 						nodes: kNodesById,
 						edges: kEdgesById
 					},
