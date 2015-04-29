@@ -3,8 +3,8 @@
 
 angular.module('mcmMapsDirectives', ['Config'])
 	
-	.directive('mcmMapsList', ["$rootScope", "$timeout", "$location", 'ConfigMapToolset', 'KnalledgeMapService', 
-		function($rootScope, $timeout, $location, ConfigMapToolset, KnalledgeMapService){
+	.directive('mcmMapsList', ["$rootScope", "$timeout", "$location", 'ConfigMapToolset', 'KnalledgeMapService', 'KnalledgeMapVOsService',
+		function($rootScope, $timeout, $location, ConfigMapToolset, KnalledgeMapService, KnalledgeMapVOsService){
 		console.log("[mcmMapsList] loading directive");
 		return {
 			restrict: 'AE',
@@ -40,10 +40,30 @@ angular.module('mcmMapsDirectives', ['Config'])
 						console.log("mapCreated:");//+ JSON.stringify(mapFromServer));
 						$scope.items.push(mapFromServer);
 						$scope.selectedItem = mapFromServer;
+						rootNode.mapId = mapFromServer._id;
+						KnalledgeMapVOsService.updateNode(rootNode)
 					}
+
+					var rootNodeCreated = function(rootNode){
+						$scope.mapToCreate.rootNodeId = rootNode._id;
+						var map = KnalledgeMapService.create($scope.mapToCreate);
+						map.$promise.then(mapCreated);
+					}
+
 					console.log("createNew");
 					$scope.modeCreating = false;
-					KnalledgeMapService.create($scope.mapToCreate,mapCreated);
+
+					var rootNode = new knalledge.KNode();
+					rootNode.name = $scope.mapToCreate.name;
+					rootNode.type = "model_component";
+					rootNode.visual = {
+					    isOpen: true,
+					    xM: 0,
+					    yM: 0
+					};
+
+					rootNode = KnalledgeMapVOsService.createNode(rootNode);
+					rootNode.$promise.then(rootNodeCreated);					
 				};
 
 				$scope.selectItem = function(item) {

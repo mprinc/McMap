@@ -2,8 +2,8 @@
 'use strict';
 
 angular.module('mcmMapDirectives', ['Config'])
-	.directive('mcmMap', ['$timeout', '$rootScope', '$routeParams', 'ConfigMap', '$compile', 'McmMapSchemaService', 'KnalledgeMapVOsService',
-		function($timeout, $rootScope, $routeParams, ConfigMap, $compile, McmMapSchemaService, KnalledgeMapVOsService){
+	.directive('mcmMap', ['$timeout', '$rootScope', '$routeParams', 'ConfigMap', '$compile', 'McmMapSchemaService', 'KnalledgeMapVOsService', 'KnalledgeMapService',
+		function($timeout, $rootScope, $routeParams, ConfigMap, $compile, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapService){
 
 
 		// http://docs.angularjs.org/guide/directive
@@ -19,6 +19,11 @@ angular.module('mcmMapDirectives', ['Config'])
 				var toolEntityClicked = null;
 				var mapEntityClicked = null;
 				var inMapEntityDraggedIn = false;
+				if(typeof $routeParams.id === "undefined"){
+					window.alert("mapId not provided. You will be redirected to screen for map selection.");
+					//TODO:
+					return;
+				}
 				var mapId = $routeParams.id;
 				console.log("mcmMapDirectives::mapId: " + mapId);
 
@@ -97,16 +102,22 @@ angular.module('mcmMapDirectives', ['Config'])
 					timeout: $timeout
 				};
 
-				// initiating loading map data from server
-				var mapProperties = {
-					name: "Anna's Model",
-					date: "2015.03.22.",
-					authors: "Anna Kelbert",
-					mapId: "ec2bf9409b8b80284c2e72c8",
-					rootNodeId: "5532f5fb98b4e4789002d290"
-				};
+				var gotMap = function(map){		
+					console.log('gotMap:'+JSON.stringify(map));
+					KnalledgeMapVOsService.loadData(map); //broadcasts 'modelLoadedEvent'
+				}
 
-				KnalledgeMapVOsService.loadData(mapProperties);
+				// initiating loading map data from server
+				KnalledgeMapService.getById(mapId).$promise.then(gotMap);
+
+
+				// var map = {
+				// 	name: "Anna's Model",
+				// 	date: "2015.03.22.",
+				// 	authors: "Anna Kelbert",
+				// 	mapId: "ec2bf9409b8b80284c2e72c8",
+				// 	rootNodeId: "5532f5fb98b4e4789002d290"
+				// };
 
 				var model = null;
 				var mcmMap = new mcm.Map(d3.select($element.find(".map-container").get(0)),
