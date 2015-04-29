@@ -31,7 +31,7 @@ Map.CONTAINS_OBJECT = "containsObject";
 Map.CONTAINS_PROCESS = "containsProcess";
 Map.CONTAINS_VARIABLE_IN = "containsVariableIn";
 Map.CONTAINS_VARIABLE_OUT = "containsVariableOut";
-Map.CONTAINS_ASSUMPTION_OUT = "containsAssumption";
+Map.CONTAINS_ASSUMPTION = "containsAssumption";
 
 Map.prototype.init = function(callback) {
 	this.mapStructure.init(this.mapService);

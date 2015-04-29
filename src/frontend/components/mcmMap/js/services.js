@@ -9,21 +9,21 @@ mcmMapServices.provider('McmMapSchemaService', {
 	$get: [/*'$q', '$rootScope', */
 	function(/*$q, $rootScope*/) {
 		var entitiesStyles = {
-			"model_component": {
+			model_component: {
 				isShownOnMap: true,
 				typeClass: "entity_model",
 				icon: "MC",
 				icon_fa: "suitcase",
 				predicate: "containsModel"
 			},
-			"object": {
+			object: {
 				isShownOnMap: true,
 				typeClass: "entity_object",
 				icon: "O",
 				icon_fa: "tablet",
 				predicate: "containsObject"
 			},
-			"variable": {
+			variable: {
 				isShownOnMap: false,
 				typeClass: "entity_variable",
 				icon: "V",
@@ -31,12 +31,19 @@ mcmMapServices.provider('McmMapSchemaService', {
 				predicate: "containsVariable",
 				predicates: ["containsVariableIn", "containsVariableOut"]
 			},
-			"process": {
+			process: {
 				isShownOnMap: true,
 				typeClass: "entity_process",
 				icon: "P",
 				icon_fa: "car",
 				predicate: "containsProcess"
+			},
+			assumption: {
+				isShownOnMap: false,
+				typeClass: "entity_assumption",
+				icon: "A",
+				icon_fa: "car",
+				predicate: "containsAssumption"
 			}
 		};
 
@@ -134,6 +141,12 @@ mcmMapServices.provider('McmMapSchemaService', {
 				name: "variable",
 				type: "variable",
 				icon: "V"
+			},
+			assumption: {
+				id: "assumption",
+				name: "assumption",
+				type: "assumption",
+				icon: "A"
 			},
 			process: {
 				id: "process",

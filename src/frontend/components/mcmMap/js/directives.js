@@ -76,11 +76,13 @@ angular.module('mcmMapDirectives', ['Config'])
 
 								kEdgeRelationship.type = decoratingEdge.name;
 
-								KnalledgeMapVOsService.createNodeWithEdge(vkAddedInEntity.kNode, kEdgeRelationship, kNodeEntity);
-								mcmMap.update(null, function(){
-									// that.clientApi.setSelectedNode(null); //TODO: set to parent
-								});
-
+								// KnalledgeMapVOsService.createNodeWithEdge(vkAddedInEntity.kNode, kEdgeRelationship, kNodeEntity)
+								KnalledgeMapVOsService.createNodeWithEdge(vkAddedInEntity.kNode, kEdgeRelationship, kNodeEntity)
+									.$promise.then(function(){
+										mcmMap.update(null, function(){
+											// that.clientApi.setSelectedNode(null); //TODO: set to parent
+										});
+									});
 
 								mcmMapClientInterface.selectEntity();
 							}.bind(this);

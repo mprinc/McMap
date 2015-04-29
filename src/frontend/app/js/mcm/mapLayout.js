@@ -19,7 +19,7 @@ MapLayout.CONTAINS_OBJECT = "containsObject";
 MapLayout.CONTAINS_PROCESS = "containsProcess";
 MapLayout.CONTAINS_VARIABLE_IN = "containsVariableIn";
 MapLayout.CONTAINS_VARIABLE_OUT = "containsVariableOut";
-MapLayout.CONTAINS_ASSUMPTION_OUT = "containsAssumption";
+MapLayout.CONTAINS_ASSUMPTION = "containsAssumption";
 
 MapLayout.prototype.getChildren = function(d){
 	var children = [];
