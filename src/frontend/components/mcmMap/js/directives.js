@@ -37,6 +37,10 @@ angular.module('mcmMapDirectives', ['Config'])
 					mapEntityClicked: function(mapEntity /*, mapEntityDom*/){
 						$scope.$apply(function () {
 							mapEntityClicked = mapEntity;
+							if(mapEntity){
+								console.log("[mcmMap directive::mapEntityClicked] mapEntity (%s->%s): (%s) %s", 
+									mapEntity.kNode._id, mapEntity.id, mapEntity.kNode.type, mapEntity.kNode.name);
+							}
 							var eventName = "mapEntitySelectedEvent";
 							$rootScope.$broadcast(eventName, mapEntity);
 						});
@@ -69,27 +73,31 @@ angular.module('mcmMapDirectives', ['Config'])
 
 								var kEdgeRelationship = new knalledge.KEdge();
 								kEdgeRelationship.name = "";
+								kEdgeRelationship.type = decoratingEdge.name;
+								var vkEdgeRelationship = new knalledge.VKEdge();
+								vkEdgeRelationship.kEdge = kEdgeRelationship;
 
 								var kNodeEntity = new knalledge.KNode();
 								kNodeEntity.name = decoratingEdge.object;
 								kNodeEntity.type = decoratingEdge.object;
+								kNodeEntity.visual = {};
+								kNodeEntity.visual.xM = 0;
+								kNodeEntity.visual.yM = 0;
+								var vkNodeEntity = new knalledge.VKNode();
+								vkNodeEntity.xM = 0;
+								vkNodeEntity.yM = 0;
+								vkNodeEntity.kNode = kNodeEntity;
 
-								kEdgeRelationship.type = decoratingEdge.name;
 
-<<<<<<< HEAD
 								// KnalledgeMapVOsService.createNodeWithEdge(vkAddedInEntity.kNode, kEdgeRelationship, kNodeEntity)
-								KnalledgeMapVOsService.createNodeWithEdge(vkAddedInEntity.kNode, kEdgeRelationship, kNodeEntity)
-									.$promise.then(function(){
-										mcmMap.update(null, function(){
-											// that.clientApi.setSelectedNode(null); //TODO: set to parent
-										});
+								// vkAddedInEntity is a vk node in subTree, not in the map, we need a node in map
+								var vkAddedInNode = mcmMap.mapStructure.getVKNodeByKId(vkAddedInEntity.kNode._id);
+								var vkEdge = mcmMap.mapStructure.createNodeWithEdge(vkAddedInNode, vkEdgeRelationship, vkNodeEntity);
+								vkEdge.kEdge.$promise.then(function(){
+									mcmMap.update(null, function(){
+										// that.clientApi.setSelectedNode(null); //TODO: set to parent
 									});
-=======
-								KnalledgeMapVOsService.createNodeWithEdge(vkAddedInEntity.kNode, kEdgeRelationship, kNodeEntity);
-								mcmMap.update(null, function(){
-									// that.clientApi.setSelectedNode(null); //TODO: set to parent
 								});
->>>>>>> 6ca203dde4948d608459b987fe7c0d6490ae740e
 
 								mcmMapClientInterface.selectEntity();
 							}.bind(this);
@@ -111,106 +119,6 @@ angular.module('mcmMapDirectives', ['Config'])
 							console.log("selectingCanceled");
 						},
 						directiveScope.selectedAssumption = function(addingInEntity){
-							console.log("Added entity to addingInEntity: %s", JSON.stringify(addingInEntity));
-
-						}.bind(this);
-					},
-					selectVariableQuantity: function(mapEntity){
-						// we need this to avoid double calling
-						// the first on dragging in and second on clicking on the tool entity
-						console.log("selecting VariableQuantity");
-						var directiveScope = $scope.$new(); // $new is not super necessary
-						// create popup directive
-						var directiveLink = $compile("<div mcm_map_select_variable_quantity class='mcm_map_select_variable_quantity'></div>");
-						// link HTML containing the directive
-						var directiveElement = directiveLink(directiveScope);
-						$element.append(directiveElement);
-
-						directiveScope.mapEntity = mapEntity;
-						directiveScope.selectingCanceled = function(){
-							console.log("selectingCanceled");
-						},
-						directiveScope.selectedVariableQuantity = function(addingInEntity){
-							console.log("Added entity to addingInEntity: %s", JSON.stringify(addingInEntity));
-
-						}.bind(this);
-					},
-					selectVariableOperator: function(mapEntity){
-						// we need this to avoid double calling
-						// the first on dragging in and second on clicking on the tool entity
-						console.log("selecting VariableOperator");
-						var directiveScope = $scope.$new(); // $new is not super necessary
-						// create popup directive
-						var directiveLink = $compile("<div mcm_map_select_variable_operator class='mcm_map_select_variable_operator'></div>");
-						// link HTML containing the directive
-						var directiveElement = directiveLink(directiveScope);
-						$element.append(directiveElement);
-
-						directiveScope.mapEntity = mapEntity;
-						directiveScope.selectingCanceled = function(){
-							console.log("selectingCanceled");
-						},
-						directiveScope.selectedVariableOperator = function(addingInEntity){
-							console.log("Added entity to addingInEntity: %s", JSON.stringify(addingInEntity));
-
-						}.bind(this);
-					},
-					selectObject: function(mapEntity){
-						// we need this to avoid double calling
-						// the first on dragging in and second on clicking on the tool entity
-						console.log("selecting Object");
-						var directiveScope = $scope.$new(); // $new is not super necessary
-						// create popup directive
-						var directiveLink = $compile("<div mcm_map_select_object class='mcm_map_select_object'></div>");
-						// link HTML containing the directive
-						var directiveElement = directiveLink(directiveScope);
-						$element.append(directiveElement);
-
-						directiveScope.mapEntity = mapEntity;
-						directiveScope.selectingCanceled = function(){
-							console.log("selectingCanceled");
-						},
-						directiveScope.selectedObject = function(addingInEntity){
-							console.log("Added entity to addingInEntity: %s", JSON.stringify(addingInEntity));
-
-						}.bind(this);
-					},
-					selectProcess: function(mapEntity){
-						// we need this to avoid double calling
-						// the first on dragging in and second on clicking on the tool entity
-						console.log("selecting Process");
-						var directiveScope = $scope.$new(); // $new is not super necessary
-						// create popup directive
-						var directiveLink = $compile("<div mcm_map_select_process class='mcm_map_select_process'></div>");
-						// link HTML containing the directive
-						var directiveElement = directiveLink(directiveScope);
-						$element.append(directiveElement);
-
-						directiveScope.mapEntity = mapEntity;
-						directiveScope.selectingCanceled = function(){
-							console.log("selectingCanceled");
-						},
-						directiveScope.selectedProcess = function(addingInEntity){
-							console.log("Added entity to addingInEntity: %s", JSON.stringify(addingInEntity));
-
-						}.bind(this);
-					},
-					selectGrid: function(mapEntity){
-						// we need this to avoid double calling
-						// the first on dragging in and second on clicking on the tool entity
-						console.log("selecting Grid");
-						var directiveScope = $scope.$new(); // $new is not super necessary
-						// create popup directive
-						var directiveLink = $compile("<div mcm_map_select_grid class='mcm_map_select_grid'></div>");
-						// link HTML containing the directive
-						var directiveElement = directiveLink(directiveScope);
-						$element.append(directiveElement);
-
-						directiveScope.mapEntity = mapEntity;
-						directiveScope.selectingCanceled = function(){
-							console.log("selectingCanceled");
-						},
-						directiveScope.selectedGrid = function(addingInEntity){
 							console.log("Added entity to addingInEntity: %s", JSON.stringify(addingInEntity));
 
 						}.bind(this);
@@ -280,6 +188,19 @@ angular.module('mcmMapDirectives', ['Config'])
 					name: null
 				};
 				
+				// $scope.itemsFull = [
+				// 	{
+				// 		name: "assumption_1"
+				// 	},
+				// 	{
+				// 		name: "assumption_2"
+				// 	},
+				// 	{
+				// 		name: "assumption_3"
+				// 	}
+				// ];
+
+				
 
 				$scope.selectItem = function(item) {
 				    $scope.selectedItem = item;
@@ -320,327 +241,7 @@ angular.module('mcmMapDirectives', ['Config'])
 						$element.remove();
 					}
 					else{
-						window.alert('Please, select an Assumption');
-					}
-				};
-    		}
-    	};
-	}])
-	.directive('mcmMapSelectVariableQuantity', ['McmMapVariableQuantityService', function(McmMapVariableQuantityService){ // mcm_map_select_sub_entity
-		return {
-			restrict: 'AE',
-			// scope: {
-			// },
-			// ng-if directive: http://docs.angularjs.org/api/ng.directive:ngIf
-			// expression: http://docs.angularjs.org/guide/expression
-			templateUrl: '../components/mcmMap/partials/mcmMap-selectVariableQuantity.tpl.html',
-			controller: function ( $scope, $element) {
-
-				
-				$scope.selectedItem = null;
-				$scope.title = "Select Variable Quantity";
-				$scope.path = "Name";
-				$scope.item = {
-					name: null
-				};
-				
-
-				$scope.selectItem = function(item) {
-				    $scope.selectedItem = item;
-				    console.log("$scope.selectedItem = " + JSON.stringify(item));
-				};
-
-				var populateItems = function(subName){
-					console.log("getVariableQuantitysDesByName(%s)", subName);
-					$scope.items = McmMapVariableQuantityService.getVariableQuantitysDesByName(subName);
-					console.log("$scope.items IN: " + $scope.items);
-
-					// items.length = 0;
-					// for(var i in itemsFull){
-					// 	var item = itemsFull[i];
-					// 	if(!subName || item.name.indexOf(subName) >= 0){
-					// 		items.push(item);
-					// 	}
-					// }
-				};
-
-				populateItems("");
-
-				$scope.nameChanged = function(){
-					//console.log("New searching VariableQuantity name: %s", $scope.item.name);
-					populateItems($scope.item.name);
-					console.log("$scope.items: " + $scope.items);
-				};
-				$scope.cancelled = function(){
-					//console.log("Canceled");
-					$element.remove(); //TODO: sta je ovo?
-					$scope.selectingCanceled();
-				};
-
-				$scope.submitted = function(){
-					console.log("Submitted");
-					if($scope.selectedItem !== null && $scope.selectedItem !== undefined){
-						$scope.selectedVariableQuantity($scope.selectedItem);
-						$element.remove();
-					}
-					else{
-						window.alert('Please, select an Variable Quantity');
-					}
-				};
-    		}
-    	};
-	}])
-	.directive('mcmMapSelectVariableOperator', ['McmMapVariableOperatorService', function(McmMapVariableOperatorService){ // mcm_map_select_sub_entity
-		return {
-			restrict: 'AE',
-			// scope: {
-			// },
-			// ng-if directive: http://docs.angularjs.org/api/ng.directive:ngIf
-			// expression: http://docs.angularjs.org/guide/expression
-			templateUrl: '../components/mcmMap/partials/mcmMap-selectVariableOperator.tpl.html',
-			controller: function ( $scope, $element) {
-
-				
-				$scope.selectedItem = null;
-				$scope.title = "Select Variable Operator";
-				$scope.path = "Name";
-				$scope.item = {
-					name: null
-				};
-				
-
-				$scope.selectItem = function(item) {
-				    $scope.selectedItem = item;
-				    console.log("$scope.selectedItem = " + JSON.stringify(item));
-				};
-
-				var populateItems = function(subName){
-					console.log("getAssumptionsDesByName(%s)", subName);
-					$scope.items = McmMapVariableOperatorService.getVariableOperatorsDesByName(subName);
-					console.log("$scope.items IN: " + $scope.items);
-
-					// items.length = 0;
-					// for(var i in itemsFull){
-					// 	var item = itemsFull[i];
-					// 	if(!subName || item.name.indexOf(subName) >= 0){
-					// 		items.push(item);
-					// 	}
-					// }
-				};
-
-				populateItems("");
-
-				$scope.nameChanged = function(){
-					//console.log("New searching VariableOperator name: %s", $scope.item.name);
-					populateItems($scope.item.name);
-					console.log("$scope.items: " + $scope.items);
-				};
-				$scope.cancelled = function(){
-					//console.log("Canceled");
-					$element.remove(); //TODO: sta je ovo?
-					$scope.selectingCanceled();
-				};
-
-				$scope.submitted = function(){
-					console.log("Submitted");
-					if($scope.selectedItem !== null && $scope.selectedItem !== undefined){
-						$scope.selectedVariableOperator($scope.selectedItem);
-						$element.remove();
-					}
-					else{
-						window.alert('Please, select a Variable Operator');
-					}
-				};
-    		}
-    	};
-	}])
-	.directive('mcmMapSelectObject', ['McmMapObjectService', function(McmMapObjectService){ // mcm_map_select_sub_entity
-		return {
-			restrict: 'AE',
-			// scope: {
-			// },
-			// ng-if directive: http://docs.angularjs.org/api/ng.directive:ngIf
-			// expression: http://docs.angularjs.org/guide/expression
-			templateUrl: '../components/mcmMap/partials/mcmMap-selectObject.tpl.html',
-			controller: function ( $scope, $element) {
-
-				
-				$scope.selectedItem = null;
-				$scope.title = "Select Object";
-				$scope.path = "Name";
-				$scope.item = {
-					name: null
-				};
-				
-
-				$scope.selectItem = function(item) {
-				    $scope.selectedItem = item;
-				    console.log("$scope.selectedItem = " + JSON.stringify(item));
-				};
-
-				var populateItems = function(subName){
-					console.log("getObjectsDesByName(%s)", subName);
-					$scope.items = McmMapObjectService.getObjectsDesByName(subName);
-					console.log("$scope.items IN: " + $scope.items);
-
-					// items.length = 0;
-					// for(var i in itemsFull){
-					// 	var item = itemsFull[i];
-					// 	if(!subName || item.name.indexOf(subName) >= 0){
-					// 		items.push(item);
-					// 	}
-					// }
-				};
-
-				populateItems("");
-
-				$scope.nameChanged = function(){
-					//console.log("New searching Object name: %s", $scope.item.name);
-					populateItems($scope.item.name);
-					console.log("$scope.items: " + $scope.items);
-				};
-				$scope.cancelled = function(){
-					//console.log("Canceled");
-					$element.remove(); //TODO: sta je ovo?
-					$scope.selectingCanceled();
-				};
-
-				$scope.submitted = function(){
-					console.log("Submitted");
-					if($scope.selectedItem !== null && $scope.selectedItem !== undefined){
-						$scope.selectedObject($scope.selectedItem);
-						$element.remove();
-					}
-					else{
-						window.alert('Please, select an Object');
-					}
-				};
-    		}
-    	};
-	}])
-	.directive('mcmMapSelectProcess', ['McmMapProcessService', function(McmMapProcessService){ // mcm_map_select_sub_entity
-		return {
-			restrict: 'AE',
-			// scope: {
-			// },
-			// ng-if directive: http://docs.angularjs.org/api/ng.directive:ngIf
-			// expression: http://docs.angularjs.org/guide/expression
-			templateUrl: '../components/mcmMap/partials/mcmMap-selectProcess.tpl.html',
-			controller: function ( $scope, $element) {
-
-				
-				$scope.selectedItem = null;
-				$scope.title = "Select Process";
-				$scope.path = "Name";
-				$scope.item = {
-					name: null
-				};
-				
-
-				$scope.selectItem = function(item) {
-				    $scope.selectedItem = item;
-				    console.log("$scope.selectedItem = " + JSON.stringify(item));
-				};
-
-				var populateItems = function(subName){
-					console.log("getProcesssDesByName(%s)", subName);
-					$scope.items = McmMapProcessService.getProcesssDesByName(subName);
-					console.log("$scope.items IN: " + $scope.items);
-
-					// items.length = 0;
-					// for(var i in itemsFull){
-					// 	var item = itemsFull[i];
-					// 	if(!subName || item.name.indexOf(subName) >= 0){
-					// 		items.push(item);
-					// 	}
-					// }
-				};
-
-				populateItems("");
-
-				$scope.nameChanged = function(){
-					//console.log("New searching Process name: %s", $scope.item.name);
-					populateItems($scope.item.name);
-					console.log("$scope.items: " + $scope.items);
-				};
-				$scope.cancelled = function(){
-					//console.log("Canceled");
-					$element.remove(); //TODO: sta je ovo?
-					$scope.selectingCanceled();
-				};
-
-				$scope.submitted = function(){
-					console.log("Submitted");
-					if($scope.selectedItem !== null && $scope.selectedItem !== undefined){
-						$scope.selectedProcess($scope.selectedItem);
-						$element.remove();
-					}
-					else{
-						window.alert('Please, select a Process');
-					}
-				};
-    		}
-    	};
-	}])
-	.directive('mcmMapSelectGrid', ['McmMapGridService', function(McmMapGridService){ // mcm_map_select_sub_entity
-		return {
-			restrict: 'AE',
-			// scope: {
-			// },
-			// ng-if directive: http://docs.angularjs.org/api/ng.directive:ngIf
-			// expression: http://docs.angularjs.org/guide/expression
-			templateUrl: '../components/mcmMap/partials/mcmMap-selectGrid.tpl.html',
-			controller: function ( $scope, $element) {
-
-				
-				$scope.selectedItem = null;
-				$scope.title = "Select Grid";
-				$scope.path = "Name";
-				$scope.item = {
-					name: null
-				};
-				
-
-				$scope.selectItem = function(item) {
-				    $scope.selectedItem = item;
-				    console.log("$scope.selectedItem = " + JSON.stringify(item));
-				};
-
-				var populateItems = function(subName){
-					console.log("getGridsDesByName(%s)", subName);
-					$scope.items = McmMapGridService.getGridsDesByName(subName);
-					console.log("$scope.items IN: " + $scope.items);
-
-					// items.length = 0;
-					// for(var i in itemsFull){
-					// 	var item = itemsFull[i];
-					// 	if(!subName || item.name.indexOf(subName) >= 0){
-					// 		items.push(item);
-					// 	}
-					// }
-				};
-
-				populateItems("");
-
-				$scope.nameChanged = function(){
-					//console.log("New searching Grid name: %s", $scope.item.name);
-					populateItems($scope.item.name);
-					console.log("$scope.items: " + $scope.items);
-				};
-				$scope.cancelled = function(){
-					//console.log("Canceled");
-					$element.remove(); //TODO: sta je ovo?
-					$scope.selectingCanceled();
-				};
-
-				$scope.submitted = function(){
-					console.log("Submitted");
-					if($scope.selectedItem !== null && $scope.selectedItem !== undefined){
-						$scope.selectedGrid($scope.selectedItem);
-						$element.remove();
-					}
-					else{
-						window.alert('Please, select a Grid');
+						window.alert('Please, select an ssumption');
 					}
 				};
     		}
