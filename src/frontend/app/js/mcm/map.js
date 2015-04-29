@@ -1,16 +1,17 @@
 (function () { // This prevents problems when concatenating scripts that aren't strict.
 'use strict';
 
-var Map =  mcm.Map = function(parentDom, config, clientApi, schema, mapService){
+var Map =  mcm.Map = function(parentDom, config, clientApi, schema, mapService, mapStructureExternal){
 	this.config = config;
 	this.clientApi = clientApi;
 	this.entityStyles = schema.entityStyles;
 	this.parentDom = parentDom;
 	this.mapService = mapService;
 	this.schema = schema;
+	this.mapStructureExternal = mapStructureExternal;
 
 	// this.state = new knalledge.State();
-	this.mapStructure = new knalledge.MapStructure();
+	this.mapStructure = this.mapStructureExternal ? this.mapStructureExternal : new knalledge.MapStructure();
 	var mapVisualizationApi = {
 		timeout: this.clientApi.timeout
 	};
@@ -26,7 +27,8 @@ var Map =  mcm.Map = function(parentDom, config, clientApi, schema, mapService){
 };
 
 Map.prototype.init = function(callback) {
-	this.mapStructure.init(this.mapService);
+	// we do this only if we created an mapStructure in our class
+	if(!this.mapStructureExternal) this.mapStructure.init(this.mapService);
 	// http://stackoverflow.com/questions/21990857/d3-js-how-to-get-the-computed-width-and-height-for-an-arbitrary-element
 	var mapSize = [this.parentDom.node().getBoundingClientRect().height, this.parentDom.node().getBoundingClientRect().width];
 	// inverted since tree is rotated to be horizontal
@@ -44,8 +46,9 @@ Map.prototype.update = function(node, callback) {
 };
 
 Map.prototype.processData = function(mapData) {
-	this.mapStructure.processData(mapData, 0, this.parentDom.attr("height") / 2);
-	this.mapLayout.processData();
+	// we do this only if we created an mapStructure in our class
+	if(!this.mapStructureExternal) this.mapStructure.processData(mapData);
+	this.mapLayout.processData(0, this.parentDom.attr("height") / 2);
 };
 
 Map.prototype.initializeKeyboard = function() {

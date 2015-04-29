@@ -1,5 +1,9 @@
 info
 
+curl -v -H "Content-Type: application/json" -X DELETE http://127.0.0.1:8042/kmaps/one/554033523b41715d1656b7ad
+
+curl -v -H "Content-Type: application/json" -X DELETE http://127.0.0.1:8042/kmaps/one/
+
 cd backend
 
 //Sasa:

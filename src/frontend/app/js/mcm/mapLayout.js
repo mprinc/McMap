@@ -19,7 +19,7 @@ MapLayout.CONTAINS_OBJECT = "containsObject";
 MapLayout.CONTAINS_PROCESS = "containsProcess";
 MapLayout.CONTAINS_VARIABLE_IN = "containsVariableIn";
 MapLayout.CONTAINS_VARIABLE_OUT = "containsVariableOut";
-MapLayout.CONTAINS_ASSUMPTION_OUT = "containsAssumption";
+MapLayout.CONTAINS_ASSUMPTION = "containsAssumption";
 
 MapLayout.prototype.getChildren = function(d){
 	var children = [];
@@ -108,7 +108,10 @@ MapLayout.prototype.clickNode = function(d, dom) {
 // 	this.clientApi.update(this.structure.rootNode);
 // };
 
-MapLayout.prototype.processData = function() {
+MapLayout.prototype.processData = function(rootNodeX, rootNodeY) {
+	if(typeof rootNodeX !== 'undefined') this.structure.rootNode.x0 = rootNodeX;
+	if(typeof rootNodeY !== 'undefined') this.structure.rootNode.y0 = rootNodeY;
+
 	this.generateTree(this.structure.rootNode);
 	this.clickNode(this.structure.rootNode);
 	this.clientApi.update(this.structure.rootNode);

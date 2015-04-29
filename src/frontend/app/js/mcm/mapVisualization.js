@@ -417,7 +417,8 @@ MapVisualization.prototype.updateHtml = function(source) {
 	// Status
 	nodeHtml.select(".status")
 		.html(function(d){
-			return "" + d.draggedInNo;
+			var assumptions = that.mapStructure.getChildrenNodes(d, mcm.MapLayout.CONTAINS_ASSUMPTION);
+			return "" + assumptions.length;
 		});
 
 	// Type
@@ -481,7 +482,8 @@ MapVisualization.prototype.updateHtmlTransitions = function(source, nodeHtmlData
 				return (d.draggedInNo != d3.select(this).html()) ? "5px" : "2px";
 			})
 			.html(function(d){
-				return "" + d.draggedInNo;
+				var assumptions = that.mapStructure.getChildrenNodes(d, mcm.MapLayout.CONTAINS_ASSUMPTION);
+				return "" + assumptions.length;
 			});
 
 	(this.configTransitions.update.animate.position ? nodeHtmlUpdateTransition : nodeHtmlUpdate)

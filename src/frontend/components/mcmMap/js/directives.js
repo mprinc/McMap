@@ -37,6 +37,10 @@ angular.module('mcmMapDirectives', ['Config'])
 					mapEntityClicked: function(mapEntity /*, mapEntityDom*/){
 						$scope.$apply(function () {
 							mapEntityClicked = mapEntity;
+							if(mapEntity){
+								console.log("[mcmMap directive::mapEntityClicked] mapEntity (%s->%s): (%s) %s", 
+									mapEntity.kNode._id, mapEntity.id, mapEntity.kNode.type, mapEntity.kNode.name);
+							}
 							var eventName = "mapEntitySelectedEvent";
 							$rootScope.$broadcast(eventName, mapEntity);
 						});
@@ -69,19 +73,35 @@ angular.module('mcmMapDirectives', ['Config'])
 
 								var kEdgeRelationship = new knalledge.KEdge();
 								kEdgeRelationship.name = "";
+								kEdgeRelationship.type = decoratingEdge.name;
+								var vkEdgeRelationship = new knalledge.VKEdge();
+								vkEdgeRelationship.kEdge = kEdgeRelationship;
 
 								var kNodeEntity = new knalledge.KNode();
 								kNodeEntity.name = decoratingEdge.object;
 								kNodeEntity.type = decoratingEdge.object;
+								kNodeEntity.visual = {};
+								kNodeEntity.visual.xM = 0;
+								kNodeEntity.visual.yM = 0;
+								var vkNodeEntity = new knalledge.VKNode();
+								vkNodeEntity.xM = 0;
+								vkNodeEntity.yM = 0;
+								vkNodeEntity.kNode = kNodeEntity;
 
-								kEdgeRelationship.type = decoratingEdge.name;
 
-								KnalledgeMapVOsService.createNodeWithEdge(vkAddedInEntity.kNode, kEdgeRelationship, kNodeEntity);
-								mcmMap.update(null, function(){
-									// that.clientApi.setSelectedNode(null); //TODO: set to parent
+								// KnalledgeMapVOsService.createNodeWithEdge(vkAddedInEntity.kNode, kEdgeRelationship, kNodeEntity)
+								// vkAddedInEntity is a vk node in subTree, not in the map, we need a node in map
+								var vkAddedInNode = mcmMap.mapStructure.getVKNodeByKId(vkAddedInEntity.kNode._id);
+								var vkEdge = mcmMap.mapStructure.createNodeWithEdge(vkAddedInNode, vkEdgeRelationship, vkNodeEntity);
+								vkEdge.kEdge.$promise.then(function(){
+									mcmMap.update(null, function(){
+										// that.clientApi.setSelectedNode(null); //TODO: set to parent
+									});
+									var eventName = "modelMapStructureChanged";
+									$rootScope.$broadcast(eventName, vkAddedInNode);
 								});
 
-								mcmMapClientInterface.selectEntity();
+								//mcmMapClientInterface.selectEntity();
 							}.bind(this);
 						});
 					},
@@ -227,7 +247,7 @@ angular.module('mcmMapDirectives', ['Config'])
 
 				model = null;
 				mcmMap = new mcm.Map(d3.select($element.find(".map-container").get(0)),
-					ConfigMap, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapVOsService);
+					ConfigMap, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapVOsService.mapStructure);
 
 				var eventName = "modelLoadedEvent";
 				$scope.$on(eventName, function(e, eventModel) {
@@ -927,7 +947,7 @@ angular.module('mcmMapDirectives', ['Config'])
 				};
 
 				mcmMap = new mcm.list.Map(d3.select($element.get(0)),
-					ConfigMapToolset, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapVOsService);
+					ConfigMapToolset, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapVOsService.mapStructure);
 
 				$scope.currentEntity = {
 					name: ""
@@ -940,6 +960,15 @@ angular.module('mcmMapDirectives', ['Config'])
 						$scope.currentEntity.name = mapEntity.kNode.name;
 						mcmMap.changeSubtreeRoot(mapEntity);
 					}
+				});
+
+				eventName = "modelMapStructureChanged";
+				$scope.$on(eventName, function(e, mapEntity) {
+					console.log("[mcmMapList.controller::$on] modelMapStructureChanged");
+					console.log("[mcmMapList.controller::$on] ModelMap  mapEntity (%s): %s", mapEntity.kNode.type, mapEntity.kNode.name);
+					$scope.currentEntity.name = mapEntity.kNode.name;
+					// it will call mapLayout processData
+					mcmMap.changeSubtreeRoot(mapEntity);
 				});
 
 				eventName = "modelLoadedEvent";

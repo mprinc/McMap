@@ -1,16 +1,17 @@
 (function () { // This prevents problems when concatenating scripts that aren't strict.
 'use strict';
 
-var Map =  mcm.list.Map = function(parentDom, config, clientApi, schema, mapService){
+var Map =  mcm.list.Map = function(parentDom, config, clientApi, schema, mapService, mapStructureExternal){
 	this.config = config;
 	this.clientApi = clientApi;
 	this.entityStyles = schema.entityStyles;
 	this.parentDom = parentDom;
 	this.mapService = mapService;
 	this.schema = schema;
+	this.mapStructureExternal = mapStructureExternal;
 
 	// this.state = new knalledge.State();
-	this.mapStructure = new knalledge.MapStructure();
+	this.mapStructure = this.mapStructureExternal ? this.mapStructureExternal : new knalledge.MapStructure();
 	var mapVisualizationApi = {
 		timeout: this.clientApi.timeout
 	};
@@ -31,10 +32,11 @@ Map.CONTAINS_OBJECT = "containsObject";
 Map.CONTAINS_PROCESS = "containsProcess";
 Map.CONTAINS_VARIABLE_IN = "containsVariableIn";
 Map.CONTAINS_VARIABLE_OUT = "containsVariableOut";
-Map.CONTAINS_ASSUMPTION_OUT = "containsAssumption";
+Map.CONTAINS_ASSUMPTION = "containsAssumption";
 
 Map.prototype.init = function(callback) {
-	this.mapStructure.init(this.mapService);
+	// we do this only if we created an mapStructure in our class
+	if(!this.mapStructureExternal) this.mapStructure.init(this.mapService);
 	// http://stackoverflow.com/questions/21990857/d3-js-how-to-get-the-computed-width-and-height-for-an-arbitrary-element
 	var mapSize = [this.parentDom.node().getBoundingClientRect().height, this.parentDom.node().getBoundingClientRect().width];
 	// inverted since tree is rotated to be horizontal
@@ -52,12 +54,17 @@ Map.prototype.update = function(node) {
 };
 
 Map.prototype.processData = function(mapData) {
-	this.mapStructure.processData(mapData, 0, this.parentDom.attr("height") / 2);
-	this.mapLayout.processData();
+	// we do this only if we created an mapStructure in our class
+	if(!this.mapStructureExternal) this.mapStructure.processData(mapData);
+	this.processDataMapLayout();
+};
+
+Map.prototype.processDataMapLayout = function() {
+	this.mapLayout.processData(null, 0, this.parentDom.attr("height") / 2);
 };
 
 Map.prototype.changeSubtreeRoot = function(subtreeRoot) {
-	this.mapLayout.processData(subtreeRoot);
+	this.mapLayout.processData(subtreeRoot, 0, this.parentDom.attr("height") / 2);
 };
 
 // http://interactjs.io/
