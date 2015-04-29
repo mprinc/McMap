@@ -99,7 +99,7 @@ angular.module('mcmMapDirectives', ['Config'])
 									});
 								});
 
-								mcmMapClientInterface.selectEntity();
+								//mcmMapClientInterface.selectEntity();
 							}.bind(this);
 						});
 					},
