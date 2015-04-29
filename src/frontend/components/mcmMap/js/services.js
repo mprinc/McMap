@@ -302,9 +302,11 @@ mcmMapServices.provider('McmMapSchemaService', {
 
 mcmMapServices.provider('McmMapAssumptionService', {
 	// privateData: "privatno",
-	$get: [/*'$q', '$rootScope', */
-	function(/*$q, $rootScope*/) {
-		var assumptionsDescs = [
+	$get: ['$q', /*'$rootScope', */ 'ENV',
+	function($q, /*$rootScope*/ ENV) {
+		var assumptionsDescs = [];
+		// for testing
+		assumptionsDescs = [
 			{
 				name: "assumption_1"
 			},
@@ -313,38 +315,89 @@ mcmMapServices.provider('McmMapAssumptionService', {
 			},
 			{
 				name: "assumption_3"
-			},
-			{
-				name: "assumption_12"
-			},
-			{
-				name: "assumption_13"
-			},
-			{
-				name: "assumption_123"
-			},
-			{
-				name: "assumption_14"
-			},
-			{
-				name: "assumption_145"
-			},
-			{
-				name: "assumption_12345"
-			},
-			{
-				name: "assumption_1235"
-			},
-			{
-				name: "assumption_143"
-			},
-			{
-				name: "assumption_1451"
-			},
-			{
-				name: "assumption_1245"
 			}
 		];
+		assumptionsDescs = [];
+
+		var queryAssumptions = function(){
+			var data = [];
+			data.$promise = null;
+			data.$resolved = false;
+
+			data.$promise = $q(function(resolve, reject) { /*jshint unused:false*/
+				var jsonUrl = ENV.server.frontend + "/data/assumptions.jsonld";
+				$.getJSON(jsonUrl, null, function(jsonContent){
+					console.log("[McmMapAssumptionService:getJSON] Loaded assumptions: %s, (@graph size: %d)", jsonUrl,
+					jsonContent['@graph'].length);
+					for(var id in jsonContent){
+						data[id] = jsonContent[id];
+					}
+					data.$resolved = true;
+					resolve(data);
+				});
+			// reject('Greeting ' + name + ' is not allowed.');
+			});
+			return data;
+		};
+
+		queryAssumptions().$promise.then(function(assumptionsData){
+			var rdfTypesAll = {};
+			var assumptionCategoriesAll = {};
+
+			for(var i in assumptionsData['@graph']){
+				var isAssumption = false;
+				var assumptionCategory = null;
+				var assumptionFromGraph = assumptionsData['@graph'][i];
+				var rdfTypes = assumptionFromGraph['rdf:type'];
+				if(typeof rdfTypes === 'object' && !('length' in rdfTypes)){
+					rdfTypes = [rdfTypes];
+				}
+				for(var j in rdfTypes){
+					var rdfType = rdfTypes[j];
+					var rdfTypeId = rdfType['@id'];
+					if(rdfTypeId in rdfTypesAll) rdfTypesAll[rdfTypeId]++;
+					else rdfTypesAll[rdfTypeId] = 1;
+
+					if(rdfTypeId.indexOf('ontology/Assumption') >= 0){
+						isAssumption = true;
+						var id = rdfTypeId.indexOf('ontology/Assumption/');
+						id += 'ontology/Assumption/'.length;
+						assumptionCategory = rdfTypeId.substring(id);
+					}
+				}
+				if(isAssumption){
+					if(assumptionCategory in assumptionCategoriesAll) assumptionCategoriesAll[assumptionCategory]++;
+					else assumptionCategoriesAll[assumptionCategory] = 1;
+
+					if(!('rdfs:label' in assumptionFromGraph) && !('skos:prefLabel' in assumptionFromGraph)){
+						alert("Missing both label 'rdfs:label' and 'skos:prefLabel' for loaded assumption");
+						console.warn("Missing both label 'rdfs:label' and 'skos:prefLabel' for loaded assumption: %s", JSON.stringify(assumptionFromGraph));
+					}
+					if(('rdfs:label' in assumptionFromGraph) && ('skos:prefLabel' in assumptionFromGraph)){
+						alert("Assumption loaded with both label 'rdfs:label' and 'skos:prefLabel' set");
+						console.warn("Assumption loaded with both label 'rdfs:label' and 'skos:prefLabel' set: %s", JSON.stringify(assumptionFromGraph));
+					}
+					var assumptionName = null;
+					if('rdfs:label' in assumptionFromGraph) assumptionName = assumptionFromGraph['rdfs:label'];
+					if('skos:prefLabel' in assumptionFromGraph) assumptionName = assumptionFromGraph['skos:prefLabel'];
+
+					if(assumptionName && assumptionName.length > 0){
+						var assumptionForExport = {};
+						assumptionForExport.name = assumptionName;
+						assumptionForExport.category = assumptionCategory;
+						assumptionsDescs.push(assumptionForExport);						
+					}
+				}
+			}
+			console.log("[McmMapAssumptionService] rdfTypesAll.length: %s", rdfTypesAll.length);
+			for(var i in rdfTypesAll){
+				console.log("\t%s: %d", i, rdfTypesAll[i]);				
+			}
+			console.log("[McmMapAssumptionService] assumptionCategoriesAll.length: %s", assumptionCategoriesAll.length);
+			for(var i in assumptionCategoriesAll){
+				console.log("\t%s: %d", i, assumptionCategoriesAll[i]);				
+			}
+		});
 
 		// var that = this;
 		return {
