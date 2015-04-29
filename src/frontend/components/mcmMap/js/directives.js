@@ -97,6 +97,8 @@ angular.module('mcmMapDirectives', ['Config'])
 									mcmMap.update(null, function(){
 										// that.clientApi.setSelectedNode(null); //TODO: set to parent
 									});
+									var eventName = "modelMapStructureChanged";
+									$rootScope.$broadcast(eventName, vkAddedInNode);
 								});
 
 								//mcmMapClientInterface.selectEntity();
@@ -145,7 +147,7 @@ angular.module('mcmMapDirectives', ['Config'])
 
 				model = null;
 				mcmMap = new mcm.Map(d3.select($element.find(".map-container").get(0)),
-					ConfigMap, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapVOsService);
+					ConfigMap, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapVOsService.mapStructure);
 
 				var eventName = "modelLoadedEvent";
 				$scope.$on(eventName, function(e, eventModel) {
@@ -538,7 +540,7 @@ angular.module('mcmMapDirectives', ['Config'])
 				};
 
 				mcmMap = new mcm.list.Map(d3.select($element.get(0)),
-					ConfigMapToolset, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapVOsService);
+					ConfigMapToolset, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapVOsService.mapStructure);
 
 				$scope.currentEntity = {
 					name: ""
@@ -551,6 +553,15 @@ angular.module('mcmMapDirectives', ['Config'])
 						$scope.currentEntity.name = mapEntity.kNode.name;
 						mcmMap.changeSubtreeRoot(mapEntity);
 					}
+				});
+
+				eventName = "modelMapStructureChanged";
+				$scope.$on(eventName, function(e, mapEntity) {
+					console.log("[mcmMapList.controller::$on] modelMapStructureChanged");
+					console.log("[mcmMapList.controller::$on] ModelMap  mapEntity (%s): %s", mapEntity.kNode.type, mapEntity.kNode.name);
+					$scope.currentEntity.name = mapEntity.kNode.name;
+					// it will call mapLayout processData
+					mcmMap.changeSubtreeRoot(mapEntity);
 				});
 
 				eventName = "modelLoadedEvent";

@@ -86,7 +86,12 @@ MapLayout.prototype.clickNode = function(d, dom) {
 	return false;
 };
 
-MapLayout.prototype.processData = function(subtreeRoot) {
+MapLayout.prototype.processData = function(subtreeRoot, rootNodeX, rootNodeY) {
+	if(typeof rootNodeX !== 'undefined' && typeof rootNodeY !== 'undefined'){
+		this.mapStructure.rootNode.x0 = rootNodeX;
+		this.mapStructure.rootNode.y0 = rootNodeY;
+	}
+
 	if(!subtreeRoot) subtreeRoot = this.mapStructure.rootNode;
 	this.generateTree(subtreeRoot);
 	this.clickNode(subtreeRoot);
