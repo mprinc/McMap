@@ -37,8 +37,14 @@ var map = {
 				sizes: {
 					y: 10,
 					x: 50,
-					width: 100,
-					height: 50
+					width: 150,
+					height: 100
+				},
+				margines: {
+					top: 35,
+					right: 35,
+					bottom: 35,
+					left: 35
 				}
 			}
 		}
@@ -81,6 +87,7 @@ var map = {
 				zIndex: 10,
 				cloningContainer: null, // getting native dom element from jQuery selector (set in code)
 				leaveAtDraggedPosition: true,
+				updateDatumPosition: null, //  (set in code)
 				callbacks: {
 					onend: null //  (set in code)
 				}
@@ -117,7 +124,8 @@ var map = {
 		enabled: true
 	},
 	view: {
-		viewspec: 'viewspec_manual'
+		viewspec: 'viewspec_manual',
+		childsRelativePositions: true
 	},
 	transitions: {
 		enter: {

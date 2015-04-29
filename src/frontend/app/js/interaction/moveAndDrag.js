@@ -107,12 +107,16 @@ MoveAndDrag.InitializeDragging = function (config) {
 					targetD3.style("top", (isNaN(parseInt(targetD3.style("top"))) ? 0 : parseInt(targetD3.style("top"))) + event.dy + "px");
 				}
 				if(d){
-					// update manual values for datum
-					d.x += event.dx;
-					d.y += event.dy;
+					if(config.target.updateDatumPosition){
+						config.target.updateDatumPosition(d, event.dx, event.dy);
+					}else{
+						// update manual values for datum
+						d.x += event.dx;
+						d.y += event.dy;
 
-					d.xM = d.x;
-					d.yM = d.y;
+						d.xM = d.x;
+						d.yM = d.y;
+					}
 				}
 
 				// var textEl = event.target.querySelector('p');

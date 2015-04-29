@@ -9,7 +9,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 	$get: [/*'$q', '$rootScope', */
 	function(/*$q, $rootScope*/) {
 		var entitiesStyles = {
-			"model": {
+			"model_component": {
 				isShownOnMap: true,
 				typeClass: "entity_model",
 				icon: "MC",
@@ -86,9 +86,9 @@ mcmMapServices.provider('McmMapSchemaService', {
 				}
 			},
 			model: {
-				id: "model",
-				name: "model",
-				type: "model",
+				id: "model_component",
+				name: "model_component",
+				type: "model_component",
 				icon: "MC",
 				contains: {
 					containsObject: {
@@ -197,8 +197,8 @@ mcmMapServices.provider('McmMapSchemaService', {
 				name: "containsModel",
 				type: "containsModel",
 				icon: "M",
-				object: "model",
-				objects: "models"
+				object: "model_component",
+				objects: "model_components"
 			},
 			containsGrid: {
 				id: "containsGrid",

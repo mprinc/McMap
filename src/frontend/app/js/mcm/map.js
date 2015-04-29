@@ -14,7 +14,7 @@ var Map =  mcm.Map = function(parentDom, config, clientApi, schema, mapService){
 	var mapVisualizationApi = {
 		timeout: this.clientApi.timeout
 	};
-	this.mapVisualization = new mcm.MapVisualization(this.parentDom, mapVisualizationApi, this.mapStructure, this.config.transitions, this.config.nodes, this.config.edges, this.config.interaction.resizingConfig, this.schema);
+	this.mapVisualization = new mcm.MapVisualization(this.parentDom, mapVisualizationApi, this.mapStructure, this.config.view, this.config.transitions, this.config.nodes, this.config.edges, this.config.interaction.resizingConfig, this.schema);
 	var mapLayoutApi = {
 		update: this.mapVisualization.update.bind(this.mapVisualization),
 		getDom: this.mapVisualization.getDom.bind(this.mapVisualization),
@@ -80,6 +80,7 @@ Map.prototype.initializeManipulation = function() {
 
 	this.draggingConfig = this.config.interaction.draggingConfig;
 	this.draggingConfig.target.cloningContainer =  that.mapVisualization.dom.divMapHtml.node();
+	this.draggingConfig.target.updateDatumPosition = this.mapLayout.updateDatumPosition.bind(this.mapLayout);
 	this.draggingConfig.target.callbacks.onend = manipulationEnded;
 
 	interaction.MoveAndDrag.InitializeDragging(this.draggingConfig);

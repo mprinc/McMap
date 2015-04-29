@@ -1,7 +1,7 @@
 (function () { // This prevents problems when concatenating scripts that aren't strict.
 'use strict';
 
-var MapVisualization =  mcm.MapVisualization = function(parentDom, clientApi, mapStructure, configTransitions, configNodes, configEdges, resizingConfig, schema){
+var MapVisualization =  mcm.MapVisualization = function(parentDom, clientApi, mapStructure, configView, configTransitions, configNodes, configEdges, resizingConfig, schema){
 	this.dom = {
 		parentDom: parentDom,
 		divMap: null,
@@ -14,6 +14,7 @@ var MapVisualization =  mcm.MapVisualization = function(parentDom, clientApi, ma
 	this.mapLayout = null;
 	this.schema = schema;
 
+	this.configView = configView;
 	this.configTransitions = configTransitions;
 	this.configNodes = configNodes;
 	this.configEdges = configEdges;
@@ -495,7 +496,18 @@ MapVisualization.prototype.updateHtmlTransitions = function(source, nodeHtmlData
 			// x = d.x;
 			// console.log("[nodeHtmlUpdateTransition] d: %s, xCurrent: %s, xNew: %s", d.name, d3.select(this).style("top"), x);
 			return x + "px";
+		})
+		.style("width", function(d) {
+			var width = d.width;
+			// console.log("[nodeHtmlEnter] d: %s, width: %s", d.name, width);
+			return width + "px";
+		})
+		.style("height", function(d) {
+			var height = d.height;
+			// console.log("[nodeHtmlEnter] d: %s, height: %s", d.name, height);
+			return height + "px";
 		});
+
 	(this.configTransitions.update.animate.opacity ? nodeHtmlUpdateTransition : nodeHtmlUpdate)
 		.select(".status")
 			.style("background-color", "yellow")

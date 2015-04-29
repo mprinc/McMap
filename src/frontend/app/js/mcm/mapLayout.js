@@ -48,63 +48,6 @@ MapLayout.prototype.init = function(mapSize){
 	this.tree.children(this.getChildren.bind(this));
 };
 
-// // https://github.com/mbostock/d3/wiki/SVG-Shapes#diagonal
-// // https://github.com/mbostock/d3/wiki/SVG-Shapes#diagonal_projection
-// // https://www.dashingd3js.com/svg-paths-and-d3js
-// MapLayout.prototype.diagonal = function(that){
-// 	var diagonalSource = function(d){
-// 		//return d.source;
-// 		// here we are creating object with just necessary parameters (x, y)
-// 		var point = {x: d.source.x, y: d.source.y};
-// 		if(!that.configNodes.punctual){
-// 			// since our node is not just a punctual entity, but it has width, we need to adjust diagonals' source and target points
-// 			// by shifting points from the center of node to the edges of node
-// 			// we deal here with y-coordinates, because our final tree is rotated to propagete across the x-axis, instead of y-axis
-// 			// (you can see that in .project() function
-// 			if(d.source.y < d.target.y){
-// 				var width = (d.source.kNode.dataContent && d.source.kNode.dataContent.image && d.source.kNode.dataContent.image.width) ?
-// 					d.source.kNode.dataContent.image.width/2 : that.configNodes.html.dimensions.sizes.width/2;
-// 				point.y += width + 0;
-// 			}
-// 		}
-// 		return point;
-// 	}.bind(that);
-
-// 	var diagonalTarget = function(d){
-// 		//return d.target;
-// 		var point = {x: d.target.x, y: d.target.y};
-// 		if(!that.configNodes.punctual){
-// 			if(d.target.y > d.source.y){
-// 				var width = (d.target.kNode.dataContent && d.target.kNode.dataContent.image && d.target.kNode.dataContent.image.width) ?
-// 					d.target.kNode.dataContent.image.width/2 : that.configNodes.html.dimensions.sizes.width/2;
-// 				point.y -= width + 0;
-// 			}
-// 		}
-// 		return point;
-// 	}.bind(that);
-// 	var diagonal = d3.svg.diagonal()
-// 	.source(diagonalSource)
-// 	.target(diagonalTarget)
-// 	// our final tree is rotated to propagete across the x-axis, instead of y-axis
-// 	// therefor we are swapping x and y coordinates here
-// 	.projection(function(d) {
-// 		return [d.y, d.x];
-// 	});
-// 	return diagonal;
-// };
-
-// MapLayout.prototype.getAllNodesHtml = function(){
-// 	return this.dom.divMapHtml.selectAll("div.node_html");
-// };
-
-// // Returns view representation (dom) from datum d
-// MapLayout.prototype.getDomFromDatum = function(d) {
-// 	var dom = this.getAllNodesHtml()
-// 		.data([d], function(d){return d.id;});
-// 	if(dom.size() != 1) return null;
-// 	else return dom;
-// };
-
 // Select node on node click
 MapLayout.prototype.clickNode = function(d, dom) {
 	// select clicked
@@ -172,6 +115,8 @@ MapLayout.prototype.processData = function() {
 };
 
 MapLayout.prototype.generateTree = function(source){
+	var that = this;
+
 	if(this.nodes){
 		// Normalize for fixed-depth.
 		this.nodes.forEach(function(d) {
@@ -231,7 +176,65 @@ MapLayout.prototype.generateTree = function(source){
 		}
 	});
 
+	if(that.configView.childsRelativePositions){
+		var updateChildrenDimensions = function(vkNode){
+			var vkChildren = that.getChildren(vkNode);
+			var widthA = 0;
+			var heightA = 0;
+			for (var i in vkChildren){
+				var vkChild = vkChildren[i];
+				vkChild.xA = that.configNodes.html.dimensions.margines.left + vkNode.xA + vkChild.x;
+				vkChild.yA = that.configNodes.html.dimensions.margines.top + vkNode.yA + vkChild.y;
+				
+				updateChildrenDimensions(vkChild);
+				
+				if(widthA < vkChild.x + vkChild.widthA){
+					widthA = vkChild.x + vkChild.widthA + 
+						that.configNodes.html.dimensions.margines.left +
+						that.configNodes.html.dimensions.margines.right;
+				}
+				if(heightA < vkChild.y + vkChild.heightA){
+					heightA = vkChild.y + vkChild.heightA + 
+						that.configNodes.html.dimensions.margines.top +
+						that.configNodes.html.dimensions.margines.bottom;
+				}
+			}
+			if(widthA < that.configNodes.html.dimensions.sizes.width){
+				widthA = that.configNodes.html.dimensions.sizes.width;
+			}
+			if(heightA < that.configNodes.html.dimensions.sizes.height){
+				heightA = that.configNodes.html.dimensions.sizes.height;
+			}
+			vkNode.widthA = widthA;
+			vkNode.heightA = heightA;
+		};
+		that.structure.rootNode.xA = that.structure.rootNode.x;
+		that.structure.rootNode.yA = that.structure.rootNode.y;
+		updateChildrenDimensions(that.structure.rootNode);
+
+		that.nodes.forEach(function(d){
+			d.x = d.xA;
+			d.y = d.yA;
+			d.width = d.widthA;
+			d.height = d.heightA;
+		});
+	}
 	this.printTree(this.nodes);
+};
+
+MapLayout.prototype.updateDatumPosition = function(d, dx, dy){
+	if(d.xM + dx < 0){
+		dx += -d.xM;
+	}
+	if(d.yM + dy < 0){
+		dy += -d.yM;
+	}
+	d.xM += dx;
+	d.yM += dy;
+
+	// update manual values for datum
+	d.x += dx;
+	d.y += dy;
 };
 
 MapLayout.prototype.printTree = function(nodes) {

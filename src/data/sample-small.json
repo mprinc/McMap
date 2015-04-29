@@ -1,6 +1,6 @@
 {
 	"properties": {
-		"name": "Anna's Model",
+		"name": "Anna's Model Component",
 		"date": "2015.03.22.",
 		"authors": "Anna Kelbert",
 		"mapId": "ec2bf9409b8b80284c2e72c8",
@@ -10,8 +10,8 @@
 		"nodes": [
 			{
 				"_id": "5532f5fb98b4e4789002d290",
-				"name": "GEO Model",
-				"type": "model",
+				"name": "GEO Model Component",
+				"type": "model_component",
 				"visual": {
 					"isClosed": false,
 					"isOpen": true,
@@ -42,7 +42,7 @@
 					"isClosed": false,
 					"isOpen": true,
 					"yM": 100,
-					"xM": 500,
+					"xM": 80,
 					"widthM": 175,
 					"heightM": 50
 				}
@@ -54,7 +54,7 @@
 				"visual": {
 					"isClosed": false,
 					"isOpen": true,
-					"yM": 325,
+					"yM": 125,
 					"xM": 50,
 					"widthM": 100,
 					"heightM": 75
@@ -67,8 +67,8 @@
 				"visual": {
 					"isClosed": false,
 					"isOpen": true,
-					"yM": 350,
-					"xM": 450,
+					"yM": 50,
+					"xM": 50,
 					"widthM": 120,
 					"heightM": 75
 				}
@@ -112,8 +112,8 @@
 					"isClosed": false,
 					"isOpen": true,
 					"visual": {
-						"yM": 450,
-						"xM": 750,
+						"yM": 50,
+						"xM": 75,
 						"widthM": 120,
 						"heightM": 75
 					}
