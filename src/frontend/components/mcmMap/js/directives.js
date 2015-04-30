@@ -101,11 +101,11 @@ angular.module('mcmMapDirectives', ['Config'])
 									$rootScope.$broadcast(eventName, vkAddedInNode);
 								});
 
-								//mcmMapClientInterface.selectEntity();
+								//mcmMapClientInterface.selectAssumption();
 							}.bind(this);
 						});
 					},
-					selectEntity: function(mapEntity){
+					selectAssumption: function(mapEntity){
 						// we need this to avoid double calling
 						// the first on dragging in and second on clicking on the tool entity
 						console.log("selecting assumption");
