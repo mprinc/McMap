@@ -304,9 +304,11 @@ mcmMapServices.provider('McmMapAssumptionService', {
 	// privateData: "privatno",
 	$get: ['$q', /*'$rootScope', */ 'ENV',
 	function($q, /*$rootScope*/ ENV) {
-		var assumptionsDescs = [];
+		var itemsData = null;
+		var itemsLoaded = false;
+		var itemsDescs = [];
 		// for testing
-		assumptionsDescs = [
+		itemsDescs = [
 			{
 				name: "assumption_1"
 			},
@@ -317,9 +319,9 @@ mcmMapServices.provider('McmMapAssumptionService', {
 				name: "assumption_3"
 			}
 		];
-		assumptionsDescs = [];
+		// itemsDescs = [];
 
-		var queryAssumptions = function(){
+		var queryItems = function(){
 			var data = [];
 			data.$promise = null;
 			data.$resolved = false;
@@ -340,15 +342,19 @@ mcmMapServices.provider('McmMapAssumptionService', {
 			return data;
 		};
 
-		queryAssumptions().$promise.then(function(assumptionsData){
-			var rdfTypesAll = {};
-			var assumptionCategoriesAll = {};
+		itemsData = queryItems();
 
-			for(var i in assumptionsData['@graph']){
-				var isAssumption = false;
-				var assumptionCategory = null;
-				var assumptionFromGraph = assumptionsData['@graph'][i];
-				var rdfTypes = assumptionFromGraph['rdf:type'];
+		itemsData.$promise.then(function(itemsData){
+			itemsDescs.length = 0;
+
+			var rdfTypesAll = {};
+			var itemCategoriesAll = {};
+
+			for(var i in itemsData['@graph']){
+				var isItem = false;
+				var itemCategory = null;
+				var itemFromGraph = itemsData['@graph'][i];
+				var rdfTypes = itemFromGraph['rdf:type'];
 				if(typeof rdfTypes === 'object' && !('length' in rdfTypes)){
 					rdfTypes = [rdfTypes];
 				}
@@ -359,71 +365,299 @@ mcmMapServices.provider('McmMapAssumptionService', {
 					else rdfTypesAll[rdfTypeId] = 1;
 
 					if(rdfTypeId.indexOf('ontology/Assumption') >= 0){
-						isAssumption = true;
+						isItem = true;
 						var id = rdfTypeId.indexOf('ontology/Assumption/');
 						id += 'ontology/Assumption/'.length;
-						assumptionCategory = rdfTypeId.substring(id);
+						itemCategory = rdfTypeId.substring(id);
 					}
 				}
-				if(isAssumption){
-					if(assumptionCategory in assumptionCategoriesAll) assumptionCategoriesAll[assumptionCategory]++;
-					else assumptionCategoriesAll[assumptionCategory] = 1;
+				if(isItem){
+					if(itemCategory in itemCategoriesAll) itemCategoriesAll[itemCategory]++;
+					else itemCategoriesAll[itemCategory] = 1;
 
-					if(!('rdfs:label' in assumptionFromGraph) && !('skos:prefLabel' in assumptionFromGraph)){
+					if(!('rdfs:label' in itemFromGraph) && !('skos:prefLabel' in itemFromGraph)){
 						alert("Missing both label 'rdfs:label' and 'skos:prefLabel' for loaded assumption");
-						console.warn("Missing both label 'rdfs:label' and 'skos:prefLabel' for loaded assumption: %s", JSON.stringify(assumptionFromGraph));
+						console.warn("Missing both label 'rdfs:label' and 'skos:prefLabel' for loaded assumption: %s", JSON.stringify(itemFromGraph));
 					}
-					if(('rdfs:label' in assumptionFromGraph) && ('skos:prefLabel' in assumptionFromGraph)){
+					if(('rdfs:label' in itemFromGraph) && ('skos:prefLabel' in itemFromGraph)){
 						alert("Assumption loaded with both label 'rdfs:label' and 'skos:prefLabel' set");
-						console.warn("Assumption loaded with both label 'rdfs:label' and 'skos:prefLabel' set: %s", JSON.stringify(assumptionFromGraph));
+						console.warn("Assumption loaded with both label 'rdfs:label' and 'skos:prefLabel' set: %s", JSON.stringify(itemFromGraph));
 					}
-					var assumptionName = null;
-					if('rdfs:label' in assumptionFromGraph) assumptionName = assumptionFromGraph['rdfs:label'];
-					if('skos:prefLabel' in assumptionFromGraph) assumptionName = assumptionFromGraph['skos:prefLabel'];
+					var itemName = null;
+					if('rdfs:label' in itemFromGraph) itemName = itemFromGraph['rdfs:label'];
+					if('skos:prefLabel' in itemFromGraph) itemName = itemFromGraph['skos:prefLabel'];
 
-					if(assumptionName && assumptionName.length > 0){
-						var assumptionForExport = {};
-						assumptionForExport.name = assumptionName;
-						assumptionForExport.category = assumptionCategory;
-						assumptionsDescs.push(assumptionForExport);						
+					if(itemName && itemName.length > 0){
+						var itemForExport = {};
+						itemForExport.id = itemFromGraph['@id'];
+						itemForExport.name = itemName;
+						itemForExport.category = itemCategory;
+						itemsDescs.push(itemForExport);						
 					}
 				}
 			}
-			console.log("[McmMapAssumptionService] rdfTypesAll.length: %s", rdfTypesAll.length);
+			console.log("[McmMapAssumptionService] rdfTypesAll.length: %s", Object.keys(rdfTypesAll).length);
 			for(var i in rdfTypesAll){
 				console.log("\t%s: %d", i, rdfTypesAll[i]);				
 			}
-			console.log("[McmMapAssumptionService] assumptionCategoriesAll.length: %s", assumptionCategoriesAll.length);
-			for(var i in assumptionCategoriesAll){
-				console.log("\t%s: %d", i, assumptionCategoriesAll[i]);				
+			console.log("[McmMapAssumptionService] itemCategoriesAll.length: %s", Object.keys(itemCategoriesAll).length);
+			for(var i in itemCategoriesAll){
+				console.log("\t%s: %d", i, itemCategoriesAll[i]);				
 			}
+			itemsLoaded = true;
 		});
 
 		// var that = this;
 		return {
+			areAssumptionsLoaded: function(){
+				return itemsLoaded;
+			},
+			getLoadingPromise: function(){
+				return itemsData.$promise;
+			},
 			getAssumptionsDescs: function(){
-				return assumptionsDescs;
+				return itemsDescs;
 			},
 
 			getAssumptionsDesByName: function(nameSubStr){
-				var returnedAssumptions = [];
-				for(var i in assumptionsDescs){
-					var assumption = assumptionsDescs[i];
+				var returnedItems = [];
+				// we cannot iterate with (var i in itemsDescs) because of
+				// adding $promise and $resolved
+				for(var i=0; i<itemsDescs.length; i++){
+					var assumption = itemsDescs[i];
 					if(assumption.name.indexOf(nameSubStr) > -1){
-						returnedAssumptions.push(assumption);
+						returnedItems.push(assumption);
 					}
 				}
-				return returnedAssumptions;
+				return returnedItems;
 			},
 
 		};
 	}]
 });
 
+mcmMapServices.provider('McmMapObjectService', {
+	// privateData: "privatno",
+	$get: ['$q', 'ENV', /*'$rootScope', */
+	function($q, ENV/*, $rootScope*/) {
+		var itemsData = null;
+		var itemsLoaded = false;
+		var objectsDescs = [
+			{
+				name: "object_1"
+			},
+			{
+				name: "object_2"
+			},
+			{
+				name: "object_3"
+			}
+		];
+
+		// objectsDescs = [];
+
+		var queryItems = function(){
+			var items = [];
+			items.$promise = null;
+			items.$resolved = false;
+
+			items.$promise = $q(function(resolve, reject) { /*jshint unused:false*/
+				var jsonUrl = ENV.server.frontend + "/data/variables.jsonld";
+				$.getJSON(jsonUrl, null, function(jsonContent){
+					console.log("[McmMapObjectService:getJSON] Loaded variables: %s, (@graph size: %d)", jsonUrl,
+					jsonContent['@graph'].length);
+					for(var id in jsonContent){
+						items[id] = jsonContent[id];
+					}
+					items.$resolved = true;
+					resolve(items);
+				});
+			// reject('Greeting ' + name + ' is not allowed.');
+			});
+			return items;
+		};
+
+		itemsData = queryItems();
+
+		itemsData.$promise.then(function(itemsData){
+			objectsDescs.length = 0;
+
+			var rdfTypesAll = {};
+			var dataCategoriesAll = {};
+			var propertiesAll = {};
+			var quantitiesAll = {};
+			var itemsNo = 0;
+
+			var quantitiesNoTotal = 0;
+			var quantitiesNoAvg = 0;
+			var quantitiesNoMax = 0;
+
+			var itemsWithoutQuantitiesNo = 0;
+			var itemsWithoutQuantities = [];
+
+			for(var itemId in itemsData['@graph']){
+				var isData = false;
+				var itemCategory = null;
+				var itemFromGraph = itemsData['@graph'][itemId];
+
+				var rdfTypes = itemFromGraph['rdf:type'];
+				if(typeof rdfTypes === 'object' && !('length' in rdfTypes)){
+					rdfTypes = [rdfTypes];
+				}
+				for(var j in rdfTypes){
+					var rdfType = rdfTypes[j];
+					var rdfTypeId = rdfType['@id'];
+					if(rdfTypeId in rdfTypesAll) rdfTypesAll[rdfTypeId]++;
+					else rdfTypesAll[rdfTypeId] = 1;
+
+					if(rdfTypeId.indexOf('skos:Concept') >= 0){
+						isData = true;
+					}
+				}
+				if(isData){
+					itemsNo++;
+					for(var property in itemFromGraph){
+						if(property in propertiesAll) propertiesAll[property]++;
+						else propertiesAll[property] = 1;
+					}
+
+					if(itemCategory in dataCategoriesAll) dataCategoriesAll[itemCategory]++;
+					else dataCategoriesAll[itemCategory] = 1;
+
+					if(!('rdfs:label' in itemFromGraph) && !('skos:prefLabel' in itemFromGraph)){
+						alert("Missing both label 'rdfs:label' and 'skos:prefLabel' for loaded assumption");
+						console.warn("Missing both label 'rdfs:label' and 'skos:prefLabel' for loaded assumption: %s", JSON.stringify(itemFromGraph));
+					}
+					if(('rdfs:label' in itemFromGraph) && ('skos:prefLabel' in itemFromGraph)){
+						alert("Assumption loaded with both label 'rdfs:label' and 'skos:prefLabel' set");
+						console.warn("Assumption loaded with both label 'rdfs:label' and 'skos:prefLabel' set: %s", JSON.stringify(itemFromGraph));
+					}
+					var itemName = null;
+					if('rdfs:label' in itemFromGraph) itemName = itemFromGraph['rdfs:label'];
+					if('skos:prefLabel' in itemFromGraph) itemName = itemFromGraph['skos:prefLabel'];
+
+					if(itemName && itemName.length > 0){
+						var itemForExport = {};
+						itemForExport.id = itemFromGraph['@id'];
+						itemForExport.name = itemName;
+						// itemForExport.category = itemCategory;
+						itemForExport.id = itemFromGraph['@id'];
+						itemForExport.broader = itemFromGraph['broader'];
+						itemForExport.related = itemFromGraph['related'];
+						itemForExport.altLabel = itemFromGraph['skos:altLabel'];
+						itemForExport.definition = itemFromGraph['skos:definition'];
+						
+						itemForExport.quantities = itemFromGraph['co:property'];
+						if(typeof itemForExport.quantities === 'string'){
+							itemForExport.quantities = [itemForExport.quantities];
+						}
+
+						objectsDescs.push(itemForExport);
+
+						if(!itemForExport.quantities){
+							itemsWithoutQuantitiesNo++;
+							itemsWithoutQuantities.push(itemForExport.id);
+						}
+
+						if(itemForExport.quantities){
+							quantitiesNoTotal += itemForExport.quantities.length;
+							if(itemForExport.quantities.length > quantitiesNoMax) quantitiesNoMax = itemForExport.quantities.length;
+							for(var id in itemForExport.quantities){
+								var quantity = itemForExport.quantities[id];
+								if(quantity in quantitiesAll) quantitiesAll[quantity]++;
+								else quantitiesAll[quantity] = 1;
+							}
+						}
+					}
+				}
+			}
+			console.log("[McmMapObjectService] rdfTypesAll.length: %s", Object.keys(rdfTypesAll).length);
+			for(var i in rdfTypesAll){
+				console.log("\t%s: %d", i, rdfTypesAll[i]);				
+			}
+			console.log("[McmMapObjectService] dataCategoriesAll.length: %s", Object.keys(dataCategoriesAll).length);
+			for(var i in dataCategoriesAll){
+				console.log("\t%s: %d", i, dataCategoriesAll[i]);				
+			}
+
+			console.log("[McmMapObjectService] propertiesAll.length: %s", Object.keys(propertiesAll).length);
+			for(var i in propertiesAll){
+				console.log("\t%s: %d", i, propertiesAll[i]);				
+			}
+
+			console.log("[McmMapObjectService] quantitiesAll.length: %s", Object.keys(quantitiesAll).length);
+			for(var i in quantitiesAll){
+				console.log("\t%s: %d", i, quantitiesAll[i]);				
+			}
+			quantitiesNoAvg = quantitiesNoTotal/itemsNo;
+			console.log("[McmMapObjectService] quantitiesAll.length: %s, quantitiesNoTotal: %s, quantitiesNoMax: %s, quantitiesNoAvg:%s", Object.keys(quantitiesAll).length, quantitiesNoTotal, quantitiesNoMax, quantitiesNoAvg);
+
+			itemsLoaded = true;
+		});
+
+		// var that = this;
+		return {
+			getObjectsDescs: function(){
+				return objectsDescs;
+			},
+
+			getObjectsDesByName: function(nameSubStr, fromStart, onlyTheNextObject){
+				if(typeof fromStart === 'undefined') fromStart = false;
+				var returnedObjects = [];
+				for(var i in objectsDescs){
+					var shouldAdd = false;
+					var object = objectsDescs[i];
+					var id = object.name.indexOf(nameSubStr);
+					if(fromStart){
+						if(id == 0){
+							shouldAdd = true;
+						}
+					}else{
+						if(id >= 0){
+							shouldAdd = true;
+						}
+					}
+					if(onlyTheNextObject && object.name.indexOf("_", id + nameSubStr.length) >= 0){
+						shouldAdd = false;
+					}
+
+					if(shouldAdd) returnedObjects.push(object);
+				}
+				return returnedObjects;
+			},
+
+			getFullObjectName: function(objectEntity){
+				var fullNameInEntity = false;
+				if(fullNameInEntity) return objectEntity.kNode.name;
+
+				var fullNameList = [];
+				while(objectEntity && objectEntity.kNode.type != "model_component"){
+					fullNameList.unshift(objectEntity.kNode.name);
+					objectEntity = objectEntity.parent;
+				}
+				var fullNameStr = fullNameList.join("_");
+				return fullNameStr;
+			},
+
+			// it supports both objectEntity and name as an input parameter
+			getBaseObjectName: function(objectEntity){
+				var name = (typeof objectEntity === 'object') ? objectEntity.kNode.name : objectEntity;
+				var id = name.lastIndexOf("_");
+				var baseName = null;
+
+				if(id<0) baseName = name;
+				else baseName = name.substring(id+1);
+
+				return baseName;
+			}
+		};
+	}]
+});
+
 mcmMapServices.provider('McmMapVariableQuantityService', {
 	// privateData: "privatno",
-	$get: [/*'$q', '$rootScope', */
-	function(/*$q, $rootScope*/) {
+	$get: ['$q', 'ENV', /*'$rootScope', */
+	function($q, ENV/*, $rootScope*/) {
 		var variableQuantitysDescs = [
 			{
 				name: "variableQuantity_1"
@@ -489,8 +723,10 @@ mcmMapServices.provider('McmMapVariableQuantityService', {
 
 mcmMapServices.provider('McmMapVariableOperatorService', {
 	// privateData: "privatno",
-	$get: [/*'$q', '$rootScope', */
-	function(/*$q, $rootScope*/) {
+	$get: ['$q', 'ENV', /*'$rootScope', */
+	function($q, ENV/*, $rootScope*/) {
+		var variableOperatorsAreSeparate = false;
+
 		var variableOperatorsDescs = [
 			{
 				name: "variableOperator_1"
@@ -535,6 +771,10 @@ mcmMapServices.provider('McmMapVariableOperatorService', {
 
 		// var that = this;
 		return {
+			areVariableOperatorsSeparate: function(){
+				return variableOperatorsAreSeparate;
+			},
+
 			getVariableOperatorsDescs: function(){
 				return variableOperatorsDescs;
 			},
@@ -554,77 +794,10 @@ mcmMapServices.provider('McmMapVariableOperatorService', {
 	}]
 });
 
-mcmMapServices.provider('McmMapObjectService', {
-	// privateData: "privatno",
-	$get: [/*'$q', '$rootScope', */
-	function(/*$q, $rootScope*/) {
-		var objectsDescs = [
-			{
-				name: "object_1"
-			},
-			{
-				name: "object_2"
-			},
-			{
-				name: "object_3"
-			},
-			{
-				name: "object_12"
-			},
-			{
-				name: "object_13"
-			},
-			{
-				name: "object_123"
-			},
-			{
-				name: "object_14"
-			},
-			{
-				name: "object_145"
-			},
-			{
-				name: "object_12345"
-			},
-			{
-				name: "object_1235"
-			},
-			{
-				name: "object_143"
-			},
-			{
-				name: "object_1451"
-			},
-			{
-				name: "object_1245"
-			}
-		];
-
-		// var that = this;
-		return {
-			getObjectsDescs: function(){
-				return objectsDescs;
-			},
-
-			getObjectsDesByName: function(nameSubStr){
-				var returnedObjects = [];
-				for(var i in objectsDescs){
-					var object = objectsDescs[i];
-					if(object.name.indexOf(nameSubStr) > -1){
-						returnedObjects.push(object);
-					}
-				}
-				return returnedObjects;
-			},
-
-		};
-	}]
-});
-
 mcmMapServices.provider('McmMapProcessService', {
 	// privateData: "privatno",
-	$get: [/*'$q', '$rootScope', */
-	function(/*$q, $rootScope*/) {
+	$get: ['$q', 'ENV', /*'$rootScope', */
+	function($q, ENV/*, $rootScope*/) {
 		var processsDescs = [
 			{
 				name: "process_1"
@@ -690,8 +863,8 @@ mcmMapServices.provider('McmMapProcessService', {
 
 mcmMapServices.provider('McmMapGridService', {
 	// privateData: "privatno",
-	$get: [/*'$q', '$rootScope', */
-	function(/*$q, $rootScope*/) {
+	$get: ['$q', 'ENV', /*'$rootScope', */
+	function($q, ENV/*, $rootScope*/) {
 		var gridsDescs = [
 			{
 				name: "grid_1"

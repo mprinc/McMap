@@ -633,6 +633,7 @@ $select_sub_entity_title_size: 1em;
 		width: 80%;
 		margin-left: 10%;
 		margin-right: 10%;
+		@include border-radius(25px, 25px);
 	}
 	.assumptions{
 		height: 50%;
@@ -794,6 +795,7 @@ $select_sub_entity_title_size: 1em;
 		width: 80%;
 		margin-left: 10%;
 		margin-right: 10%;
+		@include border-radius(25px, 25px);
 	}
 	.variable_quantitys{
 		height: 50%;
@@ -955,6 +957,7 @@ $select_sub_entity_title_size: 1em;
 		width: 80%;
 		margin-left: 10%;
 		margin-right: 10%;
+		@include border-radius(25px, 25px);
 	}
 	.variable_operators{
 		height: 50%;
@@ -1116,6 +1119,7 @@ $select_sub_entity_title_size: 1em;
 		width: 80%;
 		margin-left: 10%;
 		margin-right: 10%;
+		@include border-radius(25px, 25px);
 	}
 	.objects{
 		height: 50%;
@@ -1277,6 +1281,7 @@ $select_sub_entity_title_size: 1em;
 		width: 80%;
 		margin-left: 10%;
 		margin-right: 10%;
+		@include border-radius(25px, 25px);
 	}
 	.processs{
 		height: 50%;
@@ -1438,6 +1443,7 @@ $select_sub_entity_title_size: 1em;
 		width: 80%;
 		margin-left: 10%;
 		margin-right: 10%;
+		@include border-radius(25px, 25px);
 	}
 	.grids{
 		height: 50%;

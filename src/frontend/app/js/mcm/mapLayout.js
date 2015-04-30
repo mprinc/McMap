@@ -64,7 +64,7 @@ MapLayout.prototype.clickNode = function(d, dom) {
 
 	if(isSelected){
 		if(d) d.isSelected = false;
-		this.selectedNode = null;
+		this.structure.unsetSelectedNode();
 	}else{
 		if(d && dom){
 			// var nodeHtml = nodesHtml[0];
@@ -73,13 +73,13 @@ MapLayout.prototype.clickNode = function(d, dom) {
 				"unselected": false
 			});
 			d.isSelected = true;
-			this.selectedNode = d;
+			this.structure.setSelectedNode(d);
 		}else{
-			this.selectedNode = null;
+			this.structure.unsetSelectedNode();
 		}
 	}
 
-	this.clientApi.mapEntityClicked(this.selectedNode ? d : null, dom);
+	this.clientApi.mapEntityClicked(this.structure.getSelectedNode(), dom);
 	//this.update(this.rootNode);
 	return false;
 };

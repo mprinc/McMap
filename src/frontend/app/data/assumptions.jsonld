@@ -1,11 +1,5 @@
 {
   "@graph" : [ {
-    "@id" : "http://geosoft-earthcube.org/ontology/Assumption/unknown_approximation",
-    "rdf:type" : {
-      "@id" : "http://www.geosoft-earthcube.org/ontology/Assumption/Approximation"
-    },
-    "skos:prefLabel" : "unknown_approximation"
-  }, {
     "@id" : "http://geosoft-earthcube.org/ontology/CSDMS#implies",
     "rdf:type" : {
       "@id" : "owl:AnnotationProperty"
@@ -220,14 +214,6 @@
     },
     "rdfs:label" : "Time-Scale Assumption",
     "subClassOf" : "http://www.geosoft-earthcube.org/ontology/software-geo#Assumption"
-  }, {
-    "@id" : "http://www.geosoft-earthcube.org/ontology/Assumption/VSEPR",
-    "rdf:type" : [ {
-      "@id" : "owl:NamedIndividual"
-    }, {
-      "@id" : "http://www.geosoft-earthcube.org/ontology/Assumption/Named_Model-Type_Assumption"
-    } ],
-    "rdfs:label" : "VSEPR"
   }, {
     "@id" : "http://www.geosoft-earthcube.org/ontology/Assumption/a-stable_method",
     "rdf:type" : [ {
