@@ -144,7 +144,7 @@ angular.module('mcmMapDirectives', ['Config'])
 				var gotMap = function(map){		
 					console.log('gotMap:'+JSON.stringify(map));
 					KnalledgeMapVOsService.loadData(map); //broadcasts 'modelLoadedEvent'
-				}
+				};
 
 				// initiating loading map data from server
 				KnalledgeMapService.getById(mapId).$promise.then(gotMap);
