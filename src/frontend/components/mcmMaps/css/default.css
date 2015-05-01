@@ -71,27 +71,3 @@
   /* line 81, ../sass/default.scss */
   .mapsList .buttons {
     text-align: left; }
-
-/*
-.mcm_map_tools{
-	z-index: 10;
-	position: relative;
-	ul {
-		position: relative;
-
-		li {
-			@include border-radius(10px, 10px);
-			list-style-type: none;
-			left: -$variable_font_size/2;
-			@include transition-property(color);
-			@include transition-duration(0.3s);
-			@include transition-timing-function(ease-in);
-			@include box-shadow(3px 2px 3px 1px rgba(150, 150, 255, 0.75));
-			&:hover{
-				background-color: lighten($select_sub_entity_entity_color, 10%);
-				color: darken($select_sub_entity_entity_color, 5%);
-			}
-		}
-	}
-}
-*/

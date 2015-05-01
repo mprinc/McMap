@@ -25,6 +25,9 @@ angular.module('McModelarApp',[
 	.when('/map/id/:id', {
 		templateUrl: '../components/mcmMap/partials/index.tpl.html'
 	})
+	.when('/importAssumptions', {
+		templateUrl: '../components/mcmMap/partials/mcmImportAssumptions-index.tpl.html'
+	})
 	.when('/maps', {
 		templateUrl: '../components/mcmMaps/partials/index.tpl.html'
 	})

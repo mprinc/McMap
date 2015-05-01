@@ -1,0 +1,11 @@
+<div class="assumptions">
+	<!-- <span>Assumptions:</span> -->
+	<h2>{{listTitle}}</h2>
+	<table class="list" >
+		<tr><th class="title_name">Item</th><th class="title_name">Status</th></tr>
+		<tr data-ng-click="selectItem(item)" ng-repeat="item in items" data-ng-class="{'active-selection': item.name == selectedItem.name}">
+			<td>{{item.name}}</td>
+			<td>{{item.status}}</td>
+		</tr>
+	</table>
+</div>

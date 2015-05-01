@@ -916,6 +916,82 @@ angular.module('mcmMapDirectives', ['Config'])
     		}	
     	};
 	}])
+	.directive('mcmImportAssumptions', ['KnalledgeMapVOsService', 'KnalledgeNodeService', 'KnalledgeMapService', 'McmMapAssumptionService', 
+		function(KnalledgeMapVOsService, KnalledgeNodeService, KnalledgeMapService, McmMapAssumptionService){ // mcm_map_select_sub_entity
+		return {
+			restrict: 'AE',
+			// scope: {
+			// },
+			// ng-if directive: http://docs.angularjs.org/api/ng.directive:ngIf
+			// expression: http://docs.angularjs.org/guide/expression
+			templateUrl: '../components/mcmMap/partials/mcm-importAssumption.tpl.html',
+			controller: function ( $scope, $element) {
+
+				
+				$scope.selectedItem = null;
+				$scope.mapAssumptions = null;
+
+				KnalledgeMapService.queryByType("assumptions").$promise.then(function(maps){
+					console.log("maps (%d): %s", maps.length, JSON.stringify(maps));
+					$scope.mapAssumptions = maps[0];
+
+					KnalledgeNodeService.getById($scope.mapAssumptions.rootNodeId).$promise.then(function(rootNode){
+						$scope.rootNodeAssumption = rootNode;
+						populateItems();
+					});
+				});
+
+				var populateItems = function(){
+					console.log("populateItems");
+					$scope.items = McmMapAssumptionService.getAssumptionsDescs();
+					console.log("items length: " + $scope.items.length);
+					$scope.listTitle = $scope.items.length + " assumptions are still importing ...";
+
+					var j = 0;
+					for(var i=0; i<$scope.items.length; i++){
+						var item = $scope.items[i];
+						item.status = "queued";
+						j++;
+
+						var kEdge = new knalledge.KEdge();
+						kEdge.type = "containsAssumption";
+						kEdge.mapId = $scope.mapAssumptions._id;
+
+						var kNode = new knalledge.KNode();
+						kNode.type = "assumption";
+						kNode.mapId = $scope.mapAssumptions._id;
+
+						if(j<10){
+							KnalledgeMapVOsService.createNodeWithEdge($scope.rootNodeAssumption, kEdge, kNode);
+						}
+					}
+				};
+
+				$scope.cancelled = function(){
+					//console.log("Canceled");
+					$element.remove(); //TODO: sta je ovo?
+					$scope.selectingCanceled();
+				};
+
+				$scope.submitted = function(){
+					console.log("Submitted");
+					if($scope.selectedItem !== null && $scope.selectedItem !== undefined){
+						$scope.selectedAssumption($scope.selectedItem);
+						$element.remove();
+					}
+					else{
+						window.alert('Please, select an Assumption');
+					}
+				};
+				$scope.listTitle = "Assumptions are still importing ...";
+				McmMapAssumptionService.getLoadingPromise().then(function(){
+					$scope.listTitle = "Assumptions are imported ...";
+					populateItems("");
+				});
+
+    		}
+    	};
+	}])
 ;
 
 }()); // end of 'use strict';

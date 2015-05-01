@@ -5,8 +5,8 @@
 var envs = {
 	"server": {
 		"server": {
-			"frontend": "http://headsware.com/mcm/McMap/app",
-			"backend": "http://headsware.com/mcm/McMap/app/data",
+			"frontend": "http://earthcube.headsware.com/app",
+			"backend": "http://earthcube.headsware.com:8042",
 			"parseResponse": true,
 			"jsonPrefixed": ")]}',\n"
 		},
