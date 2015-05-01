@@ -406,6 +406,10 @@ MapVisualization.prototype.updateHtml = function(source) {
 	nodeHtmlEnter
 		.append("div")
 			.attr("class", "var_out");
+	// Processes
+	nodeHtmlEnter
+		.append("div")
+			.attr("class", "process");
 
 // nodeHtml
 	// Name
@@ -439,6 +443,13 @@ MapVisualization.prototype.updateHtml = function(source) {
 		.html(function(d){
 			var varOuts = that.mapStructure.getChildrenNodes(d, mcm.MapLayout.CONTAINS_VARIABLE_OUT);
 			return "" + varOuts.length;
+		});
+
+	// Processes
+	nodeHtml.select(".process")
+		.html(function(d){
+			var processes = that.mapStructure.getChildrenNodes(d, mcm.MapLayout.CONTAINS_PROCESS);
+			return "" + processes.length;
 		});
 
 	if(this.configTransitions.enter.animate.opacity){
@@ -475,9 +486,9 @@ MapVisualization.prototype.updateHtmlTransitions = function(source, nodeHtmlData
 
 	nodeHtmlUpdate
 		.select(".status")
-			.style("background-color", function(d){
-				return (d.draggedInNo != d3.select(this).html()) ? "red" : "yellow";
-			})
+			// .style("background-color", function(d){
+			// 	return (d.draggedInNo != d3.select(this).html()) ? "red" : "yellow";
+			// })
 			.style("padding-right", function(d){
 				return (d.draggedInNo != d3.select(this).html()) ? "5px" : "2px";
 			})
@@ -512,7 +523,7 @@ MapVisualization.prototype.updateHtmlTransitions = function(source, nodeHtmlData
 
 	(this.configTransitions.update.animate.opacity ? nodeHtmlUpdateTransition : nodeHtmlUpdate)
 		.select(".status")
-			.style("background-color", "yellow")
+			// .style("background-color", "yellow")
 			.style("padding-right", "2px");
 
 	if(this.configTransitions.update.animate.opacity){

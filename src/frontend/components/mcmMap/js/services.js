@@ -2,7 +2,7 @@
 'use strict';
 //this function is strict...
 
-var mcmMapServices = angular.module('mcmMapServices', ['ngResource', 'Config']);
+var mcmMapServices = angular.module('mcmMapServices', ['ngResource', 'Config', 'knalledgeMapServices']);
 
 mcmMapServices.provider('McmMapSchemaService', {
 	// privateData: "privatno",
@@ -15,6 +15,13 @@ mcmMapServices.provider('McmMapSchemaService', {
 				icon: "MC",
 				icon_fa: "suitcase",
 				predicate: "containsModel"
+			},
+			grid: {
+				isShownOnMap: true,
+				typeClass: "entity_grid",
+				icon: "G",
+				icon_fa: "tablet",
+				predicate: "containsGrid"
 			},
 			object: {
 				isShownOnMap: true,
@@ -32,7 +39,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 				predicates: ["containsVariableIn", "containsVariableOut"]
 			},
 			process: {
-				isShownOnMap: true,
+				isShownOnMap: false,
 				typeClass: "entity_process",
 				icon: "P",
 				icon_fa: "car",
@@ -54,7 +61,6 @@ mcmMapServices.provider('McmMapSchemaService', {
 			model_component: {
 				assumption: true,
 				object: true,
-				process: true,
 				grid: true
 			},
 			object: {
@@ -86,9 +92,6 @@ mcmMapServices.provider('McmMapSchemaService', {
 				contains: {
 					containsModel: {
 
-					},
-					containsGrid: {
-
 					}
 				}
 			},
@@ -102,6 +105,9 @@ mcmMapServices.provider('McmMapSchemaService', {
 
 					},
 					containsAssumption: {
+
+					},
+					containsGrid: {
 
 					}
 
@@ -177,6 +183,11 @@ mcmMapServices.provider('McmMapSchemaService', {
 		};
 
 		var edgesStyles = {
+			"containsGrid": {
+				typeClass: "edge_contains_grid",
+				icon: "G",
+				icon_fa: "tablet"
+			},
 			"containsObject": {
 				typeClass: "edge_contains_object",
 				icon: "MC",
@@ -209,7 +220,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "containsModel",
 				name: "containsModel",
 				type: "containsModel",
-				icon: "M",
+				icon: "Model Component",
 				object: "model_component",
 				objects: "model_components"
 			},
@@ -217,7 +228,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "containsGrid",
 				name: "containsGrid",
 				type: "containsGrid",
-				icon: "G",
+				icon: "Grid",
 				object: "grid",
 				objects: "grids"
 			},
@@ -225,7 +236,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "containsObject",
 				name: "containsObject",
 				type: "containsObject",
-				icon: "O",
+				icon: "Object",
 				object: "object",
 				objects: "objects"
 			},
@@ -233,7 +244,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "containsProcess",
 				name: "containsProcess",
 				type: "containsProcess",
-				icon: "P",
+				icon: "Process",
 				object: "process",
 				objects: "processes"
 			},
@@ -241,7 +252,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "containsVariableIn",
 				name: "containsVariableIn",
 				type: "containsVariableIn",
-				icon: "IV",
+				icon: "Input Variable",
 				object: "variable",
 				objects: "in-vars"
 			},
@@ -249,7 +260,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "containsVariableOut",
 				name: "containsVariableOut",
 				type: "containsVariableOut",
-				icon: "OV",
+				icon: "Output Variable",
 				object: "variable",
 				objects: "out-vars"
 			},
@@ -257,7 +268,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "containsAssumption",
 				name: "containsAssumption",
 				type: "containsAssumption",
-				icon: "A",
+				icon: "Assumption",
 				object: "assumption",
 				objects: "assumptions"
 			}
@@ -376,16 +387,17 @@ mcmMapServices.provider('McmMapAssumptionService', {
 					else itemCategoriesAll[itemCategory] = 1;
 
 					if(!('rdfs:label' in itemFromGraph) && !('skos:prefLabel' in itemFromGraph)){
-						alert("Missing both label 'rdfs:label' and 'skos:prefLabel' for loaded assumption");
+						// alert("Missing both label 'rdfs:label' and 'skos:prefLabel' for loaded assumption");
 						console.warn("Missing both label 'rdfs:label' and 'skos:prefLabel' for loaded assumption: %s", JSON.stringify(itemFromGraph));
 					}
 					if(('rdfs:label' in itemFromGraph) && ('skos:prefLabel' in itemFromGraph)){
-						alert("Assumption loaded with both label 'rdfs:label' and 'skos:prefLabel' set");
+						// alert("Assumption loaded with both label 'rdfs:label' and 'skos:prefLabel' set");
 						console.warn("Assumption loaded with both label 'rdfs:label' and 'skos:prefLabel' set: %s", JSON.stringify(itemFromGraph));
 					}
 					var itemName = null;
-					if('rdfs:label' in itemFromGraph) itemName = itemFromGraph['rdfs:label'];
 					if('skos:prefLabel' in itemFromGraph) itemName = itemFromGraph['skos:prefLabel'];
+					if(!itemName && 'rdfs:label' in itemFromGraph) itemName = itemFromGraph['rdfs:label'];
+					if(!itemName && '@id' in itemFromGraph) itemName = itemFromGraph['@id'].substring(itemFromGraph['@id'].lastIndexOf("/")+1);
 
 					if(itemName && itemName.length > 0){
 						var itemForExport = {};
@@ -453,6 +465,8 @@ mcmMapServices.provider('McmMapObjectService', {
 				name: "object_3"
 			}
 		];
+		var objectsDescsById = {};
+		var objectsDescsByLabel = {};
 
 		// objectsDescs = [];
 
@@ -525,11 +539,11 @@ mcmMapServices.provider('McmMapObjectService', {
 					else dataCategoriesAll[itemCategory] = 1;
 
 					if(!('rdfs:label' in itemFromGraph) && !('skos:prefLabel' in itemFromGraph)){
-						alert("Missing both label 'rdfs:label' and 'skos:prefLabel' for loaded assumption");
+						// alert("Missing both label 'rdfs:label' and 'skos:prefLabel' for loaded assumption");
 						console.warn("Missing both label 'rdfs:label' and 'skos:prefLabel' for loaded assumption: %s", JSON.stringify(itemFromGraph));
 					}
 					if(('rdfs:label' in itemFromGraph) && ('skos:prefLabel' in itemFromGraph)){
-						alert("Assumption loaded with both label 'rdfs:label' and 'skos:prefLabel' set");
+						// alert("Assumption loaded with both label 'rdfs:label' and 'skos:prefLabel' set");
 						console.warn("Assumption loaded with both label 'rdfs:label' and 'skos:prefLabel' set: %s", JSON.stringify(itemFromGraph));
 					}
 					var itemName = null;
@@ -569,6 +583,8 @@ mcmMapServices.provider('McmMapObjectService', {
 							}
 						}
 					}
+					objectsDescsById[itemForExport.id] = itemForExport;
+					objectsDescsByLabel[itemForExport.name] = itemForExport;
 				}
 			}
 			console.log("[McmMapObjectService] rdfTypesAll.length: %s", Object.keys(rdfTypesAll).length);
@@ -599,6 +615,14 @@ mcmMapServices.provider('McmMapObjectService', {
 		return {
 			getObjectsDescs: function(){
 				return objectsDescs;
+			},
+
+			getObjectDescById: function(objectId){
+				return objectsDescsById[objectId];
+			},
+
+			getObjectDescByLabel: function(objectLabel){
+				return objectsDescsByLabel[objectLabel];
 			},
 
 			getObjectsDesByName: function(nameSubStr, fromStart, onlyTheNextObject){
@@ -656,8 +680,8 @@ mcmMapServices.provider('McmMapObjectService', {
 
 mcmMapServices.provider('McmMapVariableQuantityService', {
 	// privateData: "privatno",
-	$get: ['$q', 'ENV', /*'$rootScope', */
-	function($q, ENV/*, $rootScope*/) {
+	$get: ['$q', 'ENV', 'McmMapObjectService'/*, '$rootScope'*/,
+	function($q, ENV, McmMapObjectService/*, $rootScope*/) {
 		var variableQuantitysDescs = [
 			{
 				name: "variableQuantity_1"
@@ -667,50 +691,25 @@ mcmMapServices.provider('McmMapVariableQuantityService', {
 			},
 			{
 				name: "variableQuantity_3"
-			},
-			{
-				name: "variableQuantity_12"
-			},
-			{
-				name: "variableQuantity_13"
-			},
-			{
-				name: "variableQuantity_123"
-			},
-			{
-				name: "variableQuantity_14"
-			},
-			{
-				name: "variableQuantity_145"
-			},
-			{
-				name: "variableQuantity_12345"
-			},
-			{
-				name: "variableQuantity_1235"
-			},
-			{
-				name: "variableQuantity_143"
-			},
-			{
-				name: "variableQuantity_1451"
-			},
-			{
-				name: "variableQuantity_1245"
 			}
 		];
 
 		// var that = this;
 		return {
-			getVariableQuantitysDescs: function(){
+			getVariableQuantitysDescs: function(objectEntity){
 				return variableQuantitysDescs;
 			},
 
-			getVariableQuantitysDesByName: function(nameSubStr){
+			getVariableQuantitysDesInObjectByName: function(objectEntity, nameSubStr){
+				var objeLabel = McmMapObjectService.getFullObjectName(objectEntity);
+				var objDesc = McmMapObjectService.getObjectDescByLabel(objeLabel);
 				var returnedVariableQuantitys = [];
-				for(var i in variableQuantitysDescs){
-					var variableQuantity = variableQuantitysDescs[i];
-					if(variableQuantity.name.indexOf(nameSubStr) > -1){
+				for(var i in objDesc.quantities){
+					var variableQuantityName = objDesc.quantities[i];
+					if(variableQuantityName.indexOf(nameSubStr) > -1){
+						var variableQuantity = {
+							name: variableQuantityName
+						};
 						returnedVariableQuantitys.push(variableQuantity);
 					}
 				}
@@ -798,7 +797,11 @@ mcmMapServices.provider('McmMapProcessService', {
 	// privateData: "privatno",
 	$get: ['$q', 'ENV', /*'$rootScope', */
 	function($q, ENV/*, $rootScope*/) {
-		var processsDescs = [
+		var itemsData = null;
+		var itemsLoaded = false;
+		var itemsDescs = [];
+		// for testing
+		var itemsDescs = [
 			{
 				name: "process_1"
 			},
@@ -807,49 +810,67 @@ mcmMapServices.provider('McmMapProcessService', {
 			},
 			{
 				name: "process_3"
-			},
-			{
-				name: "process_12"
-			},
-			{
-				name: "process_13"
-			},
-			{
-				name: "process_123"
-			},
-			{
-				name: "process_14"
-			},
-			{
-				name: "process_145"
-			},
-			{
-				name: "process_12345"
-			},
-			{
-				name: "process_1235"
-			},
-			{
-				name: "process_143"
-			},
-			{
-				name: "process_1451"
-			},
-			{
-				name: "process_1245"
 			}
 		];
+		// itemsDescs = [];
 
+		var queryItems = function(){
+			var data = [];
+			data.$promise = null;
+			data.$resolved = false;
+
+			data.$promise = $q(function(resolve, reject) { /*jshint unused:false*/
+				// http://jsonformatter.curiousconcept.com/
+				var jsonUrl = ENV.server.frontend + "/data/processes.json";
+				$.getJSON(jsonUrl, null, function(jsonContent){
+					console.log("[McmMapAssumptionService:getJSON] Loaded processes: %s, (size: %d)", jsonUrl,
+					jsonContent.length);
+					for(var id in jsonContent){
+						data[id] = jsonContent[id];
+					}
+					data.$resolved = true;
+					resolve(data);
+				});
+			// reject('Greeting ' + name + ' is not allowed.');
+			});
+			return data;
+		};
+
+		itemsData = queryItems();
+
+		itemsData.$promise.then(function(itemsData){
+			itemsDescs.length = 0;
+
+			var rdfTypesAll = {};
+			var itemCategoriesAll = {};
+
+			for(var i=0; i<itemsData.length; i++){
+				var isItem = true; // always for processes
+				var itemCategory = null;
+				var itemFromList = itemsData[i];
+				if(isItem){
+					var itemName = itemFromList.name;
+
+					var itemForExport = {};
+					itemForExport.id = itemName;
+					itemForExport.name = itemName;
+					itemForExport.verb = itemFromList.verb;
+					itemForExport.description = itemFromList.description;
+					itemsDescs.push(itemForExport);						
+				}
+			}
+			itemsLoaded = true;
+		});
 		// var that = this;
 		return {
-			getProcesssDescs: function(){
-				return processsDescs;
+			getItemsDescs: function(){
+				return itemsDescs;
 			},
 
 			getProcesssDesByName: function(nameSubStr){
 				var returnedProcesss = [];
-				for(var i in processsDescs){
-					var process = processsDescs[i];
+				for(var i in itemsDescs){
+					var process = itemsDescs[i];
 					if(process.name.indexOf(nameSubStr) > -1){
 						returnedProcesss.push(process);
 					}
@@ -928,5 +949,193 @@ mcmMapServices.provider('McmMapGridService', {
 	}]
 });
 
+mcmMapServices.provider('McmMapVisualService', {
+	// privateData: "privatno",
+	$get: ['$q', 'ENV', '$rootScope', '$compile', 'McmMapAssumptionService', 'McmMapObjectService', 'McmMapProcessService', 'McmMapVariableOperatorService', 'KnalledgeMapVOsService',
+	function($q, ENV, $rootScope, $compile, McmMapAssumptionService, McmMapObjectService, McmMapProcessService, McmMapVariableOperatorService, KnalledgeMapVOsService) {
+		var mcmMap, $scope, $element;
+
+		var dialogues = {
+			selectVariableQuantity: function(mapEntity){
+				var realMapEntity = KnalledgeMapVOsService.mapStructure.getVKNodeByKId(mapEntity.kNode._id);
+				var parentEntities = KnalledgeMapVOsService.mapStructure.getParentNodes(mapEntity);
+				var parentEntity = (parentEntities.length>0) ? parentEntities[0] : null;
+
+				this._selectVariableQuantity(parentEntity, realMapEntity, this._selectionOfSubpropertiesFinished);
+			},
+
+			selectAssumption: function(mapEntity){
+				_selectAssumption(mapEntity, _selectionOfSubpropertiesFinished);
+			},
+
+			selectVariableOperator: function(mapEntity){
+				selectVariableOperator(mapEntity.parent, mapEntity, _selectionOfSubpropertiesFinished);						
+			},
+			selectObject: function(mapEntity){
+				_selectObject(mapEntity.parent, mapEntity, _selectionOfSubpropertiesFinished);
+			},
+			selectProcess: function(mapEntity){
+				_selectProcess(mapEntity, _selectionOfSubpropertiesFinished);
+			},
+			selectGrid: function(mapEntity){
+				_selectGrid(mapEntity, _selectionOfSubpropertiesFinished);
+			},
+
+			_selectionOfSubpropertiesFinished: function(vkAddedInNode, subproperty){
+				mcmMap.update(null, function(){
+					// that.clientApi.setSelectedNode(null); //TODO: set to parent
+				});
+				var eventName = "modelMapStructureChanged";
+				$rootScope.$broadcast(eventName, vkAddedInNode);
+			},
+
+			_selectAssumption: function(mapEntity, callback){
+				// we need this to avoid double calling
+				// the first on dragging in and second on clicking on the tool entity
+				console.log("selecting assumption");
+				var directiveScope = $scope.$new(); // $new is not super necessary
+				// create popup directive mcmMapSelectAssumption
+				var directiveLink = $compile("<div mcm_map_select_assumption class='mcm_map_select_assumption'></div>");
+				// link HTML containing the directive
+				var directiveElement = directiveLink(directiveScope);
+				$element.append(directiveElement);
+
+				directiveScope.mapEntity = mapEntity;
+				directiveScope.selectingCanceled = function(){
+					console.log("[selectAssumption]: selectingCanceled");
+				},
+				directiveScope.selectedAssumption = function(assumption){
+					console.log("[selectAssumption]: Added entity to addingInEntity: %s", JSON.stringify(assumption));
+					mapEntity.kNode.name = assumption.name;
+					if(typeof callback === 'function') callback(mapEntity.parent, assumption);
+
+				}.bind(this);
+			},
+			_selectVariableQuantity: function(parentMapEntity, mapEntity, callback){
+				// we need this to avoid double calling
+				// the first on dragging in and second on clicking on the tool entity
+				console.log("selecting VariableQuantity");
+
+				var directiveScope = $scope.$new(); // $new is not super necessary
+				// create popup directive
+				// mcmMapSelectVariableQuantity
+				var directiveLink = $compile("<div mcm_map_select_variable_quantity class='mcm_map_select_variable_quantity'></div>");
+				// link HTML containing the directive
+				var directiveElement = directiveLink(directiveScope);
+				$element.append(directiveElement);
+
+				directiveScope.parentMapEntity = parentMapEntity;
+				directiveScope.mapEntity = mapEntity;
+				directiveScope.selectingCanceled = function(){
+					console.log("selectingCanceled");
+				},
+				directiveScope.selectedVariableQuantity = function(variableQuantity){
+					console.log("Added variableQuantity to addingInEntity: %s", JSON.stringify(variableQuantity));
+					mapEntity.kNode.name = variableQuantity.name;
+					if(typeof callback === 'function') callback(mapEntity.parent, variableQuantity);
+				}.bind(this);
+			},
+			_selectVariableOperator: function(parentMapEntity, mapEntity, callback){
+				// we need this to avoid double calling
+				// the first on dragging in and second on clicking on the tool entity
+				console.log("selecting VariableOperator");
+				var directiveScope = $scope.$new(); // $new is not super necessary
+				// create popup directive
+				var directiveLink = $compile("<div mcm_map_select_variable_operator class='mcm_map_select_variable_operator'></div>");
+				// link HTML containing the directive
+				var directiveElement = directiveLink(directiveScope);
+				$element.append(directiveElement);
+
+				directiveScope.mapEntity = mapEntity;
+				directiveScope.selectingCanceled = function(){
+					console.log("selectingCanceled");
+				},
+				directiveScope.selectedVariableOperator = function(variableOp){
+					console.log("Added entity to addingInEntity: %s", JSON.stringify(variableOp));
+					if(typeof callback === 'function') callback(mapEntity.parent, variableOp);
+				}.bind(this);
+			},
+			_selectObject: function(parentMapEntity, mapEntity, callback){
+				// we need this to avoid double calling
+				// the first on dragging in and second on clicking on the tool entity
+				console.log("selecting Object");
+				var parentFullObjectName = McmMapObjectService.getFullObjectName(parentMapEntity);
+				var directiveScope = $scope.$new(); // $new is not super necessary
+				// create popup directive
+				// mcmMapSelectObject
+				var directiveLink = $compile("<div mcm_map_select_object class='mcm_map_select_object'></div>");
+				// link HTML containing the directive
+				var directiveElement = directiveLink(directiveScope);
+				$element.append(directiveElement);
+
+				directiveScope.mapEntity = mapEntity;
+				directiveScope.parentFullObjectName = parentFullObjectName;
+				directiveScope.selectingCanceled = function(){
+					console.log("selectingCanceled");
+				},
+				directiveScope.selectedObject = function(object){
+					console.log("Added entity to addingInEntity: %s", JSON.stringify(object));
+					var baseName = McmMapObjectService.getBaseObjectName(object.name);
+					mapEntity.kNode.name = baseName;
+					if(typeof callback === 'function') callback(mapEntity.parent, object);
+				}.bind(this);
+			},
+			_selectProcess: function(mapEntity, callback){
+				// we need this to avoid double calling
+				// the first on dragging in and second on clicking on the tool entity
+				console.log("selecting Process");
+				var directiveScope = $scope.$new(); // $new is not super necessary
+				// create popup directive
+				var directiveLink = $compile("<div mcm_map_select_process class='mcm_map_select_process'></div>");
+				// link HTML containing the directive
+				var directiveElement = directiveLink(directiveScope);
+				$element.append(directiveElement);
+
+				directiveScope.mapEntity = mapEntity;
+				directiveScope.selectingCanceled = function(){
+					console.log("selectingCanceled");
+				},
+				directiveScope.selectedProcess = function(process){
+					console.log("Added entity to addingInEntity: %s", JSON.stringify(process));
+					mapEntity.kNode.name = process.name;
+					if(typeof callback === 'function') callback(mapEntity.parent, process);
+				}.bind(this);
+			},
+			_selectGrid: function(mapEntity, callback){
+				// we need this to avoid double calling
+				// the first on dragging in and second on clicking on the tool entity
+				console.log("selecting Grid");
+				var directiveScope = $scope.$new(); // $new is not super necessary
+				// create popup directive
+				var directiveLink = $compile("<div mcm_map_select_grid class='mcm_map_select_grid'></div>");
+				// link HTML containing the directive
+				var directiveElement = directiveLink(directiveScope);
+				$element.append(directiveElement);
+
+				directiveScope.mapEntity = mapEntity;
+				directiveScope.selectingCanceled = function(){
+					console.log("selectingCanceled");
+				},
+				directiveScope.selectedGrid = function(addingInEntity){
+					console.log("Added entity to addingInEntity: %s", JSON.stringify(addingInEntity));
+					if(typeof callback === 'function') callback(mapEntity.parent, assumption);
+				}.bind(this);
+			}
+		};
+
+		// var that = this;
+		return {
+			init: function(_mcmMap, _$scope, _$element){
+				mcmMap = _mcmMap;
+				$scope = _$scope;
+				$element = _$element;
+			},
+
+			getDialogues: function(){
+				return dialogues;
+			}
+		};
+	}]
+});
 
 }()); // end of 'use strict';

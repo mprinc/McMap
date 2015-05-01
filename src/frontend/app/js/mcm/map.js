@@ -13,7 +13,8 @@ var Map =  mcm.Map = function(parentDom, config, clientApi, schema, mapService, 
 	// this.state = new knalledge.State();
 	this.mapStructure = this.mapStructureExternal ? this.mapStructureExternal : new knalledge.MapStructure();
 	var mapVisualizationApi = {
-		timeout: this.clientApi.timeout
+		timeout: this.clientApi.timeout,
+		dialogues: this.clientApi.dialogues
 	};
 	this.mapVisualization = new mcm.MapVisualization(this.parentDom, mapVisualizationApi, this.mapStructure, this.config.view, this.config.transitions, this.config.nodes, this.config.edges, this.config.interaction.resizingConfig, this.schema);
 	var mapLayoutApi = {

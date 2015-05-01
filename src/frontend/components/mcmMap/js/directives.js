@@ -2,9 +2,8 @@
 'use strict';
 
 angular.module('mcmMapDirectives', ['Config'])
-	.directive('mcmMap', ['$timeout', '$rootScope', '$routeParams', 'ConfigMap', '$compile', 'McmMapSchemaService', 'KnalledgeMapVOsService', 'KnalledgeMapService', 'McmMapAssumptionService', 'McmMapObjectService',
-		function($timeout, $rootScope, $routeParams, ConfigMap, $compile, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapService, McmMapAssumptionService, McmMapObjectService){
-
+	.directive('mcmMap', ['$timeout', '$rootScope', '$routeParams', 'ConfigMap', '$compile', 'McmMapSchemaService', 'KnalledgeMapVOsService', 'KnalledgeMapService', 'McmMapVisualService', 'McmMapVariableOperatorService',
+		function($timeout, $rootScope, $routeParams, ConfigMap, $compile, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapService, McmMapVisualService, McmMapVariableOperatorService){
 
 		// http://docs.angularjs.org/guide/directive
 		// console.log("[mcmMap] loading directive");
@@ -29,6 +28,8 @@ angular.module('mcmMapDirectives', ['Config'])
 				}
 				var mapId = $routeParams.id;
 				console.log("mcmMapDirectives::mapId: " + mapId);
+
+				var dialogues = McmMapVisualService.getDialogues();
 
 				var mcmMapClientInterface = {
 					getContainer: function(){
@@ -97,11 +98,7 @@ angular.module('mcmMapDirectives', ['Config'])
 								var selectionOfSubpropertiesFinished = function(subproperty){
 									var vkEdge = mcmMap.mapStructure.createNodeWithEdge(vkAddedInNode, vkEdgeRelationship, vkNodeEntity);
 									vkEdge.kEdge.$promise.then(function(){
-										mcmMap.update(null, function(){
-											// that.clientApi.setSelectedNode(null); //TODO: set to parent
-										});
-										var eventName = "modelMapStructureChanged";
-										$rootScope.$broadcast(eventName, vkAddedInNode);
+										dialogues._selectionOfSubpropertiesFinished(subproperty);
 									});
 								};
 
@@ -109,21 +106,26 @@ angular.module('mcmMapDirectives', ['Config'])
 
 								switch(vkNodeEntity.kNode.type){
 									case "variable":
-										mcmMapClientInterface.selectVariableQuantity(vkAddedInNode, vkNodeEntity, function(){
-											mcmMapClientInterface.selectVariableOperator(vkAddedInNode, vkNodeEntity, selectionOfSubpropertiesFinished);
+										dialogues._selectVariableQuantity(vkAddedInNode, vkNodeEntity, function(variableQuantity){
+											if(McmMapVariableOperatorService.areVariableOperatorsSeparate()){
+												dialogues._selectVariableOperator(
+													vkAddedInNode, vkNodeEntity, selectionOfSubpropertiesFinished);
+											}else{
+												if(typeof selectionOfSubpropertiesFinished === 'function') selectionOfSubpropertiesFinished(variableQuantity);
+											}
 										});
 										break;
 									case "assumption":
-										mcmMapClientInterface.selectAssumption(vkNodeEntity, selectionOfSubpropertiesFinished);
+										dialogues._selectAssumption(vkNodeEntity, selectionOfSubpropertiesFinished);
 										break;
 									case "object":
-										mcmMapClientInterface.selectObject(vkAddedInNode, vkNodeEntity, selectionOfSubpropertiesFinished);
+										dialogues._selectObject(vkAddedInNode, vkNodeEntity, selectionOfSubpropertiesFinished);
 										break;
 									case "process":
-										mcmMapClientInterface.selectProcess(vkNodeEntity, selectionOfSubpropertiesFinished);
+										dialogues._selectProcess(vkNodeEntity, selectionOfSubpropertiesFinished);
 										break;
 									case "grid":
-										mcmMapClientInterface.selectProcess(vkNodeEntity, selectionOfSubpropertiesFinished);
+										dialogues._selectGrid(vkNodeEntity, selectionOfSubpropertiesFinished);
 										break;
 									default:
 										break;
@@ -131,136 +133,13 @@ angular.module('mcmMapDirectives', ['Config'])
 							}.bind(this);
 						});
 					},
-					selectAssumption: function(mapEntity, callback){
-						// we need this to avoid double calling
-						// the first on dragging in and second on clicking on the tool entity
-						console.log("selecting assumption");
-						var directiveScope = $scope.$new(); // $new is not super necessary
-						// create popup directive mcmMapSelectAssumption
-						var directiveLink = $compile("<div mcm_map_select_assumption class='mcm_map_select_assumption'></div>");
-						// link HTML containing the directive
-						var directiveElement = directiveLink(directiveScope);
-						$element.append(directiveElement);
-
-						directiveScope.mapEntity = mapEntity;
-						directiveScope.selectingCanceled = function(){
-							console.log("[selectAssumption]: selectingCanceled");
-						},
-						directiveScope.selectedAssumption = function(assumption){
-							console.log("[selectAssumption]: Added entity to addingInEntity: %s", JSON.stringify(assumption));
-							mapEntity.kNode.name = assumption.name;
-							if(typeof callback === 'function') callback(assumption);
-
-						}.bind(this);
-					},
-					selectVariableQuantity: function(parentMapEntity, mapEntity, callback){
-						// we need this to avoid double calling
-						// the first on dragging in and second on clicking on the tool entity
-						console.log("selecting VariableQuantity");
-
-						var directiveScope = $scope.$new(); // $new is not super necessary
-						// create popup directive
-						var directiveLink = $compile("<div mcm_map_select_variable_quantity class='mcm_map_select_variable_quantity'></div>");
-						// link HTML containing the directive
-						var directiveElement = directiveLink(directiveScope);
-						$element.append(directiveElement);
-
-						directiveScope.mapEntity = mapEntity;
-						directiveScope.selectingCanceled = function(){
-							console.log("selectingCanceled");
-						},
-						directiveScope.selectedVariableQuantity = function(variableQuantity){
-							console.log("Added variableQuantity to addingInEntity: %s", JSON.stringify(variableQuantity));
-							if(typeof callback === 'function') callback(variableQuantity);
-						}.bind(this);
-					},
-					selectVariableOperator: function(parentMapEntity, mapEntity, callback){
-						// we need this to avoid double calling
-						// the first on dragging in and second on clicking on the tool entity
-						console.log("selecting VariableOperator");
-						var directiveScope = $scope.$new(); // $new is not super necessary
-						// create popup directive
-						var directiveLink = $compile("<div mcm_map_select_variable_operator class='mcm_map_select_variable_operator'></div>");
-						// link HTML containing the directive
-						var directiveElement = directiveLink(directiveScope);
-						$element.append(directiveElement);
-
-						directiveScope.mapEntity = mapEntity;
-						directiveScope.selectingCanceled = function(){
-							console.log("selectingCanceled");
-						},
-						directiveScope.selectedVariableOperator = function(variableOp){
-							console.log("Added entity to addingInEntity: %s", JSON.stringify(mapEntity));
-							if(typeof callback === 'function') callback(variableOp);
-						}.bind(this);
-					},
-					selectObject: function(parentMapEntity, mapEntity, callback){
-						// we need this to avoid double calling
-						// the first on dragging in and second on clicking on the tool entity
-						console.log("selecting Object");
-						var parentFullObjectName = McmMapObjectService.getFullObjectName(parentMapEntity);
-						var directiveScope = $scope.$new(); // $new is not super necessary
-						// create popup directive
-						// mcmMapSelectObject
-						var directiveLink = $compile("<div mcm_map_select_object class='mcm_map_select_object'></div>");
-						// link HTML containing the directive
-						var directiveElement = directiveLink(directiveScope);
-						$element.append(directiveElement);
-
-						directiveScope.mapEntity = mapEntity;
-						directiveScope.parentFullObjectName = parentFullObjectName;
-						directiveScope.selectingCanceled = function(){
-							console.log("selectingCanceled");
-						},
-						directiveScope.selectedObject = function(object){
-							console.log("Added entity to addingInEntity: %s", JSON.stringify(object));
-							var baseName = McmMapObjectService.getBaseObjectName(object.name);
-							mapEntity.kNode.name = baseName;
-							if(typeof callback === 'function') callback(object);
-						}.bind(this);
-					},
-					selectProcess: function(mapEntity, callback){
-						// we need this to avoid double calling
-						// the first on dragging in and second on clicking on the tool entity
-						console.log("selecting Process");
-						var directiveScope = $scope.$new(); // $new is not super necessary
-						// create popup directive
-						var directiveLink = $compile("<div mcm_map_select_process class='mcm_map_select_process'></div>");
-						// link HTML containing the directive
-						var directiveElement = directiveLink(directiveScope);
-						$element.append(directiveElement);
-
-						directiveScope.mapEntity = mapEntity;
-						directiveScope.selectingCanceled = function(){
-							console.log("selectingCanceled");
-						},
-						directiveScope.selectedProcess = function(addingInEntity){
-							console.log("Added entity to addingInEntity: %s", JSON.stringify(addingInEntity));
-							if(typeof callback === 'function') callback(assumption);
-						}.bind(this);
-					},
-					selectGrid: function(mapEntity, callback){
-						// we need this to avoid double calling
-						// the first on dragging in and second on clicking on the tool entity
-						console.log("selecting Grid");
-						var directiveScope = $scope.$new(); // $new is not super necessary
-						// create popup directive
-						var directiveLink = $compile("<div mcm_map_select_grid class='mcm_map_select_grid'></div>");
-						// link HTML containing the directive
-						var directiveElement = directiveLink(directiveScope);
-						$element.append(directiveElement);
-
-						directiveScope.mapEntity = mapEntity;
-						directiveScope.selectingCanceled = function(){
-							console.log("selectingCanceled");
-						},
-						directiveScope.selectedGrid = function(addingInEntity){
-							console.log("Added entity to addingInEntity: %s", JSON.stringify(addingInEntity));
-							if(typeof callback === 'function') callback(assumption);
-						}.bind(this);
-					},
-					timeout: $timeout
+					timeout: $timeout,
+					dialogues: dialogues
 				};
+
+				mcmMap = new mcm.Map(d3.select($element.find(".map-container").get(0)),
+					ConfigMap, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapVOsService.mapStructure);
+				McmMapVisualService.init(mcmMap, $scope, $element);
 
 				var gotMap = function(map){		
 					console.log('gotMap:'+JSON.stringify(map));
@@ -280,8 +159,6 @@ angular.module('mcmMapDirectives', ['Config'])
 				// };
 
 				model = null;
-				mcmMap = new mcm.Map(d3.select($element.find(".map-container").get(0)),
-					ConfigMap, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapVOsService.mapStructure);
 
 				var eventName = "modelLoadedEvent";
 				$scope.$on(eventName, function(e, eventModel) {
@@ -376,6 +253,7 @@ angular.module('mcmMapDirectives', ['Config'])
     		}
     	};
 	}])
+	// mcm_map_select_variable_quantity
 	.directive('mcmMapSelectVariableQuantity', ['McmMapVariableQuantityService', function(McmMapVariableQuantityService){ // mcm_map_select_sub_entity
 		return {
 			restrict: 'AE',
@@ -402,7 +280,7 @@ angular.module('mcmMapDirectives', ['Config'])
 
 				var populateItems = function(subName){
 					console.log("getVariableQuantitysDesByName(%s)", subName);
-					$scope.items = McmMapVariableQuantityService.getVariableQuantitysDesByName(subName);
+					$scope.items = McmMapVariableQuantityService.getVariableQuantitysDesInObjectByName($scope.parentMapEntity, subName);
 					console.log("$scope.items IN: " + $scope.items);
 
 					// items.length = 0;
@@ -966,7 +844,8 @@ angular.module('mcmMapDirectives', ['Config'])
     		}
     	};
 	}])
-	.directive('mcmMapList', ['$timeout', 'ConfigMapToolset', 'KnalledgeMapVOsService', 'McmMapSchemaService', function($timeout, ConfigMapToolset, KnalledgeMapVOsService, McmMapSchemaService){
+	.directive('mcmMapList', ['$timeout', 'ConfigMapToolset', 'KnalledgeMapVOsService', 'McmMapSchemaService', 'McmMapVariableOperatorService', 'McmMapVisualService',
+		function($timeout, ConfigMapToolset, KnalledgeMapVOsService, McmMapSchemaService, McmMapVariableOperatorService, McmMapVisualService){
 		// http://docs.angularjs.org/guide/directive
 		return {
 			restrict: 'AE',
@@ -979,15 +858,21 @@ angular.module('mcmMapDirectives', ['Config'])
 				var mcmMapModel = null;
 				var mcmMap = null;
 
+				var dialogues = McmMapVisualService.getDialogues();
+
 				var mcmMapClientInterface = {
 					mapEntityClicked: function(){
 
 					},
+					dialogues: dialogues,
 					timeout: $timeout
 				};
 
+				var services = {
+					McmMapVariableOperatorService: McmMapVariableOperatorService
+				};
 				mcmMap = new mcm.list.Map(d3.select($element.get(0)),
-					ConfigMapToolset, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapVOsService.mapStructure);
+					ConfigMapToolset, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapVOsService.mapStructure, services);
 
 				$scope.currentEntity = {
 					name: ""
@@ -1005,10 +890,14 @@ angular.module('mcmMapDirectives', ['Config'])
 				eventName = "modelMapStructureChanged";
 				$scope.$on(eventName, function(e, mapEntity) {
 					console.log("[mcmMapList.controller::$on] modelMapStructureChanged");
-					console.log("[mcmMapList.controller::$on] ModelMap  mapEntity (%s): %s", mapEntity.kNode.type, mapEntity.kNode.name);
-					$scope.currentEntity.name = mapEntity.kNode.name;
-					// it will call mapLayout processData
-					mcmMap.changeSubtreeRoot(mapEntity);
+					if(mapEntity){
+						if(mapEntity.kNode){
+							console.log("[mcmMapList.controller::$on] ModelMap  mapEntity (%s): %s", mapEntity.kNode.type, mapEntity.kNode.name);
+							$scope.currentEntity.name = mapEntity.kNode.name;
+						}
+						// it will call mapLayout processData
+						mcmMap.changeSubtreeRoot(mapEntity);
+					}
 				});
 
 				eventName = "modelLoadedEvent";
