@@ -1,7 +1,7 @@
 (function () { // This prevents problems when concatenating scripts that aren't strict.
 'use strict';
 
-var Map =  mcm.list.Map = function(parentDom, config, clientApi, schema, mapService, mapStructureExternal){
+var Map =  mcm.list.Map = function(parentDom, config, clientApi, schema, mapService, mapStructureExternal, services){
 	this.config = config;
 	this.clientApi = clientApi;
 	this.entityStyles = schema.entityStyles;
@@ -9,14 +9,16 @@ var Map =  mcm.list.Map = function(parentDom, config, clientApi, schema, mapServ
 	this.mapService = mapService;
 	this.schema = schema;
 	this.mapStructureExternal = mapStructureExternal;
+	this.services = services;
 
 	// this.state = new knalledge.State();
 	this.mapStructure = this.mapStructureExternal ? this.mapStructureExternal : new knalledge.MapStructure();
 	var mapVisualizationApi = {
-		timeout: this.clientApi.timeout
+		timeout: this.clientApi.timeout,
+		dialogues: this.clientApi.dialogues
 	};
 	this.mapVisualization = new mcm.list.MapVisualization(this.parentDom, mapVisualizationApi, this.mapStructure, 
-		this.config.transitions, this.config.nodes, this.config.edges, this.schema);
+		this.config.transitions, this.config.nodes, this.config.edges, this.schema, this.services);
 
 	var mapLayoutApi = {
 		update: this.mapVisualization.update.bind(this.mapVisualization),

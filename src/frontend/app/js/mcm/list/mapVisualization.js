@@ -1,7 +1,7 @@
 (function () { // This prevents problems when concatenating scripts that aren't strict.
 'use strict';
 
-var MapVisualization =  mcm.list.MapVisualization = function(parentDom, clientApi, mapStructure, configTransitions, configNodes, configEdges, schema){
+var MapVisualization =  mcm.list.MapVisualization = function(parentDom, clientApi, mapStructure, configTransitions, configNodes, configEdges, schema, services){
 	this.dom = {
 		parentDom: parentDom,
 		divList: null
@@ -16,6 +16,7 @@ var MapVisualization =  mcm.list.MapVisualization = function(parentDom, clientAp
 	this.configNodes = configNodes;
 	this.configEdges = configEdges;
 	this.editingNodeHtml = null;
+	this.services = services;
 };
 
 MapVisualization.prototype.init = function(mapLayout, callback){
@@ -315,27 +316,32 @@ MapVisualization.prototype.updateHtml = function(source) {
 							}
 							that.mapStructure.updateNode(d, that.mapStructure.UPDATE_DATA_CONTENT);
 						});
-					settings.append("span")
-						.attr("class", "setting setting_o")
-						.style("opacity", function(d){
-							return (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.operators) ? "1.0" : "0.25";
-						})
-						.html(function(d){
-							var content = "O";
-							return content;
-						})
-						.on("click", function(d){
-						});
+
+					if(that.services.McmMapVariableOperatorService.areVariableOperatorsSeparate()){
+						settings.append("span")
+							.attr("class", "setting setting_o")
+							.style("opacity", function(d){
+								return (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.operators) ? "1.0" : "0.25";
+							})
+							.html(function(d){
+								var content = "O";
+								return content;
+							})
+							.on("click", function(d){
+							});
+					}
+
 					settings.append("span")
 						.attr("class", "setting setting_q")
 						.style("opacity", function(d){
-							return (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.quantity) ? "1.0" : "0.25";
+							return 1.0; // (d.kNode.dataContent && d.kNode.dataContent.entity && d.kNode.dataContent.entity.quantity) ? "1.0" : "0.25";
 						})
 						.html(function(d){
 							var content = "Q";
 							return content;
 						})
 						.on("click", function(d){
+							that.clientApi.dialogues.selectVariableQuantity(d);
 						});
 					break;
 			}

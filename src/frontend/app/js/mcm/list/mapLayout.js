@@ -66,7 +66,7 @@ MapLayout.prototype.clickNode = function(d, dom) {
 
 	if(isSelected){
 		if(d) d.isSelected = false;
-		this.selectedNode = null;
+		this.mapStructure.unsetSelectedNode();
 	}else{
 		if(d && dom){
 			// var nodeHtml = nodesHtml[0];
@@ -75,13 +75,13 @@ MapLayout.prototype.clickNode = function(d, dom) {
 				"unselected": false
 			});
 			d.isSelected = true;
-			this.selectedNode = d;
+			this.mapStructure.setSelectedNode(d);
 		}else{
-			this.selectedNode = null;
+		this.mapStructure.unsetSelectedNode();
 		}
 	}
 
-	this.clientApi.mapEntityClicked(this.selectedNode ? d : null, dom);
+	this.clientApi.mapEntityClicked(this.mapStructure.getSelectedNode(), dom);
 	//this.update(this.rootNode);
 	return false;
 };
@@ -94,7 +94,8 @@ MapLayout.prototype.processData = function(subtreeRoot, rootNodeX, rootNodeY) {
 
 	if(!subtreeRoot) subtreeRoot = this.mapStructure.rootNode;
 	this.generateTree(subtreeRoot);
-	this.clickNode(subtreeRoot);
+	// we need to avoid this since it interfer with mcmMap through mapStructure
+	// this.clickNode(subtreeRoot);
 	this.clientApi.update(subtreeRoot);
 };
 

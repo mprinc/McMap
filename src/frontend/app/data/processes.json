@@ -1,0 +1,7721 @@
+[
+	{
+		"name": "abandonment",
+		"verb": "abandon",
+		"description": ""
+	},
+	{
+		"name": "abatement",
+		"verb": "abate",
+		"description": ""
+	},
+	{
+		"name": "aberration",
+		"verb": "aberate",
+		"description": ""
+	},
+	{
+		"name": "ablation",
+		"verb": "ablate",
+		"description": ""
+	},
+	{
+		"name": "abrasion",
+		"verb": "abrade",
+		"description": ""
+	},
+	{
+		"name": "absorption",
+		"verb": "absorb",
+		"description": ""
+	},
+	{
+		"name": "abstraction",
+		"verb": "abstract",
+		"description": "synonym for extraction of water, "
+	},
+	{
+		"name": "acceleration",
+		"verb": "accelerate",
+		"description": "accelerating, "
+	},
+	{
+		"name": "acceptance",
+		"verb": "accept",
+		"description": ""
+	},
+	{
+		"name": "acclimatization",
+		"verb": "acclimatize",
+		"description": "called \"acclimation\" in the UK, "
+	},
+	{
+		"name": "accommodation",
+		"verb": "accommodate",
+		"description": "e.g. accomodation_space, accommodation_depth, "
+	},
+	{
+		"name": "accretion",
+		"verb": "accrete",
+		"description": "in CF, "
+	},
+	{
+		"name": "accumulation",
+		"verb": "accumulate",
+		"description": "in CF, "
+	},
+	{
+		"name": "acidification",
+		"verb": "acidify",
+		"description": ""
+	},
+	{
+		"name": "acquisition",
+		"verb": "acquire",
+		"description": ""
+	},
+	{
+		"name": "action",
+		"verb": "act",
+		"description": ""
+	},
+	{
+		"name": "activation",
+		"verb": "activate",
+		"description": "e.g. activation_energy, "
+	},
+	{
+		"name": "actuation",
+		"verb": "actuate",
+		"description": "e.g. actuation_rate, "
+	},
+	{
+		"name": "adaptation",
+		"verb": "adapt",
+		"description": ""
+	},
+	{
+		"name": "addition",
+		"verb": "add",
+		"description": "see division, multiplication, subtraction, "
+	},
+	{
+		"name": "adhesion",
+		"verb": "adhere",
+		"description": ""
+	},
+	{
+		"name": "adjustment",
+		"verb": "adjust",
+		"description": ""
+	},
+	{
+		"name": "adoption",
+		"verb": "adopt",
+		"description": ""
+	},
+	{
+		"name": "adsorption",
+		"verb": "adsorb",
+		"description": "see absorption, desorption, sorption, "
+	},
+	{
+		"name": "advection",
+		"verb": "advect",
+		"description": ""
+	},
+	{
+		"name": "aeration",
+		"verb": "aerate",
+		"description": ""
+	},
+	{
+		"name": "aerologation",
+		"verb": "aerologate",
+		"description": ""
+	},
+	{
+		"name": "aging",
+		"verb": "age",
+		"description": ""
+	},
+	{
+		"name": "aggradation",
+		"verb": "aggrade",
+		"description": "see \"progradation\", "
+	},
+	{
+		"name": "aggregation",
+		"verb": "aggregate",
+		"description": "e.g. diffusion-limited aggregation or DLA, "
+	},
+	{
+		"name": "airflow",
+		"verb": "airflow",
+		"description": ""
+	},
+	{
+		"name": "aliasing",
+		"verb": "alias",
+		"description": "also \"anti-aliasing, "
+	},
+	{
+		"name": "alignment",
+		"verb": "align",
+		"description": " e.g. of planets, "
+	},
+	{
+		"name": "alkylation",
+		"verb": "alkylate",
+		"description": ""
+	},
+	{
+		"name": "alleviation",
+		"verb": "alleviate",
+		"description": ""
+	},
+	{
+		"name": "allocation",
+		"verb": "allocate",
+		"description": "e.g. of surface water, "
+	},
+	{
+		"name": "allografting",
+		"verb": "allograft",
+		"description": ""
+	},
+	{
+		"name": "allotment",
+		"verb": "allot",
+		"description": ""
+	},
+	{
+		"name": "allotransplantation",
+		"verb": "allotransplant",
+		"description": ""
+	},
+	{
+		"name": "alluviation",
+		"verb": "alluviate",
+		"description": ""
+	},
+	{
+		"name": "alteration",
+		"verb": "alter",
+		"description": ""
+	},
+	{
+		"name": "alternating",
+		"verb": "alternate",
+		"description": ""
+	},
+	{
+		"name": "amortization",
+		"verb": "amortize",
+		"description": ""
+	},
+	{
+		"name": "amplification",
+		"verb": "amplify",
+		"description": ""
+	},
+	{
+		"name": "amputation",
+		"verb": "amputate",
+		"description": ""
+	},
+	{
+		"name": "anagenesis",
+		"verb": "in geology",
+		"description": ""
+	},
+	{
+		"name": "anchoring",
+		"verb": "anchor",
+		"description": ""
+	},
+	{
+		"name": "aneurysm",
+		"verb": "??",
+		"description": "e.g. tectonic type, "
+	},
+	{
+		"name": "animation",
+		"verb": "animate",
+		"description": " e.g. suspended animation, "
+	},
+	{
+		"name": "annealing",
+		"verb": "anneal",
+		"description": ""
+	},
+	{
+		"name": "annihilation",
+		"verb": "annihilate",
+		"description": "e.g. matter and antimatter, "
+	},
+	{
+		"name": "antibiosis",
+		"verb": "verb form ??",
+		"description": ""
+	},
+	{
+		"name": "apoptosis",
+		"verb": "??,"
+	},
+	{
+		"name": "application",
+		"verb": "apply",
+		"description": "e.g. sunscreen, "
+	},
+	{
+		"name": "approach",
+		"verb": "approach",
+		"description": "approaching, "
+	},
+	{
+		"name": "appulse",
+		"verb": "appulse",
+		"description": "e.g. in astronomy, "
+	},
+	{
+		"name": "aridification",
+		"verb": "aridify",
+		"description": ""
+	},
+	{
+		"name": "armoring",
+		"verb": "armor",
+		"description": " e.g. stream bed armoring, "
+	},
+	{
+		"name": "arresting",
+		"verb": "arrest",
+		"description": " e.g. arrested development, "
+	},
+	{
+		"name": "arrival",
+		"verb": "arrive",
+		"description": ""
+	},
+	{
+		"name": "ascension",
+		"verb": "ascend",
+		"description": "e.g. in astronomy, "
+	},
+	{
+		"name": "ascent",
+		"verb": "ascend",
+		"description": "e.g. ascent_angle, "
+	},
+	{
+		"name": "aspiration",
+		"verb": "aspire",
+		"description": "medical term, e.g. pulmonary aspiration, "
+	},
+	{
+		"name": "assembling",
+		"verb": "assemble",
+		"description": ""
+	},
+	{
+		"name": "assessment",
+		"verb": "assess",
+		"description": ""
+	},
+	{
+		"name": "assimilation",
+		"verb": "assimilate",
+		"description": "e.g. protein assimilation rate, "
+	},
+	{
+		"name": "assistance",
+		"verb": "assist",
+		"description": ""
+	},
+	{
+		"name": "attachment",
+		"verb": "attach",
+		"description": "attaching, see detachment, "
+	},
+	{
+		"name": "attack",
+		"verb": "attack",
+		"description": "attacking, e.g. in medical context, also attack angle of airfoil, "
+	},
+	{
+		"name": "attainment",
+		"verb": "attain",
+		"description": ""
+	},
+	{
+		"name": "attenuation",
+		"verb": "attenuate",
+		"description": ""
+	},
+	{
+		"name": "attraction",
+		"verb": "attract",
+		"description": " e.g. planets and atoms, "
+	},
+	{
+		"name": "augmentation",
+		"verb": "augment",
+		"description": ""
+	},
+	{
+		"name": "austempering",
+		"verb": "austemper",
+		"description": " hardening process for metals, "
+	},
+	{
+		"name": "austenitization",
+		"verb": "austenitize",
+		"description": "heating process for metals, "
+	},
+	{
+		"name": "autocollimation",
+		"verb": "autocollimate",
+		"description": ""
+	},
+	{
+		"name": "autoconversion",
+		"verb": "autoconvert",
+		"description": "in CF, "
+	},
+	{
+		"name": "autografting",
+		"verb": "autograft",
+		"description": ""
+	},
+	{
+		"name": "autolysis",
+		"verb": "autolyze",
+		"description": "autolyzing, e.g. of bread dough or wine, "
+	},
+	{
+		"name": "avalanching",
+		"verb": "avalanche",
+		"description": "e.g. avalanching rate, "
+	},
+	{
+		"name": "averaging",
+		"verb": "average",
+		"description": ""
+	},
+	{
+		"name": "aversion",
+		"verb": "avert",
+		"description": "e.g. risk_aversion, "
+	},
+	{
+		"name": "avoidance",
+		"verb": "avoid",
+		"description": "e.g. zone of avoidance in astronomy, "
+	},
+	{
+		"name": "avulsion",
+		"verb": "avulse",
+		"description": ""
+	},
+	{
+		"name": "backcrossing",
+		"verb": "backcross",
+		"description": "e.g. in genetics, "
+	},
+	{
+		"name": "backfire",
+		"verb": "backfire",
+		"description": ""
+	},
+	{
+		"name": "backflow",
+		"verb": "backflow",
+		"description": ""
+	},
+	{
+		"name": "backlash",
+		"verb": "backlash",
+		"description": "backlashing, "
+	},
+	{
+		"name": "backscattering",
+		"verb": "backscatter",
+		"description": "preferred to: backwards_scattering ??, "
+	},
+	{
+		"name": "backspin",
+		"verb": "backspin",
+		"description": "backspinning, "
+	},
+	{
+		"name": "balancing",
+		"verb": "balance",
+		"description": ""
+	},
+	{
+		"name": "baling",
+		"verb": "bale",
+		"description": "process of making hay bales, "
+	},
+	{
+		"name": "ballasting",
+		"verb": "ballast",
+		"description": ""
+	},
+	{
+		"name": "baseflow",
+		"verb": "baseflow",
+		"description": ""
+	},
+	{
+		"name": "basification",
+		"verb": "basify",
+		"description": ""
+	},
+	{
+		"name": "beaming",
+		"verb": "beam",
+		"description": ""
+	},
+	{
+		"name": "bearing",
+		"verb": "bear",
+		"description": "e.g. load bearing capacity, "
+	},
+	{
+		"name": "belaying",
+		"verb": "belay",
+		"description": ""
+	},
+	{
+		"name": "bending",
+		"verb": "bend",
+		"description": ""
+	},
+	{
+		"name": "berthing",
+		"verb": "berth",
+		"description": ""
+	},
+	{
+		"name": "bifurcation",
+		"verb": "bifurcate",
+		"description": ""
+	},
+	{
+		"name": "bilateration",
+		"verb": "bilaterate",
+		"description": ""
+	},
+	{
+		"name": "binding",
+		"verb": "bind",
+		"description": ""
+	},
+	{
+		"name": "binning",
+		"verb": "bin",
+		"description": ""
+	},
+	{
+		"name": "bioaccumulation",
+		"verb": "bioaccumulate",
+		"description": ""
+	},
+	{
+		"name": "bioconcentration",
+		"verb": "bioconcentrate",
+		"description": ""
+	},
+	{
+		"name": "biodegradation",
+		"verb": "biodegrade",
+		"description": "see degradation, "
+	},
+	{
+		"name": "biogenesis",
+		"verb": "biogenerate ?",
+		"description": ""
+	},
+	{
+		"name": "bioluminescence",
+		"verb": "bioluminesce ??",
+		"description": "see fluorescence, "
+	},
+	{
+		"name": "biomagnification",
+		"verb": "biomagnify",
+		"description": ""
+	},
+	{
+		"name": "biopoiesis",
+		"verb": "??",
+		"description": "also called abiogenesis, "
+	},
+	{
+		"name": "bioremediation",
+		"verb": "bioremediate",
+		"description": ""
+	},
+	{
+		"name": "biosynthesis",
+		"verb": "biosynthesize",
+		"description": ""
+	},
+	{
+		"name": "bioturbation",
+		"verb": "bioturbate  ??",
+		"description": ""
+	},
+	{
+		"name": "birth",
+		"verb": "birth",
+		"description": "birthing, more an event than a process?, "
+	},
+	{
+		"name": "bisection",
+		"verb": "bisect",
+		"description": ""
+	},
+	{
+		"name": "blackout ",
+		"verb": "blackout",
+		"description": "from \"blacking out\", "
+	},
+	{
+		"name": "blasting",
+		"verb": "blast",
+		"description": "e.g. abrasive blasting, "
+	},
+	{
+		"name": "bleaching",
+		"verb": "bleach",
+		"description": "e.g. coral bleaching, "
+	},
+	{
+		"name": "bleeding",
+		"verb": "bleed",
+		"description": "e.g. bleeding a brake line, "
+	},
+	{
+		"name": "blistering",
+		"verb": "blister",
+		"description": ""
+	},
+	{
+		"name": "blockage",
+		"verb": "block",
+		"description": ""
+	},
+	{
+		"name": "blocking",
+		"verb": "block",
+		"description": ""
+	},
+	{
+		"name": "blossoming",
+		"verb": "blossom",
+		"description": ""
+	},
+	{
+		"name": "blowing",
+		"verb": "blow",
+		"description": "e.g. blowing snow, "
+	},
+	{
+		"name": "blowoff",
+		"verb": "blowoff",
+		"description": "from blowing off,  e.g. blowoff valve, also combustion physics, "
+	},
+	{
+		"name": "blowout",
+		"verb": "blowout",
+		"description": "from \"blowing out\";  e.g. of a car tire, oil well, etc., "
+	},
+	{
+		"name": "boiling",
+		"verb": "boil",
+		"description": ""
+	},
+	{
+		"name": "bombardment",
+		"verb": "bombard",
+		"description": "e.g. elementary particles, cratering, "
+	},
+	{
+		"name": "bonding",
+		"verb": "bond",
+		"description": ""
+	},
+	{
+		"name": "boring",
+		"verb": "bore",
+		"description": "drilling, "
+	},
+	{
+		"name": "borrowing",
+		"verb": "borrow",
+		"description": ""
+	},
+	{
+		"name": "bounce",
+		"verb": "bounce",
+		"description": "bouncing, e.g. bounce_angle, "
+	},
+	{
+		"name": "bracing",
+		"verb": "brace",
+		"description": ""
+	},
+	{
+		"name": "braiding",
+		"verb": "braid",
+		"description": ""
+	},
+	{
+		"name": "braking",
+		"verb": "brake",
+		"description": "e.g. braking_distance, "
+	},
+	{
+		"name": "branching",
+		"verb": "branch",
+		"description": "e.g. branching_ratio, "
+	},
+	{
+		"name": "breaching",
+		"verb": "breach",
+		"description": "e.g. breaching_height of a levee, "
+	},
+	{
+		"name": "breakdown",
+		"verb": "from breaking down",
+		"description": ""
+	},
+	{
+		"name": "breaking",
+		"verb": "break",
+		"description": "e.g. breaking_point, "
+	},
+	{
+		"name": "breakover",
+		"verb": "breakover",
+		"description": "e.g. breakover angle of a vehicle, "
+	},
+	{
+		"name": "breakthrough",
+		"verb": "breakthrough",
+		"description": "from \"breaking through\", "
+	},
+	{
+		"name": "breakup",
+		"verb": "breakup",
+		"description": "e.g. drops and bubbles, ice breakup, "
+	},
+	{
+		"name": "breastfeeding",
+		"verb": "breastfeed",
+		"description": ""
+	},
+	{
+		"name": "breathing",
+		"verb": "breathe",
+		"description": "there is a power law for breathing rate vs. body mass, "
+	},
+	{
+		"name": "breeding",
+		"verb": "breed",
+		"description": "e.g. breeding_time, breeding_duration, "
+	},
+	{
+		"name": "brewing",
+		"verb": "brew",
+		"description": ""
+	},
+	{
+		"name": "bridging",
+		"verb": "bridge",
+		"description": ""
+	},
+	{
+		"name": "brinelling",
+		"verb": "brinell",
+		"description": ""
+	},
+	{
+		"name": "broadcasting",
+		"verb": "broadcast",
+		"description": ""
+	},
+	{
+		"name": "bromination",
+		"verb": "brominate",
+		"description": ""
+	},
+	{
+		"name": "brumation",
+		"verb": "brumate",
+		"description": "similar to hibernation, for reptiles, "
+	},
+	{
+		"name": "bubbling",
+		"verb": "bubble",
+		"description": "e.g. bubbling_pressure_head, "
+	},
+	{
+		"name": "buckling",
+		"verb": "buckle",
+		"description": "e.g. support columns, "
+	},
+	{
+		"name": "budding",
+		"verb": "bud",
+		"description": ""
+	},
+	{
+		"name": "buffering",
+		"verb": "buffer",
+		"description": ""
+	},
+	{
+		"name": "buffeting",
+		"verb": "buffet",
+		"description": "e.g. in aerodynamics, "
+	},
+	{
+		"name": "buildup",
+		"verb": "buildup",
+		"description": ""
+	},
+	{
+		"name": "bulging",
+		"verb": "bulge",
+		"description": ""
+	},
+	{
+		"name": "bundling",
+		"verb": "bundle",
+		"description": ""
+	},
+	{
+		"name": "buoyancy",
+		"verb": "buoy",
+		"description": "buoyance, e.g. larvae_buoyancy_rate;  see sinking, "
+	},
+	{
+		"name": "burial",
+		"verb": "bury",
+		"description": "burying, "
+	},
+	{
+		"name": "burning",
+		"verb": "burn",
+		"description": ""
+	},
+	{
+		"name": "burrowing",
+		"verb": "burrow",
+		"description": ""
+	},
+	{
+		"name": "bursting",
+		"verb": "burst",
+		"description": ""
+	},
+	{
+		"name": "bypass",
+		"verb": "bypass",
+		"description": "bypassing, "
+	},
+	{
+		"name": "cabbeling",
+		"verb": "cabbel",
+		"description": ""
+	},
+	{
+		"name": "caching",
+		"verb": "cache",
+		"description": ""
+	},
+	{
+		"name": "calcification",
+		"verb": "calcify",
+		"description": ""
+	},
+	{
+		"name": "calibration",
+		"verb": "calibrate",
+		"description": "calibrating, "
+	},
+	{
+		"name": "calving",
+		"verb": "calve",
+		"description": ""
+	},
+	{
+		"name": "camouflaging",
+		"verb": "camouflage",
+		"description": ""
+	},
+	{
+		"name": "canalization",
+		"verb": "canalize",
+		"description": ""
+	},
+	{
+		"name": "cancellation",
+		"verb": "cancel",
+		"description": "e.g. noise cancellation, "
+	},
+	{
+		"name": "cannulation",
+		"verb": "cannulate",
+		"description": ""
+	},
+	{
+		"name": "capping",
+		"verb": "cap",
+		"description": "e.g. capping a well;   see white-capping waves, "
+	},
+	{
+		"name": "capturing",
+		"verb": "capture",
+		"description": ""
+	},
+	{
+		"name": "carbonation",
+		"verb": "carbonate",
+		"description": ""
+	},
+	{
+		"name": "carpooling",
+		"verb": "carpool",
+		"description": ""
+	},
+	{
+		"name": "carrying",
+		"verb": "carry",
+		"description": "e.g. carrying capacity, "
+	},
+	{
+		"name": "carving",
+		"verb": "carve",
+		"description": "glaciers \"carve\" valleys, "
+	},
+	{
+		"name": "cascading",
+		"verb": "cascade",
+		"description": ""
+	},
+	{
+		"name": "casting",
+		"verb": "cast",
+		"description": ""
+	},
+	{
+		"name": "catagenesis",
+		"verb": "??,"
+	},
+	{
+		"name": "catalysis",
+		"verb": "catalyze",
+		"description": ""
+	},
+	{
+		"name": "catalyzing",
+		"verb": "catalyze",
+		"description": ""
+	},
+	{
+		"name": "catching",
+		"verb": "catch",
+		"description": ""
+	},
+	{
+		"name": "cauterization",
+		"verb": "cauterize",
+		"description": ""
+	},
+	{
+		"name": "cavitation",
+		"verb": "cavitate",
+		"description": ""
+	},
+	{
+		"name": "cementation",
+		"verb": "cement",
+		"description": ""
+	},
+	{
+		"name": "cementing",
+		"verb": "cement",
+		"description": ""
+	},
+	{
+		"name": "centering",
+		"verb": "center",
+		"description": ""
+	},
+	{
+		"name": "centralization",
+		"verb": "centralize",
+		"description": ""
+	},
+	{
+		"name": "centrifugation",
+		"verb": "centrifuge",
+		"description": ""
+	},
+	{
+		"name": "centrifuging",
+		"verb": "centrifuge",
+		"description": ""
+	},
+	{
+		"name": "cessation",
+		"verb": "cease",
+		"description": ""
+	},
+	{
+		"name": "chafing",
+		"verb": "chafe",
+		"description": "a medical and nautical term, "
+	},
+	{
+		"name": "chambering",
+		"verb": "chamber",
+		"description": "in firearms and martial arts, "
+	},
+	{
+		"name": "channelization",
+		"verb": "channelize",
+		"description": ""
+	},
+	{
+		"name": "charging",
+		"verb": "charge",
+		"description": "e.g. an electric vehicle, "
+	},
+	{
+		"name": "chelation",
+		"verb": "chelate",
+		"description": ""
+	},
+	{
+		"name": "chemigation",
+		"verb": "chemigate",
+		"description": ""
+	},
+	{
+		"name": "chemosynthesis",
+		"verb": "chemosynthesize",
+		"description": ""
+	},
+	{
+		"name": "chewing",
+		"verb": "chew",
+		"description": ""
+	},
+	{
+		"name": "chipping",
+		"verb": "chip",
+		"description": ""
+	},
+	{
+		"name": "chirp",
+		"verb": "chirp",
+		"description": "chirp, e.g. chirp_frequency, "
+	},
+	{
+		"name": "chiseling",
+		"verb": "chisel",
+		"description": ""
+	},
+	{
+		"name": "chlorination",
+		"verb": "chlorinate",
+		"description": ""
+	},
+	{
+		"name": "choking",
+		"verb": "choke",
+		"description": ""
+	},
+	{
+		"name": "churning",
+		"verb": "churn",
+		"description": ""
+	},
+	{
+		"name": "circling",
+		"verb": "circle",
+		"description": ""
+	},
+	{
+		"name": "circulation",
+		"verb": "circulate",
+		"description": ""
+	},
+	{
+		"name": "circumnavigation",
+		"verb": "circumnavigate",
+		"description": ""
+	},
+	{
+		"name": "cirrhosis ",
+		"verb": "a disease of the liver",
+		"description": ""
+	},
+	{
+		"name": "cladogenesis",
+		"verb": "??,"
+	},
+	{
+		"name": "clamping",
+		"verb": "clamp",
+		"description": ""
+	},
+	{
+		"name": "cleaning",
+		"verb": "clean",
+		"description": ""
+	},
+	{
+		"name": "clearance",
+		"verb": "clear",
+		"description": "e.g. vehicle clearance, also in genetics, "
+	},
+	{
+		"name": "clearcutting",
+		"verb": "clearcut",
+		"description": ""
+	},
+	{
+		"name": "clearing",
+		"verb": "clear",
+		"description": ""
+	},
+	{
+		"name": "cleavage",
+		"verb": "cleave",
+		"description": ""
+	},
+	{
+		"name": "climbing",
+		"verb": "climb",
+		"description": "e.g. aircraft climb_angle, "
+	},
+	{
+		"name": "clogging",
+		"verb": "clog",
+		"description": ""
+	},
+	{
+		"name": "cloning",
+		"verb": "clone",
+		"description": ""
+	},
+	{
+		"name": "closing",
+		"verb": "close",
+		"description": ""
+	},
+	{
+		"name": "closure",
+		"verb": "close",
+		"description": "e.g. turbulence closure, "
+	},
+	{
+		"name": "clotting",
+		"verb": "clot",
+		"description": ""
+	},
+	{
+		"name": "clumping",
+		"verb": "clump",
+		"description": ""
+	},
+	{
+		"name": "clustering",
+		"verb": "cluster",
+		"description": ""
+	},
+	{
+		"name": "coagulation",
+		"verb": "coagulate",
+		"description": "coagulating, "
+	},
+	{
+		"name": "coalescence",
+		"verb": "coalesce",
+		"description": "droplets: coalescence_rate vs. rupturing_rate, "
+	},
+	{
+		"name": "coating",
+		"verb": "coat",
+		"description": "e.g. optical coating, "
+	},
+	{
+		"name": "coercion",
+		"verb": "coerce",
+		"description": ""
+	},
+	{
+		"name": "coexistence",
+		"verb": "coexist",
+		"description": ""
+	},
+	{
+		"name": "cognition",
+		"verb": "??",
+		"description": ""
+	},
+	{
+		"name": "cohesion",
+		"verb": "cohere",
+		"description": ""
+	},
+	{
+		"name": "coiling",
+		"verb": "coil",
+		"description": ""
+	},
+	{
+		"name": "coincidence",
+		"verb": "coincide",
+		"description": ""
+	},
+	{
+		"name": "collapse",
+		"verb": "collapse",
+		"description": "collapsing, "
+	},
+	{
+		"name": "collection",
+		"verb": "collect",
+		"description": ""
+	},
+	{
+		"name": "collimation",
+		"verb": "collimate",
+		"description": "e.g. of laser light, "
+	},
+	{
+		"name": "collision",
+		"verb": "collide",
+		"description": " e.g. atomic and subatomic particles, "
+	},
+	{
+		"name": "colonization",
+		"verb": "colonize",
+		"description": ""
+	},
+	{
+		"name": "combination",
+		"verb": "combine",
+		"description": "combining, "
+	},
+	{
+		"name": "combustion",
+		"verb": "combust",
+		"description": ""
+	},
+	{
+		"name": "comminution",
+		"verb": "comminute",
+		"description": ""
+	},
+	{
+		"name": "compactification",
+		"verb": "compactify",
+		"description": "e.g in string theory, "
+	},
+	{
+		"name": "compaction",
+		"verb": "compact",
+		"description": ""
+	},
+	{
+		"name": "compensation",
+		"verb": "compensate",
+		"description": "e.g. Heisenberg compensator, "
+	},
+	{
+		"name": "competition",
+		"verb": "compete",
+		"description": "e.g. species, "
+	},
+	{
+		"name": "completion",
+		"verb": "complete",
+		"description": ""
+	},
+	{
+		"name": "complexation",
+		"verb": "complexate",
+		"description": "chemistry, "
+	},
+	{
+		"name": "compounding",
+		"verb": "compound",
+		"description": ""
+	},
+	{
+		"name": "compensation",
+		"verb": "compensate",
+		"description": "compensating, e.g. frequency_compensation in EE, "
+	},
+	{
+		"name": "compounding",
+		"verb": "compound",
+		"description": ""
+	},
+	{
+		"name": "compression",
+		"verb": "compress",
+		"description": "e.g. compression_ratio, "
+	},
+	{
+		"name": "concealment",
+		"verb": "conceal",
+		"description": "concealing, "
+	},
+	{
+		"name": "conception",
+		"verb": "conceive",
+		"description": ""
+	},
+	{
+		"name": "conching",
+		"verb": "conch",
+		"description": "when making chocolate, with a \"conche\", "
+	},
+	{
+		"name": "concussion",
+		"verb": "concuss",
+		"description": ""
+	},
+	{
+		"name": "condensation ",
+		"verb": "condense",
+		"description": ""
+	},
+	{
+		"name": "conditioning",
+		"verb": "condition",
+		"description": ""
+	},
+	{
+		"name": "conduction",
+		"verb": "conduct",
+		"description": ""
+	},
+	{
+		"name": "confining",
+		"verb": "confine",
+		"description": "e.g. confining_pressure, "
+	},
+	{
+		"name": "confinement",
+		"verb": "confine",
+		"description": "e.g. atoms, fusion, "
+	},
+	{
+		"name": "conflation",
+		"verb": "conflate",
+		"description": ""
+	},
+	{
+		"name": "confusion",
+		"verb": "confuse",
+		"description": ""
+	},
+	{
+		"name": "congelation",
+		"verb": "congeal ??",
+		"description": "in CF, e.g. at the bed of a glacier, "
+	},
+	{
+		"name": "congestion",
+		"verb": "congest",
+		"description": ""
+	},
+	{
+		"name": "conjugation",
+		"verb": "conjugate",
+		"description": "e.g. bacterial conjugation, "
+	},
+	{
+		"name": "conjunction",
+		"verb": "conjoin",
+		"description": "in astronomy, "
+	},
+	{
+		"name": "connection",
+		"verb": "connect",
+		"description": ""
+	},
+	{
+		"name": "conservation",
+		"verb": "conserve",
+		"description": ""
+	},
+	{
+		"name": "conserving",
+		"verb": "conserve",
+		"description": "e.g. mass-conserving system, "
+	},
+	{
+		"name": "consolidation",
+		"verb": "consolidate",
+		"description": "e.g. in soils; see compaction, "
+	},
+	{
+		"name": "constraining",
+		"verb": "constrain",
+		"description": ""
+	},
+	{
+		"name": "consumption",
+		"verb": "consume",
+		"description": "e.g. fuel_consumption, "
+	},
+	{
+		"name": "contact",
+		"verb": "contact",
+		"description": "contacting, e.g. contact_area, "
+	},
+	{
+		"name": "containment",
+		"verb": "contain",
+		"description": "e.g. \"containment field\", "
+	},
+	{
+		"name": "contamination",
+		"verb": "contaminate",
+		"description": ""
+	},
+	{
+		"name": "contraception",
+		"verb": "contracept",
+		"description": "from conceive/conception, "
+	},
+	{
+		"name": "contraction",
+		"verb": "contract",
+		"description": "see expansion, "
+	},
+	{
+		"name": "contributing",
+		"verb": "contribute",
+		"description": "e.g. total_contributing_area, "
+	},
+	{
+		"name": "control",
+		"verb": "control",
+		"description": "controlling, "
+	},
+	{
+		"name": "contusion",
+		"verb": "contuse",
+		"description": ""
+	},
+	{
+		"name": "convection",
+		"verb": "convect",
+		"description": "convecting, convective, "
+	},
+	{
+		"name": "convergence",
+		"verb": "converge",
+		"description": ""
+	},
+	{
+		"name": "conversion",
+		"verb": "convert",
+		"description": ""
+	},
+	{
+		"name": "conveyance",
+		"verb": "convey",
+		"description": "diversion of water, "
+	},
+	{
+		"name": "convolution",
+		"verb": "convolute",
+		"description": ""
+	},
+	{
+		"name": "convulsion",
+		"verb": "convulse",
+		"description": ""
+	},
+	{
+		"name": "cooking",
+		"verb": "cook",
+		"description": ""
+	},
+	{
+		"name": "cooling",
+		"verb": "cool",
+		"description": ""
+	},
+	{
+		"name": "cooperation",
+		"verb": "cooperate",
+		"description": "animal behavior, "
+	},
+	{
+		"name": "coordination",
+		"verb": "coordinate",
+		"description": ""
+	},
+	{
+		"name": "coping",
+		"verb": "cope",
+		"description": "e.g. coping mechanism, "
+	},
+	{
+		"name": "coppicing",
+		"verb": "coppice",
+		"description": ""
+	},
+	{
+		"name": "copying",
+		"verb": "copy",
+		"description": "e.g. DNA and RNA;  see replication, "
+	},
+	{
+		"name": "coring",
+		"verb": "core",
+		"description": "e.g. ice and sediment cores, "
+	},
+	{
+		"name": "cornering",
+		"verb": "corner",
+		"description": "e.g. of racecars, "
+	},
+	{
+		"name": "corrasion",
+		"verb": "corrade",
+		"description": ""
+	},
+	{
+		"name": "correction",
+		"verb": "correct",
+		"description": "e.g. course correction, also an operation, "
+	},
+	{
+		"name": "correlation",
+		"verb": "correlate",
+		"description": "e.g. correlation_coefficient, "
+	},
+	{
+		"name": "corrosion",
+		"verb": "corrode",
+		"description": "corroding, "
+	},
+	{
+		"name": "coupling",
+		"verb": "couple",
+		"description": ""
+	},
+	{
+		"name": "courting",
+		"verb": "court",
+		"description": "courtship, animal behavior, "
+	},
+	{
+		"name": "coverage",
+		"verb": "cover",
+		"description": "e.g. coverage processes, "
+	},
+	{
+		"name": "covering",
+		"verb": "cover",
+		"description": ""
+	},
+	{
+		"name": "cracking",
+		"verb": "crack",
+		"description": ""
+	},
+	{
+		"name": "cranking",
+		"verb": "crank",
+		"description": ""
+	},
+	{
+		"name": "crash",
+		"verb": "crash",
+		"description": "crashing, "
+	},
+	{
+		"name": "cratering",
+		"verb": "crater",
+		"description": "see pitting, impact, "
+	},
+	{
+		"name": "creation",
+		"verb": "create",
+		"description": "e.g. job_creation, in economics, "
+	},
+	{
+		"name": "creep",
+		"verb": "creep",
+		"description": "creeping, "
+	},
+	{
+		"name": "cresting",
+		"verb": "crest",
+		"description": ""
+	},
+	{
+		"name": "crevassing",
+		"verb": "crevasse",
+		"description": ""
+	},
+	{
+		"name": "crimping",
+		"verb": "crimp",
+		"description": ""
+	},
+	{
+		"name": "crossbreeding",
+		"verb": "crossbreed",
+		"description": ""
+	},
+	{
+		"name": "crossing",
+		"verb": "cross",
+		"description": ""
+	},
+	{
+		"name": "crosslinking",
+		"verb": "crosslink",
+		"description": ""
+	},
+	{
+		"name": "crossover",
+		"verb": "crossover",
+		"description": "e.g. chromosomal crossover process, "
+	},
+	{
+		"name": "crushing",
+		"verb": "crush",
+		"description": ""
+	},
+	{
+		"name": "cryoplanation",
+		"verb": "cryoplanate or cryoplane?",
+		"description": ""
+	},
+	{
+		"name": "cryopreservation",
+		"verb": "cryopreserve",
+		"description": ""
+	},
+	{
+		"name": "cryosuction",
+		"verb": "cryosuck ?",
+		"description": ""
+	},
+	{
+		"name": "cryoturbation",
+		"verb": "cryoturbate",
+		"description": ""
+	},
+	{
+		"name": "crystallization",
+		"verb": "crystallize",
+		"description": ""
+	},
+	{
+		"name": "culling",
+		"verb": "cull",
+		"description": ""
+	},
+	{
+		"name": "culmination",
+		"verb": "culminate",
+		"description": "e.g. culmination time, "
+	},
+	{
+		"name": "cultivation",
+		"verb": "cultivate",
+		"description": ""
+	},
+	{
+		"name": "culturing",
+		"verb": "culture",
+		"description": ""
+	},
+	{
+		"name": "curation",
+		"verb": "curation",
+		"description": ""
+	},
+	{
+		"name": "cure",
+		"verb": "curing",
+		"description": "e.g. disease cure rate, "
+	},
+	{
+		"name": "curettage",
+		"verb": "curette",
+		"description": ""
+	},
+	{
+		"name": "curing",
+		"verb": "cure",
+		"description": "e.g. curing meat, "
+	},
+	{
+		"name": "curtailment",
+		"verb": "curtail",
+		"description": ""
+	},
+	{
+		"name": "curving",
+		"verb": "curve",
+		"description": "curvature, "
+	},
+	{
+		"name": "cushioning",
+		"verb": "cushion",
+		"description": ""
+	},
+	{
+		"name": "cutting",
+		"verb": "cut",
+		"description": "e.g. cutting_angle, "
+	},
+	{
+		"name": "cutoff",
+		"verb": "cutoff",
+		"description": "e.g. cutoff_frequency, "
+	},
+	{
+		"name": "cycling",
+		"verb": "cycle",
+		"description": "e.g. carbon cycling, "
+	},
+	{
+		"name": "damage",
+		"verb": "damage",
+		"description": "damaging, "
+	},
+	{
+		"name": "damming",
+		"verb": "dam",
+		"description": "see impounding, "
+	},
+	{
+		"name": "dampening",
+		"verb": "dampen",
+		"description": ""
+	},
+	{
+		"name": "damping",
+		"verb": "damp",
+		"description": ""
+	},
+	{
+		"name": "darkening",
+		"verb": "darken",
+		"description": "e.g. hydrogen darkening of glass, "
+	},
+	{
+		"name": "dating",
+		"verb": "date",
+		"description": ""
+	},
+	{
+		"name": "deactivation",
+		"verb": "deactivate",
+		"description": ""
+	},
+	{
+		"name": "dealkalization",
+		"verb": "dealkalize",
+		"description": ""
+	},
+	{
+		"name": "death",
+		"verb": "death",
+		"description": "mortality, "
+	},
+	{
+		"name": "deburring",
+		"verb": "deburr",
+		"description": ""
+	},
+	{
+		"name": "decantation",
+		"verb": "decant",
+		"description": "decanting, i.e. separation of mixtures, "
+	},
+	{
+		"name": "decay",
+		"verb": "decay",
+		"description": "decaying, e.g. decay_rate, exponential_decay, "
+	},
+	{
+		"name": "deceleration",
+		"verb": "decelerate",
+		"description": ""
+	},
+	{
+		"name": "deception",
+		"verb": "deceive",
+		"description": ""
+	},
+	{
+		"name": "decimation",
+		"verb": "decimate",
+		"description": ""
+	},
+	{
+		"name": "decision",
+		"verb": "decide",
+		"description": ""
+	},
+	{
+		"name": "declination",
+		"verb": "decline",
+		"description": ""
+	},
+	{
+		"name": "decollimation",
+		"verb": "decollimate",
+		"description": ""
+	},
+	{
+		"name": "decomposition",
+		"verb": "decompose",
+		"description": ""
+	},
+	{
+		"name": "decompression",
+		"verb": "decompress",
+		"description": ""
+	},
+	{
+		"name": "defenestration",
+		"verb": "defenestrate",
+		"description": ""
+	},
+	{
+		"name": "defense",
+		"verb": "defend",
+		"description": "defending, "
+	},
+	{
+		"name": "defertilisation",
+		"verb": "defertilise",
+		"description": ""
+	},
+	{
+		"name": "defervescence",
+		"verb": "defervesce",
+		"description": ""
+	},
+	{
+		"name": "defibrillation",
+		"verb": "defibrillate",
+		"description": ""
+	},
+	{
+		"name": "deflation",
+		"verb": "deflate",
+		"description": "e.g. balloons, glaciers, geomorphology, "
+	},
+	{
+		"name": "deflection",
+		"verb": "deflect",
+		"description": ""
+	},
+	{
+		"name": "defoliation",
+		"verb": "defoliate",
+		"description": ""
+	},
+	{
+		"name": "deforestation",
+		"verb": "deforest",
+		"description": ""
+	},
+	{
+		"name": "deformation",
+		"verb": "deform",
+		"description": "e.g. crustal deformation, "
+	},
+	{
+		"name": "deglaciation",
+		"verb": "deglaciate",
+		"description": ""
+	},
+	{
+		"name": "degradation",
+		"verb": "degrade",
+		"description": "e.g. soil degradation; see biodegradation, "
+	},
+	{
+		"name": "dehalogenation",
+		"verb": "dehalogenate",
+		"description": ""
+	},
+	{
+		"name": "dehydration",
+		"verb": "dehydrate",
+		"description": "see hydration, desiccation, "
+	},
+	{
+		"name": "deionization",
+		"verb": "deionize",
+		"description": "see ionization, "
+	},
+	{
+		"name": "delamination",
+		"verb": "delaminate",
+		"description": ""
+	},
+	{
+		"name": "delay",
+		"verb": "delay",
+		"description": "delaying, e.g. delay_factor, "
+	},
+	{
+		"name": "deliberation",
+		"verb": "deliberate",
+		"description": ""
+	},
+	{
+		"name": "delineation",
+		"verb": "delineate",
+		"description": ""
+	},
+	{
+		"name": "delivery",
+		"verb": "deliver",
+		"description": "e.g. with drugs, or giving birth, "
+	},
+	{
+		"name": "demand",
+		"verb": "demand",
+		"description": "demanding, "
+	},
+	{
+		"name": "demarcation",
+		"verb": "demarcate",
+		"description": ""
+	},
+	{
+		"name": "demolition",
+		"verb": "demolish",
+		"description": ""
+	},
+	{
+		"name": "denaturation",
+		"verb": "denature",
+		"description": "e.g. of proteins, "
+	},
+	{
+		"name": "denitrification",
+		"verb": "denitrify",
+		"description": "in CF, "
+	},
+	{
+		"name": "denoising",
+		"verb": "denoise",
+		"description": ""
+	},
+	{
+		"name": "densification",
+		"verb": "densify",
+		"description": ""
+	},
+	{
+		"name": "denudation",
+		"verb": "denude",
+		"description": ""
+	},
+	{
+		"name": "departure",
+		"verb": "depart",
+		"description": ""
+	},
+	{
+		"name": "dependence",
+		"verb": "depend",
+		"description": ""
+	},
+	{
+		"name": "dephosphorylation",
+		"verb": "dephosphorylate",
+		"description": ""
+	},
+	{
+		"name": "depletion",
+		"verb": "deplete",
+		"description": "e.g. of ground water, fossil fuel or oxygen/hypoxia, "
+	},
+	{
+		"name": "deployment",
+		"verb": "deploy",
+		"description": ""
+	},
+	{
+		"name": "deposition",
+		"verb": "deposit",
+		"description": ""
+	},
+	{
+		"name": "depression",
+		"verb": "depress",
+		"description": ""
+	},
+	{
+		"name": "deprivation",
+		"verb": "deprive",
+		"description": ""
+	},
+	{
+		"name": "deprotonation",
+		"verb": "deprotonate",
+		"description": ""
+	},
+	{
+		"name": "derailment",
+		"verb": "derail",
+		"description": ""
+	},
+	{
+		"name": "desalination",
+		"verb": "desalinate;  also desalinize",
+		"description": "desalinization, "
+	},
+	{
+		"name": "descension",
+		"verb": "descend",
+		"description": "descending, "
+	},
+	{
+		"name": "descent",
+		"verb": "descend",
+		"description": "e.g. descent_angle, "
+	},
+	{
+		"name": "desertification",
+		"verb": "desertify",
+		"description": ""
+	},
+	{
+		"name": "desorption",
+		"verb": "desorb",
+		"description": ""
+	},
+	{
+		"name": "desiccation",
+		"verb": "desiccate",
+		"description": ""
+	},
+	{
+		"name": "destruction",
+		"verb": "destruct or destroy",
+		"description": ""
+	},
+	{
+		"name": "detachment",
+		"verb": "detach",
+		"description": "e.g. detachment_limited;  see attachment, "
+	},
+	{
+		"name": "detection",
+		"verb": "detect",
+		"description": ""
+	},
+	{
+		"name": "detention",
+		"verb": "detain",
+		"description": ""
+	},
+	{
+		"name": "deterioration",
+		"verb": "deteriorate",
+		"description": ""
+	},
+	{
+		"name": "deterrence",
+		"verb": "deter",
+		"description": "deterring, "
+	},
+	{
+		"name": "detonation",
+		"verb": "detonate",
+		"description": ""
+	},
+	{
+		"name": "detoxification",
+		"verb": "detoxify",
+		"description": ""
+	},
+	{
+		"name": "detrainment",
+		"verb": "detrain",
+		"description": "in CF;  see entrainment, "
+	},
+	{
+		"name": "development",
+		"verb": "develop",
+		"description": "or an organism, "
+	},
+	{
+		"name": "deviation",
+		"verb": "deviate",
+		"description": "e.g. deviation_angle from a set course;  also standard deviation, "
+	},
+	{
+		"name": "dew",
+		"verb": "dew",
+		"description": "dewing, e.g. dew_point;  \"dewing\" is OK but seldom used; see melt/melting, "
+	},
+	{
+		"name": "dewatering",
+		"verb": "dewater",
+		"description": ""
+	},
+	{
+		"name": "diagenesis",
+		"verb": "??,"
+	},
+	{
+		"name": "dialysis",
+		"verb": "dialyze",
+		"description": ""
+	},
+	{
+		"name": "differentiation",
+		"verb": "differentiate",
+		"description": ""
+	},
+	{
+		"name": "diffraction",
+		"verb": "diffract",
+		"description": "see refraction, "
+	},
+	{
+		"name": "diffusion ",
+		"verb": "diffuse",
+		"description": ""
+	},
+	{
+		"name": "digestion",
+		"verb": "digest",
+		"description": ""
+	},
+	{
+		"name": "digging",
+		"verb": "dig",
+		"description": ""
+	},
+	{
+		"name": "dilatation",
+		"verb": "dilatate",
+		"description": ""
+	},
+	{
+		"name": "dilation",
+		"verb": "dilate",
+		"description": ""
+	},
+	{
+		"name": "dilution",
+		"verb": "dilute",
+		"description": ""
+	},
+	{
+		"name": "dimming",
+		"verb": "dim",
+		"description": "e.g. \"global dimming\", "
+	},
+	{
+		"name": "dipping",
+		"verb": "dip",
+		"description": ""
+	},
+	{
+		"name": "direction",
+		"verb": "direct",
+		"description": ""
+	},
+	{
+		"name": "disappearance",
+		"verb": "disappear",
+		"description": "e.g. of a species, "
+	},
+	{
+		"name": "disassembling",
+		"verb": "disassemble",
+		"description": ""
+	},
+	{
+		"name": "discharge ",
+		"verb": "discharge",
+		"description": "discharging, discharge_coefficient, discharge rate of a capacitor, "
+	},
+	{
+		"name": "disconnection",
+		"verb": "disconnect",
+		"description": ""
+	},
+	{
+		"name": "discovery",
+		"verb": "discover",
+		"description": ""
+	},
+	{
+		"name": "disentrainment",
+		"verb": "disentrain",
+		"description": "e.g. of sediment;  see detrainment, "
+	},
+	{
+		"name": "disgregation",
+		"verb": "disgregate",
+		"description": "See: [http://en.wikipedia.org/wiki/Disgregation Disgregation]., "
+	},
+	{
+		"name": "disintegration",
+		"verb": "disintegrate",
+		"description": ""
+	},
+	{
+		"name": "dislocation",
+		"verb": "dislocate",
+		"description": "e.g. dislocation_density, dislocation_length in materials science, "
+	},
+	{
+		"name": "dismantling",
+		"verb": "dismantle",
+		"description": ""
+	},
+	{
+		"name": "dispersal",
+		"verb": "disperse",
+		"description": ""
+	},
+	{
+		"name": "dispersion",
+		"verb": "disperse",
+		"description": ""
+	},
+	{
+		"name": "displacement",
+		"verb": "displace",
+		"description": "also used as a quantity with units of length, "
+	},
+	{
+		"name": "disposal",
+		"verb": "dispose",
+		"description": ""
+	},
+	{
+		"name": "disposing",
+		"verb": "dispose",
+		"description": ""
+	},
+	{
+		"name": "disruption",
+		"verb": "disrupt",
+		"description": ""
+	},
+	{
+		"name": "dissection",
+		"verb": "dissect",
+		"description": ""
+	},
+	{
+		"name": "dissipation",
+		"verb": "dissipate",
+		"description": "in CF, "
+	},
+	{
+		"name": "dissociation",
+		"verb": "dissociate",
+		"description": "e.g. bond_dissociation_energy, "
+	},
+	{
+		"name": "dissolution",
+		"verb": "dissolve",
+		"description": ""
+	},
+	{
+		"name": "distillation",
+		"verb": "distill",
+		"description": ""
+	},
+	{
+		"name": "distortion",
+		"verb": "distort",
+		"description": ""
+	},
+	{
+		"name": "distraction",
+		"verb": "distract",
+		"description": ""
+	},
+	{
+		"name": "distribution",
+		"verb": "distribute",
+		"description": ""
+	},
+	{
+		"name": "disturbance",
+		"verb": "disturb",
+		"description": "e.g. disturbance_frequency, fires, "
+	},
+	{
+		"name": "divergence",
+		"verb": "diverge",
+		"description": ""
+	},
+	{
+		"name": "diversion",
+		"verb": "divert",
+		"description": "e.g. of flows, "
+	},
+	{
+		"name": "diving",
+		"verb": "dive",
+		"description": ""
+	},
+	{
+		"name": "division",
+		"verb": "divide",
+		"description": " cell_division_rate, "
+	},
+	{
+		"name": "docking",
+		"verb": "dock",
+		"description": ""
+	},
+	{
+		"name": "dodging",
+		"verb": "dodge",
+		"description": ""
+	},
+	{
+		"name": "dolomitization",
+		"verb": "dolomotize",
+		"description": ""
+	},
+	{
+		"name": "domination",
+		"verb": "dominate",
+		"description": ""
+	},
+	{
+		"name": "donation",
+		"verb": "donate",
+		"description": "e.g. electron donation, organ donation, "
+	},
+	{
+		"name": "dosing",
+		"verb": "dose",
+		"description": ""
+	},
+	{
+		"name": "doubling",
+		"verb": "double",
+		"description": ""
+	},
+	{
+		"name": "downburst",
+		"verb": "downburst",
+		"description": "downbursting, e.g. microburst, macroburst, "
+	},
+	{
+		"name": "downcutting",
+		"verb": "downcut",
+		"description": ""
+	},
+	{
+		"name": "downdraft",
+		"verb": "downdraft",
+		"description": "downdrafting, see updraft, "
+	},
+	{
+		"name": "downscaling",
+		"verb": "downscale",
+		"description": ""
+	},
+	{
+		"name": "downforce",
+		"verb": "downforce",
+		"description": "down forcing, e.g. of spoilers, opposite of lift, "
+	},
+	{
+		"name": "downscaling",
+		"verb": "downscale",
+		"description": ""
+	},
+	{
+		"name": "downturn",
+		"verb": "downturn",
+		"description": "downturning, "
+	},
+	{
+		"name": "downwelling",
+		"verb": "but \"downwell\" is not a word",
+		"description": ""
+	},
+	{
+		"name": "drafting",
+		"verb": "draft",
+		"description": "e.g. bicycle drafting, also swimming, trucks, etc., "
+	},
+	{
+		"name": "drag",
+		"verb": "drag",
+		"description": "dragging, in aerodynamics;  see lift, thrust, "
+	},
+	{
+		"name": "drainage",
+		"verb": "drain",
+		"description": "draining, e.g. acid mine drainage, drainage_area, "
+	},
+	{
+		"name": "drawdown",
+		"verb": "drawdown",
+		"description": "from \"drawing down\", "
+	},
+	{
+		"name": "dredging",
+		"verb": "dredge",
+		"description": ""
+	},
+	{
+		"name": "drifting",
+		"verb": "drift",
+		"description": "e.g. snow_drifting, particle_drifting, car_drifting, drift_velocity, "
+	},
+	{
+		"name": "drilling",
+		"verb": "drill",
+		"description": "e.g. drill_rate, "
+	},
+	{
+		"name": "dripping",
+		"verb": "drip",
+		"description": "e.g. in irrigation, "
+	},
+	{
+		"name": "driving",
+		"verb": "drive",
+		"description": "e.g. driving_force;  see forcing, "
+	},
+	{
+		"name": "drought",
+		"verb": "??",
+		"description": "drying"
+	},
+	{
+		"name": "drowning",
+		"verb": "drown",
+		"description": "also for plants, "
+	},
+	{
+		"name": "drying",
+		"verb": "dry",
+		"description": ""
+	},
+	{
+		"name": "ducting",
+		"verb": "duct",
+		"description": "e.g. tropospheric ducting, "
+	},
+	{
+		"name": "duplication",
+		"verb": "duplicate",
+		"description": "e.g. DNA, gene duplication, "
+	},
+	{
+		"name": "dying",
+		"verb": "die",
+		"description": "see death, "
+	},
+	{
+		"name": "dysregulation",
+		"verb": "dysregulate",
+		"description": ""
+	},
+	{
+		"name": "ebb",
+		"verb": "ebb",
+		"description": "ebbing, movement of tide back toward the sea, "
+	},
+	{
+		"name": "echoing",
+		"verb": "echo",
+		"description": ""
+	},
+	{
+		"name": "eclipsing",
+		"verb": "eclipse",
+		"description": ""
+	},
+	{
+		"name": "egress",
+		"verb": "egress",
+		"description": "e.g. signal egress, or leakage in cables; see ingress, "
+	},
+	{
+		"name": "ejection",
+		"verb": "eject",
+		"description": "e.g. coronal mass ejection, "
+	},
+	{
+		"name": "electrification",
+		"verb": "electrify",
+		"description": ""
+	},
+	{
+		"name": "electrocution",
+		"verb": "electrocute",
+		"description": ""
+	},
+	{
+		"name": "electrodeposition",
+		"verb": "electrodeposit",
+		"description": ""
+	},
+	{
+		"name": "electroplating",
+		"verb": "electroplate",
+		"description": ""
+	},
+	{
+		"name": "electrorefining",
+		"verb": "electrorefine",
+		"description": ""
+	},
+	{
+		"name": "electrowinning",
+		"verb": "electrowin",
+		"description": ""
+	},
+	{
+		"name": "elimination",
+		"verb": "eliminate",
+		"description": ""
+	},
+	{
+		"name": "elongation",
+		"verb": "elongate",
+		"description": ""
+	},
+	{
+		"name": "elution",
+		"verb": "elute",
+		"description": ""
+	},
+	{
+		"name": "eluviation",
+		"verb": "eluviate",
+		"description": ""
+	},
+	{
+		"name": "emanation",
+		"verb": "emanate",
+		"description": ""
+	},
+	{
+		"name": "embalming",
+		"verb": "embalm",
+		"description": ""
+	},
+	{
+		"name": "embarcation",
+		"verb": "embark",
+		"description": ""
+	},
+	{
+		"name": "embedding",
+		"verb": "embed",
+		"description": ""
+	},
+	{
+		"name": "embrittlement",
+		"verb": "embrittle",
+		"description": ""
+	},
+	{
+		"name": "emergence",
+		"verb": "emerge",
+		"description": ""
+	},
+	{
+		"name": "emigration",
+		"verb": "emigrate",
+		"description": ""
+	},
+	{
+		"name": "emission",
+		"verb": "emit",
+		"description": "             , e.g. particle emission, "
+	},
+	{
+		"name": "emplacement",
+		"verb": "emplace",
+		"description": "e.g. pluton emplacement in geology, "
+	},
+	{
+		"name": "emulsification",
+		"verb": "emulsify",
+		"description": ""
+	},
+	{
+		"name": "encapsulation",
+		"verb": "encapsulate",
+		"description": ""
+	},
+	{
+		"name": "encasement",
+		"verb": "encase",
+		"description": "encasing, e.g. glass or resin encasement, "
+	},
+	{
+		"name": "encroachment",
+		"verb": "encroach",
+		"description": ""
+	},
+	{
+		"name": "enforcement",
+		"verb": "enforce",
+		"description": ""
+	},
+	{
+		"name": "engaging",
+		"verb": "engage",
+		"description": ""
+	},
+	{
+		"name": "engraving",
+		"verb": "engrave",
+		"description": ""
+	},
+	{
+		"name": "enrichment",
+		"verb": "enrich",
+		"description": "e.g of uranium, "
+	},
+	{
+		"name": "enrobing",
+		"verb": "enrobe",
+		"description": "the process of coating fillings, etc. with chocolate, "
+	},
+	{
+		"name": "ensilage",
+		"verb": "silage",
+		"description": "silaging, process of making silage, "
+	},
+	{
+		"name": "entanglement",
+		"verb": "entangle",
+		"description": "e.g. quantum entanglement, "
+	},
+	{
+		"name": "entrainment",
+		"verb": "entrain",
+		"description": ""
+	},
+	{
+		"name": "entrance",
+		"verb": "enter",
+		"description": " e.g. entrance_speed, "
+	},
+	{
+		"name": "entry",
+		"verb": "enter",
+		"description": ""
+	},
+	{
+		"name": "equalization",
+		"verb": "equalize",
+		"description": "e.g. equalization_pressure, "
+	},
+	{
+		"name": "equilibration",
+		"verb": "equilibrate",
+		"description": ""
+	},
+	{
+		"name": "equinox",
+		"verb": "equinox",
+		"description": "\"equinoxing\", e.g. equinox_time; as something the earth is doing, "
+	},
+	{
+		"name": "eradication",
+		"verb": "eradicate",
+		"description": ""
+	},
+	{
+		"name": "erosion",
+		"verb": "erode",
+		"description": ""
+	},
+	{
+		"name": "eruption",
+		"verb": "erupt",
+		"description": "e.g. of volcanoes or teeth, "
+	},
+	{
+		"name": "escape",
+		"verb": "escape",
+		"description": "escaping, e.g earth_escape_speed, "
+	},
+	{
+		"name": "espionage  ",
+		"verb": "from spying",
+		"description": ""
+	},
+	{
+		"name": "establishment ",
+		"verb": "e.g. zone of flow establishment",
+		"description": ""
+	},
+	{
+		"name": "esterification",
+		"verb": "esterificate",
+		"description": ""
+	},
+	{
+		"name": "estimation",
+		"verb": "estimate",
+		"description": ""
+	},
+	{
+		"name": "estivation",
+		"verb": "estivate",
+		"description": "similar to hibernation, "
+	},
+	{
+		"name": "etching",
+		"verb": "etch",
+		"description": ""
+	},
+	{
+		"name": "ethylation",
+		"verb": "ethylate",
+		"description": ""
+	},
+	{
+		"name": "eutrophication",
+		"verb": "eutrophicate",
+		"description": ""
+	},
+	{
+		"name": "evacuation",
+		"verb": "evacuate",
+		"description": ""
+	},
+	{
+		"name": "evaluation",
+		"verb": "evaluate",
+		"description": ""
+	},
+	{
+		"name": "evaporation",
+		"verb": "evaporate",
+		"description": ""
+	},
+	{
+		"name": "evapotranspiration",
+		"verb": "evapotranspirate",
+		"description": ""
+	},
+	{
+		"name": "evasion",
+		"verb": "evade",
+		"description": ""
+	},
+	{
+		"name": "evection",
+		"verb": "evect ??",
+		"description": "a regular perturbation of moon's orbital eccentricity due to the sun, "
+	},
+	{
+		"name": "evolution",
+		"verb": "evolve",
+		"description": ""
+	},
+	{
+		"name": "examination",
+		"verb": "examine",
+		"description": ""
+	},
+	{
+		"name": "excavation",
+		"verb": "excavate",
+		"description": ""
+	},
+	{
+		"name": "exceedance",
+		"verb": "exceed",
+		"description": ""
+	},
+	{
+		"name": "exchange",
+		"verb": "exchange",
+		"description": "exchanging, e.g. bulk_exchange_coefficient, "
+	},
+	{
+		"name": "excitation",
+		"verb": "excite",
+		"description": "see inhibition, "
+	},
+	{
+		"name": "exclusion",
+		"verb": "exclude",
+		"description": ""
+	},
+	{
+		"name": "excretion",
+		"verb": "excrete",
+		"description": ""
+	},
+	{
+		"name": "excursion",
+		"verb": "excurse",
+		"description": "e.g. brownian excursion process, "
+	},
+	{
+		"name": "exertion",
+		"verb": "exert",
+		"description": ""
+	},
+	{
+		"name": "exfiltration",
+		"verb": "exfiltrate",
+		"description": "opposite of infiltrate, "
+	},
+	{
+		"name": "exfoliation",
+		"verb": "exfoliate",
+		"description": ""
+	},
+	{
+		"name": "exhalation",
+		"verb": "exhale",
+		"description": ""
+	},
+	{
+		"name": "exhaust ",
+		"verb": "exhaust",
+		"description": "exhausting, e.g. from an automobile, "
+	},
+	{
+		"name": "exhaustion",
+		"verb": "exhaust",
+		"description": ""
+	},
+	{
+		"name": "exhumation",
+		"verb": "exhume",
+		"description": "e.g. exhumation_rate in geology, "
+	},
+	{
+		"name": "existence",
+		"verb": "exist",
+		"description": "existing, "
+	},
+	{
+		"name": "exit",
+		"verb": "exit",
+		"description": "exiting, e.g. rocket_nozzle_exit_speed, "
+	},
+	{
+		"name": "exodus",
+		"verb": "??,"
+	},
+	{
+		"name": "expansion",
+		"verb": "expand",
+		"description": "see contraction, "
+	},
+	{
+		"name": "expiration",
+		"verb": "expire",
+		"description": ""
+	},
+	{
+		"name": "explosion",
+		"verb": "explode",
+		"description": "see implosion, "
+	},
+	{
+		"name": "exporting",
+		"verb": "export",
+		"description": " ?? , see import, "
+	},
+	{
+		"name": "exposure",
+		"verb": "expose",
+		"description": "e.g. exposure_duration, "
+	},
+	{
+		"name": "expression",
+		"verb": "express",
+		"description": "e.g. in genetics, "
+	},
+	{
+		"name": "expulsion",
+		"verb": "expel",
+		"description": ""
+	},
+	{
+		"name": "exsanguination",
+		"verb": "exsanguinate",
+		"description": "the process of blood loss, "
+	},
+	{
+		"name": "extension",
+		"verb": "extend",
+		"description": ""
+	},
+	{
+		"name": "extermination",
+		"verb": "exterminate",
+		"description": ""
+	},
+	{
+		"name": "exteroception",
+		"verb": "??",
+		"description": ""
+	},
+	{
+		"name": "extinction",
+		"verb": "extinct",
+		"description": "extinct is also a verb, from \"extinguish\", "
+	},
+	{
+		"name": "extinguishment",
+		"verb": "extinguish",
+		"description": ""
+	},
+	{
+		"name": "extraction",
+		"verb": "extract",
+		"description": "e.g. of water;  see abstraction, "
+	},
+	{
+		"name": "extrapolation",
+		"verb": "extrapolate",
+		"description": ""
+	},
+	{
+		"name": "extravasation",
+		"verb": "extravasate",
+		"description": "e.g. lava from a volcano, "
+	},
+	{
+		"name": "extrusion",
+		"verb": "extrude",
+		"description": ""
+	},
+	{
+		"name": "exudation",
+		"verb": "exude",
+		"description": ""
+	},
+	{
+		"name": "fabrication",
+		"verb": "fabricate",
+		"description": ""
+	},
+	{
+		"name": "fading",
+		"verb": "fade",
+		"description": ""
+	},
+	{
+		"name": "faceting",
+		"verb": "facet",
+		"description": ""
+	},
+	{
+		"name": "failure",
+		"verb": "fail",
+		"description": "failing, "
+	},
+	{
+		"name": "falling",
+		"verb": "fall",
+		"description": ""
+	},
+	{
+		"name": "fallout",
+		"verb": "fallout",
+		"description": ""
+	},
+	{
+		"name": "fasciculation",
+		"verb": "fasciculate",
+		"description": ""
+	},
+	{
+		"name": "fastening",
+		"verb": "fasten",
+		"description": ""
+	},
+	{
+		"name": "fasting",
+		"verb": "fast",
+		"description": ""
+	},
+	{
+		"name": "faulting",
+		"verb": "fault",
+		"description": "e.g. detachment_faulting, thrust_faulting, "
+	},
+	{
+		"name": "fecundation",
+		"verb": "fecundate",
+		"description": ""
+	},
+	{
+		"name": "feedback",
+		"verb": "feedback",
+		"description": "\"feeding back\", "
+	},
+	{
+		"name": "feeding",
+		"verb": "feed",
+		"description": ""
+	},
+	{
+		"name": "fermentation",
+		"verb": "ferment",
+		"description": ""
+	},
+	{
+		"name": "fertigation",
+		"verb": "fertigate",
+		"description": ""
+	},
+	{
+		"name": "fertilization",
+		"verb": "fertilize",
+		"description": "fertilizing, "
+	},
+	{
+		"name": "fibrillation",
+		"verb": "fibrillate",
+		"description": ""
+	},
+	{
+		"name": "fibrosis",
+		"verb": "??,"
+	},
+	{
+		"name": "filamentation",
+		"verb": "filament",
+		"description": "e.g. in bacterial growth, "
+	},
+	{
+		"name": "filling",
+		"verb": "fill",
+		"description": ""
+	},
+	{
+		"name": "filtering",
+		"verb": "filter",
+		"description": ""
+	},
+	{
+		"name": "filtration",
+		"verb": "filtrate",
+		"description": ""
+	},
+	{
+		"name": "finding",
+		"verb": "find",
+		"description": "e.g. root finding, "
+	},
+	{
+		"name": "fingering",
+		"verb": "finger",
+		"description": "e.g. viscous fingering, "
+	},
+	{
+		"name": "fining",
+		"verb": "fine",
+		"description": "e.g. downstream fining of grain size, "
+	},
+	{
+		"name": "firing",
+		"verb": "fire",
+		"description": " neuron_firing_rate, "
+	},
+	{
+		"name": "fission",
+		"verb": "fission",
+		"description": "e.g. nuclear_fission, cell_fission; verb and noun, "
+	},
+	{
+		"name": "fixation",
+		"verb": "fixate",
+		"description": "in CF, e.g. nitrogen fixation, "
+	},
+	{
+		"name": "fixing",
+		"verb": "fix",
+		"description": ""
+	},
+	{
+		"name": "flagellation",
+		"verb": "flagellate",
+		"description": ""
+	},
+	{
+		"name": "flameholding",
+		"verb": "flamehold",
+		"description": "in combustion physics, "
+	},
+	{
+		"name": "flashback",
+		"verb": "flashback",
+		"description": "in combustion physics, "
+	},
+	{
+		"name": "flashing",
+		"verb": "flash",
+		"description": ""
+	},
+	{
+		"name": "flattening",
+		"verb": "flatten",
+		"description": "e.g. ellipsoid flattening ratio, "
+	},
+	{
+		"name": "flavoring",
+		"verb": "flavor",
+		"description": ""
+	},
+	{
+		"name": "flexure",
+		"verb": "flex",
+		"description": ""
+	},
+	{
+		"name": "flickering",
+		"verb": "flicker",
+		"description": ""
+	},
+	{
+		"name": "flight",
+		"verb": "fly",
+		"description": "flying, e.g. flight_duration, "
+	},
+	{
+		"name": "flipping",
+		"verb": "flip",
+		"description": ""
+	},
+	{
+		"name": "floating",
+		"verb": "float",
+		"description": ""
+	},
+	{
+		"name": "flocculation",
+		"verb": "flocculate",
+		"description": ""
+	},
+	{
+		"name": "flood",
+		"verb": "flood",
+		"description": "flooding, "
+	},
+	{
+		"name": "flotation",
+		"verb": "float",
+		"description": ""
+	},
+	{
+		"name": "flow",
+		"verb": "flow",
+		"description": "flowing, e.g. sea_water_flow_speed, "
+	},
+	{
+		"name": "fluctuation",
+		"verb": "fluctuate",
+		"description": ""
+	},
+	{
+		"name": "fluorescence",
+		"verb": "fluoresce",
+		"description": "see bioluminescence, "
+	},
+	{
+		"name": "fluorination",
+		"verb": "fluorinate",
+		"description": ""
+	},
+	{
+		"name": "flushing",
+		"verb": "flush",
+		"description": ""
+	},
+	{
+		"name": "flutter",
+		"verb": "flutter",
+		"description": "fluttering, see: [http://en.wikipedia.org/wiki/Aeroelastic_flutter#Flutter Flutter]., "
+	},
+	{
+		"name": "flying",
+		"verb": "fly",
+		"description": "e.g. flying_time, "
+	},
+	{
+		"name": "focusing",
+		"verb": "focus",
+		"description": ""
+	},
+	{
+		"name": "folding",
+		"verb": "fold",
+		"description": "e.g. protein_folding and in geology, "
+	},
+	{
+		"name": "following",
+		"verb": "follow",
+		"description": "e.g. terrain following coordinates, "
+	},
+	{
+		"name": "foraging",
+		"verb": "forage",
+		"description": "e.g. foraging_area, foraging_distance, "
+	},
+	{
+		"name": "forcing",
+		"verb": "force",
+		"description": ""
+	},
+	{
+		"name": "forging",
+		"verb": "forge",
+		"description": ""
+	},
+	{
+		"name": "formation",
+		"verb": "form",
+		"description": ""
+	},
+	{
+		"name": "fortification",
+		"verb": "fortify",
+		"description": ""
+	},
+	{
+		"name": "fouling",
+		"verb": "foul",
+		"description": ""
+	},
+	{
+		"name": "fractionization",
+		"verb": "fractionize",
+		"description": ""
+	},
+	{
+		"name": "fracturing",
+		"verb": "fracture",
+		"description": "e.g. hydraulic_fracturing or \"hydrofracking\", "
+	},
+	{
+		"name": "fragmentation",
+		"verb": "fragment",
+		"description": ""
+	},
+	{
+		"name": "freezing",
+		"verb": "freeze",
+		"description": ""
+	},
+	{
+		"name": "freshening",
+		"verb": "freshen",
+		"description": "of salt water, "
+	},
+	{
+		"name": "friction",
+		"verb": "??",
+		"description": "doesn't satisfy our definition;  both a force and a process?, "
+	},
+	{
+		"name": "fumigation",
+		"verb": "fumigate",
+		"description": ""
+	},
+	{
+		"name": "fusion",
+		"verb": "fuse",
+		"description": ""
+	},
+	{
+		"name": "gaining",
+		"verb": "gain",
+		"description": ""
+	},
+	{
+		"name": "galling",
+		"verb": "gall",
+		"description": "e.g. thread galling, "
+	},
+	{
+		"name": "gathering",
+		"verb": "gather",
+		"description": ""
+	},
+	{
+		"name": "gating",
+		"verb": "gate",
+		"description": ""
+	},
+	{
+		"name": "gelation",
+		"verb": "gelate",
+		"description": ""
+	},
+	{
+		"name": "gelifluction",
+		"verb": "gelifluct ?",
+		"description": ""
+	},
+	{
+		"name": "generation",
+		"verb": "generate",
+		"description": "generating, "
+	},
+	{
+		"name": "genesis",
+		"verb": "generate ?",
+		"description": ""
+	},
+	{
+		"name": "germination",
+		"verb": "germinate",
+		"description": "e.g. germination_period, "
+	},
+	{
+		"name": "glaciation",
+		"verb": "glaciate",
+		"description": "also used in cloud physics, "
+	},
+	{
+		"name": "glancing",
+		"verb": "glance",
+		"description": "e.g. glancing_angle, "
+	},
+	{
+		"name": "glide",
+		"verb": "glide",
+		"description": "gliding, e.g. glide_distance, glide_height, glide_ratio, "
+	},
+	{
+		"name": "globalization",
+		"verb": "globalize",
+		"description": ""
+	},
+	{
+		"name": "glowing",
+		"verb": "glow",
+		"description": "see illumination, phosphorescence, fluorescence, "
+	},
+	{
+		"name": "governing",
+		"verb": "govern",
+		"description": "e.g. governing equations, "
+	},
+	{
+		"name": "grading",
+		"verb": "grade",
+		"description": "e.g. grading a road, "
+	},
+	{
+		"name": "grafting",
+		"verb": "graft",
+		"description": ""
+	},
+	{
+		"name": "gravitation",
+		"verb": "gravitate",
+		"description": ""
+	},
+	{
+		"name": "grazing",
+		"verb": "graze",
+		"description": "and overgrazing, "
+	},
+	{
+		"name": "gridding",
+		"verb": "grid",
+		"description": ""
+	},
+	{
+		"name": "grinding",
+		"verb": "grind",
+		"description": ""
+	},
+	{
+		"name": "grip",
+		"verb": "grip",
+		"description": "gripping, "
+	},
+	{
+		"name": "grounding",
+		"verb": "ground",
+		"description": ""
+	},
+	{
+		"name": "growing",
+		"verb": "grow",
+		"description": "e.g. growing_season, "
+	},
+	{
+		"name": "growth",
+		"verb": "grow",
+		"description": "e.g. population_mean_growth_rate, "
+	},
+	{
+		"name": "guidance",
+		"verb": "guide",
+		"description": "e.g. missile guidance system, "
+	},
+	{
+		"name": "guiding",
+		"verb": "guide",
+		"description": ""
+	},
+	{
+		"name": "guttation",
+		"verb": "guttate",
+		"description": ""
+	},
+	{
+		"name": "gyration",
+		"verb": "gyrate",
+		"description": "e.g. gyration_rate of a gyre, "
+	},
+	{
+		"name": "habitation",
+		"verb": "inhabit",
+		"description": "inhabiting, "
+	},
+	{
+		"name": "hadronization",
+		"verb": "hadronize",
+		"description": "forming hadrons out of quarks and gluons, "
+	},
+	{
+		"name": "halogenation",
+		"verb": "halogenate",
+		"description": ""
+	},
+	{
+		"name": "hardening",
+		"verb": "harden",
+		"description": "see softening, "
+	},
+	{
+		"name": "harvest",
+		"verb": "harvest",
+		"description": "harvesting, "
+	},
+	{
+		"name": "heating",
+		"verb": "heat",
+		"description": ""
+	},
+	{
+		"name": "heaving",
+		"verb": "heave",
+		"description": "e.g. frost_heaving, e.g. a type of boat movement, "
+	},
+	{
+		"name": "herding",
+		"verb": "herd",
+		"description": ""
+	},
+	{
+		"name": "heterosis",
+		"verb": "??",
+		"description": ""
+	},
+	{
+		"name": "hibernation",
+		"verb": "hibernate",
+		"description": ""
+	},
+	{
+		"name": "hiding",
+		"verb": "hiding",
+		"description": "e.g. hiding factor ??, "
+	},
+	{
+		"name": "hitting",
+		"verb": "hit",
+		"description": "e.g. hit_rate ??, "
+	},
+	{
+		"name": "hoarding",
+		"verb": "hoard",
+		"description": "e.g. animal behavior, "
+	},
+	{
+		"name": "hoisting",
+		"verb": "hoist",
+		"description": ""
+	},
+	{
+		"name": "hop",
+		"verb": "hop",
+		"description": "hopping, e.g. hop_length, "
+	},
+	{
+		"name": "hovering",
+		"verb": "hover",
+		"description": ""
+	},
+	{
+		"name": "humidification",
+		"verb": "humidify",
+		"description": ""
+	},
+	{
+		"name": "hunting",
+		"verb": "hunt",
+		"description": ""
+	},
+	{
+		"name": "hybridization",
+		"verb": "hybridize",
+		"description": ""
+	},
+	{
+		"name": "hydration",
+		"verb": "hydrate",
+		"description": ""
+	},
+	{
+		"name": "hydrogenation",
+		"verb": "hydrogenate",
+		"description": ""
+	},
+	{
+		"name": "hydrolysis",
+		"verb": "hydrolyze",
+		"description": ""
+	},
+	{
+		"name": "hydropeaking",
+		"verb": "hydropeak",
+		"description": ""
+	},
+	{
+		"name": "hydroplaning",
+		"verb": "hydroplane",
+		"description": "also called aquaplaning, "
+	},
+	{
+		"name": "hyperpolarization",
+		"verb": "hyperpolarize",
+		"description": ""
+	},
+	{
+		"name": "icefall",
+		"verb": "icefall",
+		"description": "\"icefalling\", see rainfall, snowfall, "
+	},
+	{
+		"name": "icing",
+		"verb": "ice",
+		"description": "like \"ice up\","
+	},
+	{
+		"name": "icepush",
+		"verb": "icepush",
+		"description": "\"icepushing\",  ???? , see ridging, "
+	},
+	{
+		"name": "identification",
+		"verb": "identify",
+		"description": ""
+	},
+	{
+		"name": "idling",
+		"verb": "idle",
+		"description": ""
+	},
+	{
+		"name": "ignition",
+		"verb": "ignite",
+		"description": ""
+	},
+	{
+		"name": "illumination",
+		"verb": "illuminate",
+		"description": ""
+	},
+	{
+		"name": "illuviation",
+		"verb": "illuviate",
+		"description": ""
+	},
+	{
+		"name": "imbrication",
+		"verb": "imbricate",
+		"description": "in geology, "
+	},
+	{
+		"name": "immersion",
+		"verb": "immerse",
+		"description": ""
+	},
+	{
+		"name": "immigration",
+		"verb": "immigrate",
+		"description": "see emigration, "
+	},
+	{
+		"name": "immobilization",
+		"verb": "immobilize",
+		"description": ""
+	},
+	{
+		"name": "immunization",
+		"verb": "immunize",
+		"description": ""
+	},
+	{
+		"name": "impact",
+		"verb": "impact",
+		"description": "impaction, e.g. crater_formation, "
+	},
+	{
+		"name": "impairment",
+		"verb": "impair",
+		"description": "e.g. of the environment or water supply, "
+	},
+	{
+		"name": "impedance",
+		"verb": "impede",
+		"description": ""
+	},
+	{
+		"name": "impelling",
+		"verb": "impel",
+		"description": ""
+	},
+	{
+		"name": "impinging",
+		"verb": "impinge",
+		"description": ""
+	},
+	{
+		"name": "implantation",
+		"verb": "implant",
+		"description": ""
+	},
+	{
+		"name": "implosion",
+		"verb": "implode",
+		"description": ""
+	},
+	{
+		"name": "importing",
+		"verb": "import",
+		"description": " ?? , see export, "
+	},
+	{
+		"name": "impounding",
+		"verb": "impound",
+		"description": "damming;  Note: impoundment refers to the reservoir ??, "
+	},
+	{
+		"name": "impregnation",
+		"verb": "impregnate",
+		"description": ""
+	},
+	{
+		"name": "improvement",
+		"verb": "improve",
+		"description": ""
+	},
+	{
+		"name": "incarceration",
+		"verb": "incarcerate",
+		"description": ""
+	},
+	{
+		"name": "inception",
+		"verb": "incept",
+		"description": ""
+	},
+	{
+		"name": "incineration",
+		"verb": "incinerate",
+		"description": ""
+	},
+	{
+		"name": "incision",
+		"verb": "incise",
+		"description": ""
+	},
+	{
+		"name": "inclination",
+		"verb": "incline",
+		"description": ""
+	},
+	{
+		"name": "inclusion",
+		"verb": "include",
+		"description": ""
+	},
+	{
+		"name": "incorporation",
+		"verb": "incorporate",
+		"description": "i.e. making a part of, "
+	},
+	{
+		"name": "incubation",
+		"verb": "incubate",
+		"description": "e.g. incubation_period, "
+	},
+	{
+		"name": "incursion",
+		"verb": "incurse ??",
+		"description": ""
+	},
+	{
+		"name": "indentation",
+		"verb": "indent",
+		"description": "e.g. indentation_hardness, "
+	},
+	{
+		"name": "indication",
+		"verb": "indicate",
+		"description": ""
+	},
+	{
+		"name": "induction",
+		"verb": "induce",
+		"description": " e.g. induction_period in chemical kinetics, "
+	},
+	{
+		"name": "inebriation",
+		"verb": "inebriate",
+		"description": ""
+	},
+	{
+		"name": "infarction",
+		"verb": "infarct",
+		"description": "medical, "
+	},
+	{
+		"name": "infection",
+		"verb": "infect",
+		"description": ""
+	},
+	{
+		"name": "infestation",
+		"verb": "infest",
+		"description": ""
+	},
+	{
+		"name": "infilling",
+		"verb": "infill",
+		"description": "e.g. at the beds of glaciers, "
+	},
+	{
+		"name": "infiltration",
+		"verb": "infiltrate",
+		"description": ""
+	},
+	{
+		"name": "inflammation",
+		"verb": "inflame",
+		"description": ""
+	},
+	{
+		"name": "inflation",
+		"verb": "inflate",
+		"description": "e.g. cosmic_inflation, tire inflation, "
+	},
+	{
+		"name": "inflection",
+		"verb": "inflect",
+		"description": ""
+	},
+	{
+		"name": "inflicting",
+		"verb": "inflict",
+		"description": ""
+	},
+	{
+		"name": "inflow",
+		"verb": "inflow",
+		"description": "inflowing, "
+	},
+	{
+		"name": "influence",
+		"verb": "influence",
+		"description": "influencing, "
+	},
+	{
+		"name": "infusion",
+		"verb": "infuse",
+		"description": ""
+	},
+	{
+		"name": "ingestion",
+		"verb": "ingest",
+		"description": ""
+	},
+	{
+		"name": "ingress",
+		"verb": "ingress",
+		"description": " e.g. signal ingress, or leakage into cables; see egress, "
+	},
+	{
+		"name": "inhalation",
+		"verb": "inhale",
+		"description": ""
+	},
+	{
+		"name": "inheritance",
+		"verb": "inherit",
+		"description": "in genetics, "
+	},
+	{
+		"name": "inhibition",
+		"verb": "inhibit",
+		"description": "see excitation, "
+	},
+	{
+		"name": "initialization",
+		"verb": "initialize",
+		"description": ""
+	},
+	{
+		"name": "injection",
+		"verb": "inject",
+		"description": " injection_rate in a well, "
+	},
+	{
+		"name": "injuring",
+		"verb": "injure",
+		"description": "injury, "
+	},
+	{
+		"name": "innervation",
+		"verb": "innervate",
+		"description": ""
+	},
+	{
+		"name": "innovation",
+		"verb": "innovate",
+		"description": ""
+	},
+	{
+		"name": "inoculation",
+		"verb": "inoculate",
+		"description": ""
+	},
+	{
+		"name": "insertion",
+		"verb": "insert",
+		"description": ""
+	},
+	{
+		"name": "insolation",
+		"verb": "insolate",
+		"description": "at ground; \"solar irradiation constant\" minus losses in atmosphere, "
+	},
+	{
+		"name": "inspection",
+		"verb": "inspect",
+		"description": ""
+	},
+	{
+		"name": "installation",
+		"verb": "install",
+		"description": ""
+	},
+	{
+		"name": "insulation",
+		"verb": "insulate",
+		"description": ""
+	},
+	{
+		"name": "intake",
+		"verb": "intake",
+		"description": "intaking, "
+	},
+	{
+		"name": "integration",
+		"verb": "integrate",
+		"description": ""
+	},
+	{
+		"name": "intensification",
+		"verb": "intensify",
+		"description": ""
+	},
+	{
+		"name": "interaction",
+		"verb": "interact",
+		"description": " e.g. wave_wave_ or wave_current_interaction ??, "
+	},
+	{
+		"name": "interbreeding",
+		"verb": "interbreed",
+		"description": ""
+	},
+	{
+		"name": "intercalation",
+		"verb": "intercalate",
+		"description": "e.g. intercalated DNA, "
+	},
+	{
+		"name": "interception",
+		"verb": "intercept",
+		"description": ""
+	},
+	{
+		"name": "interconnection",
+		"verb": "interconnect",
+		"description": ""
+	},
+	{
+		"name": "interdependence",
+		"verb": "interdepend",
+		"description": ""
+	},
+	{
+		"name": "interference",
+		"verb": "interfere",
+		"description": "e.g. waves, "
+	},
+	{
+		"name": "interflow",
+		"verb": "interflow",
+		"description": "see baseflow, through flow, "
+	},
+	{
+		"name": "interlocking",
+		"verb": "interlock",
+		"description": ""
+	},
+	{
+		"name": "intermingling",
+		"verb": "intermingle",
+		"description": ""
+	},
+	{
+		"name": "interoception",
+		"verb": "??",
+		"description": ""
+	},
+	{
+		"name": "interruption",
+		"verb": "interrupt",
+		"description": ""
+	},
+	{
+		"name": "intersection",
+		"verb": "intersect",
+		"description": ""
+	},
+	{
+		"name": "interspersal",
+		"verb": "intersperse",
+		"description": ""
+	},
+	{
+		"name": "interpolation",
+		"verb": "interpolate",
+		"description": ""
+	},
+	{
+		"name": "intoxication",
+		"verb": "intoxicate",
+		"description": ""
+	},
+	{
+		"name": "introgression",
+		"verb": "introgress",
+		"description": "e.g. in genetics, also introgressive hybridization, "
+	},
+	{
+		"name": "intrusion",
+		"verb": "intrude",
+		"description": " e.g. salt water intrusion, "
+	},
+	{
+		"name": "inundation",
+		"verb": "inundate",
+		"description": " e.g. flood plain inundation, "
+	},
+	{
+		"name": "invasion",
+		"verb": "invade",
+		"description": ""
+	},
+	{
+		"name": "inversion",
+		"verb": "inverse",
+		"description": " e.g. atmospheric inversion, thermal inversion, "
+	},
+	{
+		"name": "invocation",
+		"verb": "invoke",
+		"description": ""
+	},
+	{
+		"name": "iodination",
+		"verb": "iodinate",
+		"description": ""
+	},
+	{
+		"name": "ionization",
+		"verb": "ionize",
+		"description": "e.g. ionization_speed, "
+	},
+	{
+		"name": "irradiation",
+		"verb": "irradiate",
+		"description": " see \"insolation\", "
+	},
+	{
+		"name": "irrigation",
+		"verb": "irrigate",
+		"description": ""
+	},
+	{
+		"name": "irritation",
+		"verb": "irritate",
+		"description": ""
+	},
+	{
+		"name": "isolation",
+		"verb": "isolate",
+		"description": ""
+	},
+	{
+		"name": "iteration",
+		"verb": "iterate",
+		"description": ""
+	},
+	{
+		"name": "jacking",
+		"verb": "jack",
+		"description": "e.g. jacking up a car, "
+	},
+	{
+		"name": "jackknifing",
+		"verb": "jackknife",
+		"description": ""
+	},
+	{
+		"name": "jamming",
+		"verb": "jam",
+		"description": "e.g. jamming a radio frequency, "
+	},
+	{
+		"name": "jetting",
+		"verb": "jet",
+		"description": "e.g. carburetor jetting, "
+	},
+	{
+		"name": "judder",
+		"verb": "judder",
+		"description": "juddering, mostly British;  a TV image problem, "
+	},
+	{
+		"name": "juicing",
+		"verb": "juice",
+		"description": ""
+	},
+	{
+		"name": "jumping",
+		"verb": "jump",
+		"description": ""
+	},
+	{
+		"name": "juxtaposition",
+		"verb": "juxtapose",
+		"description": ""
+	},
+	{
+		"name": "kinking",
+		"verb": "kink",
+		"description": ""
+	},
+	{
+		"name": "knocking",
+		"verb": "knock",
+		"description": ""
+	},
+	{
+		"name": "laceration",
+		"verb": "lacerate",
+		"description": "lacerating, "
+	},
+	{
+		"name": "lag",
+		"verb": "lag",
+		"description": "lagging, e.g. lag_time, "
+	},
+	{
+		"name": "lamination",
+		"verb": "laminate",
+		"description": ""
+	},
+	{
+		"name": "landfall",
+		"verb": "landfall",
+		"description": "e.g. hurricane_landfall_rate ??, "
+	},
+	{
+		"name": "landing",
+		"verb": "land",
+		"description": "e.g. airplane landing time, "
+	},
+	{
+		"name": "landsliding",
+		"verb": "landslide",
+		"description": ""
+	},
+	{
+		"name": "lapse",
+		"verb": "lapse",
+		"description": "lapsing, e.g. lapse_rate of an atmospheric variable, usuaally temperature, "
+	},
+	{
+		"name": "lashing",
+		"verb": "lash",
+		"description": ""
+	},
+	{
+		"name": "latching",
+		"verb": "latch",
+		"description": ""
+	},
+	{
+		"name": "lateration",
+		"verb": "laterate",
+		"description": "also: \"unilateration\", \"trilateration\", \"multilateration\"; see \"ranging\", "
+	},
+	{
+		"name": "launching",
+		"verb": "launch",
+		"description": ""
+	},
+	{
+		"name": "lautering",
+		"verb": "lauter",
+		"description": "in beer brewing, "
+	},
+	{
+		"name": "laying",
+		"verb": "lay",
+		"description": ""
+	},
+	{
+		"name": "leaching",
+		"verb": "leach",
+		"description": "e.g. leaching into soil, "
+	},
+	{
+		"name": "lead",
+		"verb": "lead",
+		"description": "leading, e.g. lead_time for disaster warnings, "
+	},
+	{
+		"name": "leakage",
+		"verb": "leak",
+		"description": "leaking, "
+	},
+	{
+		"name": "leaning",
+		"verb": "lean",
+		"description": ""
+	},
+	{
+		"name": "lensing",
+		"verb": "lense",
+		"description": "e.g. gravitational lensing, "
+	},
+	{
+		"name": "leveling",
+		"verb": "level",
+		"description": ""
+	},
+	{
+		"name": "levering",
+		"verb": "lever",
+		"description": ""
+	},
+	{
+		"name": "levitation",
+		"verb": "levitate",
+		"description": "e.g. magnetic levitation, "
+	},
+	{
+		"name": "libration",
+		"verb": "librate",
+		"description": "See: [http://en.wikipedia.org/wiki/Libration Libration]., "
+	},
+	{
+		"name": "lifting",
+		"verb": "lift",
+		"description": " in aerodynamics;  see drag, thrust, "
+	},
+	{
+		"name": "liftoff",
+		"verb": "liftoff",
+		"description": "of rockets, from \"lifting off the ground\", "
+	},
+	{
+		"name": "ligation",
+		"verb": "ligate",
+		"description": ""
+	},
+	{
+		"name": "limiting",
+		"verb": "limit",
+		"description": ""
+	},
+	{
+		"name": "lining",
+		"verb": "line",
+		"description": ""
+	},
+	{
+		"name": "linkage",
+		"verb": "link",
+		"description": ""
+	},
+	{
+		"name": "lipolysis",
+		"verb": "??,"
+	},
+	{
+		"name": "liquefaction",
+		"verb": "liquefy or liquify",
+		"description": ""
+	},
+	{
+		"name": "listing",
+		"verb": "list",
+		"description": "e.g. of a boat, "
+	},
+	{
+		"name": "lithification",
+		"verb": "lithificate",
+		"description": "in geology, "
+	},
+	{
+		"name": "litterfall",
+		"verb": "litterfall",
+		"description": "from plants, "
+	},
+	{
+		"name": "loading",
+		"verb": "load",
+		"description": " e.g. beam_loading, "
+	},
+	{
+		"name": "localization",
+		"verb": "localize",
+		"description": "e.g sound localization, or identifying the source of a sound, "
+	},
+	{
+		"name": "locking",
+		"verb": "lock",
+		"description": "e.g. tidal locking, "
+	},
+	{
+		"name": "locomotion",
+		"verb": "locomote",
+		"description": "e.g. aquatic_locomotion, animal self movement, "
+	},
+	{
+		"name": "logging",
+		"verb": "log",
+		"description": "i.e. tree cutting, "
+	},
+	{
+		"name": "lordosis",
+		"verb": "??,"
+	},
+	{
+		"name": "loss",
+		"verb": "lose",
+		"description": "losing, "
+	},
+	{
+		"name": "lowering",
+		"verb": "lower",
+		"description": ""
+	},
+	{
+		"name": "lubrication",
+		"verb": "lubricate",
+		"description": ""
+	},
+	{
+		"name": "luminescence",
+		"verb": "luminesce",
+		"description": "See: [http://en.wikipedia.org/wiki/Luminescence Luminescence] for many kinds., "
+	},
+	{
+		"name": "maceration",
+		"verb": "macerate",
+		"description": ""
+	},
+	{
+		"name": "macgyvering",
+		"verb": "macgyver",
+		"description": ""
+	},
+	{
+		"name": "machining",
+		"verb": "machine",
+		"description": ""
+	},
+	{
+		"name": "magnetization",
+		"verb": "magnetize",
+		"description": ""
+	},
+	{
+		"name": "magnification",
+		"verb": "magnify",
+		"description": "e.g. magnification_factor, "
+	},
+	{
+		"name": "maintenance",
+		"verb": "maintain",
+		"description": ""
+	},
+	{
+		"name": "management",
+		"verb": "manage",
+		"description": ""
+	},
+	{
+		"name": "maneuvering",
+		"verb": "maneuver",
+		"description": ""
+	},
+	{
+		"name": "manufacture",
+		"verb": "manufacture",
+		"description": "manufacturing, "
+	},
+	{
+		"name": "mapping",
+		"verb": "map",
+		"description": ""
+	},
+	{
+		"name": "marching",
+		"verb": "march",
+		"description": ""
+	},
+	{
+		"name": "marking",
+		"verb": "mark",
+		"description": ""
+	},
+	{
+		"name": "martempering",
+		"verb": "martemper",
+		"description": "heat treatment for steel, "
+	},
+	{
+		"name": "masking",
+		"verb": "mask",
+		"description": ""
+	},
+	{
+		"name": "mastication",
+		"verb": "masticate",
+		"description": ""
+	},
+	{
+		"name": "matching",
+		"verb": "match",
+		"description": ""
+	},
+	{
+		"name": "mating",
+		"verb": "mate",
+		"description": "animal behavior, "
+	},
+	{
+		"name": "maturation",
+		"verb": "mature",
+		"description": ""
+	},
+	{
+		"name": "maximization",
+		"verb": "maximize",
+		"description": ""
+	},
+	{
+		"name": "meandering",
+		"verb": "meander",
+		"description": ""
+	},
+	{
+		"name": "measurement",
+		"verb": "measure",
+		"description": "measuring, "
+	},
+	{
+		"name": "mediation",
+		"verb": "mediate",
+		"description": "e.g. semantic_mediation, "
+	},
+	{
+		"name": "meeting",
+		"verb": "meet",
+		"description": ""
+	},
+	{
+		"name": "meiosis",
+		"verb": "meiosis",
+		"description": "e.g. a type of cell division, "
+	},
+	{
+		"name": "melt  ",
+		"verb": "melt",
+		"description": "melting, "
+	},
+	{
+		"name": "mending",
+		"verb": "mend",
+		"description": ""
+	},
+	{
+		"name": "merging",
+		"verb": "merge",
+		"description": ""
+	},
+	{
+		"name": "metabolizing",
+		"verb": "metabolize",
+		"description": "metabolization?, metabolic?, e.g. \"basal metabolic rate\", \"resting metabolic rate\", "
+	},
+	{
+		"name": "metagenesis"
+	},
+	{
+		"name": "metamorphosis",
+		"verb": "metamorphose",
+		"description": "metamorphism, "
+	},
+	{
+		"name": "methylation",
+		"verb": "methylate",
+		"description": ""
+	},
+	{
+		"name": "migration",
+		"verb": "migrate",
+		"description": "e.g. animals or river channels, "
+	},
+	{
+		"name": "milling",
+		"verb": "mill",
+		"description": ""
+	},
+	{
+		"name": "mineralization",
+		"verb": "mineralize",
+		"description": ""
+	},
+	{
+		"name": "minimization",
+		"verb": "minimize",
+		"description": ""
+	},
+	{
+		"name": "mining",
+		"verb": "mine",
+		"description": ""
+	},
+	{
+		"name": "missing",
+		"verb": "miss",
+		"description": ""
+	},
+	{
+		"name": "mitigation",
+		"verb": "mitigate",
+		"description": ""
+	},
+	{
+		"name": "mitosis",
+		"verb": "mitosis",
+		"description": ""
+	},
+	{
+		"name": "mixing",
+		"verb": "mix",
+		"description": "e.g. prandtl_mixing_length, "
+	},
+	{
+		"name": "mobilization",
+		"verb": "mobilize",
+		"description": ""
+	},
+	{
+		"name": "moderation",
+		"verb": "moderate",
+		"description": ""
+	},
+	{
+		"name": "modification",
+		"verb": "modify",
+		"description": ""
+	},
+	{
+		"name": "modulation",
+		"verb": "modulate",
+		"description": ""
+	},
+	{
+		"name": "molding",
+		"verb": "mold",
+		"description": "e.g. injection molding, "
+	},
+	{
+		"name": "monitoring",
+		"verb": "monitor",
+		"description": ""
+	},
+	{
+		"name": "mooring",
+		"verb": "moor",
+		"description": ""
+	},
+	{
+		"name": "motion",
+		"verb": "move",
+		"description": "motion_rate = velocity, "
+	},
+	{
+		"name": "movement",
+		"verb": "move",
+		"description": "moving, e.g. mass movement, "
+	},
+	{
+		"name": "mowing",
+		"verb": "mow",
+		"description": "e.g. mowing_frequency and mowing_height, "
+	},
+	{
+		"name": "multilateration",
+		"verb": "multilaterate",
+		"description": "a navigation technique, "
+	},
+	{
+		"name": "multiplication",
+		"verb": "multiply",
+		"description": ""
+	},
+	{
+		"name": "mutation",
+		"verb": "mutate",
+		"description": ""
+	},
+	{
+		"name": "navigation",
+		"verb": "navigate",
+		"description": ""
+	},
+	{
+		"name": "nesting",
+		"verb": "nest",
+		"description": "e.g. a fine grid within a coarse grid, "
+	},
+	{
+		"name": "neurovitrification",
+		"verb": "neurovitrify",
+		"description": ""
+	},
+	{
+		"name": "neutralization",
+		"verb": "neutralize",
+		"description": "e.g. an odor, "
+	},
+	{
+		"name": "nitrification",
+		"verb": "nitrify",
+		"description": "see denitrification, "
+	},
+	{
+		"name": "nourishment",
+		"verb": "nourish",
+		"description": "e.g. beach nourishment, "
+	},
+	{
+		"name": "nucleation",
+		"verb": "nucleate",
+		"description": ""
+	},
+	{
+		"name": "nudging",
+		"verb": "nudge",
+		"description": "e.g., in climate models, "
+	},
+	{
+		"name": "nullification",
+		"verb": "nullify",
+		"description": ""
+	},
+	{
+		"name": "nutation",
+		"verb": "nutate",
+		"description": "in astronomy;  see precession, "
+	},
+	{
+		"name": "obduction",
+		"verb": "obduct",
+		"description": "e.g. of one tectonic plate onto another, "
+	},
+	{
+		"name": "obliteration",
+		"verb": "obliterate",
+		"description": ""
+	},
+	{
+		"name": "observation",
+		"verb": "observe",
+		"description": ""
+	},
+	{
+		"name": "obstruction",
+		"verb": "obstruct",
+		"description": ""
+	},
+	{
+		"name": "occlusion",
+		"verb": "occlude",
+		"description": "e.g. of a blood vessel, "
+	},
+	{
+		"name": "occultation",
+		"verb": "occult",
+		"description": "e.g. in astronomy, "
+	},
+	{
+		"name": "occurrence",
+		"verb": "occur",
+		"description": ""
+	},
+	{
+		"name": "offense",
+		"verb": "offend",
+		"description": "offending, "
+	},
+	{
+		"name": "onset",
+		"verb": "onset",
+		"description": ""
+	},
+	{
+		"name": "oozing",
+		"verb": "ooze",
+		"description": ""
+	},
+	{
+		"name": "opening",
+		"verb": "open",
+		"description": ""
+	},
+	{
+		"name": "operating",
+		"verb": "operate",
+		"description": "operation, e.g. operating_presssure, "
+	},
+	{
+		"name": "operation",
+		"verb": "operate",
+		"description": "e.g. surgical procedure, "
+	},
+	{
+		"name": "opposing",
+		"verb": "oppose",
+		"description": ""
+	},
+	{
+		"name": "opposition",
+		"verb": "oppose",
+		"description": "e.g. in astronomy, "
+	},
+	{
+		"name": "optimization",
+		"verb": "optimize",
+		"description": ""
+	},
+	{
+		"name": "orienting",
+		"verb": "orient",
+		"description": ""
+	},
+	{
+		"name": "origination",
+		"verb": "originate",
+		"description": ""
+	},
+	{
+		"name": "oscillation",
+		"verb": "oscillate",
+		"description": ""
+	},
+	{
+		"name": "osmosis",
+		"verb": "osmote",
+		"description": "osmoting, "
+	},
+	{
+		"name": "outage",
+		"verb": "out",
+		"description": "e.g. power outage, "
+	},
+	{
+		"name": "outbreak",
+		"verb": "outbreak",
+		"description": "outbreaking, in context of disease, "
+	},
+	{
+		"name": "outburst",
+		"verb": "outburst",
+		"description": "e.g. glacial outburst, jokulhlaup, "
+	},
+	{
+		"name": "outcropping",
+		"verb": "outcrop",
+		"description": ""
+	},
+	{
+		"name": "outcrossing",
+		"verb": "outcross",
+		"description": ""
+	},
+	{
+		"name": "outflow",
+		"verb": "outflow",
+		"description": "outflowing, "
+	},
+	{
+		"name": "outgassing",
+		"verb": "outgas",
+		"description": ""
+	},
+	{
+		"name": "overexertion",
+		"verb": "overexert",
+		"description": ""
+	},
+	{
+		"name": "overflow",
+		"verb": "overflow",
+		"description": "overflowing, "
+	},
+	{
+		"name": "overgrazing",
+		"verb": "overgraze",
+		"description": ""
+	},
+	{
+		"name": "overpopulation",
+		"verb": "overpopulate",
+		"description": ""
+	},
+	{
+		"name": "overshoot",
+		"verb": "overshoot",
+		"description": "overshooting, "
+	},
+	{
+		"name": "overturning",
+		"verb": "overturn",
+		"description": "in CF, "
+	},
+	{
+		"name": "ovulation",
+		"verb": "ovulate",
+		"description": ""
+	},
+	{
+		"name": "oxidation",
+		"verb": "oxidize",
+		"description": "oxidizing, see reduction, "
+	},
+	{
+		"name": "oxychlorination",
+		"verb": "oxychlorinate",
+		"description": ""
+	},
+	{
+		"name": "oxygenation",
+		"verb": "oxygenate",
+		"description": ""
+	},
+	{
+		"name": "packing",
+		"verb": "pack",
+		"description": "e.g. packing_factor, "
+	},
+	{
+		"name": "painting",
+		"verb": "paint",
+		"description": ""
+	},
+	{
+		"name": "pairing",
+		"verb": "pair",
+		"description": ""
+	},
+	{
+		"name": "panning",
+		"verb": "pan",
+		"description": ""
+	},
+	{
+		"name": "panspermia",
+		"verb": "??",
+		"description": ""
+	},
+	{
+		"name": "parachuting",
+		"verb": "parachute",
+		"description": ""
+	},
+	{
+		"name": "paralysis",
+		"verb": "paralyze",
+		"description": ""
+	},
+	{
+		"name": "parametrization",
+		"verb": "parametrize",
+		"description": ""
+	},
+	{
+		"name": "pargeting",
+		"verb": "parget",
+		"description": ""
+	},
+	{
+		"name": "participation",
+		"verb": "participate",
+		"description": ""
+	},
+	{
+		"name": "partition",
+		"verb": "partition",
+		"description": "partitioning, e.g. partition_ratio is preferred by IUPAC to partition_coefficient, "
+	},
+	{
+		"name": "passing",
+		"verb": "pass",
+		"description": ""
+	},
+	{
+		"name": "patching",
+		"verb": "patch",
+		"description": ""
+	},
+	{
+		"name": "patination",
+		"verb": "patinate",
+		"description": ""
+	},
+	{
+		"name": "paving",
+		"verb": "pave",
+		"description": ""
+	},
+	{
+		"name": "payoff",
+		"verb": "pay",
+		"description": ""
+	},
+	{
+		"name": "peaking",
+		"verb": "peak",
+		"description": "e.g. peaking_time ?, "
+	},
+	{
+		"name": "pedaling",
+		"verb": "pedal",
+		"description": ""
+	},
+	{
+		"name": "penetration",
+		"verb": "penetrate",
+		"description": "e.g. penetration_depth, e.g. of light into water, etc., "
+	},
+	{
+		"name": "percolation",
+		"verb": "percolate",
+		"description": ""
+	},
+	{
+		"name": "percussion",
+		"verb": "percuss",
+		"description": ""
+	},
+	{
+		"name": "perforation",
+		"verb": "perforate",
+		"description": "perforating, "
+	},
+	{
+		"name": "perfusion",
+		"verb": "perfuse",
+		"description": ""
+	},
+	{
+		"name": "peristalsis"
+	},
+	{
+		"name": "permineralization",
+		"verb": "permineralize",
+		"description": ""
+	},
+	{
+		"name": "permutation",
+		"verb": "permute",
+		"description": ""
+	},
+	{
+		"name": "peroxidation",
+		"verb": "peroxidate",
+		"description": "peroxidize, peroxidizing, "
+	},
+	{
+		"name": "persistence",
+		"verb": "persist",
+		"description": "e.g. persistence_length, persistence_time;  also of video images, "
+	},
+	{
+		"name": "perspiration",
+		"verb": "perspire",
+		"description": ""
+	},
+	{
+		"name": "perturbation",
+		"verb": "perturb",
+		"description": "e.g. perturbation_parameter, "
+	},
+	{
+		"name": "petrification",
+		"verb": "petrify",
+		"description": "petrifying, e.g. petrification of wood, "
+	},
+	{
+		"name": "phosphorescence",
+		"verb": "phosphoresce",
+		"description": ""
+	},
+	{
+		"name": "phosphorylation",
+		"verb": "phosphorylate",
+		"description": ""
+	},
+	{
+		"name": "photolysis",
+		"verb": "photolyze",
+		"description": "also photodissociation, photodecomposition, "
+	},
+	{
+		"name": "photorespiration",
+		"verb": "photorespirate",
+		"description": ""
+	},
+	{
+		"name": "photosynthesis",
+		"verb": "photosynthesize",
+		"description": ""
+	},
+	{
+		"name": "picking",
+		"verb": "pick",
+		"description": ""
+	},
+	{
+		"name": "piercing",
+		"verb": "pierce",
+		"description": ""
+	},
+	{
+		"name": "pinching",
+		"verb": "pinch",
+		"description": ""
+	},
+	{
+		"name": "pinging",
+		"verb": "ping",
+		"description": ""
+	},
+	{
+		"name": "pinning",
+		"verb": "pin",
+		"description": ""
+	},
+	{
+		"name": "piping",
+		"verb": "pipe",
+		"description": ""
+	},
+	{
+		"name": "pitching",
+		"verb": "pitch",
+		"description": "e.g. vs. yaw, "
+	},
+	{
+		"name": "pitting",
+		"verb": "pit",
+		"description": ""
+	},
+	{
+		"name": "pivoting",
+		"verb": "pivot",
+		"description": ""
+	},
+	{
+		"name": "placement",
+		"verb": "place",
+		"description": ""
+	},
+	{
+		"name": "planation",
+		"verb": "planate",
+		"description": ""
+	},
+	{
+		"name": "planning",
+		"verb": "plan",
+		"description": ""
+	},
+	{
+		"name": "planting",
+		"verb": "plant",
+		"description": ""
+	},
+	{
+		"name": "plastering",
+		"verb": "plaster",
+		"description": ""
+	},
+	{
+		"name": "plowing",
+		"verb": "plow",
+		"description": "e.g. plowing roads, "
+	},
+	{
+		"name": "plucking",
+		"verb": "pluck",
+		"description": "as in sediment on a streambed, "
+	},
+	{
+		"name": "plugging",
+		"verb": "plug",
+		"description": ""
+	},
+	{
+		"name": "plunging",
+		"verb": "plunge",
+		"description": ""
+	},
+	{
+		"name": "pointing",
+		"verb": "point",
+		"description": ""
+	},
+	{
+		"name": "poisoning",
+		"verb": "poison",
+		"description": ""
+	},
+	{
+		"name": "polarization",
+		"verb": "polarize",
+		"description": "e.g. polarization_angle, "
+	},
+	{
+		"name": "polishing",
+		"verb": "polish",
+		"description": "e.g. polishing roots with a root finder, "
+	},
+	{
+		"name": "pollination",
+		"verb": "pollinate",
+		"description": ""
+	},
+	{
+		"name": "pollution",
+		"verb": "pollute",
+		"description": ""
+	},
+	{
+		"name": "polymerization",
+		"verb": "polymerize",
+		"description": "in chemistry, "
+	},
+	{
+		"name": "ponding",
+		"verb": "pond",
+		"description": "e.g. infiltration ponding time or ponding depth, "
+	},
+	{
+		"name": "population",
+		"verb": "populate",
+		"description": "population_growth_rate, repopulation_rate ??, "
+	},
+	{
+		"name": "porpoising",
+		"verb": "porpoise",
+		"description": "a ground effect of some race cars, "
+	},
+	{
+		"name": "portage",
+		"verb": "port",
+		"description": ""
+	},
+	{
+		"name": "positioning",
+		"verb": "position",
+		"description": "e.g. positioning systems, "
+	},
+	{
+		"name": "pouring",
+		"verb": "pour",
+		"description": ""
+	},
+	{
+		"name": "precession",
+		"verb": "precess",
+		"description": " e.g. precession of Mercury;  see nutation, "
+	},
+	{
+		"name": "precipitation",
+		"verb": "precipitate",
+		"description": ""
+	},
+	{
+		"name": "predation",
+		"verb": "predate or \"prey upon\"",
+		"description": ""
+	},
+	{
+		"name": "prediction",
+		"verb": "predict",
+		"description": ""
+	},
+	{
+		"name": "preprocessing",
+		"verb": "preprocess",
+		"description": ""
+	},
+	{
+		"name": "processing",
+		"verb": "process",
+		"description": ""
+	},
+	{
+		"name": "predation",
+		"verb": "prey",
+		"description": "preying, e.g. predation_pressure, "
+	},
+	{
+		"name": "preparation",
+		"verb": "prepare",
+		"description": "e.g. preparation_time, "
+	},
+	{
+		"name": "preservation",
+		"verb": "preserve",
+		"description": "e.g. of food, "
+	},
+	{
+		"name": "preserving",
+		"verb": "preserve",
+		"description": "e.g. area preserving or angle preserving transformations, "
+	},
+	{
+		"name": "pressing",
+		"verb": "press",
+		"description": "e.g. pressing_ratio and pressure_ratio ??, "
+	},
+	{
+		"name": "pressurization",
+		"verb": "pressurize",
+		"description": ""
+	},
+	{
+		"name": "prevailing",
+		"verb": "prevail",
+		"description": "e.g. wind prevailing direction, "
+	},
+	{
+		"name": "prevention",
+		"verb": "prevent",
+		"description": "e.g. accident prevention, "
+	},
+	{
+		"name": "priming",
+		"verb": "prime",
+		"description": "e.g. priming a pump, stove or engine, "
+	},
+	{
+		"name": "probing",
+		"verb": "probe",
+		"description": "e.g. probing_depth in dentistry, "
+	},
+	{
+		"name": "processing",
+		"verb": "process",
+		"description": ""
+	},
+	{
+		"name": "procurement",
+		"verb": "procure",
+		"description": ""
+	},
+	{
+		"name": "production",
+		"verb": "produce",
+		"description": ""
+	},
+	{
+		"name": "progradation",
+		"verb": "prograde",
+		"description": "see \"aggradation\", "
+	},
+	{
+		"name": "projection",
+		"verb": "project",
+		"description": "e.g. map projection, "
+	},
+	{
+		"name": "proliferation",
+		"verb": "proliferate",
+		"description": "e.g. of dams or nuclear weapons, "
+	},
+	{
+		"name": "prolongation",
+		"verb": "prolong",
+		"description": ""
+	},
+	{
+		"name": "promotion",
+		"verb": "promote",
+		"description": ""
+	},
+	{
+		"name": "propagation",
+		"verb": "propagate",
+		"description": "e.g. waves, errors or disease, "
+	},
+	{
+		"name": "proprioception",
+		"verb": "??",
+		"description": ""
+	},
+	{
+		"name": "propulsion",
+		"verb": "propel",
+		"description": ""
+	},
+	{
+		"name": "protection",
+		"verb": "protect",
+		"description": "protecting, "
+	},
+	{
+		"name": "protonation",
+		"verb": "protonate",
+		"description": ""
+	},
+	{
+		"name": "provocation",
+		"verb": "provoke",
+		"description": ""
+	},
+	{
+		"name": "pruning",
+		"verb": "prune",
+		"description": "e.g. in network extraction from DEMs, "
+	},
+	{
+		"name": "pulling",
+		"verb": "pull",
+		"description": ""
+	},
+	{
+		"name": "pulmonation",
+		"verb": "pulmonate",
+		"description": ""
+	},
+	{
+		"name": "pulsation",
+		"verb": "pulsate",
+		"description": "pulsating, e.g. heart_pulsation_rate vs. pulse_rate, "
+	},
+	{
+		"name": "pulverizing",
+		"verb": "pulverize",
+		"description": ""
+	},
+	{
+		"name": "pumping",
+		"verb": "pump",
+		"description": "think about heart_rate vs. heart_pumping_rate, etc., "
+	},
+	{
+		"name": "puncturing",
+		"verb": "puncture",
+		"description": ""
+	},
+	{
+		"name": "purification",
+		"verb": "purify",
+		"description": ""
+	},
+	{
+		"name": "pushing",
+		"verb": "push",
+		"description": ""
+	},
+	{
+		"name": "putrefaction",
+		"verb": "putrefy",
+		"description": ""
+	},
+	{
+		"name": "pyritization",
+		"verb": "pyritize",
+		"description": ""
+	},
+	{
+		"name": "quarantine",
+		"verb": "quarantine",
+		"description": "quarantining, "
+	},
+	{
+		"name": "quenching",
+		"verb": "quench",
+		"description": "rapid cooling; quenching_distance in combustion, "
+	},
+	{
+		"name": "quilting",
+		"verb": "quilt",
+		"description": "a modeling term, "
+	},
+	{
+		"name": "race",
+		"verb": "race",
+		"description": "racing, e.g. race_time, "
+	},
+	{
+		"name": "radiation",
+		"verb": "radiate",
+		"description": ""
+	},
+	{
+		"name": "radiolocating",
+		"verb": "radiolocate",
+		"description": "also radiolocation, "
+	},
+	{
+		"name": "rafting",
+		"verb": "raft",
+		"description": "e.g. ice rafting;  sediment transported on or in ice, "
+	},
+	{
+		"name": "rainfall",
+		"verb": "rainfall",
+		"description": "\"rainfalling\", then rainfall_rate is preferred to rain_rate, "
+	},
+	{
+		"name": "raining",
+		"verb": "rain",
+		"description": ""
+	},
+	{
+		"name": "raise",
+		"verb": "raising",
+		"description": ""
+	},
+	{
+		"name": "ramping",
+		"verb": "ramp",
+		"description": ""
+	},
+	{
+		"name": "rancidification",
+		"verb": "rancidify",
+		"description": ""
+	},
+	{
+		"name": "ranging",
+		"verb": "range",
+		"description": "also in combinations like \"free_ranging\" & laser_ranging; see \"alteration\", "
+	},
+	{
+		"name": "ranking",
+		"verb": "rank",
+		"description": ""
+	},
+	{
+		"name": "rarefaction",
+		"verb": "rarefy",
+		"description": "opposite of compression, "
+	},
+	{
+		"name": "ratcheting",
+		"verb": "ratchet",
+		"description": ""
+	},
+	{
+		"name": "rating",
+		"verb": "rate",
+		"description": "e.g. rating_coefficient, "
+	},
+	{
+		"name": "reaction",
+		"verb": "react",
+		"description": "e.g. reaction_time, "
+	},
+	{
+		"name": "readjustment",
+		"verb": "readjust",
+		"description": ""
+	},
+	{
+		"name": "reaping",
+		"verb": "reap",
+		"description": ""
+	},
+	{
+		"name": "reaeration",
+		"verb": "reaerate",
+		"description": "e.g. reaeration_coefficient, "
+	},
+	{
+		"name": "reassessment",
+		"verb": "reassess",
+		"description": ""
+	},
+	{
+		"name": "reattachment",
+		"verb": "reattach",
+		"description": "e.g. in fluid dynamics of separated flows, "
+	},
+	{
+		"name": "rebound",
+		"verb": "rebound",
+		"description": "rebounding?, e.g. rebound_angle, isostatic rebound, "
+	},
+	{
+		"name": "reception",
+		"verb": "receive",
+		"description": "receiving, "
+	},
+	{
+		"name": "recession",
+		"verb": "recede",
+		"description": ""
+	},
+	{
+		"name": "recharge",
+		"verb": "recharge",
+		"description": "recharging, see discharge, "
+	},
+	{
+		"name": "reciprocating",
+		"verb": "reciprocate",
+		"description": "e.g. reciprocating motion, "
+	},
+	{
+		"name": "recirculation",
+		"verb": "recirculate",
+		"description": ""
+	},
+	{
+		"name": "reckoning",
+		"verb": "reckon",
+		"description": "e.g. dead reckoning, "
+	},
+	{
+		"name": "reclamation",
+		"verb": "reclaim",
+		"description": "e.g. water reclamation, "
+	},
+	{
+		"name": "recognition",
+		"verb": "recognize",
+		"description": "e.g. pattern recognition, "
+	},
+	{
+		"name": "recombination",
+		"verb": "recombine",
+		"description": "e.g. in genetics, "
+	},
+	{
+		"name": "reconciliation",
+		"verb": "reconcile",
+		"description": ""
+	},
+	{
+		"name": "reconditioning",
+		"verb": "recondition",
+		"description": "e.g. surface reconditioning, "
+	},
+	{
+		"name": "reconnection",
+		"verb": "reconnect",
+		"description": "e.g. magnetic reconnection, "
+	},
+	{
+		"name": "reconstruction",
+		"verb": "reconstruct",
+		"description": ""
+	},
+	{
+		"name": "recovery",
+		"verb": "recover",
+		"description": ""
+	},
+	{
+		"name": "recruitment",
+		"verb": "recruit",
+		"description": ""
+	},
+	{
+		"name": "rectifying",
+		"verb": "rectify",
+		"description": ""
+	},
+	{
+		"name": "recurrence",
+		"verb": "recur",
+		"description": ""
+	},
+	{
+		"name": "recursion",
+		"verb": "recurse",
+		"description": ""
+	},
+	{
+		"name": "recycling",
+		"verb": "recycle",
+		"description": "e.g. nutrient recycling, "
+	},
+	{
+		"name": "redirection",
+		"verb": "redirect",
+		"description": ""
+	},
+	{
+		"name": "redistribution",
+		"verb": "redistribute",
+		"description": "e.g. of water in soil or of snow by wind, "
+	},
+	{
+		"name": "reduction",
+		"verb": "reduce",
+		"description": ""
+	},
+	{
+		"name": "reducing",
+		"verb": "reduce",
+		"description": " e.g. chemistry:  reducing atmosphere, "
+	},
+	{
+		"name": "reading",
+		"verb": "read",
+		"description": "e.g. reading input files, "
+	},
+	{
+		"name": "reeling",
+		"verb": "reel",
+		"description": ""
+	},
+	{
+		"name": "reentry",
+		"verb": "reenter",
+		"description": "e.g. rentry_speed, "
+	},
+	{
+		"name": "refinement",
+		"verb": "refine",
+		"description": "e.g. grid refinement, "
+	},
+	{
+		"name": "refining",
+		"verb": "refine",
+		"description": ""
+	},
+	{
+		"name": "reflection",
+		"verb": "reflect",
+		"description": "e.g. sonar signals, "
+	},
+	{
+		"name": "reflux",
+		"verb": "reflux,"
+	},
+	{
+		"name": "refraction",
+		"verb": "refract",
+		"description": "see \"diffraction\", "
+	},
+	{
+		"name": "refreshing",
+		"verb": "refresh",
+		"description": "e.g. refresh_rate for monitors, aquariums?, refreshment, "
+	},
+	{
+		"name": "refrigeration",
+		"verb": "refrigerate",
+		"description": ""
+	},
+	{
+		"name": "refueling",
+		"verb": "refuel",
+		"description": ""
+	},
+	{
+		"name": "refurbishing",
+		"verb": "refurbish",
+		"description": ""
+	},
+	{
+		"name": "regelation",
+		"verb": "regelate?",
+		"description": "e.g. at the beds of glaciers, "
+	},
+	{
+		"name": "regeneration",
+		"verb": "regenerate",
+		"description": "e.g. ability to regenerate limbs, "
+	},
+	{
+		"name": "registration",
+		"verb": "register",
+		"description": "e.g. registration of two grids, "
+	},
+	{
+		"name": "regression",
+		"verb": "regress",
+		"description": "see \"transgression\", "
+	},
+	{
+		"name": "regridding",
+		"verb": "regrid",
+		"description": ""
+	},
+	{
+		"name": "regulation",
+		"verb": "regulate",
+		"description": ""
+	},
+	{
+		"name": "regurgitation",
+		"verb": "regurgitate",
+		"description": ""
+	},
+	{
+		"name": "rehabilitation",
+		"verb": "rehabilitate",
+		"description": ""
+	},
+	{
+		"name": "reinforcement",
+		"verb": "reinforce",
+		"description": "e.g. positive and negative; or in construction, "
+	},
+	{
+		"name": "reintroduction",
+		"verb": "reintroduce",
+		"description": "e.g. a species, "
+	},
+	{
+		"name": "rejection",
+		"verb": "reject",
+		"description": ""
+	},
+	{
+		"name": "relaxation",
+		"verb": "relax",
+		"description": "e.g. relaxation_time;  used in CF, "
+	},
+	{
+		"name": "relay",
+		"verb": "relay",
+		"description": "relaying, "
+	},
+	{
+		"name": "releasing",
+		"verb": "release",
+		"description": ""
+	},
+	{
+		"name": "relief",
+		"verb": "relieve",
+		"description": ""
+	},
+	{
+		"name": "relocation",
+		"verb": "relocate",
+		"description": ""
+	},
+	{
+		"name": "remediation",
+		"verb": "remediate",
+		"description": "e.g. environmental remediation, "
+	},
+	{
+		"name": "remineralization",
+		"verb": "remineralize",
+		"description": ""
+	},
+	{
+		"name": "remission",
+		"verb": "remit",
+		"description": "remitting, "
+	},
+	{
+		"name": "removal",
+		"verb": "remove",
+		"description": ""
+	},
+	{
+		"name": "rendition",
+		"verb": "render",
+		"description": "rendering, "
+	},
+	{
+		"name": "renewal",
+		"verb": "renew",
+		"description": ""
+	},
+	{
+		"name": "repair",
+		"verb": "repair",
+		"description": "repairing, "
+	},
+	{
+		"name": "repelling",
+		"verb": "repel",
+		"description": ""
+	},
+	{
+		"name": "repercussion",
+		"verb": "repercuss",
+		"description": ""
+	},
+	{
+		"name": "replacement",
+		"verb": "replace",
+		"description": ""
+	},
+	{
+		"name": "replenishment",
+		"verb": "replenish",
+		"description": "e.g. beach replenishment;  see nourishment, "
+	},
+	{
+		"name": "replication",
+		"verb": "replicate",
+		"description": "e.g. DNA, virus;  self_replication, "
+	},
+	{
+		"name": "repopulation",
+		"verb": "repopulate",
+		"description": ""
+	},
+	{
+		"name": "repose",
+		"verb": "repose",
+		"description": "resposing, e.g. repose_angle, "
+	},
+	{
+		"name": "reproduction",
+		"verb": "reproduce; see production",
+		"description": ""
+	},
+	{
+		"name": "reprogramming",
+		"verb": "reprogram",
+		"description": "e.g. in genetics, "
+	},
+	{
+		"name": "repulsion",
+		"verb": "repulse",
+		"description": "repulsing, see: repelling, "
+	},
+	{
+		"name": "requesting",
+		"verb": "request",
+		"description": ""
+	},
+	{
+		"name": "rescaling",
+		"verb": "rescale",
+		"description": "see upscaling, downscaling, "
+	},
+	{
+		"name": "rescue",
+		"verb": "rescue",
+		"description": "rescuing, "
+	},
+	{
+		"name": "reset",
+		"verb": "reset",
+		"description": "resetting, "
+	},
+	{
+		"name": "residence",
+		"verb": "reside",
+		"description": "residence_time, "
+	},
+	{
+		"name": "resilience",
+		"verb": "resilient",
+		"description": "but not a verb  , #, "
+	},
+	{
+		"name": "resistance",
+		"verb": "resist",
+		"description": "resistance is also used as a quantity, "
+	},
+	{
+		"name": "resisting",
+		"verb": "resist",
+		"description": "e.g. resisting_force, "
+	},
+	{
+		"name": "resolving",
+		"verb": "resolve",
+		"description": "e.g. resolving power, "
+	},
+	{
+		"name": "resonance",
+		"verb": "resonate",
+		"description": ""
+	},
+	{
+		"name": "respiration",
+		"verb": "respirate",
+		"description": ""
+	},
+	{
+		"name": "response",
+		"verb": "respond",
+		"description": "responding, "
+	},
+	{
+		"name": "rest",
+		"verb": "rest",
+		"description": "resting, e.g. rest_mass and rest_energy, "
+	},
+	{
+		"name": "restitution",
+		"verb": "restitute",
+		"description": ""
+	},
+	{
+		"name": "restoration",
+		"verb": "restore",
+		"description": "in CF, "
+	},
+	{
+		"name": "restoring",
+		"verb": "restore",
+		"description": "e.g. restoring_force, "
+	},
+	{
+		"name": "restraining",
+		"verb": "restrain",
+		"description": "e.g. restraining force, "
+	},
+	{
+		"name": "resurfacing",
+		"verb": "resurface",
+		"description": "e.g. medical procedure, "
+	},
+	{
+		"name": "resuscitation",
+		"verb": "resuscitate",
+		"description": "e.g. CPR, "
+	},
+	{
+		"name": "resuspension",
+		"verb": "resuspend",
+		"description": ""
+	},
+	{
+		"name": "retarding",
+		"verb": "retard",
+		"description": "retardation, "
+	},
+	{
+		"name": "retention",
+		"verb": "retain",
+		"description": " e.g. retention pond and water retention in soil, "
+	},
+	{
+		"name": "retooling",
+		"verb": "retool",
+		"description": ""
+	},
+	{
+		"name": "retraction",
+		"verb": "retract",
+		"description": "e.g. of an arm, "
+	},
+	{
+		"name": "retreat",
+		"verb": "retreat",
+		"description": "retreating, e.g. glacier__retreat_rate, "
+	},
+	{
+		"name": "retrieval",
+		"verb": "retrieve",
+		"description": ""
+	},
+	{
+		"name": "retrofit",
+		"verb": "retrofit",
+		"description": "retrofitting, "
+	},
+	{
+		"name": "retrogradation",
+		"verb": "retrograde",
+		"description": "see aggradation, progradation, "
+	},
+	{
+		"name": "return",
+		"verb": "return",
+		"description": "returning, e.g. return flow, return period, "
+	},
+	{
+		"name": "reuse",
+		"verb": "reuse",
+		"description": "reusing, "
+	},
+	{
+		"name": "revegetation",
+		"verb": "revegetate",
+		"description": ""
+	},
+	{
+		"name": "reverberation",
+		"verb": "reverberate",
+		"description": ""
+	},
+	{
+		"name": "reversal",
+		"verb": "reverse",
+		"description": " e.g. magnetic pole reversal, "
+	},
+	{
+		"name": "reverse_engineering",
+		"verb": "reverse_engineer",
+		"description": ""
+	},
+	{
+		"name": "reversion",
+		"verb": "revert",
+		"description": ""
+	},
+	{
+		"name": "revolution",
+		"verb": "revolve",
+		"description": ""
+	},
+	{
+		"name": "reworking",
+		"verb": "rework",
+		"description": ""
+	},
+	{
+		"name": "ricocheting",
+		"verb": "ricochet",
+		"description": ""
+	},
+	{
+		"name": "ridging",
+		"verb": "ridge",
+		"description": "used in ice dynamics, "
+	},
+	{
+		"name": "riding",
+		"verb": "ride",
+		"description": ""
+	},
+	{
+		"name": "rifting",
+		"verb": "rift",
+		"description": "used in geodynamics, "
+	},
+	{
+		"name": "righting",
+		"verb": "right",
+		"description": "e.g. righting a ship, "
+	},
+	{
+		"name": "riming",
+		"verb": "rime",
+		"description": "in CF, e.g. of ice in the atmosphere, "
+	},
+	{
+		"name": "rinsing",
+		"verb": "rinse",
+		"description": ""
+	},
+	{
+		"name": "rip",
+		"verb": "rip",
+		"description": "ripping, e.g. rip current, "
+	},
+	{
+		"name": "ripening",
+		"verb": "ripen",
+		"description": "e.g. snow, fruit, concrete or clay, "
+	},
+	{
+		"name": "rising",
+		"verb": "rise",
+		"description": "e.g. rising_time, rising limb, sea level rise;  see sunrise and raise, "
+	},
+	{
+		"name": "risk",
+		"verb": "risk",
+		"description": "risking, e.g. risk_factor, "
+	},
+	{
+		"name": "rockfall",
+		"verb": "from falling rock",
+		"description": ""
+	},
+	{
+		"name": "rocking",
+		"verb": "rock",
+		"description": "a type of molecular vibration, "
+	},
+	{
+		"name": "rollback",
+		"verb": "e.g. in geodynamics",
+		"description": ""
+	},
+	{
+		"name": "rolling",
+		"verb": "roll",
+		"description": "see pitching, sliding, slipping, yawing, "
+	},
+	{
+		"name": "rotation ",
+		"verb": "rotate",
+		"description": "e.g. crop rotation, "
+	},
+	{
+		"name": "roughnening",
+		"verb": "roughen",
+		"description": ""
+	},
+	{
+		"name": "routing",
+		"verb": "route",
+		"description": "e.g. flow_routing, bank_routing_number, "
+	},
+	{
+		"name": "rubbing",
+		"verb": "rub",
+		"description": ""
+	},
+	{
+		"name": "running",
+		"verb": "run",
+		"description": "e.g. running_time or run_time, "
+	},
+	{
+		"name": "runoff",
+		"verb": "runoff",
+		"description": "\"running off\", "
+	},
+	{
+		"name": "runup",
+		"verb": "runup",
+		"description": "\"running up\", waves coming onshore, uprush?, "
+	},
+	{
+		"name": "rupturing",
+		"verb": "rupture",
+		"description": ""
+	},
+	{
+		"name": "saccharification",
+		"verb": "saccharificate",
+		"description": ""
+	},
+	{
+		"name": "sailing",
+		"verb": "sail",
+		"description": ""
+	},
+	{
+		"name": "saltation",
+		"verb": "saltate",
+		"description": "\"hopping\" of sediment grains; also used in biology, "
+	},
+	{
+		"name": "sampling",
+		"verb": "sample",
+		"description": ""
+	},
+	{
+		"name": "sanding",
+		"verb": "sand",
+		"description": ""
+	},
+	{
+		"name": "sanitation",
+		"verb": "sanitate",
+		"description": ""
+	},
+	{
+		"name": "sanitization",
+		"verb": "sanitize",
+		"description": ""
+	},
+	{
+		"name": "sapping",
+		"verb": "sap",
+		"description": "e.g. groundwater sapping, "
+	},
+	{
+		"name": "saturation",
+		"verb": "saturate",
+		"description": ""
+	},
+	{
+		"name": "saving",
+		"verb": "save",
+		"description": ""
+	},
+	{
+		"name": "scaling",
+		"verb": "scale",
+		"description": "e.g. changing scale, scaling a wall or scaling a fish, e.g. scale_factor, "
+	},
+	{
+		"name": "scanning",
+		"verb": "scan",
+		"description": ""
+	},
+	{
+		"name": "scarring",
+		"verb": "scar",
+		"description": ""
+	},
+	{
+		"name": "scattering",
+		"verb": "scatter",
+		"description": ""
+	},
+	{
+		"name": "scavenging",
+		"verb": "scavenge",
+		"description": ""
+	},
+	{
+		"name": "scintillation",
+		"verb": "scintillate",
+		"description": ""
+	},
+	{
+		"name": "scouring",
+		"verb": "scour",
+		"description": ""
+	},
+	{
+		"name": "scratch",
+		"verb": "scratch",
+		"description": "scratching, e.g. scratch_hardness, "
+	},
+	{
+		"name": "screening",
+		"verb": "screen",
+		"description": "e.g. debye_huckel_screening_length, "
+	},
+	{
+		"name": "sealing",
+		"verb": "seal",
+		"description": "e.g. induction sealing, sealing wax, "
+	},
+	{
+		"name": "searching",
+		"verb": "search",
+		"description": "e.g. search_radius, "
+	},
+	{
+		"name": "seating",
+		"verb": "seat",
+		"description": "e.g. seating capacity, "
+	},
+	{
+		"name": "seclusion",
+		"verb": "seclude",
+		"description": ""
+	},
+	{
+		"name": "secretion",
+		"verb": "secrete",
+		"description": ""
+	},
+	{
+		"name": "sectioning",
+		"verb": "section",
+		"description": ""
+	},
+	{
+		"name": "securing",
+		"verb": "secure",
+		"description": ""
+	},
+	{
+		"name": "sedimentation",
+		"verb": "sediment",
+		"description": "in CF, "
+	},
+	{
+		"name": "seeding",
+		"verb": "seed",
+		"description": "e.g. cloud seeding, "
+	},
+	{
+		"name": "seeking",
+		"verb": "seek",
+		"description": "e.g. heat_seeking_missile, "
+	},
+	{
+		"name": "seepage",
+		"verb": "seep",
+		"description": "seeping, "
+	},
+	{
+		"name": "segregation",
+		"verb": "segregate",
+		"description": "e.g. ice segregation in arctic hydrology, "
+	},
+	{
+		"name": "selection",
+		"verb": "select",
+		"description": "e.g. natural selection, "
+	},
+	{
+		"name": "sensing",
+		"verb": "sense",
+		"description": "e.g. remote_sensing, "
+	},
+	{
+		"name": "separation",
+		"verb": "separate",
+		"description": "e.g. flow separation or saucer section separation, "
+	},
+	{
+		"name": "sequencing",
+		"verb": "sequence",
+		"description": "e.g. DNA or genome sequencing, "
+	},
+	{
+		"name": "sequestration ",
+		"verb": "sequester",
+		"description": ""
+	},
+	{
+		"name": "serotyping",
+		"verb": "serotype",
+		"description": ""
+	},
+	{
+		"name": "setting",
+		"verb": "set",
+		"description": "e.g. setting_time of the sun or concrete, "
+	},
+	{
+		"name": "settling",
+		"verb": "settle",
+		"description": "e.g. stokes_settling_velocity, "
+	},
+	{
+		"name": "sewing",
+		"verb": "sew",
+		"description": ""
+	},
+	{
+		"name": "shading",
+		"verb": "shade",
+		"description": ""
+	},
+	{
+		"name": "shadowing",
+		"verb": "shadow",
+		"description": ""
+	},
+	{
+		"name": "shaking",
+		"verb": "shake",
+		"description": "e.g. shaking_amplitude for earthquakes, "
+	},
+	{
+		"name": "shaping",
+		"verb": "shape",
+		"description": "e.g. shaping time, "
+	},
+	{
+		"name": "sharing",
+		"verb": "share",
+		"description": ""
+	},
+	{
+		"name": "shattering",
+		"verb": "shatter",
+		"description": "e.g. frost and salt, "
+	},
+	{
+		"name": "shear",
+		"verb": "shear",
+		"description": "shearing, e.g. shearing_stress, Batchelor, 1988,  or just shear_stress, "
+	},
+	{
+		"name": "shedding",
+		"verb": "shed",
+		"description": "e.g. vortex shedding, "
+	},
+	{
+		"name": "shielding",
+		"verb": "shield",
+		"description": "e.g. for cables; see egress and ingress, "
+	},
+	{
+		"name": "shifting",
+		"verb": "shift",
+		"description": ""
+	},
+	{
+		"name": "shoaling",
+		"verb": "shoal",
+		"description": ""
+	},
+	{
+		"name": "shooting",
+		"verb": "shoot",
+		"description": "e.g. shooting methods, "
+	},
+	{
+		"name": "shortage",
+		"verb": "short",
+		"description": "short can be a verb, "
+	},
+	{
+		"name": "shredding",
+		"verb": "shred",
+		"description": ""
+	},
+	{
+		"name": "shrinkage",
+		"verb": "shrink",
+		"description": ""
+	},
+	{
+		"name": "shrinking",
+		"verb": "shrink",
+		"description": ""
+	},
+	{
+		"name": "shunting",
+		"verb": "shunt",
+		"description": ""
+	},
+	{
+		"name": "sideslip",
+		"verb": "sideslip",
+		"description": "sideslipping, e.g. sideslip_angle, "
+	},
+	{
+		"name": "sieving",
+		"verb": "sieve",
+		"description": ""
+	},
+	{
+		"name": "sifting",
+		"verb": "sift",
+		"description": ""
+	},
+	{
+		"name": "sighting",
+		"verb": "sight",
+		"description": "e.g. whale_sighting_rate, "
+	},
+	{
+		"name": "signaling",
+		"verb": "signal",
+		"description": ""
+	},
+	{
+		"name": "silencing",
+		"verb": "silence,"
+	},
+	{
+		"name": "silicification",
+		"verb": "silicify",
+		"description": ""
+	},
+	{
+		"name": "silting",
+		"verb": "\"silt up\"",
+		"description": "e.g. reservoir_silting_rate, "
+	},
+	{
+		"name": "simulation",
+		"verb": "simulate",
+		"description": "but simulation is also a noun, "
+	},
+	{
+		"name": "sinking",
+		"verb": "sink",
+		"description": "e.g. sinking_rate, sinking_deltas ??, "
+	},
+	{
+		"name": "sintering",
+		"verb": "sinter",
+		"description": ""
+	},
+	{
+		"name": "siphoning",
+		"verb": "siphon",
+		"description": ""
+	},
+	{
+		"name": "siping",
+		"verb": "sipe",
+		"description": "of automobile tires, "
+	},
+	{
+		"name": "skating",
+		"verb": "skate",
+		"description": ""
+	},
+	{
+		"name": "skeletonization",
+		"verb": "skeletonize",
+		"description": ""
+	},
+	{
+		"name": "skidding",
+		"verb": "skid",
+		"description": ""
+	},
+	{
+		"name": "skimming",
+		"verb": "skim",
+		"description": ""
+	},
+	{
+		"name": "sliding",
+		"verb": "slide",
+		"description": "e.g. land_ice_basal_sliding_rate, "
+	},
+	{
+		"name": "slippage",
+		"verb": "slip",
+		"description": "e.g. splippage_speed, "
+	},
+	{
+		"name": "slipping",
+		"verb": "slip",
+		"description": ""
+	},
+	{
+		"name": "sluicing",
+		"verb": "sluice",
+		"description": ""
+	},
+	{
+		"name": "slumping",
+		"verb": "slump",
+		"description": ""
+	},
+	{
+		"name": "smelting",
+		"verb": "smelt",
+		"description": "e.g. in metallurgy, "
+	},
+	{
+		"name": "smoking",
+		"verb": "smoke",
+		"description": "e.g. smoking meat, "
+	},
+	{
+		"name": "smoothing",
+		"verb": "smooth",
+		"description": "see \"roughening\", "
+	},
+	{
+		"name": "snowfall",
+		"verb": "snowfall",
+		"description": "\"snowfalling\", "
+	},
+	{
+		"name": "softening",
+		"verb": "soften",
+		"description": ""
+	},
+	{
+		"name": "solidification",
+		"verb": "solidify",
+		"description": ""
+	},
+	{
+		"name": "solifluction",
+		"verb": "but solifluct is not a verb?  [soli=soil",
+		"description": "fluct=flow] same as creep?, "
+	},
+	{
+		"name": "solstice",
+		"verb": "solstice",
+		"description": "solsticing, e.g. solstice_time; as something the earth is doing, "
+	},
+	{
+		"name": "solutioning ",
+		"verb": "cave formation process",
+		"description": ""
+	},
+	{
+		"name": "sonication",
+		"verb": "sonicate",
+		"description": ""
+	},
+	{
+		"name": "sorption",
+		"verb": "see absorption",
+		"description": "adsorption, "
+	},
+	{
+		"name": "sorting",
+		"verb": "sort",
+		"description": " e.g. sediment sorting in a stream, "
+	},
+	{
+		"name": "sounding",
+		"verb": "sound",
+		"description": "e.g. sounding_depth, sonar signals, also \"ping_rate\", "
+	},
+	{
+		"name": "sourcing",
+		"verb": "source",
+		"description": ""
+	},
+	{
+		"name": "sowing",
+		"verb": "sow",
+		"description": ""
+	},
+	{
+		"name": "spallation",
+		"verb": "spall",
+		"description": ""
+	},
+	{
+		"name": "spanning",
+		"verb": "span",
+		"description": "e.g. minimal spanning tree, "
+	},
+	{
+		"name": "sparging",
+		"verb": "sparge",
+		"description": "e.g. a chemistry process, also in beer making, "
+	},
+	{
+		"name": "sparing",
+		"verb": "spare",
+		"description": "e.g. of glycogen or protein or steroids, "
+	},
+	{
+		"name": "spawning",
+		"verb": "spawn",
+		"description": ""
+	},
+	{
+		"name": "speciation",
+		"verb": "speciate",
+		"description": ""
+	},
+	{
+		"name": "spillover",
+		"verb": "spillover",
+		"description": ""
+	},
+	{
+		"name": "spinning",
+		"verb": "spin",
+		"description": ""
+	},
+	{
+		"name": "splaying",
+		"verb": "splay",
+		"description": "e.g. crevasse splay of a levee, "
+	},
+	{
+		"name": "splintering",
+		"verb": "splinter",
+		"description": "e.g. of ice in the atmosphere, "
+	},
+	{
+		"name": "splinting",
+		"verb": "splint",
+		"description": ""
+	},
+	{
+		"name": "splitting",
+		"verb": "split",
+		"description": "e.g. cell division, "
+	},
+	{
+		"name": "spreading",
+		"verb": "spread",
+		"description": "sea_floor_spreading_rate, mid_ocean_ridge_spreading_rate, "
+	},
+	{
+		"name": "sprouting",
+		"verb": "sprout",
+		"description": ""
+	},
+	{
+		"name": "sputtering",
+		"verb": "sputter",
+		"description": ""
+	},
+	{
+		"name": "stabilization",
+		"verb": "stabilize",
+		"description": ""
+	},
+	{
+		"name": "stacking",
+		"verb": "stack",
+		"description": "e.g stacking_height, "
+	},
+	{
+		"name": "staggering",
+		"verb": "stagger",
+		"description": "e.g. of model grids, "
+	},
+	{
+		"name": "staging",
+		"verb": "stage",
+		"description": " e.g. of rockets, e.g. staging_period, "
+	},
+	{
+		"name": "stagnation",
+		"verb": "stagnate",
+		"description": "e.g. stagnation_pressure and stagnation point in fluid dynamics, "
+	},
+	{
+		"name": "staining",
+		"verb": "stain",
+		"description": "e.g. in medical studies, "
+	},
+	{
+		"name": "stalling",
+		"verb": "stall",
+		"description": " as in aerodynamics, "
+	},
+	{
+		"name": "standing",
+		"verb": "stand",
+		"description": "e.g. standing wave, "
+	},
+	{
+		"name": "starting",
+		"verb": "start",
+		"description": " e.g. starting_date;  see stopping, "
+	},
+	{
+		"name": "starvation",
+		"verb": "starve",
+		"description": "starving, "
+	},
+	{
+		"name": "stasis",
+		"verb": "stasis",
+		"description": " \"suspended animation\", only in fiction ??, "
+	},
+	{
+		"name": "steering",
+		"verb": "steer",
+		"description": " e.g. topographic steering, "
+	},
+	{
+		"name": "stemflow",
+		"verb": "stemflow",
+		"description": ""
+	},
+	{
+		"name": "stepping",
+		"verb": "step",
+		"description": " e.g. time_stepping, "
+	},
+	{
+		"name": "sterilization",
+		"verb": "sterilize",
+		"description": ""
+	},
+	{
+		"name": "stifling",
+		"verb": "stifle",
+		"description": ""
+	},
+	{
+		"name": "stimulation",
+		"verb": "stimulate",
+		"description": ""
+	},
+	{
+		"name": "stirring",
+		"verb": "stir",
+		"description": ""
+	},
+	{
+		"name": "stitching",
+		"verb": "stitch",
+		"description": ""
+	},
+	{
+		"name": "stocking",
+		"verb": "stock",
+		"description": ""
+	},
+	{
+		"name": "stoking",
+		"verb": "stoke",
+		"description": ""
+	},
+	{
+		"name": "stoppage",
+		"verb": "stop",
+		"description": ""
+	},
+	{
+		"name": "stopping",
+		"verb": "stop",
+		"description": " see starting, "
+	},
+	{
+		"name": "storage",
+		"verb": "store",
+		"description": ""
+	},
+	{
+		"name": "stitching",
+		"verb": "stitch",
+		"description": ""
+	},
+	{
+		"name": "strafing",
+		"verb": "strafe",
+		"description": ""
+	},
+	{
+		"name": "straightening",
+		"verb": "straighten",
+		"description": ""
+	},
+	{
+		"name": "straining",
+		"verb": "strain",
+		"description": "e.g. applied loads, "
+	},
+	{
+		"name": "stratification",
+		"verb": "stratify",
+		"description": ""
+	},
+	{
+		"name": "strengthening",
+		"verb": "strengthen",
+		"description": ""
+	},
+	{
+		"name": "stressing",
+		"verb": "stress",
+		"description": "as in ecosystem stress;  stress is also a quantity, "
+	},
+	{
+		"name": "stretching",
+		"verb": "stretch",
+		"description": "a type of molecular vibration and vortex stretching, "
+	},
+	{
+		"name": "striking",
+		"verb": "strike",
+		"description": " e.g. striking_distance, "
+	},
+	{
+		"name": "strobing",
+		"verb": "strobe",
+		"description": ""
+	},
+	{
+		"name": "subduction",
+		"verb": "subduct",
+		"description": ""
+	},
+	{
+		"name": "subitizing",
+		"verb": "subitize",
+		"description": ""
+	},
+	{
+		"name": "sublimation",
+		"verb": "sublimate",
+		"description": ""
+	},
+	{
+		"name": "submersion",
+		"verb": "submerge",
+		"description": "submerse, "
+	},
+	{
+		"name": "submission",
+		"verb": "submit",
+		"description": ""
+	},
+	{
+		"name": "subsampling",
+		"verb": "subsample",
+		"description": ""
+	},
+	{
+		"name": "subsidence",
+		"verb": "subside",
+		"description": ""
+	},
+	{
+		"name": "subtraction",
+		"verb": "subtract",
+		"description": ""
+	},
+	{
+		"name": "subvocalization",
+		"verb": "subvocalize",
+		"description": ""
+	},
+	{
+		"name": "success",
+		"verb": "succeed",
+		"description": "succeeding, see failure, "
+	},
+	{
+		"name": "succession",
+		"verb": "succeed",
+		"description": "e.g. ecological succession, "
+	},
+	{
+		"name": "suckering",
+		"verb": "sucker",
+		"description": ""
+	},
+	{
+		"name": "suction",
+		"verb": "suck",
+		"description": "sucking, "
+	},
+	{
+		"name": "suffusion",
+		"verb": "suffuse",
+		"description": "            , e.g. in sinkhole formation, "
+	},
+	{
+		"name": "sunrise",
+		"verb": "sunrise",
+		"description": "\"sun rising\", "
+	},
+	{
+		"name": "sunset",
+		"verb": "sunset",
+		"description": "\"sun setting\", "
+	},
+	{
+		"name": "sunshine",
+		"verb": "sunshine",
+		"description": "sunshining, e.g. sunshine_duration, "
+	},
+	{
+		"name": "superconduction",
+		"verb": "superconduct",
+		"description": ""
+	},
+	{
+		"name": "supercooling",
+		"verb": "supercool",
+		"description": ""
+	},
+	{
+		"name": "superheating",
+		"verb": "superheat",
+		"description": ""
+	},
+	{
+		"name": "superposition",
+		"verb": "superpose",
+		"description": "and superimposition, superimpose, "
+	},
+	{
+		"name": "supersaturation",
+		"verb": "supersaturate",
+		"description": ""
+	},
+	{
+		"name": "supply",
+		"verb": "supply",
+		"description": "supplying, "
+	},
+	{
+		"name": "supporting",
+		"verb": "support",
+		"description": ""
+	},
+	{
+		"name": "suppression",
+		"verb": "suppress",
+		"description": "e.g. fire_suppression_rate, "
+	},
+	{
+		"name": "surfacing",
+		"verb": "surface",
+		"description": ""
+	},
+	{
+		"name": "surge",
+		"verb": "surge",
+		"description": "surging, e.g. surge_height of a storm surge, "
+	},
+	{
+		"name": "surrounding",
+		"verb": "surround",
+		"description": ""
+	},
+	{
+		"name": "surveying",
+		"verb": "survey",
+		"description": ""
+	},
+	{
+		"name": "survival",
+		"verb": "survive",
+		"description": " e.g. infant_survival_rate, "
+	},
+	{
+		"name": "suspension",
+		"verb": "suspend",
+		"description": ""
+	},
+	{
+		"name": "suturing",
+		"verb": "suture",
+		"description": ""
+	},
+	{
+		"name": "swabbing",
+		"verb": "swab",
+		"description": "e.g. in wells, "
+	},
+	{
+		"name": "swaying",
+		"verb": "sway",
+		"description": "e.g. of a boat, "
+	},
+	{
+		"name": "sweeping",
+		"verb": "sweep",
+		"description": ""
+	},
+	{
+		"name": "sweetening",
+		"verb": "sweeten",
+		"description": ""
+	},
+	{
+		"name": "swell",
+		"verb": "swell",
+		"description": "swelling, e.g. swell_wave, "
+	},
+	{
+		"name": "swimming",
+		"verb": "swim",
+		"description": ""
+	},
+	{
+		"name": "switching",
+		"verb": "switch",
+		"description": "e.g. switching_time, "
+	},
+	{
+		"name": "symbiosis",
+		"verb": "verb form ??",
+		"description": ""
+	},
+	{
+		"name": "synchronization",
+		"verb": "synchronize",
+		"description": ""
+	},
+	{
+		"name": "synnecrosis",
+		"verb": "verb form ??",
+		"description": "similar to symbiosis, but detrimental to both organisms, "
+	},
+	{
+		"name": "synthesis",
+		"verb": "synthesize",
+		"description": ""
+	},
+	{
+		"name": "syzygy",
+		"verb": "syzygy",
+		"description": "alignment of 3 celestial bodies in a line, "
+	},
+	{
+		"name": "tabulation",
+		"verb": "tabulate",
+		"description": ""
+	},
+	{
+		"name": "tacking",
+		"verb": "tack",
+		"description": "            , e.g. of sailboats, "
+	},
+	{
+		"name": "tagging",
+		"verb": "tag",
+		"description": "             , e.g. genetic tagging, "
+	},
+	{
+		"name": "tailspin ",
+		"verb": "tailspin",
+		"description": "tailspinning, "
+	},
+	{
+		"name": "taking",
+		"verb": "take",
+		"description": ""
+	},
+	{
+		"name": "takeoff",
+		"verb": "takeoff",
+		"description": "e.g. takeoff_distance or takeoff_speed of an airplane, from \"taking off\", "
+	},
+	{
+		"name": "tampering",
+		"verb": "tamper",
+		"description": ""
+	},
+	{
+		"name": "tamping",
+		"verb": "tamp",
+		"description": ""
+	},
+	{
+		"name": "tapering",
+		"verb": "taper",
+		"description": ""
+	},
+	{
+		"name": "tapping",
+		"verb": "tap",
+		"description": ""
+	},
+	{
+		"name": "targeting",
+		"verb": "target",
+		"description": ""
+	},
+	{
+		"name": "teardown",
+		"verb": "teardown",
+		"description": "from tearing down, taking something apart, like a gun, "
+	},
+	{
+		"name": "teleconnection",
+		"verb": "teleconnect",
+		"description": ""
+	},
+	{
+		"name": "telecoupling",
+		"verb": "telecouple",
+		"description": ""
+	},
+	{
+		"name": "teleportation",
+		"verb": "teleport",
+		"description": ""
+	},
+	{
+		"name": "tempering",
+		"verb": "temper",
+		"description": " e.g. steel_tempering, "
+	},
+	{
+		"name": "tension",
+		"verb": "tense",
+		"description": "tensing, e.g. surface_tension, "
+	},
+	{
+		"name": "termination",
+		"verb": "terminate",
+		"description": ""
+	},
+	{
+		"name": "terraforming",
+		"verb": "terraform",
+		"description": ""
+	},
+	{
+		"name": "testing",
+		"verb": "test",
+		"description": ""
+	},
+	{
+		"name": "thaw",
+		"verb": "thaw",
+		"description": "thawing, e.g. permafrost_thaw_rate, soil_thaw_depth, "
+	},
+	{
+		"name": "thermoregulation",
+		"verb": "thermoregulate",
+		"description": ""
+	},
+	{
+		"name": "thermosetting",
+		"verb": "thermoset",
+		"description": ""
+	},
+	{
+		"name": "thickening",
+		"verb": "thicken",
+		"description": ""
+	},
+	{
+		"name": "thinning",
+		"verb": "thin",
+		"description": "e.g. shear thinning fluid, thinning a forest, "
+	},
+	{
+		"name": "thrombosis",
+		"verb": "verb form ??",
+		"description": ""
+	},
+	{
+		"name": "throttling",
+		"verb": "throttle",
+		"description": "e.g. Joule-Thomson throttling process in gas dynamics, "
+	},
+	{
+		"name": "throughfall",
+		"verb": "throughfall",
+		"description": "\"throughfalling\", "
+	},
+	{
+		"name": "throughflow",
+		"verb": "throughflow",
+		"description": "see baseflow, interflow, "
+	},
+	{
+		"name": "thrust",
+		"verb": "thrust",
+		"description": "thrusting, drag, lift, "
+	},
+	{
+		"name": "tillage",
+		"verb": "till",
+		"description": ""
+	},
+	{
+		"name": "tilling",
+		"verb": "till",
+		"description": ""
+	},
+	{
+		"name": "tilt",
+		"verb": "tilt",
+		"description": "tilting, e.g. earth_axis_tilt_angle, "
+	},
+	{
+		"name": "tipping",
+		"verb": "tip",
+		"description": ""
+	},
+	{
+		"name": "titration",
+		"verb": "titrate",
+		"description": ""
+	},
+	{
+		"name": "torquing",
+		"verb": "torque",
+		"description": ""
+	},
+	{
+		"name": "toughening",
+		"verb": "toughen",
+		"description": "process to create tempered glass, e.g. safety glass, "
+	},
+	{
+		"name": "tracking",
+		"verb": "track",
+		"description": "e.g. particle tracking, storm tracking, "
+	},
+	{
+		"name": "traction",
+		"verb": " #"
+	},
+	{
+		"name": "tradeoff",
+		"verb": "tradeoff",
+		"description": "i.e. trading off, "
+	},
+	{
+		"name": "trailing",
+		"verb": "trail",
+		"description": ""
+	},
+	{
+		"name": "transaction",
+		"verb": "transact",
+		"description": ""
+	},
+	{
+		"name": "transcription",
+		"verb": "transcribe",
+		"description": "e.g. in genetics, "
+	},
+	{
+		"name": "transduction",
+		"verb": "transduct",
+		"description": "e.g. in genetics, "
+	},
+	{
+		"name": "transfection",
+		"verb": "transfect",
+		"description": "e.g. in genetics, "
+	},
+	{
+		"name": "transfer",
+		"verb": "transfer",
+		"description": "transferring?, e.g. gene transfer, "
+	},
+	{
+		"name": "transformation",
+		"verb": "transform",
+		"description": ""
+	},
+	{
+		"name": "transfusion",
+		"verb": "transfuse",
+		"description": ""
+	},
+	{
+		"name": "transgression",
+		"verb": "transgress",
+		"description": "e.g. marine transgression;  see regression, "
+	},
+	{
+		"name": "transit",
+		"verb": "transit",
+		"description": "e.g. a transit of venus in astronomy; transit_duration, "
+	},
+	{
+		"name": "transition",
+		"verb": "transit",
+		"description": "e.g. phase transition, atomic electron transition, glass transition temperature, "
+	},
+	{
+		"name": "translation",
+		"verb": "translate",
+		"description": "e.g. in biology, "
+	},
+	{
+		"name": "transmission",
+		"verb": "transmit",
+		"description": ""
+	},
+	{
+		"name": "transmutation",
+		"verb": "transmute",
+		"description": "e.g. of species, "
+	},
+	{
+		"name": "transpiration",
+		"verb": "transpire",
+		"description": ""
+	},
+	{
+		"name": "transplantation",
+		"verb": "transplant",
+		"description": "transplanting, e.g. organ transplantation, "
+	},
+	{
+		"name": "transport ",
+		"verb": "transport",
+		"description": "transportation, "
+	},
+	{
+		"name": "transudation",
+		"verb": "transude",
+		"description": ""
+	},
+	{
+		"name": "trapping",
+		"verb": "trap",
+		"description": "e.g. of atoms, sediment;  e.g. trapping efficiency, "
+	},
+	{
+		"name": "traversal",
+		"verb": "traverse",
+		"description": " ??"
+	},
+	{
+		"name": "treatment",
+		"verb": "treat",
+		"description": "e.g. sewage_treatment, "
+	},
+	{
+		"name": "treefall",
+		"verb": "treefall",
+		"description": ""
+	},
+	{
+		"name": "treethrow",
+		"verb": "treethrow",
+		"description": "treethrowing?, "
+	},
+	{
+		"name": "trending",
+		"verb": "trend",
+		"description": ""
+	},
+	{
+		"name": "triage",
+		"verb": "from French"
+	},
+	{
+		"name": "trial",
+		"verb": "try",
+		"description": "trying, e.g. trial_period, "
+	},
+	{
+		"name": "triangulation",
+		"verb": "triangulate",
+		"description": ""
+	},
+	{
+		"name": "triggering",
+		"verb": "trigger",
+		"description": ""
+	},
+	{
+		"name": "trilateration",
+		"verb": "trilaterate",
+		"description": ""
+	},
+	{
+		"name": "tripping",
+		"verb": "trip",
+		"description": "as in trip wire, "
+	},
+	{
+		"name": "trituration",
+		"verb": "triturate",
+		"description": ""
+	},
+	{
+		"name": "trophobiosis",
+		"verb": "verb form?",
+		"description": ""
+	},
+	{
+		"name": "tuning",
+		"verb": "tune",
+		"description": ""
+	},
+	{
+		"name": "tunneling",
+		"verb": "tunnel",
+		"description": "e.g. digging a tunnel or quantum tunneling, e.g. tunneling_current, "
+	},
+	{
+		"name": "turning",
+		"verb": "turn",
+		"description": "e.g. turning_number, turning_radius, "
+	},
+	{
+		"name": "turnout",
+		"verb": "turnout",
+		"description": "e.g. of voters, "
+	},
+	{
+		"name": "turnover",
+		"verb": "turnover",
+		"description": "e.g. cell replacement, e.g. turnover_rate, turnover_ratio, turnover_time, "
+	},
+	{
+		"name": "twirling",
+		"verb": "twirl",
+		"description": "e.g. baton, dervish, DNA, spaghetti, "
+	},
+	{
+		"name": "twisting",
+		"verb": "twist",
+		"description": "a type of molecular vibration, e.g. twisting_number, "
+	},
+	{
+		"name": "twitching",
+		"verb": "twitch",
+		"description": "e.g. muscle twitching, fast/slow twitch, "
+	},
+	{
+		"name": "typing",
+		"verb": "type",
+		"description": "e.g. to determine the type, as in phage typing, "
+	},
+	{
+		"name": "underdrag",
+		"verb": "underdrag",
+		"description": "underdragging, "
+	},
+	{
+		"name": "undershoot",
+		"verb": "undershoot",
+		"description": "undershooting, "
+	},
+	{
+		"name": "undertow",
+		"verb": "undertow",
+		"description": "undertowing, "
+	},
+	{
+		"name": "undulation",
+		"verb": "undulate",
+		"description": ""
+	},
+	{
+		"name": "union",
+		"verb": "unite",
+		"description": "uniting, contrast with intersection, "
+	},
+	{
+		"name": "unravelling",
+		"verb": "unravel",
+		"description": ""
+	},
+	{
+		"name": "unzipping",
+		"verb": "unzip",
+		"description": "e.g. DNA, "
+	},
+	{
+		"name": "updraft",
+		"verb": "updraft",
+		"description": "updrafting, see downdraft, "
+	},
+	{
+		"name": "upheaval",
+		"verb": "upheave",
+		"description": ""
+	},
+	{
+		"name": "uplift",
+		"verb": "uplift",
+		"description": "uplifting, bedrock_uplift_rate, "
+	},
+	{
+		"name": "upscaling",
+		"verb": "upscale",
+		"description": ""
+	},
+	{
+		"name": "uptake",
+		"verb": "uptake",
+		"description": "uptaking, "
+	},
+	{
+		"name": "upwelling",
+		"verb": "upwell",
+		"description": ""
+	},
+	{
+		"name": "urbanization",
+		"verb": "urbanize",
+		"description": ""
+	},
+	{
+		"name": "usage",
+		"verb": "use",
+		"description": "e.g. urban water usage, "
+	},
+	{
+		"name": "utilization",
+		"verb": "utilize",
+		"description": ""
+	},
+	{
+		"name": "vaccination",
+		"verb": "vaccinate",
+		"description": ""
+	},
+	{
+		"name": "validation",
+		"verb": "validate",
+		"description": ""
+	},
+	{
+		"name": "vaporization",
+		"verb": "vaporize",
+		"description": "vaporizing, "
+	},
+	{
+		"name": "variation",
+		"verb": "vary",
+		"description": "e.g. variation coefficient, "
+	},
+	{
+		"name": "variolation",
+		"verb": "variolate",
+		"description": "e.g. smallpox variolation, "
+	},
+	{
+		"name": "varying",
+		"verb": "vary",
+		"description": ""
+	},
+	{
+		"name": "vasoconstriction",
+		"verb": "vasoconstrict",
+		"description": ""
+	},
+	{
+		"name": "vasodilation",
+		"verb": "vasodilate",
+		"description": ""
+	},
+	{
+		"name": "vellication",
+		"verb": "vellicate",
+		"description": ""
+	},
+	{
+		"name": "ventilation",
+		"verb": "ventilate",
+		"description": ""
+	},
+	{
+		"name": "verification",
+		"verb": "verify",
+		"description": ""
+	},
+	{
+		"name": "vibration",
+		"verb": "vibrate",
+		"description": ""
+	},
+	{
+		"name": "viewing",
+		"verb": "view",
+		"description": "e.g. viewing_angle, "
+	},
+	{
+		"name": "violation",
+		"verb": "violate",
+		"description": ""
+	},
+	{
+		"name": "vitrification",
+		"verb": "vitrify",
+		"description": ""
+	},
+	{
+		"name": "vocalization",
+		"verb": "vocalize",
+		"description": ""
+	},
+	{
+		"name": "volatilization",
+		"verb": "volatilize",
+		"description": ""
+	},
+	{
+		"name": "volition",
+		"verb": "???",
+		"description": "e.g. in psychology, "
+	},
+	{
+		"name": "vortexing",
+		"verb": "vortex",
+		"description": ""
+	},
+	{
+		"name": "vulcanization",
+		"verb": "vulcanize",
+		"description": "using sulfur to strengthen rubber, "
+	},
+	{
+		"name": "wagging",
+		"verb": "wag",
+		"description": "e.g. a type of molecular vibration, "
+	},
+	{
+		"name": "waiting",
+		"verb": "wait",
+		"description": "e.g. waiting_period, "
+	},
+	{
+		"name": "warming",
+		"verb": "warm",
+		"description": "e.g. global warming, "
+	},
+	{
+		"name": "warning",
+		"verb": "warn",
+		"description": "e.g. warning_period, warning_time for tornadoes, "
+	},
+	{
+		"name": "washing",
+		"verb": "wash",
+		"description": ""
+	},
+	{
+		"name": "washoff",
+		"verb": "washoff",
+		"description": "e.g. of pollutants, "
+	},
+	{
+		"name": "wasting",
+		"verb": "waste",
+		"description": "e.g. mass wasting, "
+	},
+	{
+		"name": "watering",
+		"verb": "water",
+		"description": ""
+	},
+	{
+		"name": "waterproofing",
+		"verb": "waterproof",
+		"description": ""
+	},
+	{
+		"name": "weakening",
+		"verb": "weaken",
+		"description": ""
+	},
+	{
+		"name": "weathering",
+		"verb": "weather",
+		"description": "e.g. chemical, frost, mechanical and physical, "
+	},
+	{
+		"name": "weaving",
+		"verb": "weave",
+		"description": ""
+	},
+	{
+		"name": "wedging",
+		"verb": "wedge",
+		"description": "e.g. frost wedging, ice wedging, "
+	},
+	{
+		"name": "weighting",
+		"verb": "weight",
+		"description": ""
+	},
+	{
+		"name": "welding",
+		"verb": "weld",
+		"description": ""
+	},
+	{
+		"name": "wetting",
+		"verb": "wet",
+		"description": "e.g. wetting front, "
+	},
+	{
+		"name": "whitening",
+		"verb": "whiten",
+		"description": "e.g. tooth whitening, "
+	},
+	{
+		"name": "wicking",
+		"verb": "wick",
+		"description": "e.g. wicking_time, "
+	},
+	{
+		"name": "wilting",
+		"verb": "wilt",
+		"description": "e.g. wilting_point_water_content, "
+	},
+	{
+		"name": "winding",
+		"verb": "wind",
+		"description": "e.g. winding_number, "
+	},
+	{
+		"name": "winnowing",
+		"verb": "winnow",
+		"description": ""
+	},
+	{
+		"name": "wiping",
+		"verb": "wipe",
+		"description": "e.g. windshield_wiper__wiping_frequency, "
+	},
+	{
+		"name": "withdrawal",
+		"verb": "withdraw",
+		"description": "e.g. ground_water_withdrawal_rate, "
+	},
+	{
+		"name": "withering",
+		"verb": "wither",
+		"description": "e.g. plant withering rate, "
+	},
+	{
+		"name": "writing",
+		"verb": "write",
+		"description": "e.g. writing output files, "
+	}
+]
