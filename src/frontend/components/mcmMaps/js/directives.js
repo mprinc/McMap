@@ -19,7 +19,7 @@ angular.module('mcmMapsDirectives', ['Config'])
 				$scope.items = null;
 				$scope.selectedItem = null;
 
-				KnalledgeMapService.query().$promise.then(function(maps){
+				KnalledgeMapService.queryByType("mcm_map").$promise.then(function(maps){
 					$scope.items = maps;
 					console.log('maps:'+JSON.stringify($scope.maps));
 				});
@@ -46,6 +46,7 @@ angular.module('mcmMapsDirectives', ['Config'])
 
 					var rootNodeCreated = function(rootNode){
 						$scope.mapToCreate.rootNodeId = rootNode._id;
+						$scope.mapToCreate.type = "mcm_map";
 						var map = KnalledgeMapService.create($scope.mapToCreate);
 						map.$promise.then(mapCreated);
 					}
@@ -56,6 +57,7 @@ angular.module('mcmMapsDirectives', ['Config'])
 					var rootNode = new knalledge.KNode();
 					rootNode.name = $scope.mapToCreate.name;
 					rootNode.type = "model_component";
+					rootNode.mapId = null;
 					rootNode.visual = {
 					    isOpen: true,
 					    xM: 0,
@@ -84,51 +86,6 @@ angular.module('mcmMapsDirectives', ['Config'])
 						window.alert('Please, select a Model');
 					}
 				};
-
-				// var clickedToolEntity = null;
-				// var toolsetClientInterface = {
-				// 	getContainer: function(){
-				// 		return $element.find('ul');
-				// 	},
-				// 	getData: function(){
-				// 		return $scope.tools;
-				// 	},
-				// 	toolEntityClicked: function(toolEntity){
-				// 		if(clickedToolEntity == toolEntity){
-				// 			clickedToolEntity = null;
-				// 		}else{
-				// 			clickedToolEntity = toolEntity;
-				// 		}
-				// 		var eventName = "mapToolEntityClickedEvent";
-				// 		$rootScope.$broadcast(eventName, clickedToolEntity);
-
-				// 	},
-				// 	timeout: $timeout
-				// };
-
-				// $scope.tools = [];
-				// $scope.tools.length = 0;
-				// var entities = McmMapSchemaService.getAllowedSubEntities('unselected');
-				// for(var entityName in entities){
-				// 	$scope.tools.push(McmMapSchemaService.getEntityDesc(entityName));
-				// }
-
-				// var toolset = new mcm.EntitiesToolset(ConfigMapToolset, toolsetClientInterface);
-				// toolset.init();
-
-				// var eventName = "mapEntitySelectedEvent";
-
-				// $scope.$on(eventName, function(e, mapEntity) {
-				// 	if(mapEntity){
-				// 		console.log("[mcmMapTools.controller::$on] ModelMap  mapEntity (%s): %s", mapEntity.kNode.type, mapEntity.kNode.name);
-				// 	}
-				// 	$scope.tools.length = 0;
-				// 	var entities = McmMapSchemaService.getAllowedSubEntities(mapEntity ? mapEntity.kNode.type : "unselected");
-				// 	for(var entityName in entities){
-				// 		$scope.tools.push(McmMapSchemaService.getEntityDesc(entityName));
-				// 	}
-				// 	toolset.update();
-				// });
     		}
     	};
 	}])

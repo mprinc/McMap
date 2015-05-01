@@ -16,8 +16,15 @@ mcmMapServices.provider('McmMapSchemaService', {
 				icon_fa: "suitcase",
 				predicate: "containsModel"
 			},
-			grid: {
+			grid_desc: {
 				isShownOnMap: true,
+				typeClass: "entity_grid_desc",
+				icon: "GD",
+				icon_fa: "tablet",
+				predicate: "containsGridDesc"
+			},
+			grid: {
+				isShownOnMap: false,
 				typeClass: "entity_grid",
 				icon: "G",
 				icon_fa: "tablet",
@@ -56,28 +63,49 @@ mcmMapServices.provider('McmMapSchemaService', {
 
 		var allowedSubEntitiesForAll = {
 			unselected: {
-				model_component: true
+				model_component: true,
+				grid: false,
+				grid_desc: false
 			},
 			model_component: {
 				assumption: true,
 				object: true,
-				grid: true
+				grid: false,
+				grid_desc: true
+			},
+			grid: {
+				assumption: false,
+				variable: false,
+				object: false,
+				grid: false,
+				grid_desc: false
+			},
+			grid_desc: {
+				assumption: true,
+				variable: true,
+				object: false,
+				grid: false,
+				grid_desc: false
 			},
 			object: {
 				assumption: true,
 				object: true,
 				process: true,
 				variable: true,
-				grid: true
+				grid: true,
+				grid_desc: false
 			},
 			variable: {
 				assumption: true,
-				grid: true
+				grid: true,
+				grid_desc: false
 			},
 			process:  {
 				assumption: true,
 				object: true,
-				variable: true
+				variable: true,
+				grid: false,
+				grid_desc: false
 			},
 			assumption: {
 			}
@@ -107,7 +135,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 					containsAssumption: {
 
 					},
-					containsGrid: {
+					containsGridDesc: {
 
 					}
 
@@ -128,6 +156,9 @@ mcmMapServices.provider('McmMapSchemaService', {
 					containsObject: {
 
 					},
+					containsGrid: {
+
+					},
 					containsProcess: {
 
 					},
@@ -135,6 +166,12 @@ mcmMapServices.provider('McmMapSchemaService', {
 
 					},
 					containsVariableOut: {
+
+					},
+					containsVariableHV: {
+
+					},
+					containsVariableCP: {
 
 					},
 					containsAssumption: {
@@ -146,7 +183,15 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "variable",
 				name: "variable",
 				type: "variable",
-				icon: "V"
+				icon: "V",
+				contains: {
+					containsGrid: {
+
+					},
+					containsAssumption: {
+
+					}
+				}
 			},
 			assumption: {
 				id: "assumption",
@@ -160,13 +205,39 @@ mcmMapServices.provider('McmMapSchemaService', {
 				type: "process",
 				icon: "P",
 				contains: {
-					containsObject: {
-
-					},
 					containsVariableIn: {
 
 					},
 					containsVariableOut: {
+
+					},
+					containsVariableHV: {
+
+					},
+					containsVariableCP: {
+
+					},
+					containsAssumption: {
+
+					}
+				}
+			},
+			grid_desc: {
+				id: "grid_desc",
+				name: "grid_desc",
+				type: "grid_desc",
+				icon: "GD",
+				contains: {
+					containsVariableIn: {
+
+					},
+					containsVariableOut: {
+
+					},
+					containsVariableHV: {
+
+					},
+					containsVariableCP: {
 
 					},
 					containsAssumption: {
@@ -183,6 +254,11 @@ mcmMapServices.provider('McmMapSchemaService', {
 		};
 
 		var edgesStyles = {
+			"containsGridDesc": {
+				typeClass: "edge_contains_grid_desc",
+				icon: "G",
+				icon_fa: "tablet"
+			},
 			"containsGrid": {
 				typeClass: "edge_contains_grid",
 				icon: "G",
@@ -200,12 +276,22 @@ mcmMapServices.provider('McmMapSchemaService', {
 			},
 			"containsVariableIn": {
 				typeClass: "edge_contains_variable_in",
-				icon: "P",
+				icon: "IV",
 				icon_fa: "car"
 			},
 			"containsVariableOut": {
 				typeClass: "edge_contains_variable_out",
-				icon: "P",
+				icon: "OV",
+				icon_fa: "car"
+			},
+			"containsVariableHV": {
+				typeClass: "edge_contains_variable_hv",
+				icon: "HV",
+				icon_fa: "car"
+			},
+			"containsVariableCP": {
+				typeClass: "edge_contains_variable_cp",
+				icon: "CP",
 				icon_fa: "car"
 			},
 			"containsAssumption": {
@@ -223,6 +309,14 @@ mcmMapServices.provider('McmMapSchemaService', {
 				icon: "Model Component",
 				object: "model_component",
 				objects: "model_components"
+			},
+			containsGridDesc: {
+				id: "containsGridDesc",
+				name: "containsGridDesc",
+				type: "containsGridDesc",
+				icon: "Grid Desc",
+				object: "grid_desc",
+				objects: "grid_descs"
 			},
 			containsGrid: {
 				id: "containsGrid",
@@ -263,6 +357,22 @@ mcmMapServices.provider('McmMapSchemaService', {
 				icon: "Output Variable",
 				object: "variable",
 				objects: "out-vars"
+			},
+			containsVariableHV: {
+				id: "containsVariableHV",
+				name: "containsVariableHV",
+				type: "containsVariableHV",
+				icon: "HV Variable",
+				object: "variable",
+				objects: "hp-vars"
+			},
+			containsVariableCP: {
+				id: "containsVariableCP",
+				name: "containsVariableCP",
+				type: "containsVariableCP",
+				icon: "CP Variable",
+				object: "variable",
+				objects: "cp-vars"
 			},
 			containsAssumption: {
 				id: "containsAssumption",
@@ -317,7 +427,9 @@ mcmMapServices.provider('McmMapAssumptionService', {
 	function($q, /*$rootScope*/ ENV) {
 		var itemsData = null;
 		var itemsLoaded = false;
+		var itemCategoriesAll = {};
 		var itemsDescs = [];
+
 		// for testing
 		itemsDescs = [
 			{
@@ -359,7 +471,6 @@ mcmMapServices.provider('McmMapAssumptionService', {
 			itemsDescs.length = 0;
 
 			var rdfTypesAll = {};
-			var itemCategoriesAll = {};
 
 			for(var i in itemsData['@graph']){
 				var isItem = false;
@@ -383,9 +494,6 @@ mcmMapServices.provider('McmMapAssumptionService', {
 					}
 				}
 				if(isItem){
-					if(itemCategory in itemCategoriesAll) itemCategoriesAll[itemCategory]++;
-					else itemCategoriesAll[itemCategory] = 1;
-
 					if(!('rdfs:label' in itemFromGraph) && !('skos:prefLabel' in itemFromGraph)){
 						// alert("Missing both label 'rdfs:label' and 'skos:prefLabel' for loaded assumption");
 						console.warn("Missing both label 'rdfs:label' and 'skos:prefLabel' for loaded assumption: %s", JSON.stringify(itemFromGraph));
@@ -404,7 +512,15 @@ mcmMapServices.provider('McmMapAssumptionService', {
 						itemForExport.id = itemFromGraph['@id'];
 						itemForExport.name = itemName;
 						itemForExport.category = itemCategory;
-						itemsDescs.push(itemForExport);						
+						itemsDescs.push(itemForExport);
+
+						if(!(itemCategory in itemCategoriesAll)){
+							itemCategoriesAll[itemCategory] = {
+								name: itemCategory,
+								items: []
+							}
+						}
+						itemCategoriesAll[itemCategory].items.push(itemForExport);
 					}
 				}
 			}
@@ -426,6 +542,9 @@ mcmMapServices.provider('McmMapAssumptionService', {
 			},
 			getLoadingPromise: function(){
 				return itemsData.$promise;
+			},
+			getAssumtionsCategories: function(){
+				return itemCategoriesAll;
 			},
 			getAssumptionsDescs: function(){
 				return itemsDescs;
@@ -625,6 +744,22 @@ mcmMapServices.provider('McmMapObjectService', {
 				return objectsDescsByLabel[objectLabel];
 			},
 
+			addNewObject: function(name){
+				var itemForExport = {};
+				itemForExport.id = "new_obj:" + name;
+				itemForExport.name = name;
+				// itemForExport.category = itemCategory;
+				// itemForExport.broader = itemFromGraph['broader'];
+				// itemForExport.related = itemFromGraph['related'];
+				// itemForExport.altLabel = itemFromGraph['skos:altLabel'];
+				// itemForExport.definition = itemFromGraph['skos:definition'];
+				
+				itemForExport.quantities = [];
+				objectsDescs.push(itemForExport);
+				objectsDescsById[itemForExport.id] = itemForExport;
+				objectsDescsByLabel[itemForExport.name] = itemForExport;
+			},
+
 			getObjectsDesByName: function(nameSubStr, fromStart, onlyTheNextObject){
 				if(typeof fromStart === 'undefined') fromStart = false;
 				var returnedObjects = [];
@@ -700,17 +835,33 @@ mcmMapServices.provider('McmMapVariableQuantityService', {
 				return variableQuantitysDescs;
 			},
 
+			addNewQuantity: function(objectEntity, quantityName){
+				var objeLabel = McmMapObjectService.getFullObjectName(objectEntity);
+				if(objectEntity.kNode.type == "grid_desc"){
+					// TODO: FIX
+					objeLabel = "model_grid";
+				}
+				var objDesc = McmMapObjectService.getObjectDescByLabel(objeLabel);
+				if(objDesc && objDesc.quantities) objDesc.quantities.push(quantityName);
+			},
+
 			getVariableQuantitysDesInObjectByName: function(objectEntity, nameSubStr){
 				var objeLabel = McmMapObjectService.getFullObjectName(objectEntity);
+				if(objectEntity.kNode.type == "grid_desc"){
+					// TODO: FIX
+					objeLabel = "model_grid";
+				}
 				var objDesc = McmMapObjectService.getObjectDescByLabel(objeLabel);
 				var returnedVariableQuantitys = [];
-				for(var i in objDesc.quantities){
-					var variableQuantityName = objDesc.quantities[i];
-					if(variableQuantityName.indexOf(nameSubStr) > -1){
-						var variableQuantity = {
-							name: variableQuantityName
-						};
-						returnedVariableQuantitys.push(variableQuantity);
+				if(objDesc){
+					for(var i in objDesc.quantities){
+						var variableQuantityName = objDesc.quantities[i];
+						if(variableQuantityName.indexOf(nameSubStr) > -1){
+							var variableQuantity = {
+								name: variableQuantityName
+							};
+							returnedVariableQuantitys.push(variableQuantity);
+						}
 					}
 				}
 				return returnedVariableQuantitys;
@@ -789,6 +940,65 @@ mcmMapServices.provider('McmMapVariableOperatorService', {
 				return returnedVariableOperators;
 			},
 
+		};
+	}]
+});
+
+mcmMapServices.provider('McmMapChangesService', {
+	// privateData: "privatno",
+	$get: ['$q', 'ENV', 'KnalledgeMapService', 'KnalledgeNodeService', 'KnalledgeMapVOsService',
+	function($q, ENV, KnalledgeMapService, KnalledgeNodeService, KnalledgeMapVOsService) {
+
+		var mapChanges = null;
+		var rootNodeChanges = null;
+
+		var readyPromise = $q(function(resolve, reject) { /*jshint unused:false*/
+
+			var result = KnalledgeMapService.queryByType("mcm_changes");
+			result.$promise.then(function(maps){
+				console.log("maps (%d): %s", maps.length, JSON.stringify(maps));
+				mapChanges = maps[0];
+
+				KnalledgeNodeService.getById(mapChanges.rootNodeId).$promise.then(function(rootNode){
+					rootNodeChanges = rootNode;
+					resolve();
+				});
+			});
+		});
+
+		// var that = this;
+		return {
+			getReadyPromise: function(){
+				return readyPromise;
+			},
+
+			addChangeNodeEdge: function(kNode, kEdge){
+				// readyPromise.then(function(){
+				// });
+
+				var kEdge = KnalledgeMapVOsService.createNodeWithEdge(rootNodeChanges, kEdge, kNode);
+				kEdge.$promise.then(function(kEdge){
+					// item.status = "created";
+				});
+				return kEdge;
+			},
+
+			addChange: function(kNodeType, kNodeName, kEdgeType, kEdgeName){
+				// readyPromise.then(function(){
+				// });
+
+				var kEdge = new knalledge.KEdge();
+				kEdge.type = kEdgeType;
+				kEdge.name = kEdgeName;
+				kEdge.mapId = mapChanges._id;
+
+				var kNode = new knalledge.KNode();
+				kNode.type = kNodeType;
+				kNode.name =  kNodeName;
+				kNode.mapId = mapChanges._id;
+
+				return this.addChangeNodeEdge(kNode, kEdge);
+			}
 		};
 	}]
 });
@@ -884,8 +1094,8 @@ mcmMapServices.provider('McmMapProcessService', {
 
 mcmMapServices.provider('McmMapGridService', {
 	// privateData: "privatno",
-	$get: ['$q', 'ENV', /*'$rootScope', */
-	function($q, ENV/*, $rootScope*/) {
+	$get: ['$q', 'ENV', 'KnalledgeMapVOsService', /*'$rootScope', */
+	function($q, ENV, KnalledgeMapVOsService/*, $rootScope*/) {
 		var gridsDescs = [
 			{
 				name: "grid_1"
@@ -895,47 +1105,39 @@ mcmMapServices.provider('McmMapGridService', {
 			},
 			{
 				name: "grid_3"
-			},
-			{
-				name: "grid_12"
-			},
-			{
-				name: "grid_13"
-			},
-			{
-				name: "grid_123"
-			},
-			{
-				name: "grid_14"
-			},
-			{
-				name: "grid_145"
-			},
-			{
-				name: "grid_12345"
-			},
-			{
-				name: "grid_1235"
-			},
-			{
-				name: "grid_143"
-			},
-			{
-				name: "grid_1451"
-			},
-			{
-				name: "grid_1245"
 			}
 		];
 
 		// var that = this;
 		return {
 			getGridsDescs: function(){
-				return gridsDescs;
+				var gridDescItems = [];
+				var gridDescKNodes = KnalledgeMapVOsService.getNodesOfType("grid_desc");
+				for(var i=0; i<gridDescKNodes.length; i++){
+					var gridDescKNode = gridDescKNodes[i];
+					gridDescItems.push({
+						name: gridDescKNode.name
+					});
+				}
+				return gridDescItems;
+			},
+
+			getMaxGridNum: function(){
+				var gridMaxNum = 0;
+				var gridsDescs = this.getGridsDescs();
+				for(var i in gridsDescs){
+					var grid = gridsDescs[i];
+					var gridId = parseInt(grid.name.substring(2));
+					if(gridId > gridMaxNum){
+						gridMaxNum = gridId;
+					}
+				}
+				return gridMaxNum;
 			},
 
 			getGridsDesByName: function(nameSubStr){
 				var returnedGrids = [];
+				var gridsDescs = this.getGridsDescs();
 				for(var i in gridsDescs){
 					var grid = gridsDescs[i];
 					if(grid.name.indexOf(nameSubStr) > -1){
@@ -943,8 +1145,7 @@ mcmMapServices.provider('McmMapGridService', {
 					}
 				}
 				return returnedGrids;
-			},
-
+			}
 		};
 	}]
 });
@@ -1107,6 +1308,7 @@ mcmMapServices.provider('McmMapVisualService', {
 				console.log("selecting Grid");
 				var directiveScope = $scope.$new(); // $new is not super necessary
 				// create popup directive
+				// mcmMapSelectGrid
 				var directiveLink = $compile("<div mcm_map_select_grid class='mcm_map_select_grid'></div>");
 				// link HTML containing the directive
 				var directiveElement = directiveLink(directiveScope);
@@ -1116,9 +1318,10 @@ mcmMapServices.provider('McmMapVisualService', {
 				directiveScope.selectingCanceled = function(){
 					console.log("selectingCanceled");
 				},
-				directiveScope.selectedGrid = function(addingInEntity){
-					console.log("Added entity to addingInEntity: %s", JSON.stringify(addingInEntity));
-					if(typeof callback === 'function') callback(mapEntity.parent, assumption);
+				directiveScope.selectedGrid = function(gridDesc){
+					console.log("Added entity to addingInEntity: %s", JSON.stringify(gridDesc));
+					mapEntity.kNode.name = gridDesc.name;
+					if(typeof callback === 'function') callback(mapEntity.parent, gridDesc);
 				}.bind(this);
 			}
 		};

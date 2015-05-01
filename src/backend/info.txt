@@ -3,7 +3,10 @@ info
 curl -v -H "Content-Type: application/json" -X DELETE http://127.0.0.1:8042/kmaps/one/554033523b41715d1656b7ad
 
 curl -v -H "Content-Type: application/json" -X DELETE http://127.0.0.1:8042/kmaps/one/
+curl -v -H "Content-Type: application/json" -X DELETE http://127.0.0.1:8042/knodes/in-map/
+curl -v -H "Content-Type: application/json" -X DELETE http://127.0.0.1:8042/kedges/in-map/
 
+554373592c67dac93c6fb7f3
 cd backend
 
 //Sasa:

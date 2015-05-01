@@ -2,8 +2,8 @@
 'use strict';
 
 angular.module('mcmMapDirectives', ['Config'])
-	.directive('mcmMap', ['$timeout', '$rootScope', '$routeParams', 'ConfigMap', '$compile', 'McmMapSchemaService', 'KnalledgeMapVOsService', 'KnalledgeMapService', 'McmMapVisualService', 'McmMapVariableOperatorService',
-		function($timeout, $rootScope, $routeParams, ConfigMap, $compile, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapService, McmMapVisualService, McmMapVariableOperatorService){
+	.directive('mcmMap', ['$timeout', '$rootScope', '$routeParams', 'ConfigMap', '$compile', 'McmMapSchemaService', 'KnalledgeMapVOsService', 'KnalledgeMapService', 'McmMapVisualService', 'McmMapVariableOperatorService', 'McmMapGridService',
+		function($timeout, $rootScope, $routeParams, ConfigMap, $compile, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapService, McmMapVisualService, McmMapVariableOperatorService, McmMapGridService){
 
 		// http://docs.angularjs.org/guide/directive
 		// console.log("[mcmMap] loading directive");
@@ -124,8 +124,15 @@ angular.module('mcmMapDirectives', ['Config'])
 									case "process":
 										dialogues._selectProcess(vkNodeEntity, selectionOfSubpropertiesFinished);
 										break;
+									case "grid_desc":
+										var gridName = "G_" + (McmMapGridService.getMaxGridNum()+1);
+										vkNodeEntity.kNode.name = gridName;
+										selectionOfSubpropertiesFinished({
+											name: gridName
+										});
+										break;
 									case "grid":
-										dialogues._selectGrid(vkNodeEntity, selectionOfSubpropertiesFinished);
+										dialogues._selectGrid(vkNodeEntity, selectionOfSubpropertiesFinished);											
 										break;
 									default:
 										break;
@@ -254,7 +261,8 @@ angular.module('mcmMapDirectives', ['Config'])
     	};
 	}])
 	// mcm_map_select_variable_quantity
-	.directive('mcmMapSelectVariableQuantity', ['McmMapVariableQuantityService', function(McmMapVariableQuantityService){ // mcm_map_select_sub_entity
+	.directive('mcmMapSelectVariableQuantity', ['McmMapVariableQuantityService', 'McmMapObjectService', 'McmMapChangesService',
+	function(McmMapVariableQuantityService, McmMapObjectService, McmMapChangesService){ // mcm_map_select_sub_entity
 		return {
 			restrict: 'AE',
 			// scope: {
@@ -272,6 +280,25 @@ angular.module('mcmMapDirectives', ['Config'])
 					name: null
 				};
 				
+				$scope.addNewEntityLabel = "Add New";
+
+				$scope.addNewEntity = function(){
+					var fullName = McmMapObjectService.getFullObjectName($scope.parentMapEntity);
+
+					var newQuantityName = fullName + "_" + $scope.item.name;
+					//alert("addNewEntity: " + newQuantityName);
+					$scope.addNewEntityLabel = "Saving ...";
+					// TODO: FIX
+					McmMapVariableQuantityService.addNewQuantity($scope.parentMapEntity, $scope.item.name);
+
+
+					McmMapChangesService.getReadyPromise().then(function(){
+						McmMapChangesService.addChange("new_quantity", newQuantityName, "new_quantity", "new_quantity").$promise.then(function(){
+							$scope.addNewEntityLabel = "Add New";
+						});
+					});
+					$scope.nameChanged();
+				}
 
 				$scope.selectItem = function(item) {
 				    $scope.selectedItem = item;
@@ -280,6 +307,7 @@ angular.module('mcmMapDirectives', ['Config'])
 
 				var populateItems = function(subName){
 					console.log("getVariableQuantitysDesByName(%s)", subName);
+
 					$scope.items = McmMapVariableQuantityService.getVariableQuantitysDesInObjectByName($scope.parentMapEntity, subName);
 					console.log("$scope.items IN: " + $scope.items);
 
@@ -382,7 +410,7 @@ angular.module('mcmMapDirectives', ['Config'])
     		}
     	};
 	}])
-	.directive('mcmMapSelectObject', ['McmMapObjectService', function(McmMapObjectService){ // mcm_map_select_sub_entity
+	.directive('mcmMapSelectObject', ['McmMapObjectService', 'McmMapChangesService', function(McmMapObjectService, McmMapChangesService){ // mcm_map_select_sub_entity
 		return {
 			restrict: 'AE',
 			// scope: {
@@ -398,6 +426,26 @@ angular.module('mcmMapDirectives', ['Config'])
 				$scope.item = {
 					name: null
 				};
+
+				$scope.addNewEntityLabel = "Add New";
+
+				$scope.addNewEntity = function(){
+					var fullName = $scope.parentFullObjectName; // McmMapObjectService.getFullObjectName($scope.parentMapEntity);
+					var newEntityName = fullName + "_" + $scope.item.name;
+					//alert("addNewEntity: " + newEntityName);
+					$scope.addNewEntityLabel = "Saving ...";
+
+					// TODO: FIX
+					McmMapObjectService.addNewObject(newEntityName);
+
+					McmMapChangesService.getReadyPromise().then(function(){
+						McmMapChangesService.addChange("new_object", newEntityName, "new_object", "new_object").$promise.then(function(){
+							$scope.addNewEntityLabel = "Add New";
+						});
+					});
+
+					$scope.nameChanged();
+				}
 
 				$scope.selectItem = function(item) {
 				    $scope.selectedItem = item;
@@ -510,6 +558,7 @@ angular.module('mcmMapDirectives', ['Config'])
     		}
     	};
 	}])
+	// mcm_map_select_grid
 	.directive('mcmMapSelectGrid', ['McmMapGridService', function(McmMapGridService){ // mcm_map_select_sub_entity
 		return {
 			restrict: 'AE',
@@ -749,7 +798,7 @@ angular.module('mcmMapDirectives', ['Config'])
 					name: "Selectable tree of subentities",
 					date: "",
 					authors: "MCM Model",
-					mapId: "",
+					mapId: null,
 					rootNodeId: vkMap._id
 				};
 				$scope.mapDataForInjecting = {
@@ -916,8 +965,8 @@ angular.module('mcmMapDirectives', ['Config'])
     		}	
     	};
 	}])
-	.directive('mcmImportAssumptions', ['KnalledgeMapVOsService', 'KnalledgeNodeService', 'KnalledgeMapService', 'McmMapAssumptionService', 
-		function(KnalledgeMapVOsService, KnalledgeNodeService, KnalledgeMapService, McmMapAssumptionService){ // mcm_map_select_sub_entity
+	.directive('mcmImportAssumptions', ['$q', 'KnalledgeMapVOsService', 'KnalledgeNodeService', 'KnalledgeMapService', 'McmMapAssumptionService', 
+		function($q, KnalledgeMapVOsService, KnalledgeNodeService, KnalledgeMapService, McmMapAssumptionService){ // mcm_map_select_sub_entity
 		return {
 			restrict: 'AE',
 			// scope: {
@@ -937,9 +986,81 @@ angular.module('mcmMapDirectives', ['Config'])
 
 					KnalledgeNodeService.getById($scope.mapAssumptions.rootNodeId).$promise.then(function(rootNode){
 						$scope.rootNodeAssumption = rootNode;
-						populateItems();
+						populateCategories();
 					});
 				});
+
+				var populateCategories = function(){
+					console.log("populateCategories");
+					$scope.items = [];
+					$scope.categories = McmMapAssumptionService.getAssumtionsCategories();
+
+					var categoryKeys = Object.keys($scope.categories);
+					for(var i in $scope.categories){
+						$scope.items.push($scope.categories[i]);
+						$scope.categories[i].status = "queued"
+					}
+
+					var populateCategory = function(categoryId, categoryKeys){
+						if(categoryId>=categoryKeys.length) return;
+
+						var category = $scope.items[categoryId];
+						var promises = [];
+
+						// create assumption category
+						var item = category;
+
+						var kEdge = new knalledge.KEdge();
+						kEdge.type = "containsAssumptionCategory";
+						kEdge.mapId = $scope.mapAssumptions._id;
+
+						var kNode = new knalledge.KNode();
+						kNode.type = "assumptionCategory";
+						kNode.name = item.name;
+						kNode.mapId = $scope.mapAssumptions._id;
+						var categoryNode = kNode;
+
+						var createAssumptionCategory = function(item, parentNode, edge, assumptionNode){
+							var kEdge = KnalledgeMapVOsService.createNodeWithEdge(parentNode, edge, assumptionNode);
+							kEdge.$promise.then(function(kEdge){
+								item.status = "created";
+							});
+							return kEdge;
+						}
+						var kEdge = createAssumptionCategory(item, $scope.rootNodeAssumption, kEdge, kNode);
+
+						kEdge.$promise.then(function(){
+							for(var i in category.items){
+								var item = category.items[i];
+								item.status = "queued";
+
+								var kEdge = new knalledge.KEdge();
+								kEdge.type = "containsAssumption";
+								kEdge.mapId = $scope.mapAssumptions._id;
+
+								var kNode = new knalledge.KNode();
+								kNode.type = "assumption";
+								kNode.name =  item.name;
+								kNode.mapId = $scope.mapAssumptions._id;
+
+								var createAssumption = function(item, parentNode, edge, assumptionNode){
+									var kEdge = KnalledgeMapVOsService.createNodeWithEdge(parentNode, edge, assumptionNode);
+									kEdge.$promise.then(function(kEdge){
+										item.status = "created";
+									});
+									return kEdge;
+								}
+								promises.push(createAssumption(item, categoryNode, kEdge, kNode).$promise);
+								item.status = "creating";
+							}
+							$q.all(promises).then(function(){
+								populateCategory(categoryId+1, categoryKeys);
+							})						});
+						item.status = "creating";
+					}
+
+					populateCategory(0, categoryKeys);
+				};
 
 				var populateItems = function(){
 					console.log("populateItems");
@@ -951,7 +1072,6 @@ angular.module('mcmMapDirectives', ['Config'])
 					for(var i=0; i<$scope.items.length; i++){
 						var item = $scope.items[i];
 						item.status = "queued";
-						j++;
 
 						var kEdge = new knalledge.KEdge();
 						kEdge.type = "containsAssumption";
@@ -959,11 +1079,19 @@ angular.module('mcmMapDirectives', ['Config'])
 
 						var kNode = new knalledge.KNode();
 						kNode.type = "assumption";
+						kNode.name = item.name;
 						kNode.mapId = $scope.mapAssumptions._id;
 
-						if(j<10){
-							KnalledgeMapVOsService.createNodeWithEdge($scope.rootNodeAssumption, kEdge, kNode);
+						if(j<3){
+							var createAssumption = function(item, parentNode, edge, assumptionNode){
+								KnalledgeMapVOsService.createNodeWithEdge(parentNode, edge, assumptionNode).$promise.then(function(kEdge){
+									item.status = "created";
+								});
+							}
+							createAssumption(item, $scope.rootNodeAssumption, kEdge, kNode);
+							item.status = "creating";
 						}
+						j++;
 					}
 				};
 
@@ -986,7 +1114,7 @@ angular.module('mcmMapDirectives', ['Config'])
 				$scope.listTitle = "Assumptions are still importing ...";
 				McmMapAssumptionService.getLoadingPromise().then(function(){
 					$scope.listTitle = "Assumptions are imported ...";
-					populateItems("");
+					// populateItems("");
 				});
 
     		}
