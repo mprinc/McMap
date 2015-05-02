@@ -431,7 +431,7 @@ angular.module('mcmMapDirectives', ['Config'])
 
 				$scope.addNewEntity = function(){
 					var fullName = $scope.parentFullObjectName; // McmMapObjectService.getFullObjectName($scope.parentMapEntity);
-					var newEntityName = fullName + "_" + $scope.item.name;
+					var newEntityName = (fullName && fullName.length > 0) ? fullName + "_" + $scope.item.name : $scope.item.name;
 					//alert("addNewEntity: " + newEntityName);
 					$scope.addNewEntityLabel = "Saving ...";
 

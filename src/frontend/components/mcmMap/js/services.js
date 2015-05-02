@@ -83,7 +83,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 			grid_desc: {
 				assumption: true,
 				variable: true,
-				object: false,
+				object: true,
 				grid: false,
 				grid_desc: false
 			},
@@ -193,12 +193,6 @@ mcmMapServices.provider('McmMapSchemaService', {
 					}
 				}
 			},
-			assumption: {
-				id: "assumption",
-				name: "assumption",
-				type: "assumption",
-				icon: "A"
-			},
 			process: {
 				id: "process",
 				name: "process",
@@ -228,6 +222,9 @@ mcmMapServices.provider('McmMapSchemaService', {
 				type: "grid_desc",
 				icon: "GD",
 				contains: {
+					containsObject: {
+
+					},
 					containsVariableIn: {
 
 					},
@@ -362,7 +359,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "containsVariableHV",
 				name: "containsVariableHV",
 				type: "containsVariableHV",
-				icon: "HV Variable",
+				icon: "Static Variable",
 				object: "variable",
 				objects: "hp-vars"
 			},
@@ -370,7 +367,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "containsVariableCP",
 				name: "containsVariableCP",
 				type: "containsVariableCP",
-				icon: "CP Variable",
+				icon: "Configuration Parameter",
 				object: "variable",
 				objects: "cp-vars"
 			},
@@ -569,8 +566,8 @@ mcmMapServices.provider('McmMapAssumptionService', {
 
 mcmMapServices.provider('McmMapObjectService', {
 	// privateData: "privatno",
-	$get: ['$q', 'ENV', /*'$rootScope', */
-	function($q, ENV/*, $rootScope*/) {
+	$get: ['$q', 'ENV', 'McmMapChangesService', /*'$rootScope', */
+	function($q, ENV, McmMapChangesService/*, $rootScope*/) {
 		var itemsData = null;
 		var itemsLoaded = false;
 		var objectsDescs = [
@@ -611,6 +608,16 @@ mcmMapServices.provider('McmMapObjectService', {
 		};
 
 		itemsData = queryItems();
+
+		McmMapChangesService.getReadyPromise().then(function(){
+			McmMapChangesService.getChangedNodes("new_object").$promise
+			.then(function(newObjectsNodes){
+				for(var i in newObjectsNodes){
+					var newObjectsNode = newObjectsNodes[i];
+					console.log("newObjectsNode: %s", JSON.stringify(newObjectsNode));
+				}
+			});
+		});
 
 		itemsData.$promise.then(function(itemsData){
 			objectsDescs.length = 0;
@@ -829,6 +836,16 @@ mcmMapServices.provider('McmMapVariableQuantityService', {
 			}
 		];
 
+		McmMapChangesService.getReadyPromise().then(function(){
+			McmMapChangesService.getChangedNodes("new_quantity").$promise
+			.then(function(newQuantityNodes){
+				for(var i in newQuantityNodes){
+					var newQuantityNode = newQuantityNodes[i];
+					console.log("newQuantityNode: %s", JSON.stringify(newQuantityNode));
+				}
+			});
+		});
+
 		// var that = this;
 		return {
 			getVariableQuantitysDescs: function(objectEntity){
@@ -946,8 +963,8 @@ mcmMapServices.provider('McmMapVariableOperatorService', {
 
 mcmMapServices.provider('McmMapChangesService', {
 	// privateData: "privatno",
-	$get: ['$q', 'ENV', 'KnalledgeMapService', 'KnalledgeNodeService', 'KnalledgeMapVOsService',
-	function($q, ENV, KnalledgeMapService, KnalledgeNodeService, KnalledgeMapVOsService) {
+	$get: ['$q', 'ENV', 'KnalledgeMapService', 'KnalledgeNodeService',
+	function($q, ENV, KnalledgeMapService, KnalledgeNodeService) {
 
 		var mapChanges = null;
 		var rootNodeChanges = null;
@@ -998,6 +1015,14 @@ mcmMapServices.provider('McmMapChangesService', {
 				kNode.mapId = mapChanges._id;
 
 				return this.addChangeNodeEdge(kNode, kEdge);
+			},
+			getChangedNodes: function(kNodeType){
+				var kNodes = KnalledgeNodeService.getInMapNodesOfType(mapChanges._id, kNodeType);
+				kNodes.$promise.then(function(kNodes){
+					// item.status = "created";
+				});
+				return kNodes;
+
 			}
 		};
 	}]
