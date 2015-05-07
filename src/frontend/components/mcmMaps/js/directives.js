@@ -3,8 +3,8 @@
 
 angular.module('mcmMapsDirectives', ['Config'])
 	
-	.directive('mcmMapsList', ["$rootScope", "$timeout", "$location", 'ConfigMapToolset', 'KnalledgeMapService', 'KnalledgeMapVOsService',
-		function($rootScope, $timeout, $location, ConfigMapToolset, KnalledgeMapService, KnalledgeMapVOsService){
+	.directive('mcmMapsList', ["$rootScope", "$timeout", "$location", 'ConfigMapToolset', 'KnalledgeMapService', 'KnalledgeMapVOsService', 'RimaUsersService',
+		function($rootScope, $timeout, $location, ConfigMapToolset, KnalledgeMapService, KnalledgeMapVOsService, RimaUsersService){
 		console.log("[mcmMapsList] loading directive");
 		return {
 			restrict: 'AE',
@@ -22,6 +22,7 @@ angular.module('mcmMapsDirectives', ['Config'])
 				KnalledgeMapService.queryByType("mcm_map").$promise.then(function(maps){
 					$scope.items = maps;
 					console.log('maps:'+JSON.stringify($scope.maps));
+					RimaUsersService.loadUsersFromList(); //TODO remove, after centralized loading is done
 				});
 
 				$scope.showCreateNewMap = function(){
@@ -57,6 +58,7 @@ angular.module('mcmMapsDirectives', ['Config'])
 					var rootNode = new knalledge.KNode();
 					rootNode.name = $scope.mapToCreate.name;
 					rootNode.type = "model_component";
+					rootNode.iAmId = RimaUsersService.getActiveUserId();
 					rootNode.mapId = null;
 					rootNode.visual = {
 					    isOpen: true,
