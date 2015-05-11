@@ -1028,6 +1028,7 @@ mcmMapServices.provider('McmMapChangesService', {
 	}]
 });
 
+// http://csdms.colorado.edu/wiki/CSN_Process_Quantity_Names
 mcmMapServices.provider('McmMapProcessService', {
 	// privateData: "privatno",
 	$get: ['$q', 'ENV', /*'$rootScope', */

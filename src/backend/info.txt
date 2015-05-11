@@ -27,6 +27,10 @@ cp -r /Users/sasha/Documents/data/development/KnAllEdge/src/backend/config .
 cp /Users/sasha/Documents/data/development/KnAllEdge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
 cp /Users/sasha/Documents/data/development/KnAllEdge/src/backend/package.json package.json
 
+cd frontend/components
+ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/components/knalledgeMap knalledgeMap
+ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/components/rima rima
+
 cd backend/tools
 node createDemoData.js ../../frontend/app/data/sample-small.json
 node tools/createDemoData.js ../frontend/app/data/sample-small.json

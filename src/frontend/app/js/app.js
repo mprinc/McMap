@@ -14,7 +14,10 @@ angular.module('McModelarApp',[
 	, 'knalledgeMapDirectives' // KnAllEdge Map component
 	, 'knalledgeMapServices'
 	, 'mcmMapsDirectives' // KnAllEdge Map component
-	
+
+	, 'rimaServices'
+	, 'rimaDirectives'
+	, 'rimaFilters'
 ])
 // routes
 .config(['$routeProvider', function($routeProvider) {
