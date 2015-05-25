@@ -51,9 +51,10 @@ MapLayout.prototype.init = function(mapSize){
 
 
 // Select node on node click
-MapLayout.prototype.clickNode = function(d, dom) {
+MapLayout.prototype.clickNode = function(d, dom, commingFromAngular, doNotBubleUp) {
 	// select clicked
 	var isSelected = d ? d.isSelected : false;
+	if(!dom) dom = this.getDomFromDatum(d);
 	var domD3 = d3.select(dom);
 
 	// unselect all nodes
@@ -81,7 +82,7 @@ MapLayout.prototype.clickNode = function(d, dom) {
 		}
 	}
 
-	this.clientApi.mapEntityClicked(this.mapStructure.getSelectedNode(), dom);
+	if(!doNotBubleUp) this.clientApi.mapEntityClicked(this.mapStructure.getSelectedNode(), dom);
 	//this.update(this.rootNode);
 	return false;
 };

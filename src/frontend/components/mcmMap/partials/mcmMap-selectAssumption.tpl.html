@@ -15,7 +15,7 @@
 	<table class="list" >
 		<tr><th class="title_name">{{listTitle}}</th></tr>
 		<tr data-ng-click="selectItem(item)" ng-repeat="item in items" data-ng-class="{'active-selection': item.name == selectedItem.name}">
-			<td>{{item.name}}</td>
+			<td>{{item.category}} : {{item.name}}</td>
 		</tr>
 	</table>
 </div>

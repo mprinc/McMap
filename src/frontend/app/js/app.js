@@ -18,6 +18,9 @@ angular.module('McModelarApp',[
 	, 'rimaServices'
 	, 'rimaDirectives'
 	, 'rimaFilters'
+
+	, 'notifyServices'
+	, 'notifyDirectives'
 ])
 // routes
 .config(['$routeProvider', function($routeProvider) {

@@ -164,6 +164,9 @@ $map: layout(12 1/4 fluid float inside);
 	overflow-x: scroll;
 	overflow-y: scroll;
 	@include border-radius(10px, 10px);
+/*	http://compass-style.org/reference/compass/css3/user_interface/#mixin-user-select
+	http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting*/
+	@include user-select(none);
 }
 
 .map_svg{
@@ -361,9 +364,12 @@ $status_color: #88ff88;
 	&.has_no_children{
 	}
 
+	$selected_color: #aaf;
 	&.selected{
-		border-color: #ffa;
+		border-color: $selected_color;
 		border-width: 3px;
+		/* color h-shadow v-shadow blur spread color inset*/
+		@include box-shadow(5px 5px 3px 3px transparentize(darken($selected_color, 25%), 0.75));
 	}
 
 	&.unselected{
@@ -410,16 +416,20 @@ $mcm_map_list_border: #888888;
 		display: block;
 		border: 2px solid $mcm_map_list_border;
 		background-color: lighten($mcm_map_list_border, 20%);
-		@include border-top-right-radius(10px);
+/*		@include border-top-right-radius(10px);
 		@include border-top-left-radius(10px);
-		transition: background-color 0.3s;
+*/		transition: background-color 0.3s;
 
 		.mcm_icon{
 			display: inline-block;
 			border-right: 2px solid $mcm_map_list_border;
-			width: 2em;
-			padding-left: 0.3em;
-			padding-right: 0.3em;
+			/*width: 2em;*/
+			padding-left: 1em;
+			padding-right: 1em;
+			margin: 0.3em;
+		}
+		.selectable{
+			cursor: pointer;
 		}
 		.mcm_name{
 			display: inline-block;
@@ -447,6 +457,10 @@ $mcm_map_list_border: #888888;
 			@include border-radius(5px, 5px);
 			margin-bottom: 3px;
 			padding: 3px;
+
+			&.selectable{
+				cursor: pointer;
+			}
 
 			overflow-x: hidden;
 			position: relative;

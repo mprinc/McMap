@@ -199,21 +199,21 @@ mcmMapServices.provider('McmMapSchemaService', {
 				type: "process",
 				icon: "P",
 				contains: {
-					containsVariableIn: {
+					// containsVariableIn: {
 
-					},
-					containsVariableOut: {
+					// },
+					// containsVariableOut: {
 
-					},
-					containsVariableHV: {
+					// },
+					// containsVariableHV: {
 
-					},
-					containsVariableCP: {
+					// },
+					// containsVariableCP: {
 
-					},
-					containsAssumption: {
+					// },
+					// containsAssumption: {
 
-					}
+					// }
 				}
 			},
 			grid_desc: {
@@ -548,12 +548,13 @@ mcmMapServices.provider('McmMapAssumptionService', {
 			},
 
 			getAssumptionsDesByName: function(nameSubStr){
+				nameSubStr = nameSubStr.toLowerCase();
 				var returnedItems = [];
 				// we cannot iterate with (var i in itemsDescs) because of
 				// adding $promise and $resolved
 				for(var i=0; i<itemsDescs.length; i++){
 					var assumption = itemsDescs[i];
-					if(assumption.name.indexOf(nameSubStr) > -1){
+					if(assumption.name.toLowerCase().indexOf(nameSubStr) > -1 || assumption.category.toLowerCase().indexOf(nameSubStr) > -1){
 						returnedItems.push(assumption);
 					}
 				}
@@ -768,12 +769,13 @@ mcmMapServices.provider('McmMapObjectService', {
 			},
 
 			getObjectsDesByName: function(nameSubStr, fromStart, onlyTheNextObject){
+				nameSubStr = nameSubStr.toLowerCase();
 				if(typeof fromStart === 'undefined') fromStart = false;
 				var returnedObjects = [];
 				for(var i in objectsDescs){
 					var shouldAdd = false;
 					var object = objectsDescs[i];
-					var id = object.name.indexOf(nameSubStr);
+					var id = object.name.toLowerCase().indexOf(nameSubStr);
 					if(fromStart){
 						if(id == 0){
 							shouldAdd = true;
@@ -783,6 +785,8 @@ mcmMapServices.provider('McmMapObjectService', {
 							shouldAdd = true;
 						}
 					}
+
+					// avoid it if the object contains more than one subobject level from the level of the observer object
 					if(onlyTheNextObject && object.name.indexOf("_", id + nameSubStr.length) >= 0){
 						shouldAdd = false;
 					}
@@ -822,8 +826,8 @@ mcmMapServices.provider('McmMapObjectService', {
 
 mcmMapServices.provider('McmMapVariableQuantityService', {
 	// privateData: "privatno",
-	$get: ['$q', 'ENV', 'McmMapObjectService'/*, '$rootScope'*/,
-	function($q, ENV, McmMapObjectService/*, $rootScope*/) {
+	$get: ['$q', 'ENV', 'McmMapObjectService', 'McmMapChangesService'/*, '$rootScope'*/,
+	function($q, ENV, McmMapObjectService, McmMapChangesService/*, $rootScope*/) {
 		var variableQuantitysDescs = [
 			{
 				name: "variableQuantity_1"
@@ -863,6 +867,8 @@ mcmMapServices.provider('McmMapVariableQuantityService', {
 			},
 
 			getVariableQuantitysDesInObjectByName: function(objectEntity, nameSubStr){
+				nameSubStr = nameSubStr.toLowerCase();
+
 				var objeLabel = McmMapObjectService.getFullObjectName(objectEntity);
 				if(objectEntity.kNode.type == "grid_desc"){
 					// TODO: FIX
@@ -873,7 +879,7 @@ mcmMapServices.provider('McmMapVariableQuantityService', {
 				if(objDesc){
 					for(var i in objDesc.quantities){
 						var variableQuantityName = objDesc.quantities[i];
-						if(variableQuantityName.indexOf(nameSubStr) > -1){
+						if(variableQuantityName.toLowerCase().indexOf(nameSubStr) > -1){
 							var variableQuantity = {
 								name: variableQuantityName
 							};
@@ -947,10 +953,11 @@ mcmMapServices.provider('McmMapVariableOperatorService', {
 			},
 
 			getVariableOperatorsDesByName: function(nameSubStr){
+				nameSubStr = nameSubStr.toLowerCase();
 				var returnedVariableOperators = [];
 				for(var i in variableOperatorsDescs){
 					var variableOperator = variableOperatorsDescs[i];
-					if(variableOperator.name.indexOf(nameSubStr) > -1){
+					if(variableOperator.name.toLowerCase().indexOf(nameSubStr) > -1){
 						returnedVariableOperators.push(variableOperator);
 					}
 				}
@@ -1104,10 +1111,11 @@ mcmMapServices.provider('McmMapProcessService', {
 			},
 
 			getProcesssDesByName: function(nameSubStr){
+				nameSubStr = nameSubStr.toLowerCase();
 				var returnedProcesss = [];
 				for(var i in itemsDescs){
 					var process = itemsDescs[i];
-					if(process.name.indexOf(nameSubStr) > -1){
+					if(process.name.toLowerCase().indexOf(nameSubStr) > -1){
 						returnedProcesss.push(process);
 					}
 				}
@@ -1162,11 +1170,12 @@ mcmMapServices.provider('McmMapGridService', {
 			},
 
 			getGridsDesByName: function(nameSubStr){
+				nameSubStr = nameSubStr.toLowerCase();
 				var returnedGrids = [];
 				var gridsDescs = this.getGridsDescs();
 				for(var i in gridsDescs){
 					var grid = gridsDescs[i];
-					if(grid.name.indexOf(nameSubStr) > -1){
+					if(grid.name.toLowerCase().indexOf(nameSubStr) > -1){
 						returnedGrids.push(grid);
 					}
 				}

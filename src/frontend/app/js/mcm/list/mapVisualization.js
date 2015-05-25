@@ -56,13 +56,42 @@ MapVisualization.prototype.update = function(source, callback) {
 
 };
 
+MapVisualization.prototype.changeSettingsState = function(d, settingsDom, closeOrOpen) {
+	if(closeOrOpen === true || d.settingsOpen){
+		// acting on "div.settings"
+		d3.select(settingsDom).style("right", null);
+		d.settingsOpen = false;
+	}else if(closeOrOpen === false || !d.settingsOpen){
+		d3.select(settingsDom).style("right", "50%");
+		d.settingsOpen = true;
+	}
+};
+
+MapVisualization.prototype.deleteEntity = function(d, settingsDom) {
+	this.clientApi.deleteNode(d.vkNode);
+	this.changeSettingsState(d, settingsDom, true);
+	this.clientApi.update(d.parent.parent);
+
+};
+
 MapVisualization.prototype.updateHtml = function(source) {
 	var that = this;
 
 	this.dom.divList.selectAll("div." + this.configNodes.html.refCategory).remove();
+	var nodesFiltered  = this.mapLayout.nodes.filter(function(d){
+		switch(d.objectType){
+			case "entity":
+				if(that.schema.getEntityStyle(d.type)) return true;
+				break;
+			case "edge":
+				if(that.schema.getEdgeStyle(d.type)) return true;
+				break;
+		}
+		return false;
+	});
 
 	var nodeHtml = this.dom.divList.selectAll("div." + this.configNodes.html.refCategory)
-		.data(this.mapLayout.nodes, function(d) {
+		.data(nodesFiltered, function(d) {
 			return d.id;
 		});
 
@@ -87,67 +116,30 @@ MapVisualization.prototype.updateHtml = function(source) {
 		// .on("dblclick", this.clickDoubleNode.bind(this))
 		// .on("click", this.clickNode.bind(this));
 
+	nodeHtmlEnter.filter(function(d) {
+		if(d.objectType != "entity") return false;
+		var mapEntityDesc = that.schema.getEntityDesc(d.type);
+		if(!mapEntityDesc || !mapEntityDesc.contains) return false;
+		return (Object.keys(mapEntityDesc.contains).length > 0);
+	})
+		.classed({
+		"selectable": true
+	});
+
 	// position node on enter at the source position
 	// (it is either parent or another precessor)
 	nodeHtmlEnter
 		.on("click", function(d){
-			that.mapLayout.clickNode(d, this);
 			// cancle bubbling up
 			// http://stackoverflow.com/questions/11674886/stoppropagation-with-svg-element-and-g
 			d3.event.cancelBubble = true;
-			// d3.event.sourceEvent.stopPropagation();
+			if(d.objectType != "entity") return;
+			that.clientApi.childClicked(d);
 		})
 		.style("margin-left", function(d) {
 			var width = d.depth * 5;
 			return width + "px";
 		});
-		// .style("left", function(d) {
-		// 	var x = null;
-		// 	if(that.configTransitions.enter.animate.position){
-		// 		if(that.configTransitions.enter.referToToggling){
-		// 			x = source.x0;
-		// 		}else{
-		// 			x = d.parent ? d.parent.x0 : d.x0;
-		// 		}
-		// 	}else{
-		// 		x = d.x;
-		// 	}
-		// 	// console.log("[nodeHtmlEnter] d: %s, x: %s", d.name, x);
-		// 	return x + "px";
-		// })
-		// .style("top", function(d) {
-		// 	var y = null;
-		// 	if(that.configTransitions.enter.animate.position){
-		// 		if(that.configTransitions.enter.referToToggling){
-		// 			y = source.y0;
-		// 		}else{
-		// 			y = d.parent ? d.parent.y0 : d.y0;
-		// 		}
-		// 	}else{
-		// 		y = d.y;
-		// 	}
-		// 	return y + "px";
-		// })
-		// .style("width", function(d) {
-		// 	var width = null;
-		// 	if(that.configTransitions.enter.animate.position){
-		// 		width = 0;
-		// 	}else{
-		// 		width = d.width;
-		// 	}
-		// 	// console.log("[nodeHtmlEnter] d: %s, width: %s", d.name, width);
-		// 	return width + "px";
-		// })
-		// .style("height", function(d) {
-		// 	var height = null;
-		// 	if(that.configTransitions.enter.animate.position){
-		// 		height = 0;
-		// 	}else{
-		// 		height = d.height;
-		// 	}
-		// 	// console.log("[nodeHtmlEnter] d: %s, height: %s", d.name, height);
-		// 	return height + "px";
-		// });
 
 	// Name
 	nodeHtmlEnter
@@ -163,31 +155,13 @@ MapVisualization.prototype.updateHtml = function(source) {
 		switch(d.type){
 			case 'variable':
 			case 'process':
+			case 'grid':
+			case 'assumption':
 				container.append("div")
 					.attr("class", "settings");
 				break;
 		}
 	});
-
-// 	// Status
-// 	nodeHtmlEnter
-// 		.append("div")
-// 			.attr("class", "status");
-
-// 	// Type
-// 	nodeHtmlEnter
-// 		.append("div")
-// 			.attr("class", "type");
-
-// 	// Input Variables
-// 	nodeHtmlEnter
-// 		.append("div")
-// 			.attr("class", "var_in");
-
-// 	// Output Variables
-// 	nodeHtmlEnter
-// 		.append("div")
-// 			.attr("class", "var_out");
 
 	// Name
 	nodeHtml.select(".name span")
@@ -226,6 +200,9 @@ MapVisualization.prototype.updateHtml = function(source) {
 	nodeHtml.select(".settings")
 		// http://stackoverflow.com/questions/18205034/d3-adding-data-attribute-conditionally
 		// http://grokbase.com/t/gg/d3-js/13bc0xr5s8/drawing-circles-conditionally#20131112vgo76k6bofdnloldcihh642t7i
+		.on("click", function(d){
+			d3.event.cancelBubble = true;
+		})
 		.each(function(d) {
 
 			var settings = d3.select(this);
@@ -238,14 +215,8 @@ MapVisualization.prototype.updateHtml = function(source) {
 					return content;
 				})
 				.on("click", function(d){
-					if(d.settingsOpen){
-						// acting on "div.settings"
-						d3.select(this.parentElement).style("right", null);
-						d.settingsOpen = false;
-					}else{
-						d3.select(this.parentElement).style("right", "50%");
-						d.settingsOpen = true;
-					}
+					d3.event.cancelBubble = true;
+					that.changeSettingsState(d, this.parentElement);
 				});
 
 			switch(d.type){
@@ -328,6 +299,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 								return content;
 							})
 							.on("click", function(d){
+								that.changeSettingsState(d, this.parentElement, false); // close
 							});
 					}
 
@@ -341,6 +313,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 							return content;
 						})
 						.on("click", function(d){
+							that.changeSettingsState(d, this.parentElement, false); // close
 							that.clientApi.dialogues.selectVariableQuantity(d);
 						});
 					break;
@@ -352,37 +325,9 @@ MapVisualization.prototype.updateHtml = function(source) {
 					return content;
 				})
 				.on("click", function(d){
+					that.deleteEntity(d, this.parentElement);
 				});
 		});
-
-// 	// Status
-// 	nodeHtml.select(".status")
-// 		.html(function(d){
-// 			return "" + d.draggedInNo;
-// 		});
-
-// 	// Type
-// 	nodeHtml.select(".type")
-// 		.html(function(d){
-// 			return "" + that.schema.entityStyles[d.kNode.type].icon;
-// 		});
-
-// 	// Input Variables
-// 	nodeHtml.select(".var_in")
-// 		.html(function(d){
-// 			return "" + that.mapStructure.getChildrenNodes(d, Map.CONTAINS_VARIABLE_IN).length;
-// 		});
-
-// 	// Output Variables
-// 	nodeHtml.select(".var_out")
-// 		.html(function(d){
-// 			return "" + that.mapStructure.getChildrenNodes(d, Map.CONTAINS_VARIABLE_OUT).length;
-// 		});
-
-// 	if(this.configTransitions.enter.animate.opacity){
-// 		nodeHtmlEnter
-// 			.style("opacity", 1e-6);
-// 	}
 
 	var nodeHtmlDatasets = {
 		elements: nodeHtml,
@@ -392,6 +337,8 @@ MapVisualization.prototype.updateHtml = function(source) {
 	return nodeHtmlDatasets;
 };
 
+/*
+*/
 MapVisualization.prototype.updateHtmlTransitions = function(source, nodeHtmlDatasets){
 	if(!this.configNodes.html.show) return;
 	var that = this;
@@ -407,41 +354,6 @@ MapVisualization.prototype.updateHtmlTransitions = function(source, nodeHtmlData
 		nodeHtmlUpdateTransition = nodeHtmlUpdate.transition()
 			.duration(this.configTransitions.update.duration);
 	}
-
-	// nodeHtmlUpdate
-	// 	.select(".status")
-	// 		.style("background-color", function(d){
-	// 			return (d.draggedInNo != d3.select(this).html()) ? "red" : "yellow";
-	// 		})
-	// 		.style("padding-right", function(d){
-	// 			return (d.draggedInNo != d3.select(this).html()) ? "5px" : "2px";
-	// 		})
-	// 		.html(function(d){
-	// 			return "" + d.draggedInNo;
-	// 		});
-
-	// (this.configTransitions.update.animate.position ? nodeHtmlUpdateTransition : nodeHtmlUpdate)
-	// 	.style("top", function(d){
-	// 		return d.y + "px";
-	// 	})
-	// 	// .each("start", function(d){
-	// 	// 	console.log("[nodeHtmlUpdateTransition] STARTED: d: %s, xCurrent: %s", d.name, d3.select(this).style("top"));
-	// 	// })
-	// 	.style("left", function(d){
-	// 		var x = d.x;
-	// 		// x = d.x;
-	// 		// console.log("[nodeHtmlUpdateTransition] d: %s, xCurrent: %s, xNew: %s", d.name, d3.select(this).style("top"), x);
-	// 		return x + "px";
-	// 	});
-	// (this.configTransitions.update.animate.opacity ? nodeHtmlUpdateTransition : nodeHtmlUpdate)
-	// 	.select(".status")
-	// 		.style("background-color", "yellow")
-	// 		.style("padding-right", "2px");
-
-	// if(this.configTransitions.update.animate.opacity){
-	// 	nodeHtmlUpdateTransition
-	// 		.style("opacity", 1.0);
-	// }
 
 	// Transition exiting nodes
 	var nodeHtmlExit = nodeHtml.exit();

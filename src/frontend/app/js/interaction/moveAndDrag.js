@@ -65,6 +65,9 @@ MoveAndDrag.InitializeDragging = function (config) {
 				// http://stackoverflow.com/questions/16429199/selections-in-d3-how-to-use-parentnode-appendchild
 				config.target.cloningContainer.appendChild(clonedD3.node());
 
+				clonedD3.classed({cloned_placeholder: true});
+				targetD3.classed({target_placeholder: true});
+
 				if(config.draggTargetElement){
 					staticPlaceholder = clonedD3;
 					movingPlaceholder = targetD3;
@@ -72,6 +75,9 @@ MoveAndDrag.InitializeDragging = function (config) {
 					movingPlaceholder = clonedD3;
 					staticPlaceholder = targetD3;
 				}
+
+				movingPlaceholder.classed({moving_placeholder: true});
+				staticPlaceholder.classed({static_placeholder: true});
 				movingPlaceholder
 					.style("z-index", config.target.zIndex);
 			},
@@ -89,12 +95,19 @@ MoveAndDrag.InitializeDragging = function (config) {
 				targetD3.attr('data-x', x);
 				targetD3.attr('data-y', y);
 
-				// translate the cloned node
+				// translate the moving node
 				var translate = 'translate(' + x + 'px, ' + y + 'px)';
+//				console.log("[onmove] translate = %s", translate);
+
+				// http://www.w3schools.com/css/css3_2dtransforms.asp
+				// https://css-tricks.com/forums/topic/css-transform-not-working-in-safari/
 				movingPlaceholder
 					.style("transform", translate)
-					//.style("position", "absolute")
-					;
+					.style("-ms-transform", translate)
+					.style("-webkit-transform", translate)
+					.style("-moz-transform", translate)
+					.style("-o-transform", translate)
+				;
 			},
 			// call this function on every dragend event
 			onend: function (event) {
@@ -132,7 +145,13 @@ MoveAndDrag.InitializeDragging = function (config) {
 				targetD3.attr('data-z-index', null);
 
 				// resetting element translation
-				targetD3.style("transform", null);
+				targetD3
+					.style("transform", null)
+					.style("-ms-transform", null)
+					.style("-webkit-transform", null)
+					.style("-moz-transform", null)
+					.style("-o-transform", null)
+				;
 				// update the posiion attributes
 				targetD3.attr('data-x', null);
 				targetD3.attr('data-y', null);
@@ -144,8 +163,13 @@ MoveAndDrag.InitializeDragging = function (config) {
 				}else{
 					clonedD3 = movingPlaceholder;
 				}
+
 				clonedD3.remove();
 				clonedD3 = null;
+
+				// cleaning classes
+				targetD3.classed({target_placeholder: false});
+				targetD3.classed({moving_placeholder: false, static_placeholder: false});
 
 				staticPlaceholder = null;
 				movingPlaceholder = null;

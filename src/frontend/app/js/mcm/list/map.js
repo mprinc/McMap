@@ -15,7 +15,11 @@ var Map =  mcm.list.Map = function(parentDom, config, clientApi, schema, mapServ
 	this.mapStructure = this.mapStructureExternal ? this.mapStructureExternal : new knalledge.MapStructure();
 	var mapVisualizationApi = {
 		timeout: this.clientApi.timeout,
-		dialogues: this.clientApi.dialogues
+		dialogues: this.clientApi.dialogues,
+		deleteNode: this.mapStructure.deleteNode.bind(this.mapStructure),
+		update: this.clientApi.update,
+		childClicked: this.childClicked.bind(this),
+		backClicked: this.backClicked.bind(this)
 	};
 	this.mapVisualization = new mcm.list.MapVisualization(this.parentDom, mapVisualizationApi, this.mapStructure, 
 		this.config.transitions, this.config.nodes, this.config.edges, this.schema, this.services);
@@ -65,6 +69,12 @@ Map.prototype.processDataMapLayout = function() {
 	this.mapLayout.processData(null, 0, this.parentDom.attr("height") / 2);
 };
 
+Map.prototype.childClicked = function(childEntity) {
+	this.clientApi.clicked(childEntity);
+};
+Map.prototype.backClicked = function() {
+	// this.clientApi.clicked
+};
 Map.prototype.changeSubtreeRoot = function(subtreeRoot) {
 	this.mapLayout.processData(subtreeRoot, 0, this.parentDom.attr("height") / 2);
 };

@@ -43,7 +43,7 @@ angular.module('mcmMapDirectives', ['Config'])
 									mapEntity.kNode._id, mapEntity.id, mapEntity.kNode.type, mapEntity.kNode.name);
 							}
 							var eventName = "mapEntitySelectedEvent";
-							$rootScope.$broadcast(eventName, mapEntity);
+							$rootScope.$broadcast(eventName, {mapEntity: mapEntity, emittingScope: $scope});
 						});
 					},
 					mapEntityDraggedIn: function(mapEntity, decoratingEdge){
@@ -68,6 +68,8 @@ angular.module('mcmMapDirectives', ['Config'])
 								inMapEntityDraggedIn = false;
 							},
 							directiveScope.addedEntity = function(vkAddedInEntity){
+								if(!vkAddedInEntity) return;
+
 								console.log("Added entity to vkAddedInEntity (%s): %s", vkAddedInEntity.kNode.type, vkAddedInEntity.kNode.name);
 
 								vkAddedInEntity.draggedInNo++;
@@ -187,6 +189,20 @@ angular.module('mcmMapDirectives', ['Config'])
 						mcmMapClientInterface.mapEntityDraggedIn(mapEntityClicked, toolEntityClicked);
 					}
 				});
+
+				eventName = "modelMapStructureChanged";
+				$scope.$on(eventName, function(e, mapEntity) {
+					mcmMap.update();
+				});
+
+				eventName = "mapEntitySelectedEvent";
+				$scope.$on(eventName, function(e, eventObj) {
+					if(eventObj.emittingScope == $scope) return;
+
+					mcmMap.mapLayout.clickNode(eventObj.mapEntity, null, true, true);
+					mcmMap.update();
+				});
+
 			}
     	};
 	}])
@@ -640,6 +656,9 @@ angular.module('mcmMapDirectives', ['Config'])
 					var nodeSelectable;
 					// returns a list of entities that entity type accept
 					var allowedSubEntities = McmMapSchemaService.getAllowedSubEntities(kNode.type);
+					// if node is not recognized by McmMapSchemaService.getAllowedSubEntities we do not traverse it
+					if(!allowedSubEntities) return false;
+
 					if(allowedSubEntities[entityDecorating.type]){
 						nodeSelectable = true;
 					}else{
@@ -879,12 +898,12 @@ angular.module('mcmMapDirectives', ['Config'])
 				toolset.init();
 
 				var eventName = "mapEntitySelectedEvent";
-				$scope.$on(eventName, function(e, mapEntity) {
-					if(mapEntity){
-						console.log("[mcmMapTools.controller::$on] ModelMap  mapEntity (%s): %s", mapEntity.kNode.type, mapEntity.kNode.name);
+				$scope.$on(eventName, function(e, eventObj) {
+					if(eventObj.mapEntity){
+						console.log("[mcmMapTools.controller::$on] ModelMap  mapEntity (%s): %s", eventObj.mapEntity.kNode.type, eventObj.mapEntity.kNode.name);
 					}
 					$scope.tools.length = 0;
-					var entity = McmMapSchemaService.getEntityDesc(mapEntity ? mapEntity.kNode.type : "unselected");
+					var entity = McmMapSchemaService.getEntityDesc(eventObj.mapEntity ? eventObj.mapEntity.kNode.type : "unselected");
 					for(var edgeName in entity.contains){
 						$scope.tools.push(McmMapSchemaService.getEdgeDesc(edgeName));
 					}
@@ -893,8 +912,8 @@ angular.module('mcmMapDirectives', ['Config'])
     		}
     	};
 	}])
-	.directive('mcmMapList', ['$timeout', 'ConfigMapToolset', 'KnalledgeMapVOsService', 'McmMapSchemaService', 'McmMapVariableOperatorService', 'McmMapVisualService',
-		function($timeout, ConfigMapToolset, KnalledgeMapVOsService, McmMapSchemaService, McmMapVariableOperatorService, McmMapVisualService){
+	.directive('mcmMapList', ['$rootScope', '$timeout', 'ConfigMapToolset', 'KnalledgeMapVOsService', 'McmMapSchemaService', 'McmMapVariableOperatorService', 'McmMapVisualService',
+		function($rootScope, $timeout, ConfigMapToolset, KnalledgeMapVOsService, McmMapSchemaService, McmMapVariableOperatorService, McmMapVisualService){
 		// http://docs.angularjs.org/guide/directive
 		return {
 			restrict: 'AE',
@@ -911,10 +930,19 @@ angular.module('mcmMapDirectives', ['Config'])
 
 				var mcmMapClientInterface = {
 					mapEntityClicked: function(){
-
 					},
 					dialogues: dialogues,
-					timeout: $timeout
+					timeout: $timeout,
+					update: function(mapEntity){
+						var eventName = "modelMapStructureChanged";
+						$rootScope.$broadcast(eventName, mapEntity);
+					},
+					clicked: function(mapEntity){
+						var mapEntityDesc = McmMapSchemaService.getEntityDesc(mapEntity.type);
+						if(!mapEntityDesc || !mapEntityDesc.contains || Object.keys(mapEntityDesc.contains).length <= 0) return;
+						var eventName = "mapEntitySelectedEvent";
+						$rootScope.$broadcast(eventName, {mapEntity: mapEntity.vkNode, emittingScope: $scope});
+					}
 				};
 
 				var services = {
@@ -923,16 +951,22 @@ angular.module('mcmMapDirectives', ['Config'])
 				mcmMap = new mcm.list.Map(d3.select($element.get(0)),
 					ConfigMapToolset, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapVOsService.mapStructure, services);
 
-				$scope.currentEntity = {
-					name: ""
+				$scope.currentEntity = null;
+
+				$scope.goToParentClicked = function(){
+					var parentEntities = KnalledgeMapVOsService.mapStructure.getParentNodes($scope.currentEntity);
+					if(parentEntities.length > 0){
+						var eventName = "mapEntitySelectedEvent";
+						$rootScope.$broadcast(eventName, {mapEntity: parentEntities[0], emittingScope: $scope});
+					}
 				};
 
 				var eventName = "mapEntitySelectedEvent";
-				$scope.$on(eventName, function(e, mapEntity) {
-					if(mapEntity){
-						console.log("[mcmMapList.controller::$on] ModelMap  mapEntity (%s): %s", mapEntity.kNode.type, mapEntity.kNode.name);
-						$scope.currentEntity.name = mapEntity.kNode.name;
-						mcmMap.changeSubtreeRoot(mapEntity);
+				$scope.$on(eventName, function(e, eventObj) {
+					if(eventObj.mapEntity){
+						console.log("[mcmMapList.controller::$on] ModelMap mapEntity (%s): %s", eventObj.mapEntity.kNode.type, eventObj.mapEntity.kNode.name);
+						$scope.currentEntity = eventObj.mapEntity;
+						mcmMap.changeSubtreeRoot(eventObj.mapEntity);
 					}
 				});
 
@@ -942,7 +976,7 @@ angular.module('mcmMapDirectives', ['Config'])
 					if(mapEntity){
 						if(mapEntity.kNode){
 							console.log("[mcmMapList.controller::$on] ModelMap  mapEntity (%s): %s", mapEntity.kNode.type, mapEntity.kNode.name);
-							$scope.currentEntity.name = mapEntity.kNode.name;
+							$scope.currentEntity = mapEntity;
 						}
 						// it will call mapLayout processData
 						mcmMap.changeSubtreeRoot(mapEntity);
@@ -959,8 +993,10 @@ angular.module('mcmMapDirectives', ['Config'])
 					mcmMap.init(function(){
 						mcmMapModel = eventModel;
 						mcmMap.processData(mcmMapModel);
-					});
 
+						var eventName = "mapEntitySelectedEvent";
+						$rootScope.$broadcast(eventName, {mapEntity: KnalledgeMapVOsService.mapStructure.rootNode, emittingScope: $scope});
+					});
 				});
     		}	
     	};
@@ -975,8 +1011,6 @@ angular.module('mcmMapDirectives', ['Config'])
 			// expression: http://docs.angularjs.org/guide/expression
 			templateUrl: '../components/mcmMap/partials/mcm-importAssumption.tpl.html',
 			controller: function ( $scope, $element) {
-
-				
 				$scope.selectedItem = null;
 				$scope.mapAssumptions = null;
 

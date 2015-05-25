@@ -48,11 +48,30 @@ MapLayout.prototype.init = function(mapSize){
 	this.tree.children(this.getChildren.bind(this));
 };
 
+MapLayout.prototype.getAllNodesHtml = function(){
+	return this.dom.divMapHtml.selectAll("div." + this.configNodes.html.refCategory);
+};
+
+// Returns view representation (dom) from datum d
+MapLayout.prototype.getDomFromDatum = function(d) {
+	if(!d) return null;
+	var dom = this.getAllNodesHtml()
+		.data([d], function(d){return d.id;});
+	if(dom.size() != 1) return null;
+	else return dom;
+};
+
 // Select node on node click
-MapLayout.prototype.clickNode = function(d, dom) {
+MapLayout.prototype.clickNode = function(d, dom, commingFromAngular, doNotBubleUp) {
 	// select clicked
 	var isSelected = d ? d.isSelected : false;
-	var domD3 = d3.select(dom);
+	var domD3;
+	if(dom){
+		domD3 = d3.select(dom);
+	}else{
+		domD3 = this.getDomFromDatum(d);
+		if(domD3) dom = domD3.node();
+	}
 
 	// unselect all nodes
 	var nodesHtml = this.dom.divMapHtml.selectAll("div." + this.configNodes.html.refCategory);
@@ -79,7 +98,7 @@ MapLayout.prototype.clickNode = function(d, dom) {
 		}
 	}
 
-	this.clientApi.mapEntityClicked(this.structure.getSelectedNode(), dom);
+	if(!doNotBubleUp) this.clientApi.mapEntityClicked(this.structure.getSelectedNode(), dom);
 	//this.update(this.rootNode);
 	return false;
 };
