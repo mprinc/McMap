@@ -14,18 +14,19 @@ git init
 git remote add -f origin https://github.com/mprinc/McModelar
 git pull origin master
 
-# Server:
+# BACKEND
 cd backend
-ln -s /var/www/knalledge/backend/models/ models
-ln -s /var/www/knalledge/backend/modules/ modules
-ln -s /var/www/knalledge/backend/tools/ tools
-ln -s /var/www/knalledge/backend/node_modules/ node_modules
-ln -s /var/www/knalledge/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
+ln -s /var/www/knalledge/src/backend/models/ models
+ln -s /var/www/knalledge/src/backend/modules/ modules
+ln -s /var/www/knalledge/src/backend/tools/ tools
+ln -s /var/www/knalledge/src/backend/node_modules/ node_modules
+ln -s /var/www/knalledge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
 
+# COMPONENTS
 cd frontend/components
-ln -s /var/www/knalledge/frontend/components/knalledgeMap knalledgeMap
-ln -s /var/www/knalledge/frontend/components/rima rima
-ln -s /var/www/knalledge/frontend/components/notify notify
+ln -s /var/www/knalledge/src/frontend/components/knalledgeMap knalledgeMap
+ln -s /var/www/knalledge/src/frontend/components/rima rima
+ln -s /var/www/knalledge/src/frontend/components/notify notify
 
 # git clone https://bitbucket.org/mPrinC/headsware/earthcube
 

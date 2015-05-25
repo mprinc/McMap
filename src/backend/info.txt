@@ -7,6 +7,8 @@ curl -v -H "Content-Type: application/json" -X DELETE http://127.0.0.1:8042/kedg
 
 554373592c67dac93c6fb7f3
 
+# BACKEND
+
 cd backend
 
 //Sasa:
@@ -17,11 +19,11 @@ ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/node_modules
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
 
 //Server:
-ln -s /var/www/knalledge/backend/models/ models
-ln -s /var/www/knalledge/backend/modules/ modules
-ln -s /var/www/knalledge/backend/tools/ tools
-ln -s /var/www/knalledge/backend/node_modules/ node_modules
-ln -s /var/www/knalledge/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
+ln -s /var/www/knalledge/src/backend/models/ models
+ln -s /var/www/knalledge/src/backend/modules/ modules
+ln -s /var/www/knalledge/src/backend/tools/ tools
+ln -s /var/www/knalledge/src/backend/node_modules/ node_modules
+ln -s /var/www/knalledge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
 
 //Sinisa:
 ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/backend/models/ models
@@ -34,10 +36,24 @@ cp -r /Users/sasha/Documents/data/development/KnAllEdge/src/backend/config .
 cp /Users/sasha/Documents/data/development/KnAllEdge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
 cp /Users/sasha/Documents/data/development/KnAllEdge/src/backend/package.json package.json
 
+$ FRONTEND
+
+# Server
+cd frontend/app/js
+ln -s /var/www/knalledge/src/frontend/app/js/knalledge knalledge
+
+# COMPONENTS
 cd frontend/components
+
+# Sasha
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/components/knalledgeMap knalledgeMap
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/components/rima rima
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/components/notify notify
+
+# Server
+ln -s /var/www/knalledge/src/frontend/components/knalledgeMap knalledgeMap
+ln -s /var/www/knalledge/src/frontend/components/rima rima
+ln -s /var/www/knalledge/src/frontend/components/notify notify
 
 cd backend/tools
 node createDemoData.js ../../frontend/app/data/sample-small.json
