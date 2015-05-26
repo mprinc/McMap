@@ -14,6 +14,9 @@ git init
 git remote add -f origin https://github.com/mprinc/McModelar
 git pull origin master
 
+cp /var/www/headsware/earthcube/src/frontend/app/js/config/config.env.js /var/www/headsware/earthcube/config.env.js
+cp /var/www/headsware/earthcube/config.env.js /var/www/headsware/earthcube/src/frontend/app/js/config/config.env.js
+
 # BACKEND
 cd backend
 ln -s /var/www/knalledge/src/backend/models/ models

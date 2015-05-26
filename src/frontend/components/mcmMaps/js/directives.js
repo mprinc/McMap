@@ -48,6 +48,7 @@ angular.module('mcmMapsDirectives', ['Config'])
 					var rootNodeCreated = function(rootNode){
 						$scope.mapToCreate.rootNodeId = rootNode._id;
 						$scope.mapToCreate.type = "mcm_map";
+						$scope.mapToCreate.iAmId = RimaService.getActiveUserId();
 						var map = KnalledgeMapService.create($scope.mapToCreate);
 						map.$promise.then(mapCreated);
 					}
