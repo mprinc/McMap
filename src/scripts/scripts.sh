@@ -25,6 +25,9 @@ ln -s /var/www/knalledge/src/backend/tools/ tools
 ln -s /var/www/knalledge/src/backend/node_modules/ node_modules
 # ln -s /var/www/knalledge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
 
+# FRONTEND
+cd frontend
+ln -s index-dev.html index.html
 # COMPONENTS
 cd frontend/components
 ln -s /var/www/knalledge/src/frontend/components/knalledgeMap knalledgeMap
