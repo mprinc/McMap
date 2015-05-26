@@ -2,8 +2,8 @@
 'use strict';
 
 angular.module('mcmMapDirectives', ['Config'])
-	.directive('mcmMap', ['$timeout', '$rootScope', '$routeParams', 'ConfigMap', '$compile', 'McmMapSchemaService', 'KnalledgeMapVOsService', 'KnalledgeMapService', 'McmMapVisualService', 'McmMapVariableOperatorService', 'McmMapGridService',
-		function($timeout, $rootScope, $routeParams, ConfigMap, $compile, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapService, McmMapVisualService, McmMapVariableOperatorService, McmMapGridService){
+	.directive('mcmMap', ['$timeout', '$rootScope', '$routeParams', 'ConfigMap', '$compile', 'McmMapSchemaService', 'KnalledgeMapVOsService', 'KnalledgeMapService', 'KnalledgeMapViewService', 'McmMapVisualService', 'McmMapVariableOperatorService', 'McmMapGridService',
+		function($timeout, $rootScope, $routeParams, ConfigMap, $compile, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapService, KnalledgeMapViewService, McmMapVisualService, McmMapVariableOperatorService, McmMapGridService){
 
 		// http://docs.angularjs.org/guide/directive
 		// console.log("[mcmMap] loading directive");
@@ -145,6 +145,10 @@ angular.module('mcmMapDirectives', ['Config'])
 					timeout: $timeout,
 					dialogues: dialogues
 				};
+
+				KnalledgeMapViewService.config.nodes.showTypes = false;
+				KnalledgeMapViewService.config.edges.showNames = false;
+				KnalledgeMapViewService.config.edges.showTypes = false;
 
 				mcmMap = new mcm.Map(d3.select($element.find(".map-container").get(0)),
 					ConfigMap, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapVOsService.mapStructure);
