@@ -23,7 +23,7 @@ ln -s /var/www/knalledge/src/backend/models/ models
 ln -s /var/www/knalledge/src/backend/modules/ modules
 ln -s /var/www/knalledge/src/backend/tools/ tools
 ln -s /var/www/knalledge/src/backend/node_modules/ node_modules
-ln -s /var/www/knalledge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
+# ln -s /var/www/knalledge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
 
 # COMPONENTS
 cd frontend/components
