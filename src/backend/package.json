@@ -1,6 +1,6 @@
 {
-    "name": "Bukvik-WEB-backend",
-    "description": "Bukvik is a project that is supporting research flow in a collaborative manner.",
+    "name": "EarthCube-backend",
+    "description": "MCM is an Earth System Bridge tool.",
     "version": "0.0.5",
     "private": true,
     "scripts": {

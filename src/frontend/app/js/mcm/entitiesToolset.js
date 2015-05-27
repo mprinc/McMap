@@ -37,6 +37,7 @@ EntitiesToolset.prototype.init = function() {
 EntitiesToolset.prototype.update = function() {
 	var that = this;
 	var offset = 0;
+
 	var positionItems = function(){
 		var that = this;
 		var data = this.client.getData();
@@ -79,7 +80,8 @@ EntitiesToolset.prototype.update = function() {
 			views.enter();
 			views.style("top", function(d){
 				var position = offset + "px";
-				offset += 50;
+				offset += parseInt(d3.select(this).style("height"));
+				offset += 5; // margins
 				console.log("(2) tool position (%s): %s", d.id, position);
 				return position;
 			})
