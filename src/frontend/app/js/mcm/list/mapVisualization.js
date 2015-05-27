@@ -156,6 +156,8 @@ MapVisualization.prototype.updateHtml = function(source) {
 			case 'variable':
 			case 'process':
 			case 'grid':
+			case 'grid_desc':
+			case 'object':
 			case 'assumption':
 				container.append("div")
 					.attr("class", "settings");

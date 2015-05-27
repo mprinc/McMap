@@ -38,20 +38,52 @@ EntitiesToolset.prototype.update = function() {
 	var that = this;
 	var offset = 0;
 	var positionItems = function(){
+		var that = this;
 		var data = this.client.getData();
-		var views = d3.select(this.client.getContainer().get(0)).selectAll("li");
-		views.data(data);
+		var viewsSelect = d3.select(this.client.getContainer().get(0)).selectAll("li");
+
+		// unbinding (deleting __data__ attribute from views)
+		this.client.getContainer().find("li").removeAttr("__data__");
+		if(viewsSelect.length>0){
+			for(var i=0; i<viewsSelect[0].length; i++){
+				var viewsSelectElem = viewsSelect[0][i];
+				console.log(viewsSelectElem["__data__"]);
+				delete viewsSelectElem["__data__"];
+				console.log(viewsSelectElem["__data__"]);
+			}
+		}
+		viewsSelect.attr("__data__", null);
+
+		viewsSelect = d3.select(this.client.getContainer().get(0)).selectAll("li");
+		var views = viewsSelect.data(data);
 
 		console.log("[positionItems]");
-		d3.select(this.client.getContainer().get(0)).selectAll("li")
-			.style("top", function(){
+		views.enter();
+		views
+			.style("top", function(d){
 				var position = offset + "px";
 				offset += 50;
+				console.log("tool position (%s): %s", d.id, position);
 				return position;
 			})
 			.on("click", function(d){
 				that.client.toolEntityClicked(d);
 			});
+
+		// workaround for wrongly arranged tools after first sorting (problem with mapping items in D3 + angular creating/reordering items through the ng-repeat directive)
+		window.setTimeout(function() {
+			// rejoining since it seems the top join after deleting didn't work well :(
+			var viewsSelect = d3.select(that.client.getContainer().get(0)).selectAll("li");
+			var views = viewsSelect.data(data);
+			var offset = 0;
+			views.enter();
+			views.style("top", function(d){
+				var position = offset + "px";
+				offset += 50;
+				console.log("(2) tool position (%s): %s", d.id, position);
+				return position;
+			})
+		}, 10);
 	};
 
 	this.client.timeout(positionItems.bind(this), 10);

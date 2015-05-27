@@ -981,12 +981,16 @@ mcmMapServices.provider('McmMapChangesService', {
 			var result = KnalledgeMapService.queryByType("mcm_changes");
 			result.$promise.then(function(maps){
 				console.log("maps (%d): %s", maps.length, JSON.stringify(maps));
-				mapChanges = maps[0];
+				if(maps.length > 0){
+					mapChanges = maps[0];
 
-				KnalledgeNodeService.getById(mapChanges.rootNodeId).$promise.then(function(rootNode){
-					rootNodeChanges = rootNode;
-					resolve();
-				});
+					KnalledgeNodeService.getById(mapChanges.rootNodeId).$promise.then(function(rootNode){
+						rootNodeChanges = rootNode;
+						resolve();
+					});
+				}else{
+					console.warn("There is no 'mcm_changes' map found");
+				}
 			});
 		});
 
@@ -999,37 +1003,50 @@ mcmMapServices.provider('McmMapChangesService', {
 			addChangeNodeEdge: function(kNode, kEdge){
 				// readyPromise.then(function(){
 				// });
-
-				var kEdge = KnalledgeMapVOsService.createNodeWithEdge(rootNodeChanges, kEdge, kNode);
-				kEdge.$promise.then(function(kEdge){
-					// item.status = "created";
-				});
-				return kEdge;
+				if(mapChanges && rootNodeChanges){
+					var kEdge = KnalledgeMapVOsService.createNodeWithEdge(rootNodeChanges, kEdge, kNode);
+					kEdge.$promise.then(function(kEdge){
+						// item.status = "created";
+					});
+					return kEdge;
+				}else{
+					console.error("There is no 'mcm_changes' map found");
+					return null;
+				}
 			},
 
 			addChange: function(kNodeType, kNodeName, kEdgeType, kEdgeName){
 				// readyPromise.then(function(){
 				// });
 
-				var kEdge = new knalledge.KEdge();
-				kEdge.type = kEdgeType;
-				kEdge.name = kEdgeName;
-				kEdge.mapId = mapChanges._id;
+				if(mapChanges && rootNodeChanges){
+					var kEdge = new knalledge.KEdge();
+					kEdge.type = kEdgeType;
+					kEdge.name = kEdgeName;
+					kEdge.mapId = mapChanges._id;
 
-				var kNode = new knalledge.KNode();
-				kNode.type = kNodeType;
-				kNode.name =  kNodeName;
-				kNode.mapId = mapChanges._id;
+					var kNode = new knalledge.KNode();
+					kNode.type = kNodeType;
+					kNode.name =  kNodeName;
+					kNode.mapId = mapChanges._id;
 
-				return this.addChangeNodeEdge(kNode, kEdge);
+					return this.addChangeNodeEdge(kNode, kEdge);
+				}else{
+					console.error("There is no 'mcm_changes' map found");
+					return null;
+				}
 			},
 			getChangedNodes: function(kNodeType){
-				var kNodes = KnalledgeNodeService.getInMapNodesOfType(mapChanges._id, kNodeType);
-				kNodes.$promise.then(function(kNodes){
-					// item.status = "created";
-				});
-				return kNodes;
-
+				if(mapChanges && rootNodeChanges){
+					var kNodes = KnalledgeNodeService.getInMapNodesOfType(mapChanges._id, kNodeType);
+					kNodes.$promise.then(function(kNodes){
+						// item.status = "created";
+					});
+					return kNodes;
+				}else{
+					console.error("There is no 'mcm_changes' map found");
+					return null;
+				}
 			}
 		};
 	}]

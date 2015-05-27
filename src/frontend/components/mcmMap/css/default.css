@@ -2549,9 +2549,9 @@
   padding: 10px;
   margin: 3px;
   z-index: 1;
-  -moz-border-radius: 10px / 10px;
-  -webkit-border-radius: 10px 10px;
-  border-radius: 10px / 10px;
+  -moz-border-radius: 5px / 5px;
+  -webkit-border-radius: 5px 5px;
+  border-radius: 5px / 5px;
   /* http://compass-style.org/reference/compass/css3/box_shadow/#mixin-box-shadow */
   /* color h-shadow v-shadow blur spread color inset*/
   -moz-box-shadow: 2px 1px 3px 1px rgba(150, 150, 255, 0.75);

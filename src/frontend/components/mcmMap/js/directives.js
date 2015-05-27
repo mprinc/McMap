@@ -80,6 +80,23 @@ angular.module('mcmMapDirectives', ['Config'])
 								var vkEdgeRelationship = new knalledge.VKEdge();
 								vkEdgeRelationship.kEdge = kEdgeRelationship;
 
+								var bottom = 0;
+								var right = 0;
+								if(McmMapSchemaService.getEntityStyle(decoratingEdge.object).isShownOnMap){
+									// offseting bottom-right from the top bottom-right node
+									var entityStyles = McmMapSchemaService.getEntitiesStyles();
+									var vkNodes = mcmMap.mapStructure.getChildrenNodes(vkAddedInEntity);
+									for(var i=0; i<vkNodes.length; i++){
+										var vkNode = vkNodes[i];
+										if(!(vkNode.kNode.type in entityStyles)  || !entityStyles[vkNode.kNode.type].isShownOnMap) continue;
+										if(vkNode.kNode.visual){
+											if(right < vkNode.kNode.visual.xM + vkNode.width) right = vkNode.kNode.visual.xM + vkNode.width;
+											if(bottom < vkNode.kNode.visual.yM + vkNode.height) bottom = vkNode.kNode.visual.yM + vkNode.height;										
+										}
+									}
+								}
+
+
 								var kNodeEntity = new knalledge.KNode();
 								kNodeEntity.name = decoratingEdge.object;
 								kNodeEntity.type = decoratingEdge.object;
@@ -87,8 +104,8 @@ angular.module('mcmMapDirectives', ['Config'])
 								kNodeEntity.visual.xM = 0;
 								kNodeEntity.visual.yM = 0;
 								var vkNodeEntity = new knalledge.VKNode();
-								vkNodeEntity.xM = 0;
-								vkNodeEntity.yM = 0;
+								vkNodeEntity.xM = right;
+								vkNodeEntity.yM = bottom;
 								vkNodeEntity.kNode = kNodeEntity;
 
 
@@ -100,7 +117,7 @@ angular.module('mcmMapDirectives', ['Config'])
 								var selectionOfSubpropertiesFinished = function(subproperty){
 									var vkEdge = mcmMap.mapStructure.createNodeWithEdge(vkAddedInNode, vkEdgeRelationship, vkNodeEntity);
 									vkEdge.kEdge.$promise.then(function(){
-										dialogues._selectionOfSubpropertiesFinished(subproperty);
+										dialogues._selectionOfSubpropertiesFinished(vkNodeEntity, subproperty);
 									});
 								};
 
@@ -980,10 +997,10 @@ angular.module('mcmMapDirectives', ['Config'])
 					if(mapEntity){
 						if(mapEntity.kNode){
 							console.log("[mcmMapList.controller::$on] ModelMap  mapEntity (%s): %s", mapEntity.kNode.type, mapEntity.kNode.name);
-							$scope.currentEntity = mapEntity;
+							// $scope.currentEntity = mapEntity;
 						}
 						// it will call mapLayout processData
-						mcmMap.changeSubtreeRoot(mapEntity);
+						mcmMap.changeSubtreeRoot($scope.currentEntity);
 					}
 				});
 
