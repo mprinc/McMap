@@ -909,10 +909,16 @@ mcmMapServices.provider('McmMapVariableQuantityService', {
 								name: variableQuantityName
 							};
 							returnedVariableQuantitys.push(variableQuantity);
-							returnedVariableQuantitys.sort();
 						}
 					}
 				}
+				function SortByName(a, b){
+					var aName = (a.name).toLowerCase();
+					var bName = (b.name).toLowerCase(); 
+					return ((aName < bName) ? -1 : ((aName > bName) ? 1 : 0));
+				}
+
+				returnedVariableQuantitys.sort(SortByName);
 				return returnedVariableQuantitys;
 			},
 

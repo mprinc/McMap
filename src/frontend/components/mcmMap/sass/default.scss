@@ -843,7 +843,7 @@ $select_sub_entity_title_size: 1em;
 		margin-right: 10%;
 		@include border-radius(25px, 25px);
 	}
-	.variable_quantitys{
+	.variable_quantities{
 		height: 50%;
 		text-align: center;
 		margin: 15px;
@@ -871,7 +871,9 @@ $select_sub_entity_title_size: 1em;
 			}
 			th, td {
 				padding: 5px;
+				padding-left: 100px;
 				border-bottom: 1px solid black;
+				text-align: left;
 			}
 
 			a{
