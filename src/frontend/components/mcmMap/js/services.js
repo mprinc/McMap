@@ -313,7 +313,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 				type: "containsGridDesc",
 				icon: "Grid Desc",
 				object: "grid_desc",
-				objects: "grid_descs"
+				objects: "grids" // grid_descs
 			},
 			containsGrid: {
 				id: "containsGrid",
@@ -345,7 +345,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 				type: "containsVariableIn",
 				icon: "Input Variable",
 				object: "variable",
-				objects: "in-vars"
+				objects: "input" // in-vars
 			},
 			containsVariableOut: {
 				id: "containsVariableOut",
@@ -353,7 +353,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 				type: "containsVariableOut",
 				icon: "Output Variable",
 				object: "variable",
-				objects: "out-vars"
+				objects: "output" // out-vars
 			},
 			containsVariableHV: {
 				id: "containsVariableHV",
@@ -361,7 +361,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 				type: "containsVariableHV",
 				icon: "Static Variable",
 				object: "variable",
-				objects: "hp-vars"
+				objects: "static" // hp-vars
 			},
 			containsVariableCP: {
 				id: "containsVariableCP",
@@ -369,7 +369,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 				type: "containsVariableCP",
 				icon: "Configuration Parameter",
 				object: "variable",
-				objects: "cp-vars"
+				objects: "config" // cp-vars
 			},
 			containsAssumption: {
 				id: "containsAssumption",
