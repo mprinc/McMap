@@ -1,7 +1,7 @@
 (function () { // This prevents problems when concatenating scripts that aren't strict.
 'use strict';
 
-var MapVisualization =  mcm.MapVisualization = function(parentDom, clientApi, mapStructure, configView, configTransitions, configNodes, configEdges, resizingConfig, schema, services){
+var MapVisualization =  mcm.MapVisualization = function(parentDom, clientApi, mapStructure, configView, configTransitions, configNodes, configEdges, resizingConfig, schema, mcmMapViewService){
 	this.dom = {
 		parentDom: parentDom,
 		divMap: null,
@@ -13,7 +13,7 @@ var MapVisualization =  mcm.MapVisualization = function(parentDom, clientApi, ma
 	this.mapStructure = mapStructure;
 	this.mapLayout = null;
 	this.schema = schema;
-	this.services = services;
+	this.mcmMapViewService = mcmMapViewService;
 
 	this.configView = configView;
 	this.configTransitions = configTransitions;
@@ -130,7 +130,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 			}
 			return y + "px";
 		})
-		.style("width", function(d) {
+		.style("min-width", function(d) {
 			var width = null;
 			if(that.configTransitions.enter.animate.position){
 				width = 0;
@@ -203,6 +203,9 @@ MapVisualization.prototype.updateHtml = function(source) {
 
 	// Input Variables
 	nodeHtml.select(".var_in")
+		.style("display", function(d){
+			return (that.mcmMapViewService.config.entities.showCounts) ? "block" : "none";
+		})
 		.html(function(d){
 			var varIns = that.mapStructure.getChildrenNodes(d, mcm.MapLayout.CONTAINS_VARIABLE_IN);
 			return "" + varIns.length;
@@ -210,6 +213,9 @@ MapVisualization.prototype.updateHtml = function(source) {
 
 	// Output Variables
 	nodeHtml.select(".var_out")
+		.style("display", function(d){
+			return (that.mcmMapViewService.config.entities.showCounts) ? "block" : "none";
+		})
 		.html(function(d){
 			var varOuts = that.mapStructure.getChildrenNodes(d, mcm.MapLayout.CONTAINS_VARIABLE_OUT);
 			return "" + varOuts.length;
@@ -217,6 +223,9 @@ MapVisualization.prototype.updateHtml = function(source) {
 
 	// Processes
 	nodeHtml.select(".process")
+		.style("display", function(d){
+			return (that.mcmMapViewService.config.entities.showCounts) ? "block" : "none";
+		})
 		.html(function(d){
 			var processes = that.mapStructure.getChildrenNodes(d, mcm.MapLayout.CONTAINS_PROCESS);
 			return "" + processes.length;
@@ -280,7 +289,7 @@ MapVisualization.prototype.updateHtmlTransitions = function(source, nodeHtmlData
 			// console.log("[nodeHtmlUpdateTransition] d: %s, xCurrent: %s, xNew: %s", d.name, d3.select(this).style("top"), x);
 			return x + "px";
 		})
-		.style("width", function(d) {
+		.style("min-width", function(d) {
 			var width = d.width;	
 			// console.log("[nodeHtmlEnter] d: %s, width: %s", d.name, width);
 			return width + "px";

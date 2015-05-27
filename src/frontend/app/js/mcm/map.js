@@ -1,7 +1,7 @@
 (function () { // This prevents problems when concatenating scripts that aren't strict.
 'use strict';
 
-var Map =  mcm.Map = function(parentDom, config, clientApi, schema, mapService, mapStructureExternal){
+var Map =  mcm.Map = function(parentDom, config, clientApi, schema, mapService, mapStructureExternal, mcmMapViewService){
 	this.config = config;
 	this.clientApi = clientApi;
 	this.entityStyles = schema.entityStyles;
@@ -9,6 +9,7 @@ var Map =  mcm.Map = function(parentDom, config, clientApi, schema, mapService, 
 	this.mapService = mapService;
 	this.schema = schema;
 	this.mapStructureExternal = mapStructureExternal;
+	this.mcmMapViewService = mcmMapViewService;
 
 	// this.state = new knalledge.State();
 	this.mapStructure = this.mapStructureExternal ? this.mapStructureExternal : new knalledge.MapStructure();
@@ -16,7 +17,7 @@ var Map =  mcm.Map = function(parentDom, config, clientApi, schema, mapService, 
 		timeout: this.clientApi.timeout,
 		dialogues: this.clientApi.dialogues
 	};
-	this.mapVisualization = new mcm.MapVisualization(this.parentDom, mapVisualizationApi, this.mapStructure, this.config.view, this.config.transitions, this.config.nodes, this.config.edges, this.config.interaction.resizingConfig, this.schema);
+	this.mapVisualization = new mcm.MapVisualization(this.parentDom, mapVisualizationApi, this.mapStructure, this.config.view, this.config.transitions, this.config.nodes, this.config.edges, this.config.interaction.resizingConfig, this.schema, this.mcmMapViewService);
 	var mapLayoutApi = {
 		update: this.mapVisualization.update.bind(this.mapVisualization),
 		getDom: this.mapVisualization.getDom.bind(this.mapVisualization),

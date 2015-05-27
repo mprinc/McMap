@@ -9,6 +9,8 @@ angular.module('McModelarApp',[
 	, 'ngSanitize' // necessary for outputing HTML in angular directive
 	, 'ngStorage' // local storage support for Angular
 
+	, 'ui.bootstrap' // UI-bootstrap
+
 	, 'mcmMapDirectives' // KnAllEdge Map component
 	, 'mcmMapServices'
 	, 'knalledgeMapDirectives' // KnAllEdge Map component

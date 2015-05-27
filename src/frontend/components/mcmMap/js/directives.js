@@ -2,8 +2,8 @@
 'use strict';
 
 angular.module('mcmMapDirectives', ['Config'])
-	.directive('mcmMap', ['$timeout', '$rootScope', '$routeParams', 'ConfigMap', '$compile', 'McmMapSchemaService', 'KnalledgeMapVOsService', 'KnalledgeMapService', 'KnalledgeMapViewService', 'McmMapVisualService', 'McmMapVariableOperatorService', 'McmMapGridService',
-		function($timeout, $rootScope, $routeParams, ConfigMap, $compile, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapService, KnalledgeMapViewService, McmMapVisualService, McmMapVariableOperatorService, McmMapGridService){
+	.directive('mcmMap', ['$timeout', '$rootScope', '$routeParams', 'ConfigMap', '$compile', 'McmMapSchemaService', 'KnalledgeMapVOsService', 'KnalledgeMapService', 'KnalledgeMapViewService', 'McmMapVisualService', 'McmMapVariableOperatorService', 'McmMapGridService', 'McmMapViewService',
+		function($timeout, $rootScope, $routeParams, ConfigMap, $compile, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapService, KnalledgeMapViewService, McmMapVisualService, McmMapVariableOperatorService, McmMapGridService, McmMapViewService){
 
 		// http://docs.angularjs.org/guide/directive
 		// console.log("[mcmMap] loading directive");
@@ -168,7 +168,7 @@ angular.module('mcmMapDirectives', ['Config'])
 				KnalledgeMapViewService.config.edges.showTypes = false;
 
 				mcmMap = new mcm.Map(d3.select($element.find(".map-container").get(0)),
-					ConfigMap, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapVOsService.mapStructure);
+					ConfigMap, mcmMapClientInterface, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapVOsService.mapStructure, McmMapViewService);
 				McmMapVisualService.init(mcmMap, $scope, $element);
 
 				var gotMap = function(map){		
@@ -221,6 +221,12 @@ angular.module('mcmMapDirectives', ['Config'])
 					if(eventObj.emittingScope == $scope) return;
 
 					mcmMap.mapLayout.clickNode(eventObj.mapEntity, null, true, true);
+					mcmMap.update();
+				});
+
+				var mapStylingChangedEventName = "mapStylingChangedEvent";
+				$scope.$on(mapStylingChangedEventName, function(e) {
+					console.log("[mcmMap.controller::$on] event: %s", mapStylingChangedEventName);
 					mcmMap.update();
 				});
 
@@ -876,8 +882,8 @@ angular.module('mcmMapDirectives', ['Config'])
     		}
     	};
 	}])
-	.directive('mcmMapTools', ["$rootScope", "$timeout", 'ConfigMapToolset', 'McmMapSchemaService', 
-		function($rootScope, $timeout, ConfigMapToolset, McmMapSchemaService){
+	.directive('mcmMapTools', ["$rootScope", "$timeout", 'ConfigMapToolset', 'McmMapSchemaService', 'McmMapViewService',
+		function($rootScope, $timeout, ConfigMapToolset, McmMapSchemaService, McmMapViewService){
 		console.log("[mcmMapTools] loading directive");
 		return {
 			restrict: 'AE',
@@ -914,6 +920,12 @@ angular.module('mcmMapDirectives', ['Config'])
 				for(var edgeName in entity.contains){
 					$scope.tools.push(McmMapSchemaService.getEdgeDesc(edgeName));
 				}
+
+				$scope.config = McmMapViewService.config;
+				$scope.configChanged = function(){
+					var mapStylingChangedEventName = "mapStylingChangedEvent";
+					$rootScope.$broadcast(mapStylingChangedEventName);
+				};
 
 				var toolset = new mcm.EntitiesToolset(ConfigMapToolset, toolsetClientInterface);
 				toolset.init();

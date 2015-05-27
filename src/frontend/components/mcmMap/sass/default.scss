@@ -190,7 +190,7 @@ $variable_color_out: #8888ff;
 $process_color: #88ff88;
 $status_color: #88ff88;
 .map_entity{
-	width: 100px;
+	min-width: 100px;
 	height: 50px;
 	position: absolute;
 	background-color: #ccf;

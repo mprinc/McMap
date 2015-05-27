@@ -504,6 +504,9 @@ mcmMapServices.provider('McmMapAssumptionService', {
 					if(!itemName && 'rdfs:label' in itemFromGraph) itemName = itemFromGraph['rdfs:label'];
 					if(!itemName && '@id' in itemFromGraph) itemName = itemFromGraph['@id'].substring(itemFromGraph['@id'].lastIndexOf("/")+1);
 
+					// filtering out CF_Convention_Assumption categories
+					if(itemCategory == "CF_Convention_Assumption") continue;
+
 					if(itemName && itemName.length > 0){
 						var itemForExport = {};
 						itemForExport.id = itemFromGraph['@id'];
@@ -521,6 +524,15 @@ mcmMapServices.provider('McmMapAssumptionService', {
 					}
 				}
 			}
+
+			function SortByCategoryAndName(a, b){
+				var aName = (a.category + a.name).toLowerCase();
+				var bName = (b.category + b.name).toLowerCase(); 
+				return ((aName < bName) ? -1 : ((aName > bName) ? 1 : 0));
+			}
+
+			itemsDescs.sort(SortByCategoryAndName);
+
 			console.log("[McmMapAssumptionService] rdfTypesAll.length: %s", Object.keys(rdfTypesAll).length);
 			for(var i in rdfTypesAll){
 				console.log("\t%s: %d", i, rdfTypesAll[i]);				
@@ -736,6 +748,15 @@ mcmMapServices.provider('McmMapObjectService', {
 			console.log("[McmMapObjectService] quantitiesAll.length: %s, quantitiesNoTotal: %s, quantitiesNoMax: %s, quantitiesNoAvg:%s", Object.keys(quantitiesAll).length, quantitiesNoTotal, quantitiesNoMax, quantitiesNoAvg);
 
 			itemsLoaded = true;
+
+			function SortByName(a, b){
+				var aName = (a.name).toLowerCase();
+				var bName = (b.name).toLowerCase(); 
+				return ((aName < bName) ? -1 : ((aName > bName) ? 1 : 0));
+			}
+
+			objectsDescs.sort(SortByName);
+
 		});
 
 		// var that = this;
@@ -884,6 +905,7 @@ mcmMapServices.provider('McmMapVariableQuantityService', {
 								name: variableQuantityName
 							};
 							returnedVariableQuantitys.push(variableQuantity);
+							returnedVariableQuantitys.sort();
 						}
 					}
 				}
@@ -1390,6 +1412,24 @@ mcmMapServices.provider('McmMapVisualService', {
 				return dialogues;
 			}
 		};
+	}]
+});
+
+mcmMapServices.provider('McmMapViewService', {
+	// privateData: "privatno",
+	$get: [/*'$q', 'ENV', '$rootScope', */
+	function(/*$q , ENV, $rootScope*/) {
+
+				// var that = this;
+		var provider = {
+			config: {
+				entities: {
+					showCounts: true
+				}
+			}
+		};
+
+		return provider;
 	}]
 });
 
