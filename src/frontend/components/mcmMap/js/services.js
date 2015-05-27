@@ -823,7 +823,11 @@ mcmMapServices.provider('McmMapObjectService', {
 
 				var fullNameList = [];
 				while(objectEntity && objectEntity.kNode.type != "model_component"){
-					fullNameList.unshift(objectEntity.kNode.name);
+					var objectName = objectEntity.kNode.name;
+					 // treat grids differently
+					if(objectEntity.kNode.type == "grid_desc") objectName = "model_grid";
+
+					fullNameList.unshift(objectName);
 					objectEntity = objectEntity.parent;
 				}
 				var fullNameStr = fullNameList.join("_");
