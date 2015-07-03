@@ -847,6 +847,7 @@ angular.module('mcmMapDirectives', ['Config'])
 					mapId: null,
 					rootNodeId: vkMap._id
 				};
+
 				$scope.mapDataForInjecting = {
 					vkMap: vkMap,
 					properties: properties,
@@ -1047,16 +1048,6 @@ angular.module('mcmMapDirectives', ['Config'])
 				$scope.selectedItem = null;
 				$scope.mapAssumptions = null;
 
-				KnalledgeMapService.queryByType("assumptions").$promise.then(function(maps){
-					console.log("maps (%d): %s", maps.length, JSON.stringify(maps));
-					$scope.mapAssumptions = maps[0];
-
-					KnalledgeNodeService.getById($scope.mapAssumptions.rootNodeId).$promise.then(function(rootNode){
-						$scope.rootNodeAssumption = rootNode;
-						populateCategories();
-					});
-				});
-
 				var populateCategories = function(){
 					console.log("populateCategories");
 					$scope.items = [];
@@ -1129,6 +1120,18 @@ angular.module('mcmMapDirectives', ['Config'])
 					populateCategory(0, categoryKeys);
 				};
 
+				$scope.importCategories = function	(){
+					KnalledgeMapService.queryByType("assumptions").$promise.then(function(maps){
+						console.log("maps (%d): %s", maps.length, JSON.stringify(maps));
+						$scope.mapAssumptions = maps[0];
+
+						KnalledgeNodeService.getById($scope.mapAssumptions.rootNodeId).$promise.then(function(rootNode){
+							$scope.rootNodeAssumption = rootNode;
+							populateCategories();
+						});
+					});
+				}
+
 				var populateItems = function(){
 					console.log("populateItems");
 					$scope.items = McmMapAssumptionService.getAssumptionsDescs();
@@ -1178,9 +1181,9 @@ angular.module('mcmMapDirectives', ['Config'])
 						window.alert('Please, select an Assumption');
 					}
 				};
-				$scope.listTitle = "Assumptions are still importing ...";
+				$scope.listTitle = "Assumptions are loading ...";
 				McmMapAssumptionService.getLoadingPromise().then(function(){
-					$scope.listTitle = "Assumptions are imported ...";
+					$scope.listTitle = "Assumptions are loaded. Importing ...";
 					// populateItems("");
 				});
 

@@ -10,6 +10,7 @@ angular.module('McModelarApp',[
 	, 'ngStorage' // local storage support for Angular
 
 	, 'ui.bootstrap' // UI-bootstrap
+	, 'btford.socket-io'
 
 	, 'mcmMapDirectives' // KnAllEdge Map component
 	, 'mcmMapServices'
@@ -19,10 +20,12 @@ angular.module('McModelarApp',[
 
 	, 'rimaServices'
 	, 'rimaDirectives'
-	, 'rimaFilters'
 
 	, 'notifyServices'
 	, 'notifyDirectives'
+
+	, 'topiChatServices'
+	, 'topiChatDirectives'
 ])
 // routes
 .config(['$routeProvider', function($routeProvider) {
