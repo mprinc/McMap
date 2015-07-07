@@ -1035,8 +1035,8 @@ angular.module('mcmMapDirectives', ['Config'])
     		}	
     	};
 	}])
-	.directive('mcmImportAssumptions', ['$q', 'KnalledgeMapVOsService', 'KnalledgeNodeService', 'KnalledgeMapService', 'McmMapAssumptionService', 
-		function($q, KnalledgeMapVOsService, KnalledgeNodeService, KnalledgeMapService, McmMapAssumptionService){ // mcm_map_select_sub_entity
+	.directive('mcmImportAssumptions', ['$q', 'KnalledgeMapVOsService', 'KnalledgeNodeService', 'KnalledgeEdgeService', 'KnalledgeMapService', 'McmMapAssumptionService', 
+		function($q, KnalledgeMapVOsService, KnalledgeNodeService, KnalledgeEdgeService, KnalledgeMapService, McmMapAssumptionService){ // mcm_map_select_sub_entity
 		return {
 			restrict: 'AE',
 			// scope: {
@@ -1060,7 +1060,10 @@ angular.module('mcmMapDirectives', ['Config'])
 					}
 
 					var populateCategory = function(categoryId, categoryKeys){
-						if(categoryId>=categoryKeys.length) return;
+						if(categoryId>=categoryKeys.length){
+							window.alert("All categories are imported");
+							return;
+						};
 
 						var category = $scope.items[categoryId];
 						var promises = [];
@@ -1071,11 +1074,21 @@ angular.module('mcmMapDirectives', ['Config'])
 						var kEdge = new knalledge.KEdge();
 						kEdge.type = "containsAssumptionCategory";
 						kEdge.mapId = $scope.mapAssumptions._id;
+						kEdge.dataContent = {
+							source: {
+								created: 0
+							}
+						};
 
 						var kNode = new knalledge.KNode();
 						kNode.type = "assumptionCategory";
 						kNode.name = item.name;
 						kNode.mapId = $scope.mapAssumptions._id;
+						kNode.dataContent = {
+							source: {
+								created: 0
+							}
+						};
 						var categoryNode = kNode;
 
 						var createAssumptionCategory = function(item, parentNode, edge, assumptionNode){
@@ -1095,11 +1108,21 @@ angular.module('mcmMapDirectives', ['Config'])
 								var kEdge = new knalledge.KEdge();
 								kEdge.type = "containsAssumption";
 								kEdge.mapId = $scope.mapAssumptions._id;
+								kEdge.dataContent = {
+									source: {
+										created: 0
+									}
+								};
 
 								var kNode = new knalledge.KNode();
 								kNode.type = "assumption";
 								kNode.name =  item.name;
 								kNode.mapId = $scope.mapAssumptions._id;
+								kNode.dataContent = {
+									source: {
+										created: 0
+									}
+								};
 
 								var createAssumption = function(item, parentNode, edge, assumptionNode){
 									var kEdge = KnalledgeMapVOsService.createNodeWithEdge(parentNode, edge, assumptionNode);
@@ -1120,15 +1143,42 @@ angular.module('mcmMapDirectives', ['Config'])
 					populateCategory(0, categoryKeys);
 				};
 
+				var cleanPreviousAssumptions = function(){
+					var promiseNodes = KnalledgeNodeService.destroyByModificationSource($scope.mapAssumptions._id).$promise;
+					var promiseEdges = KnalledgeEdgeService.destroyByModificationSource($scope.mapAssumptions._id).$promise;
+
+					promiseNodes.then(function(result){
+						window.alert("Previous assumptions (nodes) are destroyed");
+					});
+					promiseEdges.then(function(result){
+						window.alert("Previous assumptions (edges) are destroyed");
+					});
+
+					var promiseAll = $q.all([promiseNodes, promiseEdges])
+						.then(function(result){
+							window.alert("Previous assumptions (both nodes and edges) are destroyed");
+						});
+						//.catch(handleReject); //TODO: test this. 2nd function fail or like this 'catch'
+					return promiseAll;
+
+				};
+
 				$scope.importCategories = function	(){
 					KnalledgeMapService.queryByType("assumptions").$promise.then(function(maps){
 						console.log("maps (%d): %s", maps.length, JSON.stringify(maps));
-						$scope.mapAssumptions = maps[0];
+						if(maps.length <= 0){
+							window.alert("Error: There is no map of 'assumptions' type created")
+						}else{
+							$scope.mapAssumptions = maps[0];
 
-						KnalledgeNodeService.getById($scope.mapAssumptions.rootNodeId).$promise.then(function(rootNode){
-							$scope.rootNodeAssumption = rootNode;
-							populateCategories();
-						});
+							KnalledgeNodeService.getById($scope.mapAssumptions.rootNodeId).$promise.then(function(rootNode){
+								$scope.rootNodeAssumption = rootNode;
+								cleanPreviousAssumptions().then(function(result){
+									window.alert("Previous assumptions are destroyed. populating categories");
+									populateCategories();
+								});
+							});
+						}
 					});
 				}
 

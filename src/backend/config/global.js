@@ -21,8 +21,8 @@ if (!global.hasOwnProperty('paths')) {
 if (!global.hasOwnProperty('dbConfig')) {
 	console.log("Setting up global.dbConfig");
 	global.dbConfig = {
-		// name: "EarthCube"
-		name: "KnAllEdge"
+		name: "EarthCube"
+		// name: "KnAllEdge"
 	};
 }
 

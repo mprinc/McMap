@@ -55,6 +55,7 @@ ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/components/
 ln -s /var/www/knalledge/src/frontend/components/knalledgeMap knalledgeMap
 ln -s /var/www/knalledge/src/frontend/components/rima rima
 ln -s /var/www/knalledge/src/frontend/components/notify notify
+ln -s /var/www/knalledge/src/frontend/components/topiChat topiChat
 
 cd backend/tools
 node createDemoData.js ../../frontend/app/data/sample-small.json
