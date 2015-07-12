@@ -1,0 +1,3441 @@
+{
+  "@graph" : [ {
+    "@id" : "co:Concept_0",
+    "co:property" : [ "virtual_longitude", "y_coordinate", "z_coordinate", "y_component_of_velocity", "x_coordinate", "depth", "x_component_of_velocity", "longitude", "latitude", "z_component_of_velocity", "virtual_latitude" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:altLabel" : [ "model_grid_cell~dual_center-of-mass", "model_grid_cell~dual_centroid" ],
+    "broader" : "co:Concept_3",
+    "skos:prefLabel" : "model_grid_cell~dual_center-of-volume",
+    "related" : "co:Concept_1"
+  }, {
+    "@id" : "co:Concept_1",
+    "co:property" : [ "y_component_of_velocity", "x_coordinate", "longitude", "x_component_of_velocity", "latitude", "z_component_of_velocity", "virtual_latitude", "depth", "virtual_longitude", "y_coordinate", "z_coordinate" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:Concept_3",
+    "skos:prefLabel" : "model_grid_cell~dual_center-of-symmetry",
+    "related" : "co:Concept_0"
+  }, {
+    "@id" : "co:Concept_2",
+    "co:property" : [ "virtual_longitude", "x_component_of_velocity", "y_component_of_velocity", "z_component_of_velocity", "virtual_latitude", "z_coordinate", "latitude", "x_coordinate", "longitude", "y_coordinate", "depth" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:model_grid_cell~primary_edge",
+    "skos:prefLabel" : "model_grid_cell~dual_edge_center"
+  }, {
+    "@id" : "co:Concept_2f2658c2b-2ad2-11b2-80d2-a5ad67d60810",
+    "co:property" : [ "latitude", "y_component_of_velocity", "z_component_of_velocity", "y_coordinate", "x_component_of_velocity", "virtual_latitude", "longitude", "depth", "z_coordinate", "virtual_longitude", "x_coordinate" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:model_grid_cell~primary_edgef2658c2a-2ad2-11b2-80d2-a5ad67d60810",
+    "skos:prefLabel" : "model_grid_cell~dual_face_center-of-symmetry"
+  }, {
+    "@id" : "co:Concept_2f2658c2b-2ad2-11b2-80d2-a5ad67d60810f2658c2e-2ad2-11b2-80d2-a5ad67d60810",
+    "co:property" : [ "virtual_longitude", "y_component_of_velocity", "x_component_of_velocity", "longitude", "x_coordinate", "z_component_of_velocity", "virtual_latitude", "depth", "z_coordinate", "y_coordinate", "latitude" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:model_grid_cell~primary_edgef2658c2a-2ad2-11b2-80d2-a5ad67d60810f2658c2c-2ad2-11b2-80d2-a5ad67d60810",
+    "skos:prefLabel" : "model_grid_cell~primary_face_center-of-symmetry"
+  }, {
+    "@id" : "co:Concept_2f2658c30-2ad2-11b2-80d2-a5ad67d60810",
+    "co:property" : [ "y_component_of_velocity", "latitude", "longitude", "x_component_of_velocity", "z_coordinate", "y_coordinate", "virtual_longitude", "z_component_of_velocity", "virtual_latitude", "depth", "x_coordinate" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:model_grid_cell~primary_edgef2658c2f-2ad2-11b2-80d2-a5ad67d60810",
+    "skos:prefLabel" : "model_grid_cell~primary_edge_center"
+  }, {
+    "@id" : "co:Concept_3",
+    "co:property" : [ "d_infinity_slope", "d8_slope", "d8_flow_width", "d8_total_contributing_area", "perimeter", "row-major-offset_index", "row_index", "diameter", "column_index", "d_infinity_total_contributing_area", "area", "surface_area", "d8_flow_length", "volume", "total_contributing_area", "depth_index" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:model_grid",
+    "skos:definition" : "Property \"volume\" to be used for 3d model cells. <br />Property \"area\" to be used for 2d model cells.<br /><br />Perhaps decomposition into model_grid_cell~3d~primary and model_grid_cell~2d~primary is warranted. Discuss.",
+    "skos:prefLabel" : "model_grid_cell~dual",
+    "related" : "co:model_grid_cell"
+  }, {
+    "@id" : "co:Concept_4",
+    "co:property" : [ "virtual_longitude", "x_component_of_velocity", "y_component_of_velocity", "z_component_of_velocity", "latitude", "virtual_latitude", "z_coordinate", "longitude", "x_coordinate", "depth", "y_coordinate" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:model_grid_cell~primary_edgef2658c2a-2ad2-11b2-80d2-a5ad67d60810",
+    "skos:prefLabel" : "model_grid_cell~dual_face_centroid"
+  }, {
+    "@id" : "co:Concept_4f2658c2d-2ad2-11b2-80d2-a5ad67d60810",
+    "co:property" : [ "depth", "z_coordinate", "latitude", "x_coordinate", "z_component_of_velocity", "x_component_of_velocity", "y_component_of_velocity", "y_coordinate", "virtual_latitude", "virtual_longitude", "longitude" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:model_grid_cell~primary_edgef2658c2a-2ad2-11b2-80d2-a5ad67d60810f2658c2c-2ad2-11b2-80d2-a5ad67d60810",
+    "skos:prefLabel" : "model_grid_cell~primary_face_centroid"
+  }, {
+    "@id" : "co:Concept_5",
+    "co:property" : [ "virtual_longitude", "x_component_of_velocity", "y_component_of_velocity", "z_component_of_velocity", "depth", "latitude", "virtual_latitude", "z_coordinate", "longitude", "x_coordinate", "y_coordinate" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:altLabel" : [ "model_grid_cell~primary_centroid", "model_grid_cell~primary_center-of-mass" ],
+    "broader" : "co:model_grid_cell",
+    "skos:prefLabel" : "model_grid_cell~primary_center-of-volume",
+    "related" : "co:Concept_6"
+  }, {
+    "@id" : "co:Concept_6",
+    "co:property" : [ "x_coordinate", "z_component_of_velocity", "virtual_latitude", "depth", "y_coordinate", "x_component_of_velocity", "virtual_longitude", "z_coordinate", "longitude", "y_component_of_velocity", "latitude" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:model_grid_cell",
+    "skos:prefLabel" : "model_grid_cell~primary_center-of-symmetry",
+    "related" : "co:Concept_5"
+  }, {
+    "@id" : "co:air",
+    "co:property" : [ "volume-specific_isochoric_heat_capacity", "kinematic_volume_viscosity", "kinematic_shear_viscosity", "dynamic_volume_viscosity", "dynamic_shear_viscosity", "dielectric_constant" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "air"
+  }, {
+    "@id" : "co:air--dry",
+    "co:property" : "mass-specific_gas_constant",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "air~dry"
+  }, {
+    "@id" : "co:air--dry_water--vapor",
+    "co:property" : "gas_constant_ratio",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:air--dry",
+    "skos:prefLabel" : "air~dry_water~vapor"
+  }, {
+    "@id" : "co:air_helium-plume",
+    "co:property" : "richardson_number",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:air",
+    "skos:prefLabel" : "air_helium-plume"
+  }, {
+    "@id" : "co:air_radiation--visible",
+    "co:property" : "speed",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:air",
+    "skos:prefLabel" : "air_radiation~visible"
+  }, {
+    "@id" : "co:air_water--vapor",
+    "co:property" : [ "saturated_partial_pressure", "dew_point_temperature" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:air",
+    "skos:prefLabel" : "air_water~vapor"
+  }, {
+    "@id" : "co:aircraft",
+    "co:property" : "flight_duration",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "aircraft"
+  }, {
+    "@id" : "co:airfoil",
+    "co:property" : [ "lift_coefficient", "drag_coefficient" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "airfoil"
+  }, {
+    "@id" : "co:airfoil_curve--enclosing",
+    "co:property" : "circulation",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:airfoil",
+    "skos:prefLabel" : "airfoil_curve~enclosing"
+  }, {
+    "@id" : "co:airplane",
+    "co:property" : [ "mach_number", "altitude" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "airplane"
+  }, {
+    "@id" : "co:airplane_wing",
+    "co:property" : "span",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:airplane",
+    "skos:prefLabel" : "airplane_wing"
+  }, {
+    "@id" : "co:aluminum",
+    "co:property" : "mass-specific_isobaric_heat_capacity",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "aluminum"
+  }, {
+    "@id" : "co:anvil",
+    "co:property" : "isobaric_heat_capacity",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "anvil"
+  }, {
+    "@id" : "co:appliance--electric",
+    "co:property" : "voltage",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "appliance~electric"
+  }, {
+    "@id" : "co:atmosphere",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "atmosphere"
+  }, {
+    "@id" : "co:atmosphere_aerosol",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere",
+    "skos:prefLabel" : "atmosphere_aerosol"
+  }, {
+    "@id" : "co:atmosphere_aerosol_dust",
+    "co:property" : "reduction_of_transmittance",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_aerosol",
+    "skos:prefLabel" : "atmosphere_aerosol_dust"
+  }, {
+    "@id" : "co:atmosphere_aerosol_radiation--incoming--shortwave",
+    "co:property" : [ "transmitted_energy_flux", "transmittance", "reflected_energy_flux", "reflectance", "absorptance", "absorbed_energy_flux" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_aerosol",
+    "skos:prefLabel" : "atmosphere_aerosol_radiation~incoming~shortwave"
+  }, {
+    "@id" : "co:atmosphere_aerosol_radiation--outgoing--longwave",
+    "co:property" : "emittance",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_aerosol",
+    "skos:prefLabel" : "atmosphere_aerosol_radiation~outgoing~longwave"
+  }, {
+    "@id" : "co:atmosphere_aerosol_radiation--outgoing--longwave--downward",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_aerosol",
+    "skos:prefLabel" : "atmosphere_aerosol_radiation~outgoing~longwave~downward"
+  }, {
+    "@id" : "co:atmosphere_aerosol_radiation--outgoing--longwave--upward",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_aerosol",
+    "skos:prefLabel" : "atmosphere_aerosol_radiation~outgoing~longwave~upward"
+  }, {
+    "@id" : "co:atmosphere_air",
+    "co:property" : [ "anomaly_of_temperature", "temperature", "east_derivative_of_temperature", "thermal_diffusivity", "temperature_environmental_lapse_rate", "mass-specific_isochoric_heat_capacity", "north_derivative_of_temperature", "equivalent_temperature", "mass-per-volume_density", "increment_of_temperature", "static_pressure", "isothermal_compressibility", "heat_capacity_ratio", "equivalent_potential_temperature", "potential_temperature", "static_pressure_environmental_lapse_rate", "azimuth_angle_of_gradient_of_temperature", "thermal_conductivity", "convective_available_potential_energy", "magnitude_of_gradient_of_temperature", "increment_of_pressure", "mass-specific_isobaric_heat_capacity", "temperature_saturated_adiabatic_lapse_rate", "thermal_resistivity", "elevation_angle_of_gradient_of_temperature", "volume-specific_isobaric_heat_capacity", "thermal_inertia", "temperature_lapse_rate", "anomaly_of_pressure", "z_derivative_of_temperature", "y_derivative_of_temperature", "volume-specific_isochoric_heat_capacity", "x_derivative_of_temperature", "isentropic_compressibility", "temperature_dry_adiabatic_lapse_rate" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere",
+    "skos:prefLabel" : "atmosphere_air"
+  }, {
+    "@id" : "co:atmosphere_air-column_acetic-acid",
+    "co:property" : "mass-per-area_density",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_air_column",
+    "skos:prefLabel" : "atmosphere_air-column_acetic-acid"
+  }, {
+    "@id" : "co:atmosphere_air-column_aceto-nitrile",
+    "co:property" : "mass-per-area_density",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_air_column",
+    "skos:prefLabel" : "atmosphere_air-column_aceto-nitrile"
+  }, {
+    "@id" : "co:atmosphere_air-column_aerosol--dry_ammonium",
+    "co:property" : "mass-per-area_density",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_air_column",
+    "skos:prefLabel" : "atmosphere_air-column_aerosol~dry_ammonium"
+  }, {
+    "@id" : "co:atmosphere_air-column_alkanes",
+    "co:property" : "mass-per-area_density",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_air_column",
+    "skos:prefLabel" : "atmosphere_air-column_alkanes"
+  }, {
+    "@id" : "co:atmosphere_air-column_alkenes",
+    "co:property" : "mass-per-area_density",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_air_column",
+    "skos:prefLabel" : "atmosphere_air-column_alkenes"
+  }, {
+    "@id" : "co:atmosphere_air-column_alpha-hexachlorocyclohexane",
+    "co:property" : "mass-per-area_density",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_air_column",
+    "skos:prefLabel" : "atmosphere_air-column_alpha-hexachlorocyclohexane"
+  }, {
+    "@id" : "co:atmosphere_air-column_alpha-pinene",
+    "co:property" : "mass-per-area_density",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_air_column",
+    "skos:prefLabel" : "atmosphere_air-column_alpha-pinene"
+  }, {
+    "@id" : "co:atmosphere_air-column_ammonia",
+    "co:property" : "mass-per-area_density",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_air_column",
+    "skos:prefLabel" : "atmosphere_air-column_ammonia"
+  }, {
+    "@id" : "co:atmosphere_air-column_clox-as-chlorine",
+    "co:property" : "mass-per-area_density",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_air_column",
+    "skos:prefLabel" : "atmosphere_air-column_clox-as-chlorine"
+  }, {
+    "@id" : "co:atmosphere_air-column_hox-as-hydrogen",
+    "co:property" : "mass-per-area_density",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_air_column",
+    "skos:prefLabel" : "atmosphere_air-column_hox-as-hydrogen"
+  }, {
+    "@id" : "co:atmosphere_air-column_nox-as-nitrogen",
+    "co:property" : "mass-per-area_density",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_air_column",
+    "skos:prefLabel" : "atmosphere_air-column_nox-as-nitrogen"
+  }, {
+    "@id" : "co:atmosphere_air-column_water--vapor",
+    "co:property" : [ "mass-per-area_density", "liquid-equivalent_depth" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_air_column",
+    "skos:prefLabel" : "atmosphere_air-column_water~vapor"
+  }, {
+    "@id" : "co:atmosphere_air_carbon-dioxide",
+    "co:property" : [ "saturated_partial_pressure", "relative_saturation", "partial_pressure", "equilibrium_partial_pressure" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_air",
+    "skos:prefLabel" : "atmosphere_air_carbon-dioxide"
+  }, {
+    "@id" : "co:atmosphere_air_column",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere",
+    "skos:prefLabel" : "atmosphere_air-column"
+  }, {
+    "@id" : "co:atmosphere_air_flow",
+    "co:property" : [ "north_north_component_of_stress", "magnitude_of_bolus_vorticity", "y_component_of_bolus_velocity", "magnitude_of_momentum", "x_z_component_of_reynolds_stress", "x_y_component_of_reynolds_stress", "azimuth_angle_of_gradient_of_pressure", "azimuth_angle_of_velocity", "elevation_angle_of_vorticity", "y_y_component_of_stress", "north_component_of_bolus_velocity", "up_up_component_of_reynolds_stress", "east_east_component_of_stress", "potential_vorticity", "y_component_of_vorticity", "z_component_of_bolus_velocity", "z_z_component_of_reynolds_stress", "magnitude_of_velocity", "magnitude_of_gradient_of_pressure", "x_component_of_velocity", "dynamic_pressure", "east_derivative_of_potential_vorticity", "time_derivative_of_potential_vorticity", "azimuth_angle_of_bolus_velocity", "z_integral_of_v_component_of_momentum", "obukhov_length", "north_derivative_of_potential_vorticity", "curl_of_velocity", "z_component_of_momentum", "y_component_of_momentum", "x_component_of_momentum", "z_derivative_of_pressure", "x_component_of_vorticity", "x_component_of_bolus_velocity", "east_north_component_of_stress", "z_derivative_of_potential_vorticity", "north_up_component_of_stress", "east_derivative_of_pressure", "east_component_of_velocity", "east_component_of_vorticity", "x_z_component_of_stress", "elevation_angle_of_velocity", "z_integral_of_u_component_of_momentum", "up_component_of_bolus_velocity", "z_component_of_velocity", "north_component_of_momentum", "z_component_of_vorticity", "north_up_component_of_reynolds_stress", "east_north_component_of_reynolds_stress", "y_component_of_velocity", "y_z_component_of_reynolds_stress", "gradient_of_pressure", "y_derivative_of_pressure", "x_derivative_of_pressure", "x_derivative_of_potential_vorticity", "east_component_of_bolus_velocity", "magnitude_of_bolus_velocity", "x_x_component_of_reynolds_stress", "up_up_component_of_stress", "north_derivative_of_pressure", "magnitude_of_stress", "east_up_component_of_reynolds_stress", "y_derivative_of_potential_vorticity", "x_y_component_of_stress", "z_z_component_of_stress", "east_east_component_of_reynolds_stress", "elevation_angle_of_gradient_of_potential_vorticity", "north_north_component_of_reynolds_stress", "east_component_of_momentum", "north_component_of_velocity", "north_component_of_vorticity", "elevation_angle_of_bolus_velocity", "up_component_of_momentum", "azimuth_angle_of_gradient_of_potential_vorticity", "total_pressure", "elevation_angle_of_gradient_of_pressure", "azimuth_angle_of_momentum", "east_up_component_of_stress", "x_x_component_of_stress", "elevation_angle_of_momentum", "y_y_component_of_reynolds_stress", "azimuth_angle_of_vorticity", "magnitude_of_gradient_of_potential_vorticity", "y_z_component_of_stress" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_air",
+    "skos:prefLabel" : "atmosphere_air_flow"
+  }, {
+    "@id" : "co:atmosphere_air_flow_sediment--suspended",
+    "co:property" : [ "volume_concentration", "mass_concentration" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_air_flow",
+    "skos:prefLabel" : "atmosphere_air_flow_sediment~suspended"
+  }, {
+    "@id" : "co:atmosphere_air_flow_snow--suspended",
+    "co:property" : [ "volume_concentration", "mass_concentration" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_air_flow",
+    "skos:prefLabel" : "atmosphere_air_flow_snow~suspended"
+  }, {
+    "@id" : "co:atmosphere_air_radiation",
+    "co:property" : [ "standard_refraction_index", "beer_lambert_law_attenuation_coefficient" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_air",
+    "skos:prefLabel" : "atmosphere_air_radiation"
+  }, {
+    "@id" : "co:atmosphere_air_radiation--incoming--longwave",
+    "co:property" : [ "transmittance", "reflectance", "absorptance" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_air",
+    "skos:prefLabel" : "atmosphere_air_radiation~incoming~longwave"
+  }, {
+    "@id" : "co:atmosphere_air_radiation--incoming--shortwave",
+    "co:property" : "energy_intensity",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_air",
+    "skos:prefLabel" : "atmosphere_air_radiation~incoming~shortwave"
+  }, {
+    "@id" : "co:atmosphere_air_radiation_optical-path",
+    "co:property" : "length",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_air_radiation",
+    "skos:prefLabel" : "atmosphere_air_radiation_optical-path"
+  }, {
+    "@id" : "co:atmosphere_air_water--vapor",
+    "co:property" : [ "virtual_potential_temperature", "psychrometric_constant", "dew_point_temperature", "relative_saturation", "equilibrium_partial_pressure", "bubble_point_temperature", "mixing_ratio", "saturated_partial_pressure", "partial_pressure", "mass-per-volume_density", "frost_point_temperature", "virtual_temperature" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_air",
+    "skos:prefLabel" : "atmosphere_air_water~vapor"
+  }, {
+    "@id" : "co:atmosphere_ball",
+    "co:property" : [ "terminal_fall_speed", "fall_speed" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere",
+    "skos:prefLabel" : "atmosphere_ball"
+  }, {
+    "@id" : "co:atmosphere_bottom",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere",
+    "skos:prefLabel" : "atmosphere_bottom"
+  }, {
+    "@id" : "co:atmosphere_bottom_air",
+    "co:property" : [ "static_pressure", "pressure", "bulk_momentum_transfer_coefficient", "mass-specific_isobaric_heat_capacity", "bulk_latent_heat_aerodynamic_conductance", "bulk_latent_heat_transfer_coefficient", "neutral_bulk_latent_heat_transfer_coefficient", "brutsaert_emissivity_canopy_factor", "bulk_sensible_heat_transfer_coefficient", "mass-per-volume_density", "neutral_bulk_sensible_heat_transfer_coefficient", "neutral_bulk_momentum_transfer_coefficient", "bulk_sensible_heat_aerodynamic_conductance", "emissivity", "bulk_momentum_aerodynamic_conductance", "brutsaert_emissivity_cloud_factor", "temperature" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_bottom",
+    "skos:prefLabel" : "atmosphere_bottom_air"
+  }, {
+    "@id" : "co:atmosphere_bottom_air_carbon-dioxide",
+    "co:property" : [ "saturated_partial_pressure", "relative_saturation", "partial_pressure", "equilibrium_partial_pressure" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_bottom_air",
+    "skos:prefLabel" : "atmosphere_bottom_air_carbon-dioxide"
+  }, {
+    "@id" : "co:atmosphere_bottom_air_flow",
+    "co:property" : [ "x_component_of_velocity", "dynamic_pressure", "reference_height_speed", "flux_richardson_number", "z_component_of_velocity", "total_pressure", "log_law_roughness_length", "speed_reference_height", "log_law_displacement_length", "y_component_of_velocity", "gradient_richardson_number", "bulk_richardson_number" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_bottom_air",
+    "skos:prefLabel" : "atmosphere_bottom_air_flow"
+  }, {
+    "@id" : "co:atmosphere_bottom_air_flow_buildings",
+    "co:property" : "log_law_roughness_length",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_bottom_air_flow",
+    "skos:prefLabel" : "atmosphere_bottom_air_flow_buildings"
+  }, {
+    "@id" : "co:atmosphere_bottom_air_flow_snowpack",
+    "co:property" : "log_law_roughness_length",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_bottom_air_flow",
+    "skos:prefLabel" : "atmosphere_bottom_air_flow_snowpack"
+  }, {
+    "@id" : "co:atmosphere_bottom_air_flow_terrain",
+    "co:property" : "log_law_roughness_length",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_bottom_air_flow",
+    "skos:prefLabel" : "atmosphere_bottom_air_flow_terrain"
+  }, {
+    "@id" : "co:atmosphere_bottom_air_flow_vegetation",
+    "co:property" : "log_law_roughness_length",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_bottom_air_flow",
+    "skos:prefLabel" : "atmosphere_bottom_air_flow_vegetation"
+  }, {
+    "@id" : "co:atmosphere_bottom_air_heat",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_bottom_air",
+    "skos:prefLabel" : "atmosphere_bottom_air_heat"
+  }, {
+    "@id" : "co:atmosphere_bottom_air_heat--advection",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_bottom_air",
+    "skos:prefLabel" : "atmosphere_bottom_air_heat~advection"
+  }, {
+    "@id" : "co:atmosphere_bottom_air_heat--convection",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_bottom_air",
+    "skos:prefLabel" : "atmosphere_bottom_air_heat~convection"
+  }, {
+    "@id" : "co:atmosphere_bottom_air_heat--diffusion",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_bottom_air",
+    "skos:prefLabel" : "atmosphere_bottom_air_heat~diffusion"
+  }, {
+    "@id" : "co:atmosphere_bottom_air_heat_flow",
+    "co:property" : "log_law_roughness_length",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_bottom_air_heat",
+    "skos:prefLabel" : "atmosphere_bottom_air_heat_flow"
+  }, {
+    "@id" : "co:atmosphere_bottom_air_land",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_bottom_air",
+    "skos:prefLabel" : "atmosphere_bottom_air_land"
+  }, {
+    "@id" : "co:atmosphere_bottom_air_land_heat--incoming--latent",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_bottom_air_land",
+    "skos:prefLabel" : "atmosphere_bottom_air_land_heat~incoming~latent"
+  }, {
+    "@id" : "co:atmosphere_bottom_air_land_heat--incoming--sensible",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_bottom_air_land",
+    "skos:prefLabel" : "atmosphere_bottom_air_land_heat~incoming~sensible"
+  }, {
+    "@id" : "co:atmosphere_bottom_air_land_heat--net--latent",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_bottom_air_land",
+    "skos:prefLabel" : "atmosphere_bottom_air_land_heat~net~latent"
+  }, {
+    "@id" : "co:atmosphere_bottom_air_land_heat--net--sensible",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_bottom_air_land",
+    "skos:prefLabel" : "atmosphere_bottom_air_land_heat~net~sensible"
+  }, {
+    "@id" : "co:atmosphere_bottom_air_water--vapor",
+    "co:property" : [ "bulk_mass_transfer_coefficient", "relative_saturation", "partial_pressure", "neutral_bulk_mass_transfer_coefficient", "bulk_mass_aerodynamic_conductance", "dew_point_temperature", "frost_point_temperature", "saturated_partial_pressure", "mass-per-volume_density", "equilibrium_partial_pressure" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_bottom_air",
+    "skos:prefLabel" : "atmosphere_bottom_air_water~vapor"
+  }, {
+    "@id" : "co:atmosphere_bottom_air_water--vapor_flow",
+    "co:property" : "log_law_roughness_length",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_bottom_air_water--vapor",
+    "skos:prefLabel" : "atmosphere_bottom_air_water~vapor_flow"
+  }, {
+    "@id" : "co:atmosphere_carbon-dioxide",
+    "co:property" : "partial_pressure",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere",
+    "skos:prefLabel" : "atmosphere_carbon-dioxide"
+  }, {
+    "@id" : "co:atmosphere_clouds",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere",
+    "skos:prefLabel" : "atmosphere_clouds"
+  }, {
+    "@id" : "co:atmosphere_clouds_radiation--incoming--shortwave",
+    "co:property" : [ "transmitted_energy_flux", "transmittance", "reflected_energy_flux", "reflectance", "absorptance", "absorbed_energy_flux" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_clouds",
+    "skos:prefLabel" : "atmosphere_clouds_radiation~incoming~shortwave"
+  }, {
+    "@id" : "co:atmosphere_clouds_radiation--outgoing--longwave",
+    "co:property" : "emittance",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_clouds",
+    "skos:prefLabel" : "atmosphere_clouds_radiation~outgoing~longwave"
+  }, {
+    "@id" : "co:atmosphere_clouds_radiation--outgoing--longwave--downward",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_clouds",
+    "skos:prefLabel" : "atmosphere_clouds_radiation~outgoing~longwave~downward"
+  }, {
+    "@id" : "co:atmosphere_clouds_radiation--outgoing--longwave--upward",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_clouds",
+    "skos:prefLabel" : "atmosphere_clouds_radiation~outgoing~longwave~upward"
+  }, {
+    "@id" : "co:atmosphere_datim~vertical~tidal~msl",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere",
+    "skos:prefLabel" : "atmosphere_datum~vertical~tidal~msl"
+  }, {
+    "@id" : "co:atmosphere_datum--vertical--tidal--msl_air_flow",
+    "co:property" : [ "total_pressure", "dynamic_pressure" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_datum~vertical~tidal~msl_air",
+    "skos:prefLabel" : "atmosphere_datum~vertical~tidal~msl_air_flow"
+  }, {
+    "@id" : "co:atmosphere_datum~vertical~tidal~msl_air",
+    "co:property" : "static_pressure",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_datim~vertical~tidal~msl",
+    "skos:prefLabel" : "atmosphere_datum~vertical~tidal~msl_air"
+  }, {
+    "@id" : "co:atmosphere_ice",
+    "co:property" : [ "precipitation_volume_flux", "precipitation_duration", "mass-per-volume_density" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere",
+    "skos:prefLabel" : "atmosphere_ice"
+  }, {
+    "@id" : "co:atmosphere_radiation--incoming--shortwave",
+    "co:property" : [ "transmitted_energy_flux", "transmittance", "reflected_energy_flux", "reflectance", "absorptance", "absorbed_energy_flux" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere",
+    "skos:prefLabel" : "atmosphere_radiation~incoming~shortwave"
+  }, {
+    "@id" : "co:atmosphere_raindrop",
+    "co:property" : [ "terminal_fall_speed", "fall_speed" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere",
+    "skos:prefLabel" : "atmosphere_raindrop"
+  }, {
+    "@id" : "co:atmosphere_snow",
+    "co:property" : [ "precipitation_volume_flux", "precipitation_duration", "mass-per-volume_density" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere",
+    "skos:prefLabel" : "atmosphere_snow"
+  }, {
+    "@id" : "co:atmosphere_top",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere",
+    "skos:prefLabel" : "atmosphere_top"
+  }, {
+    "@id" : "co:atmosphere_top_air",
+    "co:property" : "temperature",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_top",
+    "skos:prefLabel" : "atmosphere_top_air"
+  }, {
+    "@id" : "co:atmosphere_top_radiation--incoming--longwave",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_top",
+    "skos:prefLabel" : "atmosphere_top_radiation~incoming~longwave"
+  }, {
+    "@id" : "co:atmosphere_top_radiation--incoming--shortwave",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_top",
+    "skos:prefLabel" : "atmosphere_top_radiation~incoming~shortwave"
+  }, {
+    "@id" : "co:atmosphere_top_radiation--incoming--total",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_top",
+    "skos:prefLabel" : "atmosphere_top_radiation~incoming~total"
+  }, {
+    "@id" : "co:atmosphere_top_radiation--outgoing--longwave",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_top",
+    "skos:prefLabel" : "atmosphere_top_radiation~outgoing~longwave"
+  }, {
+    "@id" : "co:atmosphere_top_radiation--outgoing--shortwave",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_top",
+    "skos:prefLabel" : "atmosphere_top_radiation~outgoing~shortwave"
+  }, {
+    "@id" : "co:atmosphere_top_radiation--outgoing--total",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_top",
+    "skos:prefLabel" : "atmosphere_top_radiation~outgoing~total"
+  }, {
+    "@id" : "co:atmosphere_top_surface",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_top",
+    "skos:prefLabel" : "atmosphere_top_surface"
+  }, {
+    "@id" : "co:atmosphere_top_surface_radiation--incoming--longwave",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_top_surface",
+    "skos:prefLabel" : "atmosphere_top_surface_radiation~incoming~longwave"
+  }, {
+    "@id" : "co:atmosphere_top_surface_radiation--incoming--shortwave",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere_top_surface",
+    "skos:prefLabel" : "atmosphere_top_surface_radiation~incoming~shortwave"
+  }, {
+    "@id" : "co:atmosphere_water",
+    "co:property" : [ "globe_time_average_of_rainfall_volume_flux", "snowfall_mass-per-volume_density", "precipitation_duration", "domain_time_integral_of_rainfall_volume_flux", "precipitation_mass_flux", "one-year_time_integral_of_precipitation_leq-volume_flux", "one-day_time_integral_of_precipitation_leq-volume_flux", "mass-per-volume_density", "icefall_mass-per-volume_density", "precipitation_leq-volume_flux", "one-hour_time_integral_of_precipitation_leq-volume_flux", "one-month_time_integral_of_precipitation_leq-volume_flux", "snowfall_leq-volume_flux", "icefall_leq-volume_flux", "geologic_time_average_of_rainfall_volume_flux", "domain_time_integral_of_precipitation_leq-volume_flux", "rainfall_volume_flux", "domain_time_max_of_precipitation_leq-volume_flux", "domain_time_integral_of_snowfall_leq-volume_flux" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere",
+    "skos:prefLabel" : "atmosphere_water"
+  }, {
+    "@id" : "co:atmosphere_water--vapor",
+    "co:property" : [ "saturated_partial_pressure", "partial_pressure", "frost_point_temperature", "dew_point_temperature" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:atmosphere",
+    "skos:prefLabel" : "atmosphere_water~vapor"
+  }, {
+    "@id" : "co:automobile",
+    "co:property" : [ "fuel_economy", "new-price", "mass", "braking_distance", "manufacture_year", "width", "x_component_of_velocity", "acceleration", "total_stopping_distance", "msrp-price", "wheelbase_length", "braking_force", "drag_coefficient", "cargo_capacity", "y_component_of_velocity", "z_component_of_velocity", "weight", "safety_rating", "speed", "total_stopping_time", "lift_coefficient", "vehicle_identification_number", "length", "top_speed", "0-to-60mph_acceleration_time", "turning_radius" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "automobile"
+  }, {
+    "@id" : "co:automobile_axis--vertical",
+    "co:property" : "rotational_inertia",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile",
+    "skos:prefLabel" : "automobile_axis~vertical"
+  }, {
+    "@id" : "co:automobile_battery",
+    "co:property" : [ "width", "weight", "voltage", "length", "height" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile",
+    "skos:prefLabel" : "automobile_battery"
+  }, {
+    "@id" : "co:automobile_bottom",
+    "co:property" : [ "departure_angle", "breakover_angle", "approach_angle" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile",
+    "skos:prefLabel" : "automobile_bottom"
+  }, {
+    "@id" : "co:automobile_bottom_ground",
+    "co:property" : "clearance_height",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile_bottom",
+    "skos:prefLabel" : "automobile_bottom_ground"
+  }, {
+    "@id" : "co:automobile_bumper",
+    "co:property" : "height",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile",
+    "skos:prefLabel" : "automobile_bumper"
+  }, {
+    "@id" : "co:automobile_carbon-dioxide",
+    "co:property" : "emission_rate",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile",
+    "skos:prefLabel" : "automobile_carbon-dioxide"
+  }, {
+    "@id" : "co:automobile_door",
+    "co:property" : "count",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile",
+    "skos:prefLabel" : "automobile_door"
+  }, {
+    "@id" : "co:automobile_driver",
+    "co:property" : [ "reaction_time", "reaction_distance" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile",
+    "skos:prefLabel" : "automobile_driver"
+  }, {
+    "@id" : "co:automobile_engine",
+    "co:property" : [ "volume", "power-to-weight_ratio", "max_of_output_power" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile",
+    "skos:prefLabel" : "automobile_engine"
+  }, {
+    "@id" : "co:automobile_engine_crankshaft",
+    "co:property" : [ "torque", "rotation_rate" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile_engine",
+    "skos:prefLabel" : "automobile_engine_crankshaft"
+  }, {
+    "@id" : "co:automobile_engine_cylinder",
+    "co:property" : [ "volume", "stroke_ratio", "length", "diameter", "count" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile_engine",
+    "skos:prefLabel" : "automobile_engine_cylinder"
+  }, {
+    "@id" : "co:automobile_engine_cylinder_piston",
+    "co:property" : [ "stroke_length", "diameter" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile_engine_cylinder",
+    "skos:prefLabel" : "automobile_engine_cylinder_piston"
+  }, {
+    "@id" : "co:automobile_front",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile",
+    "skos:prefLabel" : "automobile_front"
+  }, {
+    "@id" : "co:automobile_front_x-section",
+    "co:property" : "area",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile_front",
+    "skos:prefLabel" : "automobile_front_x-section"
+  }, {
+    "@id" : "co:automobile_fuel",
+    "co:property" : [ "volume", "specific_energy_content", "economy", "consumption_rate" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile",
+    "skos:prefLabel" : "automobile_fuel"
+  }, {
+    "@id" : "co:automobile_fuel-tank",
+    "co:property" : "volume",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile",
+    "skos:prefLabel" : "automobile_fuel-tank"
+  }, {
+    "@id" : "co:automobile_rear",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile",
+    "skos:prefLabel" : "automobile_rear"
+  }, {
+    "@id" : "co:automobile_rear_axle",
+    "co:property" : "weight",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile_rear",
+    "skos:prefLabel" : "automobile_rear_axle"
+  }, {
+    "@id" : "co:automobile_seat",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile",
+    "skos:prefLabel" : "automobile_seat"
+  }, {
+    "@id" : "co:automobile_seat_belt",
+    "co:property" : "count",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile_seat",
+    "skos:prefLabel" : "automobile_seat_belt"
+  }, {
+    "@id" : "co:automobile_tire",
+    "co:property" : [ "inflation_pressure", "diameter", "contact_area" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile",
+    "skos:prefLabel" : "automobile_tire"
+  }, {
+    "@id" : "co:automobile_wheel",
+    "co:property" : [ "diameter", "caster_angle", "camber_force", "camber_angle" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile",
+    "skos:prefLabel" : "automobile_wheel"
+  }, {
+    "@id" : "co:automobile_wheelbase",
+    "co:property" : "distance",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:automobile",
+    "skos:prefLabel" : "automobile_wheelbase"
+  }, {
+    "@id" : "co:balloon",
+    "co:property" : "altitude",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "balloon"
+  }, {
+    "@id" : "co:baseball-bat",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "baseball-bat"
+  }, {
+    "@id" : "co:baseball-bat_baseball",
+    "co:property" : "impact_impulse",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:baseball-bat",
+    "skos:prefLabel" : "baseball-bat_baseball"
+  }, {
+    "@id" : "co:basin",
+    "co:property" : [ "usgs_hydrologic_unit_code", "min_of_elevation", "pfafstetter_code", "area", "d8_total_contributing_area", "d-infinity_total_contributing_area", "mean_of_elevation", "flint_law_coefficient", "flint_law_exponent", "max_of_elevation", "mass-flux_total_contributing_area", "range_of_elevation" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "basin"
+  }, {
+    "@id" : "co:basin_boundary",
+    "co:property" : [ "perimeter", "normalized_diameter-perimeter_shape_factor", "normalized_area-perimeter_shape_factor", "normalized_area-diameter_shape_factor", "diameter", "aspect_ratio" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin",
+    "skos:prefLabel" : "basin_boundary"
+  }, {
+    "@id" : "co:basin_centroid",
+    "co:property" : [ "longitude", "latitude", "elevation" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin",
+    "skos:prefLabel" : "basin_centroid"
+  }, {
+    "@id" : "co:basin_channel--longest",
+    "co:property" : [ "length", "hack_law_exponent", "hack_law_coefficient" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin",
+    "skos:prefLabel" : "basin_channel~longest"
+  }, {
+    "@id" : "co:basin_channel--longest_centerline",
+    "co:property" : [ "sinuosity", "downvalley_sinuosity" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin_channel--longest",
+    "skos:prefLabel" : "basin_channel~longest_centerline"
+  }, {
+    "@id" : "co:basin_channel-network",
+    "co:property" : [ "usgs_hydrologic_unit_code", "horton_bifurcation_ratio", "graph_diameter", "shreve_magnitude", "total-length-to-area_ratio", "horton-strahler_order", "pfafstetter_code", "total_length" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin",
+    "skos:prefLabel" : "basin_channel-network"
+  }, {
+    "@id" : "co:basin_channel-network_graph",
+    "co:property" : "diameter",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin_channel-network",
+    "skos:prefLabel" : "basin_channel-network_graph"
+  }, {
+    "@id" : "co:basin_channel-network_link--exterior",
+    "co:property" : [ "mean_of_length", "count" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin_channel-network",
+    "skos:prefLabel" : "basin_channel-network_link~exterior"
+  }, {
+    "@id" : "co:basin_channel-network_link--interior",
+    "co:property" : [ "mean_of_length", "count" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin_channel-network",
+    "skos:prefLabel" : "basin_channel-network_link~interior"
+  }, {
+    "@id" : "co:basin_channel-network_source",
+    "co:property" : "count",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin_channel-network",
+    "skos:prefLabel" : "basin_channel-network_source"
+  }, {
+    "@id" : "co:basin_channels",
+    "co:property" : "total-length-per-area_density",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin",
+    "skos:prefLabel" : "basin_channels"
+  }, {
+    "@id" : "co:basin_land--burned",
+    "co:property" : "area_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin",
+    "skos:prefLabel" : "basin_land~burned"
+  }, {
+    "@id" : "co:basin_land--forested",
+    "co:property" : "area_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin",
+    "skos:prefLabel" : "basin_land~forested"
+  }, {
+    "@id" : "co:basin_land--grassland",
+    "co:property" : "area_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin",
+    "skos:prefLabel" : "basin_land~grassland"
+  }, {
+    "@id" : "co:basin_outlet",
+    "co:property" : [ "total_contributing_area", "bankfull-width" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin",
+    "skos:prefLabel" : "basin_outlet"
+  }, {
+    "@id" : "co:basin_outlet--terminal_water",
+    "co:property" : [ "volume_flow_rate", "mass_flow_rate" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin_outlet~terminal",
+    "skos:prefLabel" : "basin_outlet~terminal_water"
+  }, {
+    "@id" : "co:basin_outlet_bank--left",
+    "co:property" : [ "longitude", "latitude" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin_outlet",
+    "skos:prefLabel" : "basin_outlet_bank~left"
+  }, {
+    "@id" : "co:basin_outlet_bank--right",
+    "co:property" : [ "longitude", "latitude" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin_outlet",
+    "skos:prefLabel" : "basin_outlet_bank~right"
+  }, {
+    "@id" : "co:basin_outlet_center",
+    "co:property" : [ "longitude", "latitude", "elevation" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin_outlet",
+    "skos:prefLabel" : "basin_outlet_center"
+  }, {
+    "@id" : "co:basin_outlet_channel",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin_outlet",
+    "skos:prefLabel" : "basin_outlet_channel"
+  }, {
+    "@id" : "co:basin_outlet_channel_bottom",
+    "co:property" : "slope",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin_outlet_channel",
+    "skos:prefLabel" : "basin_outlet_channel_bottom"
+  }, {
+    "@id" : "co:basin_outlet_sediment",
+    "co:property" : "yield",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin_outlet",
+    "skos:prefLabel" : "basin_outlet_sediment"
+  }, {
+    "@id" : "co:basin_outlet_water",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin_outlet",
+    "skos:prefLabel" : "basin_outlet_water"
+  }, {
+    "@id" : "co:basin_outlet_water_flow",
+    "co:property" : "half_of_fanning_friction_factor",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin_outlet_water",
+    "skos:prefLabel" : "basin_outlet_water_flow"
+  }, {
+    "@id" : "co:basin_outlet_water_sediment--bedload",
+    "co:property" : [ "volume_flow_rate", "mass_flow_rate" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin_outlet_water",
+    "skos:prefLabel" : "basin_outlet_water_sediment~bedload"
+  }, {
+    "@id" : "co:basin_outlet_water_sediment--suspended",
+    "co:property" : [ "volume_flow_rate", "mass_flow_rate" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin_outlet_water",
+    "skos:prefLabel" : "basin_outlet_water_sediment~suspended"
+  }, {
+    "@id" : "co:basin_outlet_water_sediment--total",
+    "co:property" : [ "volume_flow_rate", "mass_flow_rate" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin_outlet_water",
+    "skos:prefLabel" : "basin_outlet_water_sediment~total"
+  }, {
+    "@id" : "co:basin_outlet_water_sediment--washload",
+    "co:property" : [ "volume_flow_rate", "mass_flow_rate" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin_outlet_water",
+    "skos:prefLabel" : "basin_outlet_water_sediment~washload"
+  }, {
+    "@id" : "co:basin_outlet_water_x-section",
+    "co:property" : [ "time_max_of_volume_flux", "peak_time_of_volume_flow_rate", "time_integral_of_volume_flow_rate", "mean_depth", "width-to-depth_ratio", "peak_time_of_volume_flux", "time_max_of_mean_depth", "time_max_of_volume_flow_rate", "volume_flux", "time_min_of_volume_flow_rate", "peak_time_of_depth", "volume_flow_rate" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin_outlet_water",
+    "skos:prefLabel" : "basin_outlet_water_x-section"
+  }, {
+    "@id" : "co:basin_outlet_water_x-section_top",
+    "co:property" : "width",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin_outlet_water_x-section",
+    "skos:prefLabel" : "basin_outlet_water_x-section_top"
+  }, {
+    "@id" : "co:basin_outlet~terminal",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin",
+    "skos:prefLabel" : "basin_outlet~terminal"
+  }, {
+    "@id" : "co:basin_rain-gauge",
+    "co:property" : "count",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin",
+    "skos:prefLabel" : "basin_rain-gauge"
+  }, {
+    "@id" : "co:basin_sources",
+    "co:property" : "number-per-area_density",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin",
+    "skos:prefLabel" : "basin_sources"
+  }, {
+    "@id" : "co:basin_weather-station",
+    "co:property" : "count",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:basin",
+    "skos:prefLabel" : "basin_weather-station"
+  }, {
+    "@id" : "co:battery",
+    "co:property" : "voltage",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "battery"
+  }, {
+    "@id" : "co:beam",
+    "co:property" : "span",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "beam"
+  }, {
+    "@id" : "co:bear",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "bear"
+  }, {
+    "@id" : "co:bear--alaskan--black",
+    "co:property" : "weight",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "bear~alaskan~black"
+  }, {
+    "@id" : "co:bear--alaskan--black_brain-to-body",
+    "co:property" : "mass_ratio",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:bear--alaskan--black",
+    "skos:prefLabel" : "bear~alaskan~black_brain-to-body"
+  }, {
+    "@id" : "co:bear--alaskan--black_head",
+    "co:property" : "mean_diameter",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:bear--alaskan--black",
+    "skos:prefLabel" : "bear~alaskan~black_head"
+  }, {
+    "@id" : "co:bear_brain-to-body",
+    "co:property" : "mass_ratio",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:bear",
+    "skos:prefLabel" : "bear_brain-to-body"
+  }, {
+    "@id" : "co:bedrock",
+    "co:property" : [ "uplift_rate", "permeability", "mass-per-volume_density" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "bedrock"
+  }, {
+    "@id" : "co:bedrock_below-land-surface",
+    "co:property" : "depth",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:bedrock",
+    "skos:prefLabel" : "bedrock_below-land-surface"
+  }, {
+    "@id" : "co:bedrock_material",
+    "co:property" : [ "youngs_modulus", "poisson_ratio" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:bedrock",
+    "skos:prefLabel" : "bedrock_material"
+  }, {
+    "@id" : "co:bedrock_surface",
+    "co:property" : [ "x_derivative_of_slope", "y_derivative_of_slope", "elevation", "slope", "increment_of_elevation", "time_derivative_of_elevation", "x_derivative_of_elevation", "time_derivative_of_slope", "antigradient_of_elevation", "y_derivative_of_elevation" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:bedrock",
+    "skos:prefLabel" : "bedrock_surface"
+  }, {
+    "@id" : "co:bedrock_surface_land-mask",
+    "co:property" : "elevation",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:bedrock_surface",
+    "skos:prefLabel" : "bedrock_surface_land-mask"
+  }, {
+    "@id" : "co:bedrock_surface_sea-mask",
+    "co:property" : "elevation",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:bedrock_surface",
+    "skos:prefLabel" : "bedrock_surface_sea-mask"
+  }, {
+    "@id" : "co:benzene_molecule_c_c_c",
+    "co:property" : "bond_angle",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "benzene-molecule-c-c-c"
+  }, {
+    "@id" : "co:black-hole",
+    "co:property" : "schwarzchild_radius",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "black-hole"
+  }, {
+    "@id" : "co:bridge",
+    "co:property" : "span",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "bridge"
+  }, {
+    "@id" : "co:building--empire-state",
+    "co:property" : "height",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "building~empire-state"
+  }, {
+    "@id" : "co:cantor-set",
+    "co:property" : "hausdorff_dimension",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "cantor-set"
+  }, {
+    "@id" : "co:carbon",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "carbon"
+  }, {
+    "@id" : "co:carbon_hydrogen",
+    "co:property" : "bond_length",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:carbon",
+    "skos:prefLabel" : "carbon_hydrogen"
+  }, {
+    "@id" : "co:carbon_isotope",
+    "co:property" : "neutron_number",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:carbon",
+    "skos:prefLabel" : "carbon_isotope"
+  }, {
+    "@id" : "co:cesium_atom",
+    "co:property" : [ "relative_atomic_mass", "proton_number", "neutron_number", "mass_number", "characteristic_emission_frequency" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "cesium-atom"
+  }, {
+    "@id" : "co:channel",
+    "co:property" : [ "downstream_hydraulic_geometry_width-vs-discharge_exponent", "station_hydraulic_geometry_slope-vs-discharge_exponent", "meander_amplitude", "downstream_hydraulic_geometry_speed-vs-discharge_coefficient", "station_hydraulic_geometry_width-vs-discharge_coefficient", "downstream_hydraulic_geometry_width-vs-discharge_coefficient", "meander_curvature_radius", "station_hydraulic_geometry_depth-vs-discharge_exponent", "downstream_hydraulic_geometry_depth-vs-discharge_exponent", "station_hydraulic_geometry_speed-vs-discharge_coefficient", "downstream_hydraulic_geometry_width_vs_discharge_exponent", "downstream_hydraulic_geometry_slope-vs-discharge_coefficient", "meander_wavelength", "station_hydraulic_geometry_width-vs-discharge_exponent", "meander_migration_rate", "downstream_hydraulic_geometry_slope-vs-discharge_exponent", "downstream_hydraulic_geometry_depth-vs-discharge_coefficient", "downstream_hydraulic_geometry_speed-vs-discharge_exponent", "station_hydraulic_geometry_slope-vs-discharge_coefficient", "station_hydraulic_geometry_depth-vs-discharge_coefficient", "station_hydraulic_geometry_speed-vs-discharge_exponent", "downstream_hydraulic_geometry_width_vs_discharge_coefficient" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "channel"
+  }, {
+    "@id" : "co:channel_bank",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel",
+    "skos:prefLabel" : "channel_bank"
+  }, {
+    "@id" : "co:channel_bank_sediment",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_bank",
+    "skos:prefLabel" : "channel_bank_sediment"
+  }, {
+    "@id" : "co:channel_bank_sediment_water",
+    "co:property" : "saturated_hydraulic_conductivity",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_bank_sediment",
+    "skos:prefLabel" : "channel_bank_sediment_water"
+  }, {
+    "@id" : "co:channel_bank_water",
+    "co:property" : [ "volume-per-unit-length_flow_rate", "volume-per-length_flow_rate" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_bank",
+    "skos:prefLabel" : "channel_bank_water"
+  }, {
+    "@id" : "co:channel_bottom",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel",
+    "skos:prefLabel" : "channel_bottom"
+  }, {
+    "@id" : "co:channel_bottom_sediment",
+    "co:property" : "thickness",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_bottom",
+    "skos:prefLabel" : "channel_bottom_sediment"
+  }, {
+    "@id" : "co:channel_bottom_sediment_grain",
+    "co:property" : [ "d84_diameter", "d50_diameter" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_bottom_sediment",
+    "skos:prefLabel" : "channel_bottom_sediment_grain"
+  }, {
+    "@id" : "co:channel_bottom_sediment_oxygen--dissolved",
+    "co:property" : "consumption_rate",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_bottom_sediment",
+    "skos:prefLabel" : "channel_bottom_sediment_oxygen~dissolved"
+  }, {
+    "@id" : "co:channel_bottom_sediment_water",
+    "co:property" : "saturated_hydraulic_conductivity",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_bottom_sediment",
+    "skos:prefLabel" : "channel_bottom_sediment_water"
+  }, {
+    "@id" : "co:channel_bottom_surface",
+    "co:property" : [ "y_derivative_of_elevation", "x_derivative_of_elevation", "slope", "downstream_derivative_of_elevation", "cross-stream_derivative_of_elevation" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_bottom",
+    "skos:prefLabel" : "channel_bottom_surface"
+  }, {
+    "@id" : "co:channel_bottom_water",
+    "co:property" : [ "temperature", "static_pressure" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_bottom",
+    "skos:prefLabel" : "channel_bottom_water"
+  }, {
+    "@id" : "co:channel_bottom_water_flow",
+    "co:property" : [ "domain_max_of_log_law_roughness_length", "dynamic_pressure", "log_law_roughness_length", "total_pressure", "shear_speed", "speed", "y_component_of_velocity", "relative_smoothness_ratio", "domain_min_of_log_law_roughness_length", "y_component_of_shear_velocity", "x_component_of_velocity", "x_component_of_shear_velocity", "relative_roughness_ratio", "magnitude_of_shear_stress" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_bottom_water",
+    "skos:prefLabel" : "channel_bottom_water_flow"
+  }, {
+    "@id" : "co:channel_bottom_water_flow_sediment",
+    "co:property" : "shields_parameter",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_bottom_water_flow",
+    "skos:prefLabel" : "channel_bottom_water_flow_sediment"
+  }, {
+    "@id" : "co:channel_bottom_water_flow_sediment_grain",
+    "co:property" : [ "shields_number", "shields_critical_shear_stress" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_bottom_water_flow_sediment",
+    "skos:prefLabel" : "channel_bottom_water_flow_sediment_grain"
+  }, {
+    "@id" : "co:channel_centerline",
+    "co:property" : [ "sinuosity", "length", "downvalley_sinuosity" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel",
+    "skos:prefLabel" : "channel_centerline"
+  }, {
+    "@id" : "co:channel_centerline_endpoints",
+    "co:property" : [ "separation_distance", "difference_of_elevation" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_centerline",
+    "skos:prefLabel" : "channel_centerline_endpoints"
+  }, {
+    "@id" : "co:channel_entrance",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel",
+    "skos:prefLabel" : "channel_entrance"
+  }, {
+    "@id" : "co:channel_entrance_basin",
+    "co:property" : "total_contributing_area",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_entrance",
+    "skos:prefLabel" : "channel_entrance_basin"
+  }, {
+    "@id" : "co:channel_entrance_center",
+    "co:property" : [ "longitude", "latitude", "elevation" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_entrance",
+    "skos:prefLabel" : "channel_entrance_center"
+  }, {
+    "@id" : "co:channel_entrance_water",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_entrance",
+    "skos:prefLabel" : "channel_entrance_water"
+  }, {
+    "@id" : "co:channel_entrance_water_x-section",
+    "co:property" : [ "volume_flux", "volume_flow_rate" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_entrance_water",
+    "skos:prefLabel" : "channel_entrance_water_x-section"
+  }, {
+    "@id" : "co:channel_exit",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel",
+    "skos:prefLabel" : "channel_exit"
+  }, {
+    "@id" : "co:channel_exit_basin",
+    "co:property" : "total_contributing_area",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_exit",
+    "skos:prefLabel" : "channel_exit_basin"
+  }, {
+    "@id" : "co:channel_exit_center",
+    "co:property" : [ "longitude", "latitude", "elevation" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_exit",
+    "skos:prefLabel" : "channel_exit_center"
+  }, {
+    "@id" : "co:channel_exit_water",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_exit",
+    "skos:prefLabel" : "channel_exit_water"
+  }, {
+    "@id" : "co:channel_exit_water_x-section",
+    "co:property" : [ "volume_flow_rate_law_coefficient", "volume_flow_rate_law_area_exponent", "volume_flow_rate", "volume-per-width_flow_rate" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_exit_water",
+    "skos:prefLabel" : "channel_exit_water_x-section"
+  }, {
+    "@id" : "co:channel_exit_water_x-section_sediment--suspended",
+    "co:property" : "mass_flow_rate",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_exit_water_x-section",
+    "skos:prefLabel" : "channel_exit_water_x-section_sediment~suspended"
+  }, {
+    "@id" : "co:channel_valley",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel",
+    "skos:prefLabel" : "channel_valley"
+  }, {
+    "@id" : "co:channel_valley_centerline",
+    "co:property" : "sinuosity",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_valley",
+    "skos:prefLabel" : "channel_valley_centerline"
+  }, {
+    "@id" : "co:channel_water",
+    "co:property" : [ "time_derivative_of_volume", "static_pressure", "kinematic_shear_viscosity", "dynamic_volume_viscosity", "mean_depth", "reaeration_coefficient", "mass_flow_rate", "depth_times_bottom-surface-slope", "ph", "mass-per-volume_density", "initial_volume", "temperature", "volume", "peak_time_of_volume_flow_rate", "dynamic_shear_viscosity", "kinematic_volume_viscosity", "power" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel",
+    "skos:prefLabel" : "channel_water"
+  }, {
+    "@id" : "co:channel_water_flow",
+    "co:property" : [ "manning_n_parameter", "x_component_of_velocity", "z_component_of_velocity", "manning_k_parameter", "domain_max_of_manning_n_parameter", "total_pressure", "chezy_formula_coefficient", "darcy_friction_factor", "y_component_of_velocity", "x_x_component_of_stress", "cross-stream_component_of_velocity", "half_of_fanning_friction_factor", "y_component_of_vorticity", "x_y_component_of_stress", "froude_number", "downstream_component_of_velocity", "dynamic_pressure", "x_component_of_vorticity", "speed", "reynolds_number", "x_z_component_of_stress", "fanning_friction_factor", "z_component_of_vorticity", "domain_min_of_manning_n_parameter", "energy-per-volume_dissipation_rate" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_water",
+    "skos:prefLabel" : "channel_water_flow"
+  }, {
+    "@id" : "co:channel_water_hydraulic-jump",
+    "co:property" : [ "loss_of_energy", "height" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_water",
+    "skos:prefLabel" : "channel_water_hydraulic-jump"
+  }, {
+    "@id" : "co:channel_water_oxygen--photosynthetic",
+    "co:property" : "production_rate",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_water",
+    "skos:prefLabel" : "channel_water_oxygen~photosynthetic"
+  }, {
+    "@id" : "co:channel_water_sediment",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_water",
+    "skos:prefLabel" : "channel_water_sediment"
+  }, {
+    "@id" : "co:channel_water_sediment--bedload",
+    "co:property" : [ "volume_flow_rate", "mass_flow_rate", "mass-per-volume_density" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_water",
+    "skos:prefLabel" : "channel_water_sediment~bedload"
+  }, {
+    "@id" : "co:channel_water_sediment--bedload_grain",
+    "co:property" : "immersed_weight",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_water_sediment--bedload",
+    "skos:prefLabel" : "channel_water_sediment~bedload_grain"
+  }, {
+    "@id" : "co:channel_water_sediment--suspended",
+    "co:property" : [ "volume_flow_rate_law_area_exponent", "volume_flow_rate", "rouse_number", "mass_flow_rate", "mass_concentration" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_water",
+    "skos:prefLabel" : "channel_water_sediment~suspended"
+  }, {
+    "@id" : "co:channel_water_sediment--total",
+    "co:property" : [ "volume_flow_rate_law_slope_exponent", "volume_flow_rate_law_coefficient", "volume_flow_rate_law_area_exponent", "volume_flow_rate" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_water",
+    "skos:prefLabel" : "channel_water_sediment~total"
+  }, {
+    "@id" : "co:channel_water_sediment--washload",
+    "co:property" : [ "volume_flow_rate", "mass_flow_rate", "mass_concentration" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_water",
+    "skos:prefLabel" : "channel_water_sediment~washload"
+  }, {
+    "@id" : "co:channel_water_sediment_grain",
+    "co:property" : "stokes_settling_speed",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_water_sediment",
+    "skos:prefLabel" : "channel_water_sediment_grain"
+  }, {
+    "@id" : "co:channel_water_surface",
+    "co:property" : [ "y_derivative_of_elevation", "x_derivative_of_elevation", "slope", "elevation", "downstream_derivative_of_elevation", "cross-stream_derivative_of_elevation" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_water",
+    "skos:prefLabel" : "channel_water_surface"
+  }, {
+    "@id" : "co:channel_water_surface_air",
+    "co:property" : "temperature",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_water_surface",
+    "skos:prefLabel" : "channel_water_surface_air"
+  }, {
+    "@id" : "co:channel_water_surface_water",
+    "co:property" : "temperature",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_water_surface",
+    "skos:prefLabel" : "channel_water_surface_water"
+  }, {
+    "@id" : "co:channel_water_x-section",
+    "co:property" : [ "wetted_perimeter", "volume_flow_rate_law_coefficient", "domain_min_of_volume_flow_rate", "volume_flux", "domain_max_of_volume_flux", "mean_depth", "domain_max_of_mean_depth", "domain_min_of_mean_depth", "depth-vs-half-width_exponent", "time_derivative_of_mean_depth", "domain_min_of_volume_flux", "max_of_depth", "width-to-depth_ratio", "depth-vs-half-width_coefficient", "hydraulic_radius", "domain_max_of_volume_flow_rate", "volume_flow_rate", "volume_flow_rate_law_area_exponent", "wetted_area", "initial_mean_depth" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_water",
+    "skos:prefLabel" : "channel_water_x-section"
+  }, {
+    "@id" : "co:channel_water_x-section_top",
+    "co:property" : "width",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_water_x-section",
+    "skos:prefLabel" : "channel_water_x-section_top"
+  }, {
+    "@id" : "co:channel_weir",
+    "co:property" : "discharge_coefficient",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel",
+    "skos:prefLabel" : "channel_weir"
+  }, {
+    "@id" : "co:channel_x-section",
+    "co:property" : [ "diameter", "max_of_elevation", "area", "depth-vs-half-width_exponent", "width-to-depth_ratio", "perimeter", "min_of_elevation", "max_of_depth", "depth-vs-half-width_coefficient" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel",
+    "skos:prefLabel" : "channel_x-section"
+  }, {
+    "@id" : "co:channel_x-section_parabola",
+    "co:property" : "coefficient",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_x-section",
+    "skos:prefLabel" : "channel_x-section_parabola"
+  }, {
+    "@id" : "co:channel_x-section_top",
+    "co:property" : "width",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_x-section",
+    "skos:prefLabel" : "channel_x-section_top"
+  }, {
+    "@id" : "co:channel_x-section_trapezoid",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_x-section",
+    "skos:prefLabel" : "channel_x-section_trapezoid"
+  }, {
+    "@id" : "co:channel_x-section_trapezoid_bottom",
+    "co:property" : "width",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_x-section_trapezoid",
+    "skos:prefLabel" : "channel_x-section_trapezoid_bottom"
+  }, {
+    "@id" : "co:channel_x-section_trapezoid_side",
+    "co:property" : "flare_angle",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_x-section_trapezoid",
+    "skos:prefLabel" : "channel_x-section_trapezoid_side"
+  }, {
+    "@id" : "co:channel_x-section_trapezoid_side--left",
+    "co:property" : "flare_angle",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_x-section_trapezoid",
+    "skos:prefLabel" : "channel_x-section_trapezoid_side~left"
+  }, {
+    "@id" : "co:channel_x-section_trapezoid_side--right",
+    "co:property" : "flare_angle",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:channel_x-section_trapezoid",
+    "skos:prefLabel" : "channel_x-section_trapezoid_side~right"
+  }, {
+    "@id" : "co:chlorine",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "chlorine"
+  }, {
+    "@id" : "co:chlorine_electron",
+    "co:property" : "affinity",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:chlorine",
+    "skos:prefLabel" : "chlorine_electron"
+  }, {
+    "@id" : "co:chocolate",
+    "co:property" : [ "conching_time", "mass-per-volume_density", "metabolizable-energy-per-mass_density", "thermal_conductivity", "volume-specific_isobaric_heat_capacity", "volume-specific_isochoric_heat_capacity", "thermal_diffusivity", "mass-specific_isobaric_heat_capacity", "thermal_resistivity", "mass-specific_isochoric_heat_capacity", "melting_point_temperature", "heat_capacity_ratio", "thermal_inertia", "tempering_time" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "chocolate"
+  }, {
+    "@id" : "co:chocolate--liquid",
+    "co:property" : [ "yield_stress", "kinematic_shear_viscosity", "herschel_bulkley_exponent", "herschel_bulkley_coefficient", "casson_model_k_parameter", "apparent_viscosity" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "chocolate~liquid"
+  }, {
+    "@id" : "co:chocolate--liquid_water",
+    "co:property" : "volume_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:chocolate--liquid",
+    "skos:prefLabel" : "chocolate~liquid_water"
+  }, {
+    "@id" : "co:chocolate_cacao",
+    "co:property" : "mass_concentration",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:chocolate",
+    "skos:prefLabel" : "chocolate_cacao"
+  }, {
+    "@id" : "co:chocolate_caffeine",
+    "co:property" : "mass_concentration",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:chocolate",
+    "skos:prefLabel" : "chocolate_caffeine"
+  }, {
+    "@id" : "co:chocolate_carbohydrate--total",
+    "co:property" : "mass_concentration",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:chocolate",
+    "skos:prefLabel" : "chocolate_carbohydrate~total"
+  }, {
+    "@id" : "co:chocolate_cholesterol",
+    "co:property" : "mass_concentration",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:chocolate",
+    "skos:prefLabel" : "chocolate_cholesterol"
+  }, {
+    "@id" : "co:chocolate_fat--monounsaturated",
+    "co:property" : "mass_concentration",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:chocolate",
+    "skos:prefLabel" : "chocolate_fat~monounsaturated"
+  }, {
+    "@id" : "co:chocolate_fat--polyunsaturated",
+    "co:property" : "mass_concentration",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:chocolate",
+    "skos:prefLabel" : "chocolate_fat~polyunsaturated"
+  }, {
+    "@id" : "co:chocolate_fat--saturated",
+    "co:property" : "mass_concentration",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:chocolate",
+    "skos:prefLabel" : "chocolate_fat~saturated"
+  }, {
+    "@id" : "co:chocolate_fat--total",
+    "co:property" : "mass_concentration",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:chocolate",
+    "skos:prefLabel" : "chocolate_fat~total"
+  }, {
+    "@id" : "co:chocolate_flavanol",
+    "co:property" : "mass_concentration",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:chocolate",
+    "skos:prefLabel" : "chocolate_flavanol"
+  }, {
+    "@id" : "co:chocolate_lecithin",
+    "co:property" : "mass_concentration",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:chocolate",
+    "skos:prefLabel" : "chocolate_lecithin"
+  }, {
+    "@id" : "co:chocolate_liquor",
+    "co:property" : "mass_concentration",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:chocolate",
+    "skos:prefLabel" : "chocolate_liquor"
+  }, {
+    "@id" : "co:coal",
+    "co:property" : "thermal_energy_content",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "coal"
+  }, {
+    "@id" : "co:concrete",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "concrete"
+  }, {
+    "@id" : "co:concrete_rubber",
+    "co:property" : "kinetic_friction_coefficient",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:concrete",
+    "skos:prefLabel" : "concrete_rubber"
+  }, {
+    "@id" : "co:consumer",
+    "co:property" : "price_index",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "consumer"
+  }, {
+    "@id" : "co:delta",
+    "co:property" : [ "volume", "mean_subsidence_rate", "mass" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "delta"
+  }, {
+    "@id" : "co:delta--subaerial",
+    "co:property" : "volume",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "delta~subaerial"
+  }, {
+    "@id" : "co:delta--subaqueous",
+    "co:property" : "volume",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "delta~subaqueous"
+  }, {
+    "@id" : "co:delta_apex",
+    "co:property" : [ "opening_angle", "longitude", "latitude", "elevation" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_apex"
+  }, {
+    "@id" : "co:delta_apex-to-shoreline",
+    "co:property" : "min_of_distance",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_apex-to-shoreline"
+  }, {
+    "@id" : "co:delta_beds--bottomset_sediment_clay",
+    "co:property" : "volume_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_beds~bottomset_sediment",
+    "skos:prefLabel" : "delta_beds~bottomset_sediment_clay"
+  }, {
+    "@id" : "co:delta_beds--bottomset_sediment_sand",
+    "co:property" : "volume_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_beds~bottomset_sediment",
+    "skos:prefLabel" : "delta_beds~bottomset_sediment_sand"
+  }, {
+    "@id" : "co:delta_beds--bottomset_sediment_silt",
+    "co:property" : "volume_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_beds~bottomset_sediment",
+    "skos:prefLabel" : "delta_beds~bottomset_sediment_silt"
+  }, {
+    "@id" : "co:delta_beds--foreset",
+    "co:property" : "mean_of_slope",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_beds~foreset"
+  }, {
+    "@id" : "co:delta_beds--foreset_sediment_clay",
+    "co:property" : "volume_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_beds~foreset_sediment",
+    "skos:prefLabel" : "delta_beds~foreset_sediment_clay"
+  }, {
+    "@id" : "co:delta_beds--foreset_sediment_sand",
+    "co:property" : "volume_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_beds~foreset_sediment",
+    "skos:prefLabel" : "delta_beds~foreset_sediment_sand"
+  }, {
+    "@id" : "co:delta_beds--foreset_sediment_silt",
+    "co:property" : "volume_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_beds~foreset_sediment",
+    "skos:prefLabel" : "delta_beds~foreset_sediment_silt"
+  }, {
+    "@id" : "co:delta_beds--topset--lower_sediment_silt",
+    "co:property" : "volume_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_beds~topset~lower_sediment",
+    "skos:prefLabel" : "delta_beds~topset~lower_sediment_silt"
+  }, {
+    "@id" : "co:delta_beds--topset--upper_sediment_silt",
+    "co:property" : "volume_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_beds~topset~lower_sedimentf2658c33-2ad2-11b2-80d2-a5ad67d60810",
+    "skos:prefLabel" : "delta_beds~topset~upper_sediment_silt"
+  }, {
+    "@id" : "co:delta_beds--topset_sediment_clay",
+    "co:property" : "volume_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_beds~topset_sediment",
+    "skos:prefLabel" : "delta_beds~topset_sediment_clay"
+  }, {
+    "@id" : "co:delta_beds--topset_sediment_sand",
+    "co:property" : "volume_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_beds~topset_sediment",
+    "skos:prefLabel" : "delta_beds~topset_sediment_sand"
+  }, {
+    "@id" : "co:delta_beds--topset_sediment_silt",
+    "co:property" : "volume_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_beds~topset_sediment",
+    "skos:prefLabel" : "delta_beds~topset_sediment_silt"
+  }, {
+    "@id" : "co:delta_beds~bottomset",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_beds~bottomset"
+  }, {
+    "@id" : "co:delta_beds~bottomset_sediment",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_beds~bottomset",
+    "skos:prefLabel" : "delta_beds~bottomset_sediment"
+  }, {
+    "@id" : "co:delta_beds~foreset_sediment",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_beds--foreset",
+    "skos:prefLabel" : "delta_beds~foreset_sediment"
+  }, {
+    "@id" : "co:delta_beds~topset",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_beds~topset"
+  }, {
+    "@id" : "co:delta_beds~topset_sediment",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_beds~topset",
+    "skos:prefLabel" : "delta_beds~topset_sediment"
+  }, {
+    "@id" : "co:delta_beds~topset~lower",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_beds~topset~lower"
+  }, {
+    "@id" : "co:delta_beds~topset~lower_sediment",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_beds~topset~lower",
+    "skos:prefLabel" : "delta_beds~topset~lower_sediment"
+  }, {
+    "@id" : "co:delta_beds~topset~lower_sedimentf2658c33-2ad2-11b2-80d2-a5ad67d60810",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_beds~topset~lowerf2658c32-2ad2-11b2-80d2-a5ad67d60810",
+    "skos:prefLabel" : "delta_beds~topset~upper_sediment"
+  }, {
+    "@id" : "co:delta_beds~topset~lowerf2658c32-2ad2-11b2-80d2-a5ad67d60810",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_beds~topset~upper"
+  }, {
+    "@id" : "co:delta_channel--main_entrance",
+    "co:property" : [ "width", "mean_depth", "max_of_depth", "elevation_angle_of_inflow_vector", "azimuth_angle_of_inflow_vector" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_channel~main",
+    "skos:prefLabel" : "delta_channel~main_entrance"
+  }, {
+    "@id" : "co:delta_channel--main_entrance_center",
+    "co:property" : [ "longitude", "latitude", "elevation" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_channel--main_entrance",
+    "skos:prefLabel" : "delta_channel~main_entrance_center"
+  }, {
+    "@id" : "co:delta_channel--main_entrance_water_sediment--suspended",
+    "co:property" : [ "volume_concentration", "mass_transport_rate", "mass_flow_rate", "mass_concentration" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_channel~main_entrance_water",
+    "skos:prefLabel" : "delta_channel~main_entrance_water_sediment~suspended"
+  }, {
+    "@id" : "co:delta_channel--main_entrance_water_sediment_clay",
+    "co:property" : "volume_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_channel~main_entrance_water_sediment",
+    "skos:prefLabel" : "delta_channel~main_entrance_water_sediment_clay"
+  }, {
+    "@id" : "co:delta_channel--main_entrance_water_sediment_sand",
+    "co:property" : "volume_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_channel~main_entrance_water_sediment",
+    "skos:prefLabel" : "delta_channel~main_entrance_water_sediment_sand"
+  }, {
+    "@id" : "co:delta_channel--main_entrance_water_sediment_sand_grain",
+    "co:property" : "mean_of_diameter",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_channel--main_entrance_water_sediment_sand",
+    "skos:prefLabel" : "delta_channel~main_entrance_water_sediment_sand_grain"
+  }, {
+    "@id" : "co:delta_channel--main_entrance_water_sediment_silt",
+    "co:property" : "volume_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_channel~main_entrance_water_sediment",
+    "skos:prefLabel" : "delta_channel~main_entrance_water_sediment_silt"
+  }, {
+    "@id" : "co:delta_channel--main_entrance_water_x-section",
+    "co:property" : [ "width-to-depth_ratio", "wetted-perimeter", "wetted-area", "volume_flux", "volume_flow_rate" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_channel~main_entrance_water",
+    "skos:prefLabel" : "delta_channel~main_entrance_water_x-section"
+  }, {
+    "@id" : "co:delta_channel--main_entrance_water_x_section_top",
+    "co:property" : "width",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_channel--main_entrance_water_x-section",
+    "skos:prefLabel" : "delta_channel~main_entrance_water_x-section_top"
+  }, {
+    "@id" : "co:delta_channel--main_entrance_x-section",
+    "co:property" : "area",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_channel--main_entrance",
+    "skos:prefLabel" : "delta_channel~main_entrance_x-section"
+  }, {
+    "@id" : "co:delta_channel--main_entrance_x_section_top",
+    "co:property" : "width",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_channel--main_entrance_x-section",
+    "skos:prefLabel" : "delta_channel~main_entrance_x_section_top"
+  }, {
+    "@id" : "co:delta_channel~main",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_channel~main"
+  }, {
+    "@id" : "co:delta_channel~main_entrance_water",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_channel--main_entrance",
+    "skos:prefLabel" : "delta_channel~main_entrance_water"
+  }, {
+    "@id" : "co:delta_channel~main_entrance_water_sediment",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_channel~main_entrance_water",
+    "skos:prefLabel" : "delta_channel~main_entrance_water_sediment"
+  }, {
+    "@id" : "co:delta_distributary",
+    "co:property" : [ "slope", "length" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_distributary"
+  }, {
+    "@id" : "co:delta_distributary-network",
+    "co:property" : [ "total_length", "drainage_density" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_distributary-network"
+  }, {
+    "@id" : "co:delta_distributary-network_water",
+    "co:property" : "max_of_depth",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_distributary-network",
+    "skos:prefLabel" : "delta_distributary-network_water"
+  }, {
+    "@id" : "co:delta_distributary_outlet",
+    "co:property" : [ "top_width", "count" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_distributary",
+    "skos:prefLabel" : "delta_distributary_outlet"
+  }, {
+    "@id" : "co:delta_distributary_outlet_center",
+    "co:property" : [ "longitude", "latitude", "elevation" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_distributary_outlet",
+    "skos:prefLabel" : "delta_distributary_outlet_center"
+  }, {
+    "@id" : "co:delta_distributary_outlet_side--left",
+    "co:property" : [ "longitude", "latitude", "elevation" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_distributary_outlet",
+    "skos:prefLabel" : "delta_distributary_outlet_side~left"
+  }, {
+    "@id" : "co:delta_distributary_outlet_side--right",
+    "co:property" : [ "longitude", "latitude", "elevation" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_distributary_outlet",
+    "skos:prefLabel" : "delta_distributary_outlet_side~right"
+  }, {
+    "@id" : "co:delta_distributary_outlet_water",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_distributary_outlet",
+    "skos:prefLabel" : "delta_distributary_outlet_water"
+  }, {
+    "@id" : "co:delta_distributary_outlet_water_x-section",
+    "co:property" : [ "volume_flux", "volume_flow_rate", "mean_of_depth" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_distributary_outlet_water",
+    "skos:prefLabel" : "delta_distributary_outlet_water_x-section"
+  }, {
+    "@id" : "co:delta_front",
+    "co:property" : "mean_of_slope",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_front"
+  }, {
+    "@id" : "co:delta_front_sediment",
+    "co:property" : "repose_angle",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_front",
+    "skos:prefLabel" : "delta_front_sediment"
+  }, {
+    "@id" : "co:delta_front_sediment_grain",
+    "co:property" : "mean_diameter",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_front_sediment",
+    "skos:prefLabel" : "delta_front_sediment_grain"
+  }, {
+    "@id" : "co:delta_front_toe",
+    "co:property" : "mean_of_elevation",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_front",
+    "skos:prefLabel" : "delta_front_toe"
+  }, {
+    "@id" : "co:delta_plain--lower",
+    "co:property" : [ "mean_of_slope", "area" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_plain~lower"
+  }, {
+    "@id" : "co:delta_plain--lower-and-upper",
+    "co:property" : "area",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_plain~lower-and-upper"
+  }, {
+    "@id" : "co:delta_plain--subaqueous",
+    "co:property" : [ "mean_of_slope", "area" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_plain~subaqueous"
+  }, {
+    "@id" : "co:delta_plain--subaqueous_plain--total",
+    "co:property" : "area_ratio",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_plain--subaqueous",
+    "skos:prefLabel" : "delta_plain~subaqueous_plain~total"
+  }, {
+    "@id" : "co:delta_plain--total",
+    "co:property" : "area",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_plain~total"
+  }, {
+    "@id" : "co:delta_plain--total_boundary",
+    "co:property" : [ "perimeter", "diameter" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_plain--total",
+    "skos:prefLabel" : "delta_plain~total_boundary"
+  }, {
+    "@id" : "co:delta_plain--upper",
+    "co:property" : [ "mean_of_slope", "area" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_plain~upper"
+  }, {
+    "@id" : "co:delta_plain--upper--farmed",
+    "co:property" : "area_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_plain~upper~farmed"
+  }, {
+    "@id" : "co:delta_plain--upper--residential",
+    "co:property" : "area_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_plain~upper~residential"
+  }, {
+    "@id" : "co:delta_plain--upper--urban",
+    "co:property" : "area_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_plain~upper~urban"
+  }, {
+    "@id" : "co:delta_plain--upper--vegetated",
+    "co:property" : "area_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_plain~upper~vegetated"
+  }, {
+    "@id" : "co:delta_plain--upper_boundary--seaward",
+    "co:property" : "length",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_plain--upper",
+    "skos:prefLabel" : "delta_plain~upper_boundary~seaward"
+  }, {
+    "@id" : "co:delta_plain--upper_vegetation",
+    "co:property" : "mean_of_height",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_plain--upper",
+    "skos:prefLabel" : "delta_plain~upper_vegetation"
+  }, {
+    "@id" : "co:delta_shoreline",
+    "co:property" : [ "progradation_rate", "length" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_shoreline"
+  }, {
+    "@id" : "co:delta_shoreline_sediment",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_shoreline",
+    "skos:prefLabel" : "delta_shoreline_sediment"
+  }, {
+    "@id" : "co:delta_shoreline_sediment_wave--ocean",
+    "co:property" : "reworking_depth",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta_shoreline_sediment",
+    "skos:prefLabel" : "delta_shoreline_sediment_wave~ocean"
+  }, {
+    "@id" : "co:delta_x-section",
+    "co:property" : [ "strike_angle", "dip_angle", "area" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:delta",
+    "skos:prefLabel" : "delta_x-section"
+  }, {
+    "@id" : "co:dihydrogen_molecule_h-h",
+    "co:property" : "bond_length",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "dihydrogen-molecule-h-h"
+  }, {
+    "@id" : "co:dinitrogen_molecule_n-n",
+    "co:property" : "bond_length",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "dinitrogen-molecule-n-n"
+  }, {
+    "@id" : "co:dioxygen_molecule_o-o",
+    "co:property" : "bond_length",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "dioxygen-molecule-o-o"
+  }, {
+    "@id" : "co:earth",
+    "co:property" : [ "bond_albedo", "mean_of_orbital_speed", "geometric_albedo", "sidereal_day", "orbital_energy", "precise_orbital_speed", "rotation_period", "rotation_kinetic_energy", "mean_mass-to-volume_density", "rotation_rate", "solar_zenith_angle", "min_of_orbital_speed", "range_of_elevation", "orbital_period", "solar_azimuth_angle", "standard_gravity_constant", "mass", "volume", "max_of_orbital_speed", "transverse_orbital_speed", "visual_geometric_albedo", "solar_elevation_angle", "rotational_inertia", "solar_irradiation_constant", "solar_constant", "coriolis_frequency", "rotation_angular_speed", "escape_speed", "orbital_speed" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "earth",
+    "related" : [ "co:earth-to-mars", "co:earth-to-sun" ]
+  }, {
+    "@id" : "co:earth-to-mars",
+    "co:property" : "travel_time",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "earth-to-mars",
+    "related" : [ "co:mars", "co:earth" ]
+  }, {
+    "@id" : "co:earth-to-sun",
+    "co:property" : [ "mean_distance", "average_distance" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "earth-to-sun",
+    "related" : "co:earth"
+  }, {
+    "@id" : "co:earth_atmosphere",
+    "co:property" : [ "volume", "thickness" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth",
+    "skos:prefLabel" : "earth_atmosphere"
+  }, {
+    "@id" : "co:earth_axis",
+    "co:property" : [ "tilt_angle", "precession_rate", "precession_period", "nutation_rate", "nutation_period" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth",
+    "skos:prefLabel" : "earth_axis"
+  }, {
+    "@id" : "co:earth_black-body",
+    "co:property" : "temperature",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth",
+    "skos:prefLabel" : "earth_black-body"
+  }, {
+    "@id" : "co:earth_core--inner",
+    "co:property" : "radius",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth",
+    "skos:prefLabel" : "earth_core~inner"
+  }, {
+    "@id" : "co:earth_core--outer",
+    "co:property" : "radius",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth",
+    "skos:prefLabel" : "earth_core~outer"
+  }, {
+    "@id" : "co:earth_core-mantle_boundary",
+    "co:property" : "depth",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth",
+    "skos:prefLabel" : "earth_core-mantle-boundary"
+  }, {
+    "@id" : "co:earth_crust-mantle_boundary",
+    "co:property" : "depth",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth",
+    "skos:prefLabel" : "earth_crust-mantle-boundary"
+  }, {
+    "@id" : "co:earth_datum",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth",
+    "skos:prefLabel" : "earth_datum"
+  }, {
+    "@id" : "co:earth_datum_ellipsoid",
+    "co:property" : [ "third_flattening_ratio", "second_flattening_ratio", "polar_radius", "inverse_of_flattening_ratio", "flattening_ratio", "equatorial_radius", "eccentricity" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_datum",
+    "skos:prefLabel" : "earth_datum_ellipsoid"
+  }, {
+    "@id" : "co:earth_datum_ellipsoid_surface",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_datum_ellipsoid",
+    "skos:prefLabel" : "earth_datum_ellipsoid_surface"
+  }, {
+    "@id" : "co:earth_datum_ellipsoid_surface_point-pair_geodesic",
+    "co:property" : "distance",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_datum_ellipsoid_surface",
+    "skos:prefLabel" : "earth_datum_ellipsoid_surface_geodesic~point-pair"
+  }, {
+    "@id" : "co:earth_day--sidereal",
+    "co:property" : "duration",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth",
+    "skos:prefLabel" : "earth_day~sidereal"
+  }, {
+    "@id" : "co:earth_day--solar-mean",
+    "co:property" : "duration",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth",
+    "skos:prefLabel" : "earth_day~solar-mean"
+  }, {
+    "@id" : "co:earth_day--stellar",
+    "co:property" : "duration",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth",
+    "skos:prefLabel" : "earth_day~stellar"
+  }, {
+    "@id" : "co:earth_equator",
+    "co:property" : [ "circumference", "average_temperature" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth",
+    "skos:prefLabel" : "earth_equator"
+  }, {
+    "@id" : "co:earth_equator_plane-to-sun",
+    "co:property" : "declination_angle",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_equator",
+    "skos:prefLabel" : "earth_equator_plane-to-sun"
+  }, {
+    "@id" : "co:earth_gravity",
+    "co:property" : "escape_speed",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth",
+    "skos:prefLabel" : "earth_gravity"
+  }, {
+    "@id" : "co:earth_human",
+    "co:property" : "carrying_capacity",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth",
+    "skos:prefLabel" : "earth_human"
+  }, {
+    "@id" : "co:earth_interior",
+    "co:property" : "down_z_derivative_of_temperature",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth",
+    "skos:prefLabel" : "earth_interior"
+  }, {
+    "@id" : "co:earth_interior_earthquake",
+    "co:property" : [ "modified_omori_law_p_parameter", "magnitude_of_moment_tensor", "rupture_speed", "count", "modified_omori_law_k_parameter", "modified_omori_law_c_parameter", "richter_magnitude", "south_south_component_of_moment_tensor", "east_up_component_of_moment_tensor", "drop_of_static_stress", "seismic_moment_energy", "critical_slip_distance", "north_component_of_slip-vector", "duration", "up_south_component_of_moment_tensor", "up_up_component_of_moment_tensor", "south_east_component_of_moment_tensor", "release_energy", "origin_time", "slip_distance", "slip_duration", "drop_of_dynamic_stress", "modified_mercali_intensity", "slip_angle", "slip_speed", "radiated_seismic_energy", "moment_tensor", "moment_magnitude", "gutenberg-richter_law_a_parameter", "gutenberg-richter_law_b_parameter", "east_component_of_slip-vector", "east_east_component_of_moment_tensor" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_interior",
+    "skos:prefLabel" : "earth_interior_earthquake"
+  }, {
+    "@id" : "co:earth_interior_earthquake_fault",
+    "co:property" : "length",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_interior_earthquake",
+    "skos:prefLabel" : "earth_interior_earthquake_fault"
+  }, {
+    "@id" : "co:earth_interior_earthquake_fault_plane",
+    "co:property" : [ "width", "strike_angle", "rupture_length", "slip-rake_angle", "dip_angle", "rupture_area", "rupture_time", "rupture_width", "length", "rake_angle" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_interior_earthquake_fault",
+    "skos:prefLabel" : "earth_interior_earthquake_fault_plane"
+  }, {
+    "@id" : "co:earth_interior_earthquake_fault_plane_asperity",
+    "co:property" : "contact_area",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_interior_earthquake_fault_plane",
+    "skos:prefLabel" : "earth_interior_earthquake_fault_plane_asperity"
+  }, {
+    "@id" : "co:earth_interior_earthquake_focus",
+    "co:property" : [ "latitude", "longitude", "depth" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_interior_earthquake",
+    "skos:definition" : "The point on the fault at which the first movement or break occurred, located directly beneath the epicenter at 1-50 km depth.",
+    "skos:prefLabel" : "earth_interior_earthquake_focus"
+  }, {
+    "@id" : "co:earth_interior_earthquake_hypocenter",
+    "co:property" : [ "longitude", "latitude", "depth" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_interior_earthquake",
+    "skos:prefLabel" : "earth_interior_earthquake_hypocenter"
+  }, {
+    "@id" : "co:earth_interior_earthquake_hypocenter-to-station",
+    "co:property" : "distance",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_interior_earthquake",
+    "skos:prefLabel" : "earth_interior_earthquake_hypocenter-to-station"
+  }, {
+    "@id" : "co:earth_interior_earthquake_wave--p",
+    "co:property" : [ "love_wave_group_velocity", "p_scalar_potential", "rayleigh_wave_phase_velocity", "love_wave_phase_velocity", "arrival_time", "rayleigh_wave_group_velocity", {
+      "@language" : "en",
+      "@value" : "name"
+    }, "s_scalar_potential" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_interior",
+    "skos:prefLabel" : "earth_interior_seismic-wave"
+  }, {
+    "@id" : "co:earth_interior_earthquake_wave--s",
+    "co:property" : [ "acceleration", "displacement", "count", "static_displacement", "modified_mercalli_intensity", "velocity" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_interior_particle",
+    "skos:prefLabel" : "earth_interior_particle_motion"
+  }, {
+    "@id" : "co:earth_interior_particle",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_interior",
+    "skos:prefLabel" : "earth_interior_particle"
+  }, {
+    "@id" : "co:earth_lithosphere-asthenosphere_boundary",
+    "co:property" : "depth",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth",
+    "skos:prefLabel" : "earth_lithosphere-asthenosphere-boundary~seismic"
+  }, {
+    "@id" : "co:earth_mantle",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth",
+    "skos:prefLabel" : "earth_mantle"
+  }, {
+    "@id" : "co:earth_mantle_material_flow",
+    "co:property" : [ "x_component_of_velocity", "z_component_of_velocity", "y_component_of_velocity" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_material",
+    "skos:prefLabel" : "earth_mantle_material_flow"
+  }, {
+    "@id" : "co:earth_material",
+    "co:property" : [ "poisson_ratio", "young_modulus", "lame_first_parameter", "shear_modulus", "viscosity", "electrical_conductivity", "bulk_modulus", "partial_melt_fraction", "inverse_of_s-wave_velocity", "carbonatite_melt_fraction", "sh-wave_velocity", "domain_min_of_power_law_viscosity_value", "sv-wave_velocity", "power_law_viscosity_exponent", "thermal_conductivity", "lame_parameters_lambda", "second_invariant_of_deviatoric_stress", "power_law_viscosity_activation_energy", "second_invariant_of_deviatoric_strain_rate", "oxygen_fugacity", "p-wave_velocity_over_s-wave_velocity_ratio", "isothermal_compressibility_reference_temperature", "temperature", "constant_volume_thermal_capacity", "isothermal_compressibility", "inverse_of_electrical_conductivity", "p-wave_velocity", "second_invariant_of_deviatoric_plastic_strain", "power_law_viscosity_reference_value", "pressure", "inverse_of_p-wave_velocity", "density", "water_content", "constant_pressure_thermal_capacity", "domain_max_of_power_law_viscosity_value", "power_law_viscosity_value", "power_law_viscosity_reference_temperature", "temperature_derivative_of_isothermal_incompressibility", "log10_of_electrical_conductivity", "log10_of_viscosity", "thermal_expansion_coefficient" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_mantle",
+    "skos:prefLabel" : "earth_mantle_material"
+  }, {
+    "@id" : "co:earth_material_mineral-phase",
+    "co:property" : [ "water_content", "crystal_lattice_structure", {
+      "@language" : "en",
+      "@value" : "equation-of-state"
+    }, {
+      "@language" : "en",
+      "@value" : "chemical_composition"
+    }, "water_solubility", "internal_code_index", "carbonatite_melt_fraction", {
+      "@language" : "en",
+      "@value" : "physical_state"
+    }, "partial_melt_fraction", "water_solubility_in_melt", {
+      "@language" : "en",
+      "@value" : "name"
+    }, "proportion", "oxygen_fugacity" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_material",
+    "skos:prefLabel" : "earth_mantle_material_mineral-phase"
+  }, {
+    "@id" : "co:earth_material_mohr-coulomb-plastic",
+    "co:property" : [ "strain", "friction_angle", "cutoff_tension_stress", "cohesion_yield_stress", "dilation_angle" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_material",
+    "skos:prefLabel" : "earth_mantle_material_mohr-coulomb-plastic"
+  }, {
+    "@id" : "co:earth_orbit",
+    "co:property" : [ "perihelion_distance", "eccentricity", "aphelion_distance" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "earth-orbit"
+  }, {
+    "@id" : "co:earth_orbit_aphelion",
+    "co:property" : "distance",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_orbit",
+    "skos:prefLabel" : "earth-orbit_aphelion"
+  }, {
+    "@id" : "co:earth_orbit_ellipse",
+    "co:property" : "eccentricity",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_orbit",
+    "skos:prefLabel" : "earth-orbit_ellipse"
+  }, {
+    "@id" : "co:earth_orbit_ellipse_axis--semi-major",
+    "co:property" : "length",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_orbit_ellipse",
+    "skos:prefLabel" : "earth-orbit_ellipse_axis~semi-major"
+  }, {
+    "@id" : "co:earth_orbit_ellipse_axis--semi-minor",
+    "co:property" : "length",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_orbit_ellipse",
+    "skos:prefLabel" : "earth-orbit_ellipse_axis~semi-minor"
+  }, {
+    "@id" : "co:earth_orbit_ellipse_foci",
+    "co:property" : "separation_distance",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_orbit_ellipse",
+    "skos:prefLabel" : "earth-orbit_ellipse_foci"
+  }, {
+    "@id" : "co:earth_pole--north--magnetic",
+    "co:property" : [ "longitude", "latitude" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth",
+    "skos:prefLabel" : "earth_pole~north~magnetic"
+  }, {
+    "@id" : "co:earth_pole--south--magnetic",
+    "co:property" : [ "longitude", "latitude" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth",
+    "skos:prefLabel" : "earth_pole~south~magnetic"
+  }, {
+    "@id" : "co:earth_surface",
+    "co:property" : [ "range_of_diurnal_temperature", "average_temperature" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth",
+    "skos:prefLabel" : "earth_surface"
+  }, {
+    "@id" : "co:earth_surface_earthquake_epicenter",
+    "co:property" : [ "longitude", "latitude", "elevation" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface",
+    "skos:prefLabel" : "earth_surface_earthquake-epicenter"
+  }, {
+    "@id" : "co:earth_surface_earthquake_wave--p_station",
+    "co:property" : [ "s-wave_travel_time", "latitude", "network", {
+      "@language" : "en",
+      "@value" : "name"
+    }, "p-wave_arrival_time", "elevation", "p-wave_travel_time", "s-wave_arrival_time", "longitude" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface",
+    "skos:prefLabel" : "earth_surface_station~seismic"
+  }, {
+    "@id" : "co:earth_surface_land",
+    "co:property" : "area_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface",
+    "skos:prefLabel" : "earth_surface_land"
+  }, {
+    "@id" : "co:earth_surface_ocean",
+    "co:property" : "area_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface",
+    "skos:prefLabel" : "earth_surface_ocean"
+  }, {
+    "@id" : "co:earth_surface_radiation--incoming--longwave",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface",
+    "skos:prefLabel" : "earth_surface_radiation~incoming~longwave"
+  }, {
+    "@id" : "co:earth_surface_radiation--incoming--shortwave",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface",
+    "skos:prefLabel" : "earth_surface_radiation~incoming~shortwave"
+  }, {
+    "@id" : "co:earth_surface_radiation--incoming--total",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface",
+    "skos:prefLabel" : "earth_surface_radiation~incoming~total"
+  }, {
+    "@id" : "co:earth_surface_radiation--incoming--visible",
+    "co:property" : "energy_flux",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface",
+    "skos:prefLabel" : "earth_surface_radiation~incoming~visible"
+  }, {
+    "@id" : "co:earth_surface_station--seismic",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface_earthquake_wave--p_station",
+    "skos:prefLabel" : "earth_surface_station~seismic_component"
+  }, {
+    "@id" : "co:earth_surface_station~seismic_data-acquisition-system",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface_earthquake_wave--p_station",
+    "skos:prefLabel" : "earth_surface_station~seismic_data-acquisition-system"
+  }, {
+    "@id" : "co:earth_surface_station~seismic_data-stream",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface_earthquake_wave--p_station",
+    "skos:prefLabel" : "earth_surface_station~seismic_data-stream"
+  }, {
+    "@id" : "co:earth_surface_station~seismic_instrument-response",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface_earthquake_wave--p_station",
+    "skos:prefLabel" : "earth_surface_station~seismic_instrument-response"
+  }, {
+    "@id" : "co:earth_surface_viewpoint",
+    "co:property" : [ "solar_noon_time", "longitude", "latitude", "elevation" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface",
+    "skos:prefLabel" : "earth_surface_viewpoint"
+  }, {
+    "@id" : "co:earth_surface_viewpoint_jupiter",
+    "co:property" : [ "subtended_angle", "set_time", "rise_time", "apparent_magnitude" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface_viewpoint",
+    "skos:prefLabel" : "earth_surface_viewpoint_jupiter"
+  }, {
+    "@id" : "co:earth_surface_viewpoint_mars",
+    "co:property" : [ "subtended_angle", "set_time", "rise_time", "apparent_magnitude" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface_viewpoint",
+    "skos:prefLabel" : "earth_surface_viewpoint_mars"
+  }, {
+    "@id" : "co:earth_surface_viewpoint_mercury",
+    "co:property" : [ "subtended_angle", "set_time", "rise_time", "apparent_magnitude" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface_viewpoint",
+    "skos:prefLabel" : "earth_surface_viewpoint_mercury"
+  }, {
+    "@id" : "co:earth_surface_viewpoint_moon",
+    "co:property" : [ "subtended_angle", "set_time", "rise_time", "apparent_magnitude" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface_viewpoint",
+    "skos:prefLabel" : "earth_surface_viewpoint_moon"
+  }, {
+    "@id" : "co:earth_surface_viewpoint_neptune",
+    "co:property" : [ "subtended_angle", "set_time", "rise_time", "apparent_magnitude" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface_viewpoint",
+    "skos:prefLabel" : "earth_surface_viewpoint_neptune"
+  }, {
+    "@id" : "co:earth_surface_viewpoint_saturn",
+    "co:property" : [ "subtended_angle", "set_time", "rise_time", "apparent_magnitude" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface_viewpoint",
+    "skos:prefLabel" : "earth_surface_viewpoint_saturn"
+  }, {
+    "@id" : "co:earth_surface_viewpoint_sun",
+    "co:property" : [ "zenith_angle", "subtended_angle", "set_time", "rise_time", "elevation_angle", "azimuth_angle", "apparent_magnitude" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface_viewpoint",
+    "skos:prefLabel" : "earth_surface_viewpoint_sun"
+  }, {
+    "@id" : "co:earth_surface_viewpoint_uranus",
+    "co:property" : [ "subtended_angle", "set_time", "rise_time", "apparent_magnitude" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface_viewpoint",
+    "skos:prefLabel" : "earth_surface_viewpoint_uranus"
+  }, {
+    "@id" : "co:earth_surface_viewpoint_venus",
+    "co:property" : [ "subtended_angle", "set_time", "rise_time", "apparent_magnitude" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface_viewpoint",
+    "skos:prefLabel" : "earth_surface_viewpoint_venus"
+  }, {
+    "@id" : "co:earth_surface_water",
+    "co:property" : "area_fraction",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface",
+    "skos:prefLabel" : "earth_surface_water"
+  }, {
+    "@id" : "co:earth_surface_wind",
+    "co:property" : "range_of_speed",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:earth_surface",
+    "skos:prefLabel" : "earth_surface_wind"
+  }, {
+    "@id" : "co:ecosystem",
+    "co:property" : "diversity_index",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "ecosystem"
+  }, {
+    "@id" : "co:electron",
+    "co:property" : [ "electric_charge", "rest_mass", "relativistic_mass", "compton_wavelength", "mass-to-charge_ratio", "charge-to-mass_ratio", "drift_speed", "x_component_of_drift_velocity", "y_component_of_drift_velocity" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "electron"
+  }, {
+    "@id" : "co:model",
+    "co:property" : [ "stop_time", "initial_time_step", "start_time", "spinup_time", "time", "max_allowed_time_step", "time_step", "time_step_count", "run_time", "min_allowed_time_step", "courant_number" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:prefLabel" : "model"
+  }, {
+    "@id" : "co:model_grid",
+    "co:property" : [ "dual_node_x-count", "row_count", "primary_node_x-count", "dual_node_z-count", "column_count", "average_node_distance", "primary_node_z-count", "primary_node_y-count", "cell_count", "dual_node_y-count", "shell_count" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:model",
+    "skos:prefLabel" : "model_grid"
+  }, {
+    "@id" : "co:model_grid_axis--x_axis--east",
+    "co:property" : "rotation_angle",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:model_grid_axis~x",
+    "skos:prefLabel" : "model_grid_axis~x_axis~east"
+  }, {
+    "@id" : "co:model_grid_axis~x",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:model_grid",
+    "skos:prefLabel" : "model_grid_axis~x"
+  }, {
+    "@id" : "co:model_grid_cell",
+    "co:property" : [ "perimeter", "d_infinity_total_contributing_area", "area", "d_infinity_slope", "diameter", "row-major-offset_index", "d8_flow_width", "row_index", "d8_flow_length", "column_index", "d8_total_contributing_area", "d8_slope", "total_contributing_area", "surface_area", "volume", "depth_index" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:model_grid",
+    "skos:definition" : "Property \"volume\" to be used for 3d model cells. <br />Property \"area\" to be used for 2d model cells.<br /><br />Perhaps decomposition into model_grid_cell~3d~primary and model_grid_cell~2d~primary is warranted. Discuss.",
+    "skos:prefLabel" : "model_grid_cell~primary",
+    "related" : "co:Concept_3"
+  }, {
+    "@id" : "co:model_grid_cell_water",
+    "co:property" : [ "time_derivative_of_volume", "azimuth_angle_of_velocity" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:definition" : "Used to be: model_grid_cell_water. However, water isn't a property of grid cells. Instead, to define this for grid cells, use assumptions \"Location on the Grid\", and the association with a named Grid.",
+    "skos:prefLabel" : "sea_water_flow"
+  }, {
+    "@id" : "co:model_grid_cell_water--outgoing",
+    "co:property" : [ "outgoing_volume_flow_rate", "incoming_volume_flow_rate" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "skos:definition" : "Used to be denoted by&nbsp;model_grid_cell_water~incoming and&nbsp;model_grid_cell_water~outgoing. <span>However, water isn't a property of grid cells. Instead, to define this for grid cells, use assumptions \"Location on the Grid\", and the association with a named Grid.</span>",
+    "skos:prefLabel" : "sea_water"
+  }, {
+    "@id" : "co:model_grid_cell~primary_edge",
+    "co:property" : "length",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:Concept_3",
+    "skos:prefLabel" : "model_grid_cell~dual_edge"
+  }, {
+    "@id" : "co:model_grid_cell~primary_edgef2658c2a-2ad2-11b2-80d2-a5ad67d60810",
+    "co:property" : "area",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:Concept_3",
+    "skos:prefLabel" : "model_grid_cell~dual_face"
+  }, {
+    "@id" : "co:model_grid_cell~primary_edgef2658c2a-2ad2-11b2-80d2-a5ad67d60810f2658c2c-2ad2-11b2-80d2-a5ad67d60810",
+    "co:property" : "area",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:model_grid_cell",
+    "skos:prefLabel" : "model_grid_cell~primary_face"
+  }, {
+    "@id" : "co:model_grid_cell~primary_edgef2658c2f-2ad2-11b2-80d2-a5ad67d60810",
+    "co:property" : "length",
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:model_grid_cell",
+    "skos:prefLabel" : "model_grid_cell~primary_edge"
+  }, {
+    "@id" : "co:model_grid_dual-node",
+    "co:property" : [ "longitude", "z_component_of_velocity", "x_coordinate", "z_coordinate", "y_component_of_velocity", "virtual_longitude", "depth", "y_coordinate", "x_component_of_velocity", "virtual_latitude", "latitude" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:model_grid",
+    "skos:prefLabel" : "model_grid_node~dual"
+  }, {
+    "@id" : "co:model_grid_node",
+    "co:property" : [ "z_component_of_velocity", "depth", "z_coordinate", "y_component_of_velocity", "longitude", "virtual_longitude", "y_coordinate", "x_component_of_velocity", "x_coordinate", "latitude", "virtual_latitude" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:model_grid",
+    "skos:prefLabel" : "model_grid_node~primary"
+  }, {
+    "@id" : "co:model_grid_shell",
+    "co:property" : [ "depth_to_bottom", "depth_to_top", "index" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:model_grid",
+    "skos:prefLabel" : "model_grid_shell"
+  }, {
+    "@id" : "co:model_grid_virtual-north-pole",
+    "co:property" : [ "latitude", "longitude", "azimuth_angle" ],
+    "rdf:type" : {
+      "@id" : "skos:Concept"
+    },
+    "broader" : "co:model_grid",
+    "skos:prefLabel" : "model_grid_virtual-north-pole"
+  }, {
+    "@id" : "urn:x-evn-master:CEOAS_names",
+    "spin:imports" : {
+      "@id" : "http://topbraid.org/spin/evnconstraints"
+    },
+    "status" : "metadata:UnderDevelopmentStatus",
+    "http://topbraid.org/swa#defaultNamespace" : "http://geosoft-earthcube.org/ontology/software-geo/",
+    "rdf:type" : [ {
+      "@id" : "teamwork:Vocabulary"
+    }, {
+      "@id" : "http://evn.topbraidlive.org/evnprojects#Taxonomy"
+    }, {
+      "@id" : "owl:Ontology"
+    } ],
+    "rdfs:comment" : "Imported by Bob DuCharme at TopQuadrant.\n\nBased on http://csdms.colorado.edu/wiki/CSN_Searchable_List.",
+    "rdfs:label" : "CSDMS Standard Names",
+    "imports" : [ "http://www.w3.org/2004/02/skos/core", "http://spinrdf.org/spl" ]
+  } ],
+  "@context" : {
+    "property" : {
+      "@id" : "http://geosoft-earthcube.org/ontology/software-geo/property",
+      "@type" : "@id"
+    },
+    "prefLabel" : {
+      "@id" : "http://www.w3.org/2004/02/skos/core#prefLabel",
+      "@type" : "@id"
+    },
+    "related" : {
+      "@id" : "http://www.w3.org/2004/02/skos/core#related",
+      "@type" : "@id"
+    },
+    "range" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#range",
+      "@type" : "@id"
+    },
+    "label" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#label",
+      "@type" : "@id"
+    },
+    "domain" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#domain",
+      "@type" : "@id"
+    },
+    "imports" : {
+      "@id" : "http://www.w3.org/2002/07/owl#imports",
+      "@type" : "@id"
+    },
+    "defaultNamespace" : {
+      "@id" : "http://topbraid.org/swa#defaultNamespace",
+      "@type" : "@id"
+    },
+    "comment" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#comment",
+      "@type" : "@id"
+    },
+    "status" : {
+      "@id" : "http://topbraid.org/metadata#status",
+      "@type" : "@id"
+    },
+    "hasTopConcept" : {
+      "@id" : "http://www.w3.org/2004/02/skos/core#hasTopConcept",
+      "@type" : "@id"
+    },
+    "broader" : {
+      "@id" : "http://www.w3.org/2004/02/skos/core#broader",
+      "@type" : "@id"
+    },
+    "definition" : {
+      "@id" : "http://www.w3.org/2004/02/skos/core#definition",
+      "@type" : "@id"
+    },
+    "altLabel" : {
+      "@id" : "http://www.w3.org/2004/02/skos/core#altLabel",
+      "@type" : "@id"
+    },
+    "Animals" : "urn:x-evn-master:Animals#",
+    "Products" : "urn:x-evn-master:Products#",
+    "test" : "urn:x-evn-master:test#",
+    "teamwork" : "http://topbraid.org/teamwork#",
+    "test1" : "urn:x-evn-master:test1#",
+    "test1u" : "urn:x-evn-master:test1u#",
+    "mayo_test_2" : "urn:x-evn-master:mayo_test_2#",
+    "demo_combo" : "urn:x-evn-master:demo_combo#",
+    "Assumption_Standard_Names" : "urn:x-evn-master:Assumption_Standard_Names#",
+    "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "WHO_Essential_Medicines" : "urn:x-evn-master:WHO_Essential_Medicines#",
+    "CEOAS_objects" : "urn:x-evn-master:CEOAS_objects#",
+    "metadata" : "http://topbraid.org/metadata#",
+    "EMI_Categories" : "urn:x-evn-master:EMI_Categories#",
+    "Science_Domain_Standard_Names" : "urn:x-evn-master:Science_Domain_Standard_Names#",
+    "Telclass_excerpt" : "urn:x-evn-master:Telclass_excerpt#",
+    "EMI_prototype_ontology" : "urn:x-evn-master:EMI_prototype_ontology#",
+    "templates" : "urn:x-evn-master:templates#",
+    "MH_Jet_Fuel_Data" : "urn:x-evn-master:MH_Jet_Fuel_Data#",
+    "Telclass_except_plus_Portal_vocabularies" : "urn:x-evn-master:Telclass_except_plus_Portal_vocabularies#",
+    "test2" : "urn:x-evn-master:test2#",
+    "jan4test1" : "urn:x-evn-master:jan4test1#",
+    "test3" : "urn:x-evn-master:test3#",
+    "co" : "http://geosoft-earthcube.org/ontology/software-geo/",
+    "Portal_Vocabularies" : "urn:x-evn-master:Portal_Vocabularies#",
+    "multiple_concept_schemes" : "urn:x-evn-master:multiple_concept_schemes#",
+    "pizza" : "urn:x-evn-master:pizza#",
+    "owl" : "http://www.w3.org/2002/07/owl#",
+    "feb4test1" : "urn:x-evn-master:feb4test1#",
+    "MH_Tuesday" : "urn:x-evn-master:MH_Tuesday#",
+    "Ontosoft" : "urn:x-evn-master:Ontosoft#",
+    "CSDMS_v0_8_0" : "urn:x-evn-master:CSDMS_v0_8_0#",
+    "Tagged_videos" : "urn:x-evn-master:Tagged_videos#",
+    "access_test_component_1" : "urn:x-evn-master:access_test_component_1#",
+    "EMI_prototype" : "urn:x-evn-master:EMI_prototype#",
+    "imported" : "http://topbraid.org/imported#",
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "test1friday" : "urn:x-evn-master:test1friday#",
+    "test_tag_set" : "urn:x-evn-master:test_tag_set#",
+    "spin" : "http://spinrdf.org/spin#",
+    "test1_mar7" : "urn:x-evn-master:test1_mar7#",
+    "QUDT" : "urn:x-evn-master:QUDT#",
+    "pizza_1" : "urn:x-evn-master:pizza_1#",
+    "wem" : "urn:x-evn-master:WHO_Essential_Medicines#",
+    "lexicon" : "http://data.jpmchase.net/cib/2013/02/01/adim/lexicon#",
+    "friday_test_2a" : "urn:x-evn-master:friday_test_2a#",
+    "Airports" : "urn:x-evn-master:Airports#",
+    "MH_test_1" : "urn:x-evn-master:MH_test_1#",
+    "Test_Taxonomy" : "urn:x-evn-master:Test_Taxonomy#",
+    "WHO_Essential_Medicines_1" : "urn:x-evn-master:WHO_Essential_Medicines_1#",
+    "xls_import_test_1" : "urn:x-evn-master:xls_import_test_1#",
+    "xls_import_test_2" : "urn:x-evn-master:xls_import_test_2#",
+    "CEOAS_names" : "urn:x-evn-master:CEOAS_names#",
+    "Airport_codes" : "urn:x-evn-master:Airport_codes#",
+    "jf" : "http://topbraid.org/demos/mh/jetfuel/",
+    "CSDMS" : "urn:x-evn-master:CSDMS#",
+    "crosswalk_demo" : "urn:x-evn-master:crosswalk_demo#",
+    "xsd" : "http://www.w3.org/2001/XMLSchema#",
+    "Bob_s_Pizza_Ontology" : "urn:x-evn-master:Bob_s_Pizza_Ontology#",
+    "mapping_demo" : "urn:x-evn-master:mapping_demo#",
+    "skos" : "http://www.w3.org/2004/02/skos/core#",
+    "access_test_aggregate" : "urn:x-evn-master:access_test_aggregate#"
+  }
+}

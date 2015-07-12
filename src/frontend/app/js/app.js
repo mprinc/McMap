@@ -12,6 +12,9 @@ angular.module('McModelarApp',[
 	, 'ui.bootstrap' // UI-bootstrap
 	, 'btford.socket-io'
 
+	, 'collaboPluginsServices'
+	, 'collaboPluginsDirectives'
+
 	, 'mcmMapDirectives' // KnAllEdge Map component
 	, 'mcmMapServices'
 	, 'knalledgeMapDirectives' // KnAllEdge Map component
@@ -26,6 +29,7 @@ angular.module('McModelarApp',[
 
 	, 'topiChatServices'
 	, 'topiChatDirectives'
+
 ])
 // routes
 .config(['$routeProvider', function($routeProvider) {
@@ -46,6 +50,11 @@ angular.module('McModelarApp',[
 		redirectTo: '/maps'
 	});
 }])
+
+.config(["TopiChatServiceProvider", function(TopiChatServiceProvider) {
+  TopiChatServiceProvider.setActive(false);
+}]);
+
 
 // Disabling Debug Data
 // https://docs.angularjs.org/guide/production#disabling-debug-data

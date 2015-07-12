@@ -303,7 +303,8 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "containsModel",
 				name: "containsModel",
 				type: "containsModel",
-				icon: "Model Component",
+				icon: "MC",
+				description: "Model Component",
 				object: "model_component",
 				objects: "model_components"
 			},
@@ -311,7 +312,8 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "containsGridDesc",
 				name: "containsGridDesc",
 				type: "containsGridDesc",
-				icon: "Grid Desc",
+				icon: "GD",
+				description: "Grid Desc",
 				object: "grid_desc",
 				objects: "grids" // grid_descs
 			},
@@ -319,7 +321,8 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "containsGrid",
 				name: "containsGrid",
 				type: "containsGrid",
-				icon: "Grid",
+				icon: "GR",
+				description: "Grid",
 				object: "grid",
 				objects: "grids"
 			},
@@ -327,7 +330,8 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "containsObject",
 				name: "containsObject",
 				type: "containsObject",
-				icon: "Object",
+				icon: "OB",
+				description: "Object",
 				object: "object",
 				objects: "objects"
 			},
@@ -335,7 +339,8 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "containsProcess",
 				name: "containsProcess",
 				type: "containsProcess",
-				icon: "Process",
+				icon: "PR",
+				description: "Process",
 				object: "process",
 				objects: "processes"
 			},
@@ -343,7 +348,8 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "containsVariableIn",
 				name: "containsVariableIn",
 				type: "containsVariableIn",
-				icon: "Input Variable",
+				icon: "IV",
+				description: "Input Variable",
 				object: "variable",
 				objects: "input" // in-vars
 			},
@@ -351,7 +357,8 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "containsVariableOut",
 				name: "containsVariableOut",
 				type: "containsVariableOut",
-				icon: "Output Variable",
+				icon: "OV",
+				description: "Output Variable",
 				object: "variable",
 				objects: "output" // out-vars
 			},
@@ -359,7 +366,8 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "containsVariableHV",
 				name: "containsVariableHV",
 				type: "containsVariableHV",
-				icon: "Static Variable",
+				icon: "SV",
+				description: "Static Variable",
 				object: "variable",
 				objects: "static" // hp-vars
 			},
@@ -367,7 +375,8 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "containsVariableCP",
 				name: "containsVariableCP",
 				type: "containsVariableCP",
-				icon: "Configuration Parameter",
+				icon: "CP",
+				description: "Configuration Parameter",
 				object: "variable",
 				objects: "config" // cp-vars
 			},
@@ -375,7 +384,8 @@ mcmMapServices.provider('McmMapSchemaService', {
 				id: "containsAssumption",
 				name: "containsAssumption",
 				type: "containsAssumption",
-				icon: "Assumption",
+				icon: "AS",
+				description: "Assumption",
 				object: "assumption",
 				objects: "assumptions"
 			}
@@ -420,12 +430,13 @@ mcmMapServices.provider('McmMapSchemaService', {
 
 mcmMapServices.provider('McmMapAssumptionService', {
 	// privateData: "privatno",
-	$get: ['$q', /*'$rootScope', */ 'ENV',
-	function($q, /*$rootScope*/ ENV) {
+	$get: ['$q', /*'$rootScope', */ 'ENV', 'KnalledgeMapVOsService', 'KnalledgeMapService',
+	function($q, /*$rootScope*/ ENV, KnalledgeMapVOsService, KnalledgeMapService) {
 		var itemsData = null;
 		var itemsLoaded = false;
 		var itemCategoriesAll = {};
 		var itemsDescs = [];
+		var mapAssumptions = null;
 
 		// for testing
 		itemsDescs = [
@@ -439,9 +450,40 @@ mcmMapServices.provider('McmMapAssumptionService', {
 				name: "assumption_3"
 			}
 		];
-		// itemsDescs = [];
 
-		var queryItems = function(){
+		var queryItemsDb = function(){
+			var data = {};
+			data.$resolved = false;
+			data.$promise = $q(function(resolve, reject) { /*jshint unused:false*/
+				var gotMap = function(map){
+					console.log('gotMap:'+JSON.stringify(map));
+					// window.alert("[McmMapAssumptionService:queryItems] Assumptions map is loaded, processing");
+					KnalledgeMapVOsService.loadData(map).$promise.then(function(result){ //broadcasts 'modelLoadedEvent'
+						for(var id in result){
+							data[id] = result[id];
+						}
+						data.$resolved = true;
+						resolve(data);
+					});
+				};
+
+				KnalledgeMapService.queryByType("assumptions").$promise.then(function(maps){
+					console.log("[McmMapAssumptionService:queryItems] maps (%d): %s", maps.length, JSON.stringify(maps));
+					if(maps.length <= 0){
+						window.alert("[McmMapAssumptionService:queryItems] Error: There is no map of 'assumptions' type created")
+					}else{
+						mapAssumptions = maps[0];
+
+						var mapId = mapAssumptions._id;
+						console.info("[McmMapAssumptionService:queryItems] loading assumptions map: mapId: " + mapId);
+						KnalledgeMapService.getById(mapId).$promise.then(gotMap);
+					}
+				});
+			});
+			return data;
+		};
+
+		var queryItemsJsonld = function(){
 			var data = [];
 			data.$promise = null;
 			data.$resolved = false;
@@ -462,9 +504,80 @@ mcmMapServices.provider('McmMapAssumptionService', {
 			return data;
 		};
 
-		itemsData = queryItems();
+		var parseDb = function(itemsData){
+			itemsDescs.length = 0;
+			// TODO: taken from knalledgeMap/services.js
+			// we need to extract it into a separate map accessor class
+			var dataNodes = itemsData[0];
+			var dataEdges = itemsData[1];
 
-		itemsData.$promise.then(function(itemsData){
+			var getNodesOfType = function(kNodeType){
+				var nodes = [];
+				for(var j in dataNodes){
+					var kNode = dataNodes[j];
+					if(kNode.type == kNodeType){
+						nodes.push(kNode);
+					}
+				}
+				return nodes;
+			};
+
+			var getChildrenNodes = function(kNode, edgeType){
+				var children = [];
+				for(var i in dataEdges){
+					var kEdge = dataEdges[i];
+					if(kEdge.sourceId == kNode._id && ((typeof edgeType === 'undefined') || kEdge.type == edgeType)){
+						for(var j in dataNodes){
+							var kNodeChild = dataNodes[j];
+							if(kNodeChild._id == kEdge.targetId){
+								children.push(kNodeChild);
+							}
+						}
+					}
+				}
+				return children;
+			};
+
+			var categories = getNodesOfType("assumptionCategory");
+			for(var i=0; i<categories.length; i++){
+				var category = categories[i];
+				var itemCategory = category.name;
+
+				if(!(itemCategory in itemCategoriesAll)){
+					itemCategoriesAll[itemCategory] = {
+						name: itemCategory,
+						kNode: category,
+						items: []
+					}
+				}
+
+				var assumptions = getChildrenNodes(category, "containsAssumption");
+
+				for(var j=0; j<assumptions.length; j++){
+					var assumption = assumptions[j];
+
+					var itemForExport = {};
+					itemForExport.id = assumption.dataContent.mcm.id;
+					itemForExport.name = assumption.name;
+					itemForExport.category = category.name;
+
+					itemsDescs.push(itemForExport);
+					itemCategoriesAll[itemCategory].items.push(itemForExport);
+				}
+			}
+
+			function SortByCategoryAndName(a, b){
+				var aName = (a.category + a.name).toLowerCase();
+				var bName = (b.category + b.name).toLowerCase(); 
+				return ((aName < bName) ? -1 : ((aName > bName) ? 1 : 0));
+			}
+
+			itemsDescs.sort(SortByCategoryAndName);
+
+			itemsLoaded = true;
+		};
+
+		var parseJsonld = function(itemsData){
 			itemsDescs.length = 0;
 
 			var rdfTypesAll = {};
@@ -525,13 +638,6 @@ mcmMapServices.provider('McmMapAssumptionService', {
 				}
 			}
 
-			function SortByCategoryAndName(a, b){
-				var aName = (a.category + a.name).toLowerCase();
-				var bName = (b.category + b.name).toLowerCase(); 
-				return ((aName < bName) ? -1 : ((aName > bName) ? 1 : 0));
-			}
-
-			itemsDescs.sort(SortByCategoryAndName);
 
 			console.log("[McmMapAssumptionService] rdfTypesAll.length: %s", Object.keys(rdfTypesAll).length);
 			for(var i in rdfTypesAll){
@@ -541,11 +647,79 @@ mcmMapServices.provider('McmMapAssumptionService', {
 			for(var i in itemCategoriesAll){
 				console.log("\t%s: %d", i, itemCategoriesAll[i]);				
 			}
+
+			function SortByCategoryAndName(a, b){
+				var aName = (a.category + a.name).toLowerCase();
+				var bName = (b.category + b.name).toLowerCase(); 
+				return ((aName < bName) ? -1 : ((aName > bName) ? 1 : 0));
+			}
+
+			itemsDescs.sort(SortByCategoryAndName);
+
 			itemsLoaded = true;
-		});
+		};
+
+		// itemsDescs = [];
+		// var importType = "jsonld";
+		var importType = "db";
+
+		switch (importType){
+		case "preloaded":
+			break;
+		case "jsonld":
+			itemsData = queryItemsJsonld();
+			itemsData.$promise.then(parseJsonld);
+			break;
+		case "db":
+			itemsData = queryItemsDb();
+			itemsData.$promise.then(parseDb);
+			break;
+		}
 
 		// var that = this;
 		return {
+			createNewAssumption: function(category, name){
+
+				var parentNode = category.kNode;
+
+				var kEdge = new knalledge.KEdge();
+				kEdge.type = "containsAssumption";
+				kEdge.mapId = category.mapId;
+				kEdge.dataContent = {
+					source: {
+						created: 1
+					}
+				};
+
+				var kNode = new knalledge.KNode();
+				kNode.type = "assumption";
+				kNode.name =  name;
+				kNode.mapId = category.mapId;
+				kNode.dataContent = {
+					mcm: {
+						id: null
+					},
+					source: {
+						created: 1 // manual
+					}
+				};
+
+				// Add to local storage
+				var assumption = {};
+				assumption.id = null;
+				assumption.name = name;
+				assumption.category = category.name;
+
+				itemsDescs.push(assumption);
+				category.items.push(assumption);
+
+				var createAssumption = function(parentNode, edge, assumptionNode){
+					var kEdge = KnalledgeMapVOsService.createNodeWithEdge(parentNode, edge, assumptionNode);
+					return kEdge;
+				}
+
+				return createAssumption(parentNode, kEdge, kNode);
+			},
 			areAssumptionsLoaded: function(){
 				return itemsLoaded;
 			},
@@ -555,19 +729,43 @@ mcmMapServices.provider('McmMapAssumptionService', {
 			getAssumtionsCategories: function(){
 				return itemCategoriesAll;
 			},
-			getAssumptionsDescs: function(){
-				return itemsDescs;
-			},
-
-			getAssumptionsDesByName: function(nameSubStr){
+			getAssumtionsCategoriesByName: function(nameSubStr){
 				nameSubStr = nameSubStr.toLowerCase();
 				var returnedItems = [];
 				// we cannot iterate with (var i in itemsDescs) because of
 				// adding $promise and $resolved
-				for(var i=0; i<itemsDescs.length; i++){
-					var assumption = itemsDescs[i];
-					if(assumption.name.toLowerCase().indexOf(nameSubStr) > -1 || assumption.category.toLowerCase().indexOf(nameSubStr) > -1){
-						returnedItems.push(assumption);
+				for(var i in itemCategoriesAll){
+					var item = itemCategoriesAll[i];
+					if(item.name.toLowerCase().indexOf(nameSubStr) > -1){
+						returnedItems.push(item);
+					}
+				}
+				return returnedItems;
+			},
+			getAssumptionsDescs: function(category){
+				if(category){
+					return category.items;
+				}else{
+					return itemsDescs;					
+				}
+			},
+
+			getAssumptionsDesByName: function(nameSubStr, category){
+				nameSubStr = nameSubStr.toLowerCase();
+				var returnedItems = [];
+				// we cannot iterate with (var i in itemsDescs) because of
+				// adding $promise and $resolved
+				var items = category ? category.items : itemsDescs;
+				for(var i=0; i<items.length; i++){
+					var item = items[i];
+					if(category){
+						if(item.name.toLowerCase().indexOf(nameSubStr) > -1){
+							returnedItems.push(item);
+						}
+					}else{
+						if(item.name.toLowerCase().indexOf(nameSubStr) > -1 || item.category.toLowerCase().indexOf(nameSubStr) > -1){
+							returnedItems.push(item);
+						}						
 					}
 				}
 				return returnedItems;

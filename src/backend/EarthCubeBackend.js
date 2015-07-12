@@ -43,6 +43,7 @@ function supportCrossOriginScript(req, res, next) {
 var app = express();
 
 app.configure(function(){
+	app.use(express.compress());
     app.use(express.bodyParser());
     app.use(express.logger());
 	app.use(express.cookieParser()); // cookie parser is used before the session

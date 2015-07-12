@@ -79,7 +79,7 @@ MapLayout.prototype.clickNode = function(d, dom, commingFromAngular, doNotBubleU
 		"selected": false,
 		"unselected": true
 	});
-	this.nodes.forEach(function(d){d.isSelected = false;});
+	if(this.nodes) this.nodes.forEach(function(d){d.isSelected = false;});
 
 	if(isSelected){
 		if(d) d.isSelected = false;

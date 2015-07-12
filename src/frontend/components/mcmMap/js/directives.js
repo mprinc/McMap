@@ -173,7 +173,7 @@ angular.module('mcmMapDirectives', ['Config'])
 
 				var gotMap = function(map){		
 					console.log('gotMap:'+JSON.stringify(map));
-					KnalledgeMapVOsService.loadData(map); //broadcasts 'modelLoadedEvent'
+					KnalledgeMapVOsService.loadAndProcessData(map); //broadcasts 'modelLoadedEvent'
 				};
 
 				// initiating loading map data from server
@@ -192,6 +192,9 @@ angular.module('mcmMapDirectives', ['Config'])
 
 				var eventName = "modelLoadedEvent";
 				$scope.$on(eventName, function(e, eventModel) {
+					// not the map type we are interested in
+					if(eventModel.properties.type != 'mcm_map') return;
+
 					console.log("[mcmMap.controller::$on] ModelMap  nodes(len: %d): %s",
 						eventModel.map.nodes.length, JSON.stringify(eventModel.map.nodes));
 					console.log("[mcmMap.controller::$on] ModelMap  edges(len: %d): %s",
@@ -243,24 +246,91 @@ angular.module('mcmMapDirectives', ['Config'])
 			templateUrl: '../components/mcmMap/partials/mcmMap-selectAssumption.tpl.html',
 			controller: function ( $scope, $element) {
 
-				
 				$scope.selectedItem = null;
 				$scope.title = "Select assumption";
 				$scope.path = "Name";
 				$scope.item = {
 					name: null
 				};
-				
+
+				$scope.selectedCategory = {
+					id: null,
+					title: "+ category",
+					status: "unselected",
+					item: null
+				};
+
+				$scope.addNewEntityLabel = "Create New";
+
+				$scope.addNewEntity = function(){
+					//alert("addNewEntity: " + newQuantityName);
+					$scope.addNewEntityLabel = "Saving ...";
+					// TODO: FIX
+
+					McmMapAssumptionService.createNewAssumption($scope.selectedCategory.item, $scope.item.name)
+					.$promise.then(function(){
+						$scope.addNewEntityLabel = "Add New";
+						$scope.nameChanged();
+					});
+				}
+
+				$scope.selectCategory = function(){
+					switch($scope.selectedCategory.status){
+					case "selected":
+						$scope.items = McmMapAssumptionService.getAssumptionsDescs();
+						$scope.selectedCategory.status = "unselected";
+						$scope.selectedCategory.title = "+ category";						
+						$scope.item.name = "";
+						$scope.selectedCategory.item =  null;
+						break;
+					case "unselected":
+						$scope.items = McmMapAssumptionService.getAssumtionsCategories();
+						$scope.selectedCategory.status = "selecting";
+						$scope.selectedCategory.title = "< cancel selecting category";						
+						$scope.item.name = "";
+						break;
+					case "selecting":
+						$scope.items = McmMapAssumptionService.getAssumptionsDescs();
+						$scope.selectedCategory.status = "unselected";
+						$scope.selectedCategory.title = "+ category";
+						$scope.item.name = "";
+						break;
+					}
+					$element.find(".assumption_name").focus();
+				};
 
 				$scope.selectItem = function(item) {
-				    $scope.selectedItem = item;
-				    console.log("$scope.selectedItem = " + JSON.stringify(item));
+					switch($scope.selectedCategory.status){
+					case "selecting":
+						$scope.selectedCategory.status = "selected";
+						$scope.selectedCategory.title = "- c:" + item.name;
+						$scope.item.name = "";
+						$scope.selectedCategory.item =  item;
+						$scope.items = McmMapAssumptionService.getAssumptionsDescs($scope.selectedCategory.item);
+						$element.find(".assumption_name").focus();
+
+						break;
+					case "unselected":
+					default:
+					    $scope.selectedItem = item;
+					    console.log("$scope.selectedItem = " + JSON.stringify(item));
+					    break;
+					}
 				};
 
 				var populateItems = function(subName){
 					console.log("getAssumptionsDesByName(%s)", subName);
-					$scope.items = McmMapAssumptionService.getAssumptionsDesByName(subName);
-					console.log("$scope.items IN: " + $scope.items);
+
+					//console.log("New searching assumption name: %s", $scope.item.name);
+					switch($scope.selectedCategory.status){
+					case "selecting":
+						$scope.items = McmMapAssumptionService.getAssumtionsCategoriesByName(subName);
+						break;
+					default:
+						$scope.items = McmMapAssumptionService.getAssumptionsDesByName(subName, $scope.selectedCategory.item);
+						break;
+					}
+					// console.log("$scope.items IN: " + $scope.items);
 
 					// items.length = 0;
 					// for(var i in itemsFull){
@@ -276,7 +346,7 @@ angular.module('mcmMapDirectives', ['Config'])
 				$scope.nameChanged = function(){
 					//console.log("New searching assumption name: %s", $scope.item.name);
 					populateItems($scope.item.name);
-					console.log("$scope.items: " + $scope.items);
+					// console.log("$scope.items: " + $scope.items);
 				};
 				$scope.cancelled = function(){
 					//console.log("Canceled");
@@ -323,7 +393,7 @@ angular.module('mcmMapDirectives', ['Config'])
 					name: null
 				};
 				
-				$scope.addNewEntityLabel = "Add New";
+				$scope.addNewEntityLabel = "Create New";
 
 				$scope.addNewEntity = function(){
 					var fullName = McmMapObjectService.getFullObjectName($scope.parentMapEntity);
@@ -862,7 +932,7 @@ angular.module('mcmMapDirectives', ['Config'])
 				$scope.path = "Name";
 				$scope.selectedNode = {
 					selected: false,
-					vkNode: null
+					vkNode: $scope.entityRoot
 				};
 				$scope.nodeSelected = function(vkNode, dom){
 					$scope.selectedNode.vkNode = vkNode;
@@ -1019,6 +1089,9 @@ angular.module('mcmMapDirectives', ['Config'])
 
 				eventName = "modelLoadedEvent";
 				$scope.$on(eventName, function(e, eventModel) {
+					// not the map type we are interested in
+					if(eventModel.properties.type != 'mcm_map') return;
+
 					console.log("[mcmMapTools.controller::$on] ModelMap  nodes(len: %d): %s",
 						eventModel.map.nodes.length, JSON.stringify(eventModel.map.nodes));
 					console.log("[mcmMapTools.controller::$on] ModelMap  edges(len: %d): %s",
@@ -1119,6 +1192,9 @@ angular.module('mcmMapDirectives', ['Config'])
 								kNode.name =  item.name;
 								kNode.mapId = $scope.mapAssumptions._id;
 								kNode.dataContent = {
+									mcm: {
+										id: item.id
+									},
 									source: {
 										created: 0
 									}
@@ -1164,6 +1240,7 @@ angular.module('mcmMapDirectives', ['Config'])
 				};
 
 				$scope.importCategories = function	(){
+					// TODO: assumptions map should be used from McmMapAssumptionService bnot reloaded again
 					KnalledgeMapService.queryByType("assumptions").$promise.then(function(maps){
 						console.log("maps (%d): %s", maps.length, JSON.stringify(maps));
 						if(maps.length <= 0){
