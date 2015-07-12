@@ -40,6 +40,9 @@
   margin-left: 10%;
   margin-right: 10%; }
   /* line 49, ../sass/default.scss */
+  .mapsList .description {
+    color: #aaf; }
+  /* line 53, ../sass/default.scss */
   .mapsList .list {
     margin: 5px;
     text: 18px;
@@ -52,22 +55,22 @@
     background-color: #888;
     /*background-color: #ccc;
     background-color: #aaf;*/ }
-    /* line 53, ../sass/default.scss */
+    /* line 57, ../sass/default.scss */
     .mapsList .list .active-selection {
       background-color: #eee; }
-    /* line 57, ../sass/default.scss */
+    /* line 61, ../sass/default.scss */
     .mapsList .list tr:hover {
       cursor: pointer;
       background-color: #cccccc; }
-    /* line 69, ../sass/default.scss */
+    /* line 73, ../sass/default.scss */
     .mapsList .list th {
       background-color: #aaf;
       border: 1px solid black;
       padding: 5px; }
-    /* line 74, ../sass/default.scss */
+    /* line 78, ../sass/default.scss */
     .mapsList .list td {
       border: 1px solid black;
       padding: 5px; }
-  /* line 81, ../sass/default.scss */
+  /* line 85, ../sass/default.scss */
   .mapsList .buttons {
     text-align: left; }

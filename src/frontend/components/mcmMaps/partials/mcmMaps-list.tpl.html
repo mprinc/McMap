@@ -1,5 +1,6 @@
 <div class="mapsList">
-	<h1>Model Coupling Metadata Editor (ESB)</h1>
+	<h1>Model Component Metadata Editor (ESB)</h1>
+	<span class="description">A tool to describe geoscience models with standardized metadata.</span>
 	<hr/>
 	<h2>Model Components</h2>
 	<div class='creatingNewMap' ng-class="{ 'displayNone': modeCreating == false }">
@@ -22,15 +23,15 @@
 	</div>
 	<div>
 		<br/>
-		<span>Existing models:</span>
+		<span>Existing model components:</span>
 		<table class="list">
-			<tr><th class="mcm_name">Id</th><th class="mcm_name">Name</th><th class="mcm_authors">Authors</th><th class="creation_date">Creation Date</th><th class="mcm_domains">Domains</th></tr>
+			<tr><th class="mcm_name">Name</th><th class="mcm_authors">Authors</th><th class="creation_date">Creation Date</th><th class="mcm_domains">Domains</th><th class="mcm_name">Id</th></tr>
 			<tr ng-click="selectItem(item)" ng-repeat="item in items" data-ng-class="{'active-selection': item._id == selectedItem._id}">
-				<td>{{item._id}}</td>
 				<td>{{item.name}}</td>
 				<td>{{item.dataContent.mcm.authors}}</td>
 				<td>{{item.createdAt}}</td>
 				<td>&nbsp;</td>
+				<td>{{item._id}}</td>
 			</tr>
 		</table>
 	</div>
