@@ -22,7 +22,7 @@ cd backend
 ln -s /var/www/knalledge/src/backend/models/ models
 ln -s /var/www/knalledge/src/backend/modules/ modules
 ln -s /var/www/knalledge/src/backend/tools/ tools
-ln -s /var/www/knalledge/src/backend/node_modules/ node_modules
+# ln -s /var/www/knalledge/src/backend/node_modules/ node_modules
 # ln -s /var/www/knalledge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
 
 # FRONTEND
@@ -33,6 +33,8 @@ cd frontend/components
 ln -s /var/www/knalledge/src/frontend/components/knalledgeMap knalledgeMap
 ln -s /var/www/knalledge/src/frontend/components/rima rima
 ln -s /var/www/knalledge/src/frontend/components/notify notify
+ln -s /var/www/knalledge/src/frontend/components/topiChat topiChat
+ln -s /var/www/knalledge/src/frontend/components/collaboPlugins collaboPlugins
 
 # git clone https://bitbucket.org/mPrinC/headsware/earthcube
 

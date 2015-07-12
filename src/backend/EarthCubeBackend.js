@@ -57,6 +57,7 @@ app.configure(function(){
 
     app.use(app.router);
 });
+
 /* Knalledge Maps */
 var knodes = app.resource('knodes', require('./modules/kNode'), {id: 'type?/:searchParam?/:searchParam2?'});
 var kedges = app.resource('kedges', require('./modules/kEdge'), {id: 'type?/:searchParam?/:searchParam2?'});
