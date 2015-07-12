@@ -655,7 +655,6 @@ mcmMapServices.provider('McmMapAssumptionService', {
 			}
 
 			itemsDescs.sort(SortByCategoryAndName);
-
 			itemsLoaded = true;
 		};
 
