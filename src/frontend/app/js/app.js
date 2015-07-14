@@ -43,6 +43,9 @@ angular.module('McModelarApp',[
 	.when('/importAssumptions', {
 		templateUrl: '../components/mcmMap/partials/mcmImportAssumptions-index.tpl.html'
 	})
+	.when('/importVariables', {
+		templateUrl: '../components/mcmMap/partials/mcmImportVariables-index.tpl.html'
+	})
 	.when('/maps', {
 		templateUrl: '../components/mcmMaps/partials/index.tpl.html'
 	})

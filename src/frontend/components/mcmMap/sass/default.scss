@@ -763,6 +763,7 @@ $select_sub_entity_title_size: 1em;
 		}
 	}
 
+
 	ul {
 		/* neccessery to both dimensions be visible, to make dragging visible outside the dom borders */
 		overflow-y: scroll;
@@ -1809,6 +1810,69 @@ $select_sub_entity_title_size: 1em;
 	@include box-shadow(10px 10px 5px 5px transparentize(darken($select_sub_entity_color, 15%), 0.75));
 
 	.assumptions{
+		height: 50%;
+		text-align: center;
+		margin: 15px;
+		overflow-y: auto;
+
+		.list{
+			width: 80%;
+			margin-left: 10%;
+			margin-right: 10%;
+			text-align: center;
+			.active-selection{
+				background-color: #eee;
+			}
+			.title_name{
+				font-weight: bold;
+				color: white;
+				text-align: center;
+				background-color: #aaaaaa;
+			}
+			tr{
+				 &:hover{
+			     cursor: pointer;
+			     background-color: #cccccc;
+			  }
+			}
+			th, td {
+				padding: 5px;
+				border-bottom: 1px solid black;
+			}
+
+			a{
+				color: white;
+				cursor: pointer;
+			}
+		}
+	}
+
+	.buttons{
+		text-align: center;
+	}
+}
+
+.mcm_import_variables{
+	position: relative;
+	width: 80%;
+	z-index: 100;
+	left: 50%;
+	margin-left: -40%;
+	top: 10%;
+	height: 80%;
+	min-height: 300px;
+	padding: 15px;
+
+	/* https://www.safaribooksonline.com/library/view/sass-and-compass/9781849694544/ch04s09.html 
+	https://robots.thoughtbot.com/controlling-color-with-sass-color-functions
+	*/
+	border: 3px solid transparentize(darken($select_sub_entity_color, 25%), 0.5);
+	background-color: transparentize($select_sub_entity_color, 0.05);
+	@include border-radius(15px);
+	/* color h-shadow v-shadow blur spread color inset*/
+	@include box-shadow(10px 10px 5px 5px transparentize(darken($select_sub_entity_color, 15%), 0.75));
+
+	.variables{
 		height: 50%;
 		text-align: center;
 		margin: 15px;

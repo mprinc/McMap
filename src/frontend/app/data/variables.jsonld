@@ -456,7 +456,7 @@
   "skos:prefLabel" : "atmosphere_water~vapor" }
 
 ,{ "@id" : "co:automobile",
-  "co:property" : [ "0-to-60mph_acceleration_time", "acceleration", "braking_distance", "braking_force", "cargo_capacity", "drag_coefficient", "fuel-economy", "kelley-blue-book_price", "length", "lifetime_travel_distance", "lift_coefficient", "manufacture_year", "mass", "msrp_price", "new_price", "safety_rating", "seating_capacity", "speed", "top_speed", "total_stopping_distance", "total_stopping_time", "total_travel_distance", "turning_radius", "vehicle_identification_number", "weight", "wheelbase_length", "width", "x_component_of_velocity", "y_component_of_velocity", "z_component_of_velocity" ],
+  "co:property" : [ "0-to-60mph_acceleration_time", "acceleration", "braking_distance", "braking_force", "cargo_capacity", "drag_coefficient", "fuel-economy", "fuel_economy", "kelley-blue-book_price", "length", "lifetime_travel_distance", "lift_coefficient", "manufacture_year", "mass", "msrp_price", "new_price", "safety_rating", "seating_capacity", "speed", "top_speed", "total_stopping_distance", "total_stopping_time", "total_travel_distance", "turning_radius", "vehicle_identification_number", "weight", "wheelbase_length", "width", "x_component_of_velocity", "y_component_of_velocity", "z_component_of_velocity" ],
   "rdf:type" : {"@id" : "skos:Concept"},
   "skos:prefLabel" : "automobile" }
 
@@ -531,7 +531,7 @@
   "skos:prefLabel" : "automobile_fuel-tank" }
 
 ,{ "@id" : "co:automobile_fuel",
-  "co:property" : [ "consumption_rate", "specific_energy_content", "volume" ],
+  "co:property" : [ "consumption_rate", "economy", "specific_energy_content", "volume" ],
   "rdf:type" : {"@id" : "skos:Concept"},
   "skos:prefLabel" : "automobile_fuel" }
 
@@ -1541,14 +1541,39 @@
   "skos:prefLabel" : "earth_human" }
 
 ,{ "@id" : "co:earth_interior",
-  "co:property" : "down_z_derivative_of_temperature",
+  "co:property" : [ "down_component_of_electric-displacement", "down_component_of_electric-field", "down_component_of_electric-polarization", "down_component_of_magnetic-field", "down_component_of_magnetic-field-strength", "down_component_of_magnetization", "down_z_derivative_of_temperature", "east_component_of_electric-displacement", "east_component_of_electric-field", "east_component_of_electric-polarization", "east_component_of_magnetic-field", "east_component_of_magnetic-field-strength", "east_component_of_magnetization", "electric-field-potential", "north_component_of_electric-displacement", "north_component_of_electric-field", "north_component_of_electric-polarization", "north_component_of_magnetic-field", "north_component_of_magnetic-field-strength", "north_component_of_magnetization" ],
   "rdf:type" : {"@id" : "skos:Concept"},
   "skos:prefLabel" : "earth_interior" }
 
 ,{ "@id" : "co:earth_interior_earthquake",
-  "co:property" : [ "count", "critical_slip_distance", "drop_of_dynamic_stress", "drop_of_static_stress", "duration", "east_component_of_slip-vector", "east_east_component_of_moment_tensor", "east_up_component_of_moment_tensor", "gutenberg-richter_law_a_parameter", "gutenberg-richter_law_b_parameter", "magnitude_of_moment_tensor", "modified_mercali_intensity", "modified_omori_law_c_parameter", "modified_omori_law_k_parameter", "modified_omori_law_p_parameter", "moment_magnitude", "moment_tensor", "north_component_of_slip-vector", "origin_time", "radiated_seismic_energy", "release_energy", "richter_magnitude", "rupture_speed", "seismic_moment_energy", "slip_angle", "slip_distance", "slip_duration", "slip_speed", "south_east_component_of_moment_tensor", "south_south_component_of_moment_tensor", "up_south_component_of_moment_tensor", "up_up_component_of_moment_tensor" ],
+  "co:property" : [ "count", "critical_slip_distance", "drop_of_dynamic_stress", "drop_of_static_stress", "duration", "east_component_of_seismic_slip", "east_east_component_of_seismic_moment", "east_up_component_of_seismic_moment", "gutenberg-richter_law_a_parameter", "gutenberg-richter_law_b_parameter", "magnitude_of_seismic_moment", "modified_mercalli_intensity", "modified_omori_law_c_parameter", "modified_omori_law_k_parameter", "modified_omori_law_p_parameter", "moment_magnitude", "seismic_moment", "north_component_of_seismic_slip", "origin_time", "radiated_seismic_energy", "release_energy", "richter_magnitude", "rupture_speed", "slip_angle", "slip_distance", "slip_duration", "slip_speed", "south_east_component_of_seismic_moment", "south_south_component_of_seismic_moment", "up_south_component_of_seismic_moment", "up_up_component_of_seismic_moment" ],
   "rdf:type" : {"@id" : "skos:Concept"},
   "skos:prefLabel" : "earth_interior_earthquake" }
+
+,{ "@id" : "co:earth_interior_earthquake_wave~seismic",
+  "co:property" : [ "arrival_time", "name(en)" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "earth_interior_earthquake_wave~seismic" }
+
+,{ "@id" : "co:earth_interior_earthquake_wave~seismic~love",
+  "co:property" : [ "group_velocity", "phase_velocity" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "earth_interior_earthquake_wave~seismic~love" }
+
+,{ "@id" : "co:earth_interior_earthquake_wave~seismic~p",
+  "co:property" : [ "amplitude", "angular_frequency", "angular_wavenumber", "frequency", "period", "scalar_potential", "speed", "takeoff_angle", "wavelength", "wavenumber" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "earth_interior_earthquake_wave~seismic~p" }
+
+,{ "@id" : "co:earth_interior_earthquake_wave~seismic~rayleigh",
+  "co:property" : [ "group_velocity", "phase_velocity" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "earth_interior_earthquake_wave~seismic~rayleigh" }
+
+,{ "@id" : "co:earth_interior_earthquake_wave~seismic~s",
+  "co:property" : [ "amplitude", "angular_frequency", "angular_wavenumber", "frequency", "period", "scalar_potential", "speed", "takeoff_angle", "wavelength", "wavenumber" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "earth_interior_earthquake_wave~seismic~s" }
 
 ,{ "@id" : "co:earth_interior_earthquake_fault",
   "co:property" : "length",
@@ -1565,35 +1590,90 @@
   "rdf:type" : {"@id" : "skos:Concept"},
   "skos:prefLabel" : "earth_interior_earthquake_fault_plane_asperity" }
 
-,{ "@id" : "co:earth_interior_earthquake_hypocenter-to-station",
-  "co:property" : "distance",
+,{ "@id" : "co:earth_interior_earthquake_focus",
+  "co:property" : [ "depth", "latitude", "longitude" ],
   "rdf:type" : {"@id" : "skos:Concept"},
-  "skos:prefLabel" : "earth_interior_earthquake_hypocenter-to-station" }
+  "skos:prefLabel" : "earth_interior_earthquake_focus" }
 
 ,{ "@id" : "co:earth_interior_earthquake_hypocenter",
   "co:property" : [ "depth", "latitude", "longitude" ],
   "rdf:type" : {"@id" : "skos:Concept"},
   "skos:prefLabel" : "earth_interior_earthquake_hypocenter" }
 
-,{ "@id" : "co:earth_interior_earthquake_wave~p",
-  "co:property" : [ "amplitude", "angular_frequency", "angular_wavenumber", "frequency", "period", "speed", "takeoff_angle", "wavelength", "wavenumber" ],
+,{ "@id" : "co:earth_interior_earthquake_hypocenter-to-station",
+  "co:property" : "distance",
   "rdf:type" : {"@id" : "skos:Concept"},
-  "skos:prefLabel" : "earth_interior_earthquake_wave~p" }
+  "skos:prefLabel" : "earth_interior_earthquake_hypocenter-to-station" }
 
-,{ "@id" : "co:earth_interior_earthquake_wave~s",
-  "co:property" : [ "amplitude", "angular_frequency", "angular_wavenumber", "frequency", "period", "speed", "takeoff_angle", "wavelength", "wavenumber" ],
+,{ "@id" : "co:earth_interior_particle",
+  "co:property" : "count",
   "rdf:type" : {"@id" : "skos:Concept"},
-  "skos:prefLabel" : "earth_interior_earthquake_wave~s" }
+  "skos:prefLabel" : "earth_interior_particle" }
+
+,{ "@id" : "co:earth_interior_particle_motion",
+  "co:property" : [ "acceleration", "displacement", "modified_mercalli_intensity", "static_displacement", "velocity" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "earth_interior_particle_motion" }
+
+,{ "@id" : "co:earth_interior_wave~seismic",
+  "co:property" : [ "arrival_time", "name(en)" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "earth_interior_wave~seismic" }
+
+,{ "@id" : "co:earth_interior_wave~seismic~love",
+  "co:property" : [ "group_velocity", "phase_velocity" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "earth_interior_wave~seismic~love" }
+
+,{ "@id" : "co:earth_interior_wave~seismic~p",
+  "co:property" : [ "amplitude", "angular_frequency", "angular_wavenumber", "frequency", "period", "scalar_potential", "speed", "takeoff_angle", "wavelength", "wavenumber" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "earth_interior_wave~seismic~p" }
+
+,{ "@id" : "co:earth_interior_wave~seismic~rayleigh",
+  "co:property" : [ "group_velocity", "phase_velocity" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "earth_interior_wave~seismic~rayleigh" }
+
+,{ "@id" : "co:earth_interior_wave~seismic~s",
+  "co:property" : [ "amplitude", "angular_frequency", "angular_wavenumber", "frequency", "period", "scalar_potential", "speed", "takeoff_angle", "wavelength", "wavenumber" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "earth_interior_wave~seismic~s" }
 
 ,{ "@id" : "co:earth_lithosphere-asthenosphere_boundary",
   "co:property" : "depth",
   "rdf:type" : {"@id" : "skos:Concept"},
   "skos:prefLabel" : "earth_lithosphere-asthenosphere_boundary" }
 
-,{ "@id" : "co:earth_material",
-  "co:property" : [ "bulk_modulus", "down_component_of_electric-d-field", "down_component_of_electric-e-field", "down_component_of_electric-p-field", "down_component_of_magnetic-b-field", "down_component_of_magnetic-h-field", "down_component_of_magnetic-m-field", "east_component_of_electric-d-field", "east_component_of_electric-e-field", "east_component_of_electric-p-field", "east_component_of_magnetic-b-field", "east_component_of_magnetic-h-field", "east_component_of_magnetic-m-field", "electric_suceptibility", "electrical_conductivity", "lame_first_parameter", "magnetic_susceptibility", "north_component_of_electric-d-field", "north_component_of_electric-e-field", "north_component_of_electric-p-field", "north_component_of_magnetic-b-field", "north_component_of_magnetic-h-field", "north_component_of_magnetic-m-field", "p_wave_modulus", "poisson_ratio", "relative_electric_permittivity", "relative_magnetic_permeability", "shear_modulus", "young_modulus" ],
+,{ "@id" : "co:earth_crust_material",
+  "co:property" : [ "bulk_modulus", "carbonatite_melt_fraction", "density", "domain_max_of_power_law_viscosity_value", "domain_min_of_power_law_viscosity_value", "electric_absolute_permittivity", "electric_relative_permittivity", "electric_susceptibility", "electrical_conductivity", "inverse_of_electrical_conductivity", "inverse_of_p-wave_velocity", "inverse_of_s-wave_velocity", "isothermal_compressibility", "isothermal_compressibility_reference_temperature", "lame_first_parameter", "log10_of_electrical_conductivity", "log10_of_viscosity", "magnetic_permeability", "magnetic_relative_permeability", "magnetic_susceptibility", "mass-specific_isobaric_heat_capacity", "mass-specific_isochoric_heat_capacity", "oxygen_fugacity", "p-wave_velocity", "p-wave_velocity_over_s-wave_velocity_ratio", "partial_melt_fraction", "poisson_ratio", "power_law_viscosity_activation_energy", "power_law_viscosity_exponent", "power_law_viscosity_reference_temperature", "power_law_viscosity_reference_value", "power_law_viscosity_value", "pressure", "second_invariant_of_deviatoric_plastic_strain", "second_invariant_of_deviatoric_strain_rate", "second_invariant_of_deviatoric_stress", "sh-wave_velocity", "shear_modulus", "sv-wave_velocity", "temperature", "temperature_derivative_of_isothermal_incompressibility", "thermal_conductivity", "thermal_expansion_coefficient", "dynamic_shear_viscosity", "dynamic_volume_viscosity", "kinematic_shear_viscosity", "kinematic_volume_viscosity", "volume-specific_isobaric_heat_capacity", "volume-specific_isochoric_heat_capacity", "water_content", "young_modulus" ],
   "rdf:type" : {"@id" : "skos:Concept"},
-  "skos:prefLabel" : "earth_material" }
+  "skos:prefLabel" : "earth_crust_material" }
+
+,{ "@id" : "co:earth_mantle_material",
+  "co:property" : [ "bulk_modulus", "carbonatite_melt_fraction", "density", "domain_max_of_power_law_viscosity_value", "domain_min_of_power_law_viscosity_value", "electric_absolute_permittivity", "electric_relative_permittivity", "electric_susceptibility", "electrical_conductivity", "inverse_of_electrical_conductivity", "inverse_of_p-wave_velocity", "inverse_of_s-wave_velocity", "isothermal_compressibility", "isothermal_compressibility_reference_temperature", "lame_first_parameter", "lame_parameters_lambda", "log10_of_electrical_conductivity", "log10_of_viscosity", "magnetic_permeability", "magnetic_relative_permeability", "magnetic_susceptibility", "mass-specific_isobaric_heat_capacity", "mass-specific_isochoric_heat_capacity", "oxygen_fugacity", "p-wave_velocity", "p-wave_velocity_over_s-wave_velocity_ratio", "partial_melt_fraction", "poisson_ratio", "power_law_viscosity_activation_energy", "power_law_viscosity_exponent", "power_law_viscosity_reference_temperature", "power_law_viscosity_reference_value", "power_law_viscosity_value", "pressure", "second_invariant_of_deviatoric_plastic_strain", "second_invariant_of_deviatoric_strain_rate", "second_invariant_of_deviatoric_stress", "sh-wave_velocity", "shear_modulus", "sv-wave_velocity", "temperature", "temperature_derivative_of_isothermal_incompressibility", "thermal_conductivity", "thermal_expansion_coefficient", "dynamic_shear_viscosity", "dynamic_volume_viscosity", "kinematic_shear_viscosity", "kinematic_volume_viscosity", "volume-specific_isobaric_heat_capacity", "volume-specific_isochoric_heat_capacity", "young_modulus" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "earth_mantle_material" }
+
+,{ "@id" : "co:earth_mantle_material_water",
+  "co:property" : "weight_content",
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "earth_mantle_material_water" }
+
+,{ "@id" : "co:earth_mantle_material_flow",
+  "co:property" : [ "x_component_of_velocity", "y_component_of_velocity", "z_component_of_velocity" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "earth_mantle_material_flow" }
+
+,{ "@id" : "co:earth_mantle_material_mineral-phase",
+  "co:property" : [ "carbonatite_melt_fraction", "chemical_composition(en)", "equation-of-state(en)", "internal_code_index", "name(en)", "oxygen_fugacity", "partial_melt_fraction", "physical_state(en)", "proportion", "water_content", "water_solubility", "water_solubility_in_melt" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "earth_mantle_material_mineral-phase" }
+
+,{ "@id" : "co:earth_mantle_material_mohr-coulomb-plastic",
+  "co:property" : [ "cohesion_yield_stress", "cutoff_tension_stress", "dilation_angle", "friction_angle", "strain" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "earth_mantle_material_mohr-coulomb-plastic" }
 
 ,{ "@id" : "co:earth_orbit",
   "co:property" : [ "aphelion_distance", "eccentricity", "perihelion_distance" ],
@@ -1645,16 +1725,6 @@
   "rdf:type" : {"@id" : "skos:Concept"},
   "skos:prefLabel" : "earth_surface_earthquake_epicenter" }
 
-,{ "@id" : "co:earth_surface_earthquake_wave~p_station",
-  "co:property" : [ "arrival_time", "travel_time" ],
-  "rdf:type" : {"@id" : "skos:Concept"},
-  "skos:prefLabel" : "earth_surface_earthquake_wave~p_station" }
-
-,{ "@id" : "co:earth_surface_earthquake_wave~s_station",
-  "co:property" : [ "arrival_time", "travel_time" ],
-  "rdf:type" : {"@id" : "skos:Concept"},
-  "skos:prefLabel" : "earth_surface_earthquake_wave~s_station" }
-
 ,{ "@id" : "co:earth_surface_land",
   "co:property" : "area_fraction",
   "rdf:type" : {"@id" : "skos:Concept"},
@@ -1686,9 +1756,29 @@
   "skos:prefLabel" : "earth_surface_radiation~incoming~visible" }
 
 ,{ "@id" : "co:earth_surface_station~seismic",
-  "co:property" : [ "elevation", "latitude", "longitude" ],
+  "co:property" : [ "elevation", "latitude", "longitude", "name(en)", "network(en)", "p-wave_arrival_time", "p-wave_travel_time", "s-wave_arrival_time", "s-wave_travel_time" ],
   "rdf:type" : {"@id" : "skos:Concept"},
   "skos:prefLabel" : "earth_surface_station~seismic" }
+
+,{ "@id" : "co:earth_surface_station~seismic_component",
+  "co:property" : "name(en)",
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "earth_surface_station~seismic_component" }
+
+,{ "@id" : "co:earth_surface_station~seismic_data-acquisition-system",
+  "co:property" : "type(en)",
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "earth_surface_station~seismic_data-acquisition-system" }
+
+,{ "@id" : "co:earth_surface_station~seismic_data-stream",
+  "co:property" : [ "frequency", "end_time", "start_time" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "earth_surface_station~seismic_data-stream" }
+
+,{ "@id" : "co:earth_surface_station~seismic_instrument-response",
+  "co:property" : "filter_type(en)",
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "earth_surface_station~seismic_instrument-response" }
 
 ,{ "@id" : "co:earth_surface_station~seismic_seismograph",
   "co:property" : "shaking_amplitude",
@@ -2345,55 +2435,130 @@
   "rdf:type" : {"@id" : "skos:Concept"},
   "skos:prefLabel" : "model" }
 
+,{ "@id" : "co:model_grid",
+  "co:property" : [ "average_node_distance", "cell_count", "column_count", "dual_node_x-count", "dual_node_y-count", "dual_node_z-count", "primary_node_x-count", "primary_node_y-count", "primary_node_z-count", "row_count", "shell_count" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "model_grid" }
+
 ,{ "@id" : "co:model_grid_axis~x_axis~east",
   "co:property" : "rotation_angle",
   "rdf:type" : {"@id" : "skos:Concept"},
   "skos:prefLabel" : "model_grid_axis~x_axis~east" }
 
 ,{ "@id" : "co:model_grid_cell",
-  "co:property" : [ "area", "column_index", "count", "d8_flow_length", "d8_flow_width", "d8_slope", "d8_total_contributing_area", "d_infinity_slope", "d_infinity_total_contributing_area", "diameter", "perimeter", "row-major-offset_index", "row_index", "total_contributing_area" ],
+  "co:property" : [ "area", "column_index", "d8_flow_length", "d8_flow_width", "d8_slope", "d8_total_contributing_area", "d_infinity_slope", "d_infinity_total_contributing_area", "depth_index", "diameter", "perimeter", "row-major-offset_index", "row_index", "surface_area", "total_contributing_area", "volume" ],
   "rdf:type" : {"@id" : "skos:Concept"},
   "skos:prefLabel" : "model_grid_cell" }
 
-,{ "@id" : "co:model_grid_cell_center",
-  "co:property" : [ "geodetic_latitude", "latitude", "longitude", "x_coordinate", "y_coordinate" ],
-  "rdf:type" : {"@id" : "skos:Concept"},
-  "skos:prefLabel" : "model_grid_cell_center" }
-
 ,{ "@id" : "co:model_grid_cell_centroid",
-  "co:property" : [ "latitude", "longitude", "x_coordinate", "y_coordinate" ],
+  "co:property" : [ "depth", "latitude", "longitude", "virtual_latitude", "virtual_longitude", "x_component_of_velocity", "x_coordinate", "y_component_of_velocity", "y_coordinate", "z_component_of_velocity", "z_coordinate" ],
   "rdf:type" : {"@id" : "skos:Concept"},
   "skos:prefLabel" : "model_grid_cell_centroid" }
 
-,{ "@id" : "co:model_grid_cell_edge~east",
-  "co:property" : [ "latitude", "length", "longitude" ],
-  "rdf:type" : {"@id" : "skos:Concept"},
-  "skos:prefLabel" : "model_grid_cell_edge~east" }
-
-,{ "@id" : "co:model_grid_cell_edge~north",
-  "co:property" : [ "geodetic_latitude", "latitude", "length" ],
-  "rdf:type" : {"@id" : "skos:Concept"},
-  "skos:prefLabel" : "model_grid_cell_edge~north" }
-
-,{ "@id" : "co:model_grid_cell_edge~south",
-  "co:property" : [ "geodetic_latitude", "latitude", "length" ],
-  "rdf:type" : {"@id" : "skos:Concept"},
-  "skos:prefLabel" : "model_grid_cell_edge~south" }
-
-,{ "@id" : "co:model_grid_cell_edge~west",
-  "co:property" : [ "length", "longitude" ],
-  "rdf:type" : {"@id" : "skos:Concept"},
-  "skos:prefLabel" : "model_grid_cell_edge~west" }
-
-,{ "@id" : "co:model_grid_cell_edge~x",
+,{ "@id" : "co:model_grid_cell_edge",
   "co:property" : "length",
   "rdf:type" : {"@id" : "skos:Concept"},
-  "skos:prefLabel" : "model_grid_cell_edge~x" }
+  "skos:prefLabel" : "model_grid_cell_edge" }
 
-,{ "@id" : "co:model_grid_cell_edge~y",
+,{ "@id" : "co:model_grid_cell_edge_center",
+  "co:property" : [ "depth", "latitude", "longitude", "virtual_latitude", "virtual_longitude", "x_component_of_velocity", "x_coordinate", "y_component_of_velocity", "y_coordinate", "z_component_of_velocity", "z_coordinate" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "model_grid_cell_edge_center" }
+
+,{ "@id" : "co:model_grid_cell_face",
+  "co:property" : "area",
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "model_grid_cell_face" }
+
+,{ "@id" : "co:model_grid_cell_face_centroid",
+  "co:property" : [ "depth", "latitude", "longitude", "virtual_latitude", "virtual_longitude", "x_component_of_velocity", "x_coordinate", "y_component_of_velocity", "y_coordinate", "z_component_of_velocity", "z_coordinate", "depth", "latitude", "longitude", "virtual_latitude", "virtual_longitude", "x_component_of_velocity", "x_coordinate", "y_component_of_velocity", "y_coordinate", "z_component_of_velocity", "z_coordinate" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "model_grid_cell_face_centroid" }
+
+,{ "@id" : "co:model_grid_node",
+  "co:property" : [ "depth", "latitude", "longitude", "virtual_latitude", "virtual_longitude", "x_component_of_velocity", "x_coordinate", "y_component_of_velocity", "y_coordinate", "z_component_of_velocity", "z_coordinate" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "model_grid_node" }
+
+,{ "@id" : "co:model_grid_cell~dual",
+  "co:property" : [ "area", "column_index", "d8_flow_length", "d8_flow_width", "d8_slope", "d8_total_contributing_area", "d_infinity_slope", "d_infinity_total_contributing_area", "depth_index", "diameter", "perimeter", "row-major-offset_index", "row_index", "surface_area", "total_contributing_area", "volume" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "model_grid_cell~dual" }
+
+,{ "@id" : "co:model_grid_cell~dual_centroid",
+  "co:property" : [ "depth", "latitude", "longitude", "virtual_latitude", "virtual_longitude", "x_component_of_velocity", "x_coordinate", "y_component_of_velocity", "y_coordinate", "z_component_of_velocity", "z_coordinate" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "model_grid_cell~dual_centroid" }
+
+,{ "@id" : "co:model_grid_cell~dual_edge",
   "co:property" : "length",
   "rdf:type" : {"@id" : "skos:Concept"},
-  "skos:prefLabel" : "model_grid_cell_edge~y" }
+  "skos:prefLabel" : "model_grid_cell~dual_edge" }
+
+,{ "@id" : "co:model_grid_cell~dual_edge_center",
+  "co:property" : [ "depth", "latitude", "longitude", "virtual_latitude", "virtual_longitude", "x_component_of_velocity", "x_coordinate", "y_component_of_velocity", "y_coordinate", "z_component_of_velocity", "z_coordinate" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "model_grid_cell~dual_edge_center" }
+
+,{ "@id" : "co:model_grid_cell~dual_face",
+  "co:property" : "area",
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "model_grid_cell~dual_face" }
+
+,{ "@id" : "co:model_grid_cell~dual_face_centroid",
+  "co:property" : [ "depth", "latitude", "longitude", "virtual_latitude", "virtual_longitude", "x_component_of_velocity", "x_coordinate", "y_component_of_velocity", "y_coordinate", "z_component_of_velocity", "z_coordinate", "depth", "latitude", "longitude", "virtual_latitude", "virtual_longitude", "x_component_of_velocity", "x_coordinate", "y_component_of_velocity", "y_coordinate", "z_component_of_velocity", "z_coordinate" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "model_grid_cell~dual_face_centroid" }
+
+,{ "@id" : "co:model_grid_node~dual",
+  "co:property" : [ "depth", "latitude", "longitude", "virtual_latitude", "virtual_longitude", "x_component_of_velocity", "x_coordinate", "y_component_of_velocity", "y_coordinate", "z_component_of_velocity", "z_coordinate" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "model_grid_node~dual" }
+
+,{ "@id" : "co:model_grid_cell~primary",
+  "co:property" : [ "area", "column_index", "d8_flow_length", "d8_flow_width", "d8_slope", "d8_total_contributing_area", "d_infinity_slope", "d_infinity_total_contributing_area", "depth_index", "diameter", "perimeter", "row-major-offset_index", "row_index", "surface_area", "total_contributing_area", "volume" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "model_grid_cell~primary" }
+
+,{ "@id" : "co:model_grid_cell~primary_centroid",
+  "co:property" : [ "depth", "latitude", "longitude", "virtual_latitude", "virtual_longitude", "x_component_of_velocity", "x_coordinate", "y_component_of_velocity", "y_coordinate", "z_component_of_velocity", "z_coordinate" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "model_grid_cell~primary_centroid" }
+
+,{ "@id" : "co:model_grid_cell~primary_edge",
+  "co:property" : "length",
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "model_grid_cell~primary_edge" }
+
+,{ "@id" : "co:model_grid_cell~primary_edge_center",
+  "co:property" : [ "depth", "latitude", "longitude", "virtual_latitude", "virtual_longitude", "x_component_of_velocity", "x_coordinate", "y_component_of_velocity", "y_coordinate", "z_component_of_velocity", "z_coordinate" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "model_grid_cell~primary_edge_center" }
+
+,{ "@id" : "co:model_grid_cell~primary_face",
+  "co:property" : "area",
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "model_grid_cell~primary_face" }
+
+,{ "@id" : "co:model_grid_cell~primary_face_centroid",
+  "co:property" : [ "depth", "latitude", "longitude", "virtual_latitude", "virtual_longitude", "x_component_of_velocity", "x_coordinate", "y_component_of_velocity", "y_coordinate", "z_component_of_velocity", "z_coordinate", "depth", "latitude", "longitude", "virtual_latitude", "virtual_longitude", "x_component_of_velocity", "x_coordinate", "y_component_of_velocity", "y_coordinate", "z_component_of_velocity", "z_coordinate" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "model_grid_cell~primary_face_centroid" }
+
+,{ "@id" : "co:model_grid_node~primary",
+  "co:property" : [ "depth", "latitude", "longitude", "virtual_latitude", "virtual_longitude", "x_component_of_velocity", "x_coordinate", "y_component_of_velocity", "y_coordinate", "z_component_of_velocity", "z_coordinate" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "model_grid_node~primary" }
+
+,{ "@id" : "co:model_grid_shell",
+  "co:property" : [ "depth_to_bottom", "depth_to_top", "index_from_bottom", "index_from_top" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "model_grid_shell" }
+
+,{ "@id" : "co:model_grid_virtual-north-pole",
+  "co:property" : [ "azimuth_angle", "latitude", "longitude" ],
+  "rdf:type" : {"@id" : "skos:Concept"},
+  "skos:prefLabel" : "model_grid_virtual-north-pole" }
 
 ,{ "@id" : "co:model_grid_cell_water",
   "co:property" : [ "azimuth_angle_of_velocity", "time_derivative_of_volume" ],
@@ -2409,11 +2574,6 @@
   "co:property" : "volume_flow_rate",
   "rdf:type" : {"@id" : "skos:Concept"},
   "skos:prefLabel" : "model_grid_cell_water~outgoing" }
-
-,{ "@id" : "co:model_grid_column",
-  "co:property" : "count",
-  "rdf:type" : {"@id" : "skos:Concept"},
-  "skos:prefLabel" : "model_grid_column" }
 
 ,{ "@id" : "co:model_grid_edge~east",
   "co:property" : "longitude",
@@ -2439,11 +2599,6 @@
   "co:property" : "elevation",
   "rdf:type" : {"@id" : "skos:Concept"},
   "skos:prefLabel" : "model_grid_edge~west_sea_water" }
-
-,{ "@id" : "co:model_grid_row",
-  "co:property" : "count",
-  "rdf:type" : {"@id" : "skos:Concept"},
-  "skos:prefLabel" : "model_grid_row" }
 
 ,{ "@id" : "co:model_soil_layer",
   "co:property" : "count",
@@ -3741,7 +3896,7 @@
   "skos:prefLabel" : "titan_atmosphere_methane" }
 
 ,{ "@id" : "co:toyota_corolla~2008",
-  "co:property" : [ "fuel-economy", "kelly-blue-book_price", "motor-trend-magazine-safety_rating" ],
+  "co:property" : [ "fuel_economy", "kelly-blue-book_price", "motor-trend-magazine-safety_rating" ],
   "rdf:type" : {"@id" : "skos:Concept"},
   "skos:prefLabel" : "toyota_corolla~2008" }
 
@@ -3931,4 +4086,3 @@
   "skos:prefLabel" : "wave~stokes" }
 
 ]}
-

@@ -560,6 +560,7 @@ mcmMapServices.provider('McmMapAssumptionService', {
 					itemForExport.id = assumption.dataContent.mcm.id;
 					itemForExport.name = assumption.name;
 					itemForExport.category = category.name;
+					itemForExport.kNode = assumption;
 
 					itemsDescs.push(itemForExport);
 					itemCategoriesAll[itemCategory].items.push(itemForExport);
@@ -658,7 +659,6 @@ mcmMapServices.provider('McmMapAssumptionService', {
 			itemsLoaded = true;
 		};
 
-		// itemsDescs = [];
 		// var importType = "jsonld";
 		var importType = "db";
 
@@ -675,7 +675,6 @@ mcmMapServices.provider('McmMapAssumptionService', {
 			break;
 		}
 
-		// var that = this;
 		return {
 			createNewAssumption: function(category, name){
 
@@ -725,10 +724,10 @@ mcmMapServices.provider('McmMapAssumptionService', {
 			getLoadingPromise: function(){
 				return itemsData.$promise;
 			},
-			getAssumtionsCategories: function(){
+			getAssumptionsCategories: function(){
 				return itemCategoriesAll;
 			},
-			getAssumtionsCategoriesByName: function(nameSubStr){
+			getAssumptionsCategoriesByName: function(nameSubStr){
 				nameSubStr = nameSubStr.toLowerCase();
 				var returnedItems = [];
 				// we cannot iterate with (var i in itemsDescs) because of
@@ -776,11 +775,11 @@ mcmMapServices.provider('McmMapAssumptionService', {
 
 mcmMapServices.provider('McmMapObjectService', {
 	// privateData: "privatno",
-	$get: ['$q', 'ENV', 'McmMapChangesService', /*'$rootScope', */
-	function($q, ENV, McmMapChangesService/*, $rootScope*/) {
+	$get: ['$q', 'ENV', 'KnalledgeMapService', 'KnalledgeMapVOsService', 'KnalledgeNodeService', /*'McmMapChangesService', '$rootScope', */
+	function($q, ENV, KnalledgeMapService, KnalledgeMapVOsService, KnalledgeNodeService /*, McmMapChangesService, $rootScope*/) {
 		var itemsData = null;
 		var itemsLoaded = false;
-		var objectsDescs = [
+		var objectsDescs = [ // list of objects
 			{
 				name: "object_1"
 			},
@@ -791,12 +790,54 @@ mcmMapServices.provider('McmMapObjectService', {
 				name: "object_3"
 			}
 		];
-		var objectsDescsById = {};
-		var objectsDescsByLabel = {};
+		var objectsDescsById = {}; // object items by @id
+		var objectsDescsByLabel = {}; // object items by names
+		var mapVariables = null;
+		var rootNodeVariable = null;
+
+		var CREATED_BY_SYSTEM = 0;
+		var CREATED_BY_USER = 1;
 
 		// objectsDescs = [];
 
-		var queryItems = function(){
+		var queryItemsDb = function(){
+			var data = [];
+			data.$resolved = false;
+			data.$promise = $q(function(resolve, reject) { /*jshint unused:false*/
+				var gotMap = function(map){
+					console.log('gotMap:'+JSON.stringify(map));
+					// window.alert("[McmMapObjectService:queryItems] Assumptions map is loaded, processing");
+
+					KnalledgeNodeService.getById(mapVariables.rootNodeId).$promise.then(function(rootNode){
+						rootNodeVariable = rootNode;
+
+						KnalledgeMapVOsService.loadData(map).$promise.then(function(result){ //broadcasts 'modelLoadedEvent'
+							for(var id in result){
+								data[id] = result[id];
+							}
+							data.$resolved = true;
+							resolve(data);
+						});
+					});
+				};
+
+				KnalledgeMapService.queryByType("variables").$promise.then(function(maps){
+					console.log("[McmMapObjectService:queryItems] maps (%d): %s", maps.length, JSON.stringify(maps));
+					if(maps.length <= 0){
+						window.alert("[McmMapObjectService:queryItems] Error: There is no map of 'variables' type created")
+					}else{
+						mapVariables = maps[0];
+
+						var mapId = mapVariables._id;
+						console.info("[McmMapObjectService:queryItems] loading variables map: mapId: " + mapId);
+						KnalledgeMapService.getById(mapId).$promise.then(gotMap);
+					}
+				});
+			});
+			return data;
+		};
+
+		var queryItemsJsonld = function(){
 			var items = [];
 			items.$promise = null;
 			items.$resolved = false;
@@ -817,25 +858,115 @@ mcmMapServices.provider('McmMapObjectService', {
 			return items;
 		};
 
-		itemsData = queryItems();
+		// McmMapChangesService.getReadyPromise().then(function(){
+		// 	McmMapChangesService.getChangedNodes("new_object").$promise
+		// 	.then(function(newObjectsNodes){
+		// 		for(var i in newObjectsNodes){
+		// 			var newObjectsNode = newObjectsNodes[i];
+		// 			console.log("newObjectsNode: %s", JSON.stringify(newObjectsNode));
+		// 		}
+		// 	});
+		// });
 
-		McmMapChangesService.getReadyPromise().then(function(){
-			McmMapChangesService.getChangedNodes("new_object").$promise
-			.then(function(newObjectsNodes){
-				for(var i in newObjectsNodes){
-					var newObjectsNode = newObjectsNodes[i];
-					console.log("newObjectsNode: %s", JSON.stringify(newObjectsNode));
-				}
-			});
-		});
-
-		itemsData.$promise.then(function(itemsData){
+		var parseDb = function(itemsData){
 			objectsDescs.length = 0;
 
 			var rdfTypesAll = {};
-			var dataCategoriesAll = {};
-			var propertiesAll = {};
-			var quantitiesAll = {};
+			var propertiesAll = {}; // contains all properties occured in the importing source, hash-keyed with number of occurences  
+			var quantitiesAll = {}; // contains all quantities hash-keyed with number of occurences
+			var itemsNo = 0;
+
+			var quantitiesNoTotal = 0;
+			var quantitiesNoAvg = 0;
+			var quantitiesNoMax = 0;
+
+			var itemsWithoutQuantitiesNo = 0;
+			var itemsWithoutQuantities = [];
+
+			var dataNodes = itemsData[0];
+			var dataEdges = itemsData[1];
+
+			// TODO: taken from knalledgeMap/services.js
+			// we need to extract it into a separate map accessor class
+			var getNodesOfType = function(kNodeType){
+				var nodes = [];
+				for(var j in dataNodes){
+					var kNode = dataNodes[j];
+					if(kNode.type == kNodeType){
+						nodes.push(kNode);
+					}
+				}
+				return nodes;
+			};
+
+			// first parameter can be either kNode or kNodeId
+			var getChildrenNodes = function(kNodeId, edgeType){
+				if(typeof kNodeId == "object") kNodeId = kNodeId._id;
+				var children = [];
+				for(var i in dataEdges){
+					var kEdge = dataEdges[i];
+					if(kEdge.sourceId == kNodeId && ((typeof edgeType === 'undefined') || kEdge.type == edgeType)){
+						for(var j in dataNodes){
+							var kNodeChild = dataNodes[j];
+							if(kNodeChild._id == kEdge.targetId){
+								children.push(kNodeChild);
+							}
+						}
+					}
+				}
+				return children;
+			};
+
+			var variables = getChildrenNodes(mapVariables.rootNodeId, "containsVariable");
+
+			for(var j=0; j<variables.length; j++){
+				var variable = variables[j];
+
+				var itemForExport = {};
+				itemForExport.id = variable.dataContent.mcm.id;
+				itemForExport.name = variable.name;
+				itemForExport.quantities = variable.dataContent.mcm.quantities;
+				itemForExport.kNode = variable;
+
+
+				objectsDescs.push(itemForExport);
+
+				if(!itemForExport.quantities){
+					itemsWithoutQuantitiesNo++;
+					itemsWithoutQuantities.push(itemForExport.id);
+				}
+
+				if(itemForExport.quantities){
+					quantitiesNoTotal += itemForExport.quantities.length;
+					if(itemForExport.quantities.length > quantitiesNoMax) quantitiesNoMax = itemForExport.quantities.length;
+					for(var id in itemForExport.quantities){
+						var quantity = itemForExport.quantities[id];
+						if(quantity in quantitiesAll) quantitiesAll[quantity]++;
+						else quantitiesAll[quantity] = 1;
+					}
+				}
+
+				objectsDescsById[itemForExport.id] = itemForExport;
+				objectsDescsByLabel[itemForExport.name] = itemForExport;
+			}
+
+			function SortByCategoryAndName(a, b){
+				var aName = (a.category + a.name).toLowerCase();
+				var bName = (b.category + b.name).toLowerCase(); 
+				return ((aName < bName) ? -1 : ((aName > bName) ? 1 : 0));
+			}
+
+			objectsDescs.sort(SortByCategoryAndName);
+
+			itemsLoaded = true;
+		};
+
+		var parseJsonld = function(itemsData){
+			objectsDescs.length = 0;
+
+			var rdfTypesAll = {};
+			var propertiesAll = {}; // contains all properties occured in the importing source, hash-keyed with number of occurences  
+			var quantitiesAll = {}; // contains all quantities hash-keyed with number of occurences
 			var itemsNo = 0;
 
 			var quantitiesNoTotal = 0;
@@ -871,9 +1002,6 @@ mcmMapServices.provider('McmMapObjectService', {
 						else propertiesAll[property] = 1;
 					}
 
-					if(itemCategory in dataCategoriesAll) dataCategoriesAll[itemCategory]++;
-					else dataCategoriesAll[itemCategory] = 1;
-
 					if(!('rdfs:label' in itemFromGraph) && !('skos:prefLabel' in itemFromGraph)){
 						// alert("Missing both label 'rdfs:label' and 'skos:prefLabel' for loaded assumption");
 						console.warn("Missing both label 'rdfs:label' and 'skos:prefLabel' for loaded assumption: %s", JSON.stringify(itemFromGraph));
@@ -891,7 +1019,6 @@ mcmMapServices.provider('McmMapObjectService', {
 						itemForExport.id = itemFromGraph['@id'];
 						itemForExport.name = itemName;
 						// itemForExport.category = itemCategory;
-						itemForExport.id = itemFromGraph['@id'];
 						itemForExport.broader = itemFromGraph['broader'];
 						itemForExport.related = itemFromGraph['related'];
 						itemForExport.altLabel = itemFromGraph['skos:altLabel'];
@@ -927,19 +1054,15 @@ mcmMapServices.provider('McmMapObjectService', {
 			for(var i in rdfTypesAll){
 				console.log("\t%s: %d", i, rdfTypesAll[i]);				
 			}
-			console.log("[McmMapObjectService] dataCategoriesAll.length: %s", Object.keys(dataCategoriesAll).length);
-			for(var i in dataCategoriesAll){
-				console.log("\t%s: %d", i, dataCategoriesAll[i]);				
-			}
 
 			console.log("[McmMapObjectService] propertiesAll.length: %s", Object.keys(propertiesAll).length);
 			for(var i in propertiesAll){
-				console.log("\t%s: %d", i, propertiesAll[i]);				
+				console.log("\t%s: %d", i, propertiesAll[i]);
 			}
 
 			console.log("[McmMapObjectService] quantitiesAll.length: %s", Object.keys(quantitiesAll).length);
 			for(var i in quantitiesAll){
-				console.log("\t%s: %d", i, quantitiesAll[i]);				
+				console.log("\t%s: %d", i, quantitiesAll[i]);
 			}
 			quantitiesNoAvg = quantitiesNoTotal/itemsNo;
 			console.log("[McmMapObjectService] quantitiesAll.length: %s, quantitiesNoTotal: %s, quantitiesNoMax: %s, quantitiesNoAvg:%s", Object.keys(quantitiesAll).length, quantitiesNoTotal, quantitiesNoMax, quantitiesNoAvg);
@@ -948,16 +1071,34 @@ mcmMapServices.provider('McmMapObjectService', {
 
 			function SortByName(a, b){
 				var aName = (a.name).toLowerCase();
-				var bName = (b.name).toLowerCase(); 
+				var bName = (b.name).toLowerCase();
 				return ((aName < bName) ? -1 : ((aName > bName) ? 1 : 0));
 			}
 
 			objectsDescs.sort(SortByName);
+		};
 
-		});
+		// var importType = "jsonld";
+		var importType = "db";
 
-		// var that = this;
+		switch (importType){
+		case "preloaded":
+			break;
+		case "jsonld":
+			itemsData = queryItemsJsonld();
+			itemsData.$promise.then(parseJsonld);
+			break;
+		case "db":
+			itemsData = queryItemsDb();
+			itemsData.$promise.then(parseDb);
+			break;
+		}
+
 		return {
+			CREATED_BY_SYSTEM: CREATED_BY_SYSTEM,
+
+			CREATED_BY_USER: CREATED_BY_USER,
+
 			getObjectsDescs: function(){
 				return objectsDescs;
 			},
@@ -968,6 +1109,50 @@ mcmMapServices.provider('McmMapObjectService', {
 
 			getObjectDescByLabel: function(objectLabel){
 				return objectsDescsByLabel[objectLabel];
+			},
+
+			createNewVariable: function(item, mapId, parentNode, createdBy){
+				var kEdge = new knalledge.KEdge();
+				kEdge.type = "containsVariable";
+				kEdge.mapId = mapId;
+				kEdge.dataContent = {
+					source: {
+						created: createdBy
+					}
+				};
+
+				var createdQuantities = [];
+				for(var i in item.quantities){
+					createdQuantities[i] = CREATED_BY_SYSTEM;
+				}
+
+				var kNode = new knalledge.KNode();
+				kNode.type = "variable";
+				kNode.name =  item.name;
+				kNode.mapId = mapId;
+				kNode.dataContent = {
+					mcm: {
+						id: item.id,
+						quantities: item.quantities
+					},
+					source: {
+						created: createdBy,
+						createdQuantities: createdQuantities
+					}
+				};
+
+				var createVariable = function(item, parentNode, edge, variableNode){
+					var kEdge = KnalledgeMapVOsService.createNodeWithEdge(parentNode, edge, variableNode);
+					kEdge.$promise.then(function(kEdge){
+					});
+					return kEdge;
+				}
+
+				return createVariable(item, parentNode, kEdge, kNode).$promise;
+			},
+
+			updateVariable: function(objDesc, updateType){
+				return KnalledgeMapVOsService.updateNode(objDesc.kNode, updateType);
 			},
 
 			addNewObject: function(name){
@@ -984,6 +1169,8 @@ mcmMapServices.provider('McmMapObjectService', {
 				objectsDescs.push(itemForExport);
 				objectsDescsById[itemForExport.id] = itemForExport;
 				objectsDescsByLabel[itemForExport.name] = itemForExport;
+
+				return this.createNewVariable(itemForExport, mapVariables._id, rootNodeVariable, CREATED_BY_USER);
 			},
 
 			getObjectsDesByName: function(nameSubStr, fromStart, onlyTheNextObject){
@@ -1041,6 +1228,21 @@ mcmMapServices.provider('McmMapObjectService', {
 				else baseName = name.substring(id+1);
 
 				return baseName;
+			},
+
+			areObjectsLoaded: function(){
+				return itemsLoaded;
+			},
+			getLoadingPromise: function(){
+				return itemsData.$promise;
+			},
+
+			getMapVariables: function(){
+				return mapVariables;
+			},
+
+			getRootNodeVariable: function(){
+				return rootNodeVariable;
 			}
 		};
 	}]
@@ -1048,8 +1250,8 @@ mcmMapServices.provider('McmMapObjectService', {
 
 mcmMapServices.provider('McmMapVariableQuantityService', {
 	// privateData: "privatno",
-	$get: ['$q', 'ENV', 'McmMapObjectService', 'McmMapChangesService'/*, '$rootScope'*/,
-	function($q, ENV, McmMapObjectService, McmMapChangesService/*, $rootScope*/) {
+	$get: ['$q', 'ENV', 'McmMapObjectService'/*, 'McmMapChangesService', '$rootScope'*/,
+	function($q, ENV, McmMapObjectService/*, McmMapChangesService, $rootScope*/) {
 		var variableQuantitysDescs = [
 			{
 				name: "variableQuantity_1"
@@ -1062,41 +1264,60 @@ mcmMapServices.provider('McmMapVariableQuantityService', {
 			}
 		];
 
-		McmMapChangesService.getReadyPromise().then(function(){
-			McmMapChangesService.getChangedNodes("new_quantity").$promise
-			.then(function(newQuantityNodes){
-				for(var i in newQuantityNodes){
-					var newQuantityNode = newQuantityNodes[i];
-					console.log("newQuantityNode: %s", JSON.stringify(newQuantityNode));
-				}
-			});
-		});
+		// McmMapChangesService.getReadyPromise().then(function(){
+		// 	McmMapChangesService.getChangedNodes("new_quantity").$promise
+		// 	.then(function(newQuantityNodes){
+		// 		for(var i in newQuantityNodes){
+		// 			var newQuantityNode = newQuantityNodes[i];
+		// 			console.log("newQuantityNode: %s", JSON.stringify(newQuantityNode));
+		// 		}
+		// 	});
+		// });
 
 		// var that = this;
 		return {
+
+			MCM_UPDATE_QUANTITIES: "MCM_UPDATE_QUANTITIES",
+
+			// TODO
 			getVariableQuantitysDescs: function(objectEntity){
 				return variableQuantitysDescs;
 			},
 
 			addNewQuantity: function(objectEntity, quantityName){
-				var objeLabel = McmMapObjectService.getFullObjectName(objectEntity);
+				var objLabel = McmMapObjectService.getFullObjectName(objectEntity);
 				if(objectEntity.kNode.type == "grid_desc"){
 					// TODO: FIX
-					objeLabel = "model_grid";
+					objLabel = "model_grid";
 				}
-				var objDesc = McmMapObjectService.getObjectDescByLabel(objeLabel);
-				if(objDesc && objDesc.quantities) objDesc.quantities.push(quantityName);
+				var objDesc = McmMapObjectService.getObjectDescByLabel(objLabel);
+				if(objDesc){
+					if(!objDesc.quantities){
+						objDesc.quantities = [];
+					}
+					if(!objDesc.kNode.dataContent.source.createdQuantities){
+						objDesc.kNode.dataContent.source.createdQuantities = [];
+					}
+					objDesc.quantities.push(quantityName);
+					objDesc.kNode.dataContent.source.createdQuantities.push(McmMapObjectService.CREATED_BY_USER);
+				}
+
+				// in general not acctually necessary since this is already the same reference during the object loading/creation period
+				// necessary only when quantities didn't exist in the object
+				objDesc.kNode.dataContent.mcm.quantities = objDesc.quantities;
+
+				return McmMapObjectService.updateVariable(objDesc, this.MCM_UPDATE_QUANTITIES);
 			},
 
 			getVariableQuantitysDesInObjectByName: function(objectEntity, nameSubStr){
 				nameSubStr = nameSubStr.toLowerCase();
 
-				var objeLabel = McmMapObjectService.getFullObjectName(objectEntity);
+				var objLabel = McmMapObjectService.getFullObjectName(objectEntity);
 				if(objectEntity.kNode.type == "grid_desc"){
 					// TODO: FIX
-					objeLabel = "model_grid";
+					objLabel = "model_grid";
 				}
-				var objDesc = McmMapObjectService.getObjectDescByLabel(objeLabel);
+				var objDesc = McmMapObjectService.getObjectDescByLabel(objLabel);
 				var returnedVariableQuantitys = [];
 				if(objDesc){
 					for(var i in objDesc.quantities){
