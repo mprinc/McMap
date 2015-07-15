@@ -113,8 +113,8 @@ angular.module('mcmMapDirectives', ['Config'])
 								kNodeEntity.name = decoratingEdge.object;
 								kNodeEntity.type = decoratingEdge.object;
 								kNodeEntity.visual = {};
-								kNodeEntity.visual.xM = 0;
-								kNodeEntity.visual.yM = 0;
+								kNodeEntity.visual.xM = right;
+								kNodeEntity.visual.yM = bottom;
 								var vkNodeEntity = new knalledge.VKNode();
 								vkNodeEntity.xM = right;
 								vkNodeEntity.yM = bottom;
