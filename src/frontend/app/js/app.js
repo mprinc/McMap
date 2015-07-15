@@ -27,6 +27,9 @@ angular.module('McModelarApp',[
 	, 'knalledgeMapServices'
 	, 'mcmMapsDirectives' // KnAllEdge Map component
 
+	, 'loginServices'
+	, 'loginDirectives'
+
 	, 'rimaServices'
 	, 'rimaDirectives'
 	, 'rimaFilters'

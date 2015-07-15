@@ -59,6 +59,7 @@ ln -s /var/www/knalledge/src/frontend/components/rima rima
 ln -s /var/www/knalledge/src/frontend/components/notify notify
 ln -s /var/www/knalledge/src/frontend/components/topiChat topiChat
 ln -s /var/www/knalledge/src/frontend/components/collaboPlugins collaboPlugins
+ln -s /var/www/knalledge/src/frontend/components/login login
 
 cd backend/tools
 node createDemoData.js ../../frontend/app/data/sample-small.json
