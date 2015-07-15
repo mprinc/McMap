@@ -51,6 +51,7 @@ ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/components/
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/components/notify notify
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/components/topiChat topiChat
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/components/collaboPlugins collaboPlugins
+ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/components/login login
 
 # Server
 ln -s /var/www/knalledge/src/frontend/components/knalledgeMap knalledgeMap

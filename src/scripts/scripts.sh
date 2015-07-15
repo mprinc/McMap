@@ -34,6 +34,7 @@ ln -s /var/www/knalledge/src/frontend/components/knalledgeMap knalledgeMap
 ln -s /var/www/knalledge/src/frontend/components/rima rima
 ln -s /var/www/knalledge/src/frontend/components/notify notify
 ln -s /var/www/knalledge/src/frontend/components/topiChat topiChat
+ln -s /var/www/knalledge/src/frontend/components/login login
 ln -s /var/www/knalledge/src/frontend/components/collaboPlugins collaboPlugins
 
 # git clone https://bitbucket.org/mPrinC/headsware/earthcube

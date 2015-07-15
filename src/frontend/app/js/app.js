@@ -14,6 +14,7 @@ angular.module('McModelarApp',[
 	, 'ngAnimate' // necessary for animating views
 	, 'ngStorage' // local storage support for Angular
 
+	, 'ngWizard'
 	, 'ui.bootstrap' // UI-bootstrap
 	, 'btford.socket-io'
 
@@ -28,6 +29,7 @@ angular.module('McModelarApp',[
 
 	, 'rimaServices'
 	, 'rimaDirectives'
+	, 'rimaFilters'
 
 	, 'notifyServices'
 	, 'notifyDirectives'
@@ -57,6 +59,30 @@ angular.module('McModelarApp',[
 	.when('/maps', {
 		templateUrl: '../components/mcmMaps/partials/index.tpl.html'
 	})
+
+	// http://localhost:8410/app/index-dev.html#/login/iAmId
+	.when('/login', {
+		templateUrl: '../components/login/partials/index.tpl.html'
+	})
+	// http://localhost:8410/app/index-dev.html#/login/iAmId
+	.when('/login/iAmId/:iAmId?', {
+		templateUrl: '../components/login/partials/index.tpl.html'
+	})
+	// https://docs.angularjs.org/api/ngRoute/provider/$routeProvider
+	// http://stackoverflow.com/questions/17510962/can-angularjs-routes-have-optional-parameter-values
+	// http://localhost:8410/app/index-dev.html#/login/iAmId/55268521fb9a901e442172f8/token/1/route/whoAmI
+	.when('/login/iAmId/:iAmId/token/:token?/route/:route?', {
+		templateUrl: '../components/login/partials/index.tpl.html'
+	})
+	// http://localhost:8410/app/index-dev.html#/logout
+	.when('/logout', {
+		templateUrl: '../components/login/partials/logout-index.tpl.html'
+	})
+	// http://localhost:8410/app/index-dev.html#/whoAmI
+	.when('/whoAmI', {
+		templateUrl: '../components/rima/partials/rima-whoAmI.tpl.html'
+	})
+
 	.otherwise({
 		redirectTo: '/maps'
 	});
