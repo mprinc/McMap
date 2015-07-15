@@ -33,6 +33,15 @@ body {
   overflow-y: scroll; }
 
 /* line 36, ../sass/default.scss */
+.text-not-selectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+/* line 45, ../sass/default.scss */
 #container {
   position: relative;
   height: 100%;
@@ -48,17 +57,17 @@ body {
   max-width: 100%;
   margin-left: auto;
   margin-right: auto; }
-  /* line 12, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/susy-2.2.2/sass/susy/output/support/_clearfix.scss */
+  /* line 12, ../../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/susy-2.2.2/sass/susy/output/support/_clearfix.scss */
   #container:after {
     content: " ";
     display: block;
     clear: both; }
 
-/* line 51, ../sass/default.scss */
+/* line 60, ../sass/default.scss */
 .clickable {
   cursor: pointer; }
 
-/* line 55, ../sass/default.scss */
+/* line 64, ../sass/default.scss */
 .clickable:hover {
   /*text-decoration: underline;*/
   /* http://compass-style.org/reference/compass/css3/box_shadow/#mixin-box-shadow */
@@ -70,6 +79,6 @@ body {
 /* necessary for BOOTSTRAP-ANGULAR intregation
  * http://angular-ui.github.io/bootstrap/
  */
-/* line 66, ../sass/default.scss */
+/* line 75, ../sass/default.scss */
 .nav, .pagination, .carousel, .panel-title a {
   cursor: pointer; }

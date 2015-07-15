@@ -496,6 +496,10 @@ $mcm_map_list_border: #888888;
 			&.selectable{
 				cursor: pointer;
 			}
+			&.expandable{
+				cursor: pointer;
+				font-weight: bold;
+			}
 
 			overflow-x: hidden;
 			position: relative;

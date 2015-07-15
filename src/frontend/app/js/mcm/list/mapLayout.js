@@ -103,6 +103,24 @@ MapLayout.prototype.processData = function(subtreeRoot, rootNodeX, rootNodeY) {
 MapLayout.prototype.generateTree = function(subtreeRoot){
 	// Compute the new tree layout.
 	this.nodes = [];
+
+	/* support accordion
+	edgeTypesOpen contains hash-array of edgeTypes keys
+	each key has boolean value 
+	example:
+
+	subtreeRoot.kNode.edgeTypesOpen = {
+		containsAssumption: false, // closed
+		containsObject: true, // open
+		...
+	}
+	*/
+	// TODO: subtreeRoot.kNode.edgeTypesOpen is not the best place to mantain opened edgeTypes, 
+	// but we use it simply because it is persistent across of re-rendering of the list
+	if(! subtreeRoot.kNode.edgeTypesOpen){
+		subtreeRoot.kNode.edgeTypesOpen = {};
+	}
+
 	var entityDesc = this.schema.getEntityDesc(subtreeRoot.kNode.type);
 	var nodeId = 0;
 	for(var edgeType in entityDesc.contains){
@@ -116,6 +134,8 @@ MapLayout.prototype.generateTree = function(subtreeRoot){
 			id: nodeId++
 		};
 		this.nodes.push(edgeNode);
+
+		if(!(edgeType in subtreeRoot.kNode.edgeTypesOpen) || !subtreeRoot.kNode.edgeTypesOpen[edgeType]) continue;
 
 		var subEntities = this.mapStructure.getChildrenNodes(subtreeRoot, edgeType);
 		for(var id in subEntities){

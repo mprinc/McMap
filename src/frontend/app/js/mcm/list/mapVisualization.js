@@ -116,7 +116,12 @@ MapVisualization.prototype.updateHtml = function(source) {
 		// .on("dblclick", this.clickDoubleNode.bind(this))
 		// .on("click", this.clickNode.bind(this));
 
+	nodeHtmlEnter.classed({
+		"text-not-selectable": true
+	});
+
 	nodeHtmlEnter.filter(function(d) {
+		// not selectable if not entity or if it has no any entity type that it CAN potentialy contain
 		if(d.objectType != "entity") return false;
 		var mapEntityDesc = that.schema.getEntityDesc(d.type);
 		if(!mapEntityDesc || !mapEntityDesc.contains) return false;
@@ -125,6 +130,17 @@ MapVisualization.prototype.updateHtml = function(source) {
 		.classed({
 		"selectable": true
 	});
+
+	nodeHtmlEnter.filter(function(d) {
+		// not expandable if it is not edge or it doesn't contain any entity
+		if(d.objectType != "edge") return false;
+		var children = that.mapStructure.getChildrenNodes(d.parent, d.type);
+		return (children.length > 0);
+	})
+		.classed({
+		"expandable": true
+	});
+
 
 	// position node on enter at the source position
 	// (it is either parent or another precessor)
@@ -198,6 +214,29 @@ MapVisualization.prototype.updateHtml = function(source) {
 						((children.length > 0) ? " <b>(" + children.length + ")</b>" : "");
 			}
 		});
+	// expandable
+	nodeHtml.filter(function(d) {
+		return d3.select(this).classed("expandable");
+	})
+		.on("click", function(d){
+			if(! d.parent.kNode.edgeTypesOpen){
+				d.parent.kNode.edgeTypesOpen = {};
+			}
+			if(!(d.type in d.parent.kNode.edgeTypesOpen) || !d.parent.kNode.edgeTypesOpen[d.type]){
+				// close all other categories
+				for(var i in d.parent.kNode.edgeTypesOpen){
+					d.parent.kNode.edgeTypesOpen[i] = false;
+				}
+				d.parent.kNode.edgeTypesOpen[d.type] = true;
+			}else{
+				d.parent.kNode.edgeTypesOpen[d.type] = false;
+			}
+
+			that.update(d.parent);
+
+			// d.event.cancelBubble = true;
+		})
+
 	// Settings
 	nodeHtml.select(".settings")
 		// http://stackoverflow.com/questions/18205034/d3-adding-data-attribute-conditionally
