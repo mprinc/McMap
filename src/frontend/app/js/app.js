@@ -67,6 +67,10 @@ angular.module('McModelarApp',[
 	.when('/login', {
 		templateUrl: '../components/login/partials/index.tpl.html'
 	})
+	// http://localhost:8410/app/index-dev.html#/register
+	.when('/register', {
+		templateUrl: '../components/login/partials/register-index.tpl.html'
+	})
 	// http://localhost:8410/app/index-dev.html#/login/iAmId
 	.when('/login/iAmId/:iAmId?', {
 		templateUrl: '../components/login/partials/index.tpl.html'
