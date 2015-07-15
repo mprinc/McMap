@@ -1,12 +1,8 @@
-<a ng-href="#/maps"> <i class="fa fa-backward"></i> Model Components</a>
-<h4>Visualize:</h4>
-<!-- <pre>{{radioModel || 'null'}}</pre> -->
-<div class="btn-group">
-		<label class="btn btn-primary" ng-model="config.entities.showCounts" btn-checkbox ng-change="configChanged()">Show Counts</label>
-</div><br/>
+<a ng-href="#/maps"> <i class="fa fa-backward"></i> Model Components </a><br/>
+<a ng-href="#/preferences"> <i class="fa fa-car"></i> Preferences </a>
 <hr/>
 <h4>New Entities:</h4>
-(drag them onto entities in the model)
+(drag an icon onto entities to the right)
 <ul>
 	<li ng-repeat="tool in tools" tool="tool" class="yes-drop draggable_tool drag-drop">
 		<span>{{tool.icon}}</span>

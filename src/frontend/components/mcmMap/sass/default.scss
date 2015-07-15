@@ -23,7 +23,8 @@ $susy: (
 	columns: 12,
 	gutters: 1/8,
 	math: fluid,
-	output: float,
+	/*output: float,*/
+	output: isolate, 
 	gutter-position: inside,
 
 	debug: (
@@ -34,7 +35,8 @@ $susy: (
 	),
 );
 
-$map: layout(12 1/4 fluid float inside);
+/*$map: layout(12 1/4 fluid float inside);*/
+$map: layout(12 1/4 fluid isolate inside);
 
 @include breakpoint($small) {
 	.mcm_map{
@@ -73,15 +75,26 @@ $map: layout(12 1/4 fluid float inside);
 @include breakpoint($large) {
 	.mcm_map{
 		/* make #content content occupying 2 cells less on large screens */
-		@include span(8 at 1);
+		@include span(8 at 3);
+		&.no_visual_diagram{
+			@include span(4 at 1);
+			display: block;
+			visibility: hidden;			
+		}
 	}
 
 	.mcm_map_tools{
-		@include span(2 at 10);
+		@include span(2 at 1);
+		&.no_visual_diagram{
+			@include span(2 at 4);
+		}
 	}
 
 	.mcm_map_list{
 		@include span(2 at 11); 
+		&.no_visual_diagram{
+			@include span(5 at 6); 
+		}
 	}
 }
 
@@ -1913,4 +1926,20 @@ $select_sub_entity_title_size: 1em;
 	.buttons{
 		text-align: center;
 	}
+}
+
+$color_preferences_border: gray;
+.mcm-preferences{
+			text-align: center;
+			position: relative;
+			display: block;
+			border: 1px solid $color_preferences_border;
+			padding: 10px;
+			margin: 5px;
+			margin-top: 15px;
+			width: 80%;
+			left: 50%;
+			margin-left: -40%;
+			@include border-radius(10px, 10px);
+			@include box-shadow(4px 3px 7px 2px rgba(150, 150, 255, 0.75));	
 }

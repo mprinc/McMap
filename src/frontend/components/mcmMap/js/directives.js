@@ -2,6 +2,18 @@
 'use strict';
 
 angular.module('mcmMapDirectives', ['Config'])
+	.directive('mcmContainer', ['$rootScope', '$timeout', 'ConfigMapToolset', 'McmMapViewService',
+		function($rootScope, $timeout, ConfigMapToolset, McmMapViewService){
+		return {
+			restrict: 'AE',
+			scope: {
+			},
+			templateUrl: '../components/mcmMap/partials/mcm-container.tpl.html',
+			controller: function ( $scope, $element ) {
+				$scope.config = McmMapViewService.config;
+    		}
+    	};
+	}])
 	.directive('mcmMap', ['$timeout', '$rootScope', '$routeParams', 'ConfigMap', '$compile', 'McmMapSchemaService', 'KnalledgeMapVOsService', 'KnalledgeMapService', 'KnalledgeMapViewService', 'McmMapVisualService', 'McmMapVariableOperatorService', 'McmMapGridService', 'McmMapViewService',
 		function($timeout, $rootScope, $routeParams, ConfigMap, $compile, McmMapSchemaService, KnalledgeMapVOsService, KnalledgeMapService, KnalledgeMapViewService, McmMapVisualService, McmMapVariableOperatorService, McmMapGridService, McmMapViewService){
 
@@ -942,8 +954,8 @@ angular.module('mcmMapDirectives', ['Config'])
     		}
     	};
 	}])
-	.directive('mcmMapTools', ["$rootScope", "$timeout", 'ConfigMapToolset', 'McmMapSchemaService', 'McmMapViewService',
-		function($rootScope, $timeout, ConfigMapToolset, McmMapSchemaService, McmMapViewService){
+	.directive('mcmMapTools', ["$rootScope", "$timeout", 'ConfigMapToolset', 'McmMapSchemaService',
+		function($rootScope, $timeout, ConfigMapToolset, McmMapSchemaService){
 		console.log("[mcmMapTools] loading directive");
 		return {
 			restrict: 'AE',
@@ -981,12 +993,6 @@ angular.module('mcmMapDirectives', ['Config'])
 					$scope.tools.push(McmMapSchemaService.getEdgeDesc(edgeName));
 				}
 
-				$scope.config = McmMapViewService.config;
-				$scope.configChanged = function(){
-					var mapStylingChangedEventName = "mapStylingChangedEvent";
-					$rootScope.$broadcast(mapStylingChangedEventName);
-				};
-
 				var toolset = new mcm.EntitiesToolset(ConfigMapToolset, toolsetClientInterface);
 				toolset.init();
 
@@ -1005,6 +1011,23 @@ angular.module('mcmMapDirectives', ['Config'])
     		}
     	};
 	}])
+	.directive('mcmPreferences', ['$rootScope', '$timeout', 'ConfigMapToolset', 'McmMapViewService',
+		function($rootScope, $timeout, ConfigMapToolset, McmMapViewService){
+		return {
+			restrict: 'AE',
+			scope: {
+			},
+			templateUrl: '../components/mcmMap/partials/mcm-preferences.tpl.html',
+			controller: function ( $scope, $element ) {
+				$scope.config = McmMapViewService.config;
+				$scope.configChanged = function(){
+					var mapStylingChangedEventName = "mapStylingChangedEvent";
+					$rootScope.$broadcast(mapStylingChangedEventName);
+				};
+    		}
+    	};
+	}])
+
 	.directive('mcmMapList', ['$rootScope', '$timeout', 'ConfigMapToolset', 'KnalledgeMapVOsService', 'McmMapSchemaService', 'McmMapVariableOperatorService', 'McmMapVisualService',
 		function($rootScope, $timeout, ConfigMapToolset, KnalledgeMapVOsService, McmMapSchemaService, McmMapVariableOperatorService, McmMapVisualService){
 		// http://docs.angularjs.org/guide/directive

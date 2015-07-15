@@ -2,15 +2,15 @@
 	<h1>Model Component Metadata Editor (ESB)</h1>
 	<span class="description">A tool to describe geoscience models with standardized metadata.</span>
 	<hr/>
-	<h2>Model Components</h2>
 	<div class='creatingNewMap' ng-class="{ 'displayNone': modeCreating == false }">
 		<form>
 			<fieldset>
-				<legend>New Model</legend>
+				<legend class="table_title">New Model</legend>
 				<div><label>Model Component Name</label><input type="text" ng-model="mapToCreate.name" /></div>
 				<div><label>Part of Model</label><input type="text" ng-model="mapToCreate.parentMapId" /></div>
 				<div><label>Model Version</label><input type="text" ng-model="mapToCreate.version" /></div>
 				<div><label>Authors</label><input type="text" ng-model="mapToCreate.dataContent.mcm.authors" /></div>
+				<div><label>Is public:</label><input type="checkbox" ng-model="mapToCreate.isPublic" /></div>
 		<!-- 		<label class="checkbox"><input type="checkbox"> Keep apsect-ratio</label>
 		 -->
 		 		<p class="buttons">
@@ -23,7 +23,13 @@
 	</div>
 	<div>
 		<br/>
-		<span>Existing model components:</span>
+		<span class="table_title">Existing model components:</span>
+		<p class="buttons">
+			<button class="btn btn-primary" type="submit" ng-click="openMap()">Open Existing Model Component</button>
+			<span class='showCreateNewMap' ng-class="{ 'displayNone': modeCreating == true }">
+				<button class="btn btn-primary" ng-click="showCreateNewMap()">Create New Model Component</button>
+			</span>
+		</p>
 		<table class="list">
 			<tr><th class="mcm_name">Name</th><th class="mcm_authors">Authors</th><th class="creation_date">Creation Date</th><th class="mcm_domains">Domains</th><th class="mcm_name">Id</th></tr>
 			<tr ng-click="selectItem(item)" ng-repeat="item in items" data-ng-class="{'active-selection': item._id == selectedItem._id}">
@@ -35,10 +41,4 @@
 			</tr>
 		</table>
 	</div>
-	<p class="buttons">
-		<button class="btn btn-primary" type="submit" ng-click="openMap()">Open Map</button>
-		<span class='showCreateNewMap' ng-class="{ 'displayNone': modeCreating == true }">
-			<button class="btn btn-primary" ng-click="showCreateNewMap()">Create a New Model Component</button>
-		</span>
-	</p>
 </div>

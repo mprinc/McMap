@@ -7,6 +7,11 @@
 angular.module('McModelarApp',[
 	  'ngRoute'
 	, 'ngSanitize' // necessary for outputing HTML in angular directive
+	// http://www.yearofmoo.com/2013/08/remastered-animation-in-angularjs-1-2.html
+	// http://outlandish.com/blog/conditional-view-change-animations-in-angular-js/
+	// https://scotch.io/tutorials/animating-angularjs-apps-ngview
+	// https://docs.angularjs.org/api/ngRoute/directive/ngView
+	, 'ngAnimate' // necessary for animating views
 	, 'ngStorage' // local storage support for Angular
 
 	, 'ui.bootstrap' // UI-bootstrap
@@ -35,16 +40,19 @@ angular.module('McModelarApp',[
 .config(['$routeProvider', function($routeProvider) {
 	$routeProvider
 	.when('/map', {
-		templateUrl: '../components/mcmMap/partials/index.tpl.html'
+		templateUrl: '../components/mcmMap/partials/mcm-index.tpl.html'
 	})
 	.when('/map/id/:id', {
-		templateUrl: '../components/mcmMap/partials/index.tpl.html'
+		templateUrl: '../components/mcmMap/partials/mcm-index.tpl.html'
 	})
 	.when('/importAssumptions', {
 		templateUrl: '../components/mcmMap/partials/mcmImportAssumptions-index.tpl.html'
 	})
 	.when('/importVariables', {
 		templateUrl: '../components/mcmMap/partials/mcmImportVariables-index.tpl.html'
+	})
+	.when('/preferences', {
+		templateUrl: '../components/mcmMap/partials/mcm-preferences-index.tpl.html'
 	})
 	.when('/maps', {
 		templateUrl: '../components/mcmMaps/partials/index.tpl.html'

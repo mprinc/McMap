@@ -1,0 +1,12 @@
+	<h1>Preferences</h1>
+	<a ng-href="#" onclick="history.go(-1);return false;"> <i class="fa fa-backward"></i> Back </a><br/>
+	<h4>Model visualization</h4>
+	<!-- <pre>{{radioModel || 'null'}}</pre> -->
+	<hr/>
+
+	<div class="btn-group">
+			<label class="btn btn-primary" ng-model="config.visualDiagram.visible" btn-checkbox ng-change="configChanged()">{{config.visualDiagram.visible ? "Hide Box Diagram" : "Show Box Diagram"}}</label>
+	</div>
+	<div class="btn-group">
+			<label class="btn btn-primary" ng-model="config.entities.showCounts" btn-checkbox ng-change="configChanged()">{{config.entities.showCounts ? "Hide Entity Counters" : "Show Entity Counters"}}</label>
+	</div>

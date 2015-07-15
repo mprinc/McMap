@@ -1026,7 +1026,11 @@ mcmMapServices.provider('McmMapObjectService', {
 						
 						itemForExport.quantities = itemFromGraph['co:property'];
 						if(typeof itemForExport.quantities === 'string'){
-							itemForExport.quantities = [itemForExport.quantities];
+							if(itemForExport.quantities.length == 0){
+								itemForExport.quantities = [];
+							}else{
+								itemForExport.quantities = [itemForExport.quantities];
+							}
 						}
 
 						objectsDescs.push(itemForExport);
@@ -1851,6 +1855,9 @@ mcmMapServices.provider('McmMapViewService', {
 				// var that = this;
 		var provider = {
 			config: {
+				visualDiagram: {
+					visible: true
+				},
 				entities: {
 					showCounts: true
 				}

@@ -23,8 +23,9 @@
   padding-bottom: 0.625em;
   padding-left: 0.75em;
   padding-right: 0.75em;
-  border: 2px groove #333;
-  border: solid 1px #000;
+  /*    border: 2px groove #333;
+      border: solid 1px #000;
+  */
   padding: 10px; }
   /* line 30, ../sass/default.scss */
   .creatingNewMap label {
@@ -38,11 +39,20 @@
 .mapsList {
   width: 80%;
   margin-left: 10%;
-  margin-right: 10%; }
-  /* line 49, ../sass/default.scss */
+  margin-right: 10%;
+  background-image: url("../../../app/img/ESB_Logo_small.png");
+  background-repeat: no-repeat;
+  background-position-x: 36.5em;
+  background-position-y: -0.3em; }
+  /* line 53, ../sass/default.scss */
   .mapsList .description {
     color: #aaf; }
-  /* line 53, ../sass/default.scss */
+  /* line 57, ../sass/default.scss */
+  .mapsList .table_title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 1em; }
+  /* line 62, ../sass/default.scss */
   .mapsList .list {
     margin: 5px;
     text: 18px;
@@ -55,22 +65,29 @@
     background-color: #888;
     /*background-color: #ccc;
     background-color: #aaf;*/ }
-    /* line 57, ../sass/default.scss */
+    /* line 66, ../sass/default.scss */
     .mapsList .list .active-selection {
-      background-color: #eee; }
-    /* line 61, ../sass/default.scss */
+      background-color: #f99 !important;
+      color: #a00 !important; }
+    /* line 71, ../sass/default.scss */
+    .mapsList .list tr:nth-child(even) {
+      background: #ccc; }
+    /* line 72, ../sass/default.scss */
+    .mapsList .list tr:nth-child(odd) {
+      background: #aaa; }
+    /* line 74, ../sass/default.scss */
     .mapsList .list tr:hover {
       cursor: pointer;
-      background-color: #cccccc; }
-    /* line 73, ../sass/default.scss */
+      background-color: #ffb !important; }
+    /* line 86, ../sass/default.scss */
     .mapsList .list th {
       background-color: #aaf;
       border: 1px solid black;
       padding: 5px; }
-    /* line 78, ../sass/default.scss */
+    /* line 91, ../sass/default.scss */
     .mapsList .list td {
       border: 1px solid black;
       padding: 5px; }
-  /* line 85, ../sass/default.scss */
+  /* line 98, ../sass/default.scss */
   .mapsList .buttons {
     text-align: left; }
