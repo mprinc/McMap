@@ -15,13 +15,15 @@ var Map =  mcm.Map = function(parentDom, config, clientApi, schema, mapService, 
 	this.mapStructure = this.mapStructureExternal ? this.mapStructureExternal : new knalledge.MapStructure();
 	var mapVisualizationApi = {
 		timeout: this.clientApi.timeout,
-		dialogues: this.clientApi.dialogues
+		dialogues: this.clientApi.dialogues,
 	};
 	this.mapVisualization = new mcm.MapVisualization(this.parentDom, mapVisualizationApi, this.mapStructure, this.config.view, this.config.transitions, this.config.nodes, this.config.edges, this.config.interaction.resizingConfig, this.schema, this.mcmMapViewService);
 	var mapLayoutApi = {
 		update: this.mapVisualization.update.bind(this.mapVisualization),
 		getDom: this.mapVisualization.getDom.bind(this.mapVisualization),
 		mapEntityClicked: this.clientApi.mapEntityClicked,
+		deleteNode: this.mapStructure.deleteNode.bind(this.mapStructure),
+		addEntity: this.clientApi.addEntity,
 	};
 	this.mapLayout = new mcm.MapLayout(this.mapStructure, this.config.view, this.config.nodes, this.config.tree, mapLayoutApi, this.state, this.schema);
 

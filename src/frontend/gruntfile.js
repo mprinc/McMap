@@ -132,6 +132,29 @@ module.exports = function(grunt) {
 					require: ["susy", "breakpoint"],
 					trace: true
 				}
+			},
+			halo_dist: { // target
+				options: { // Target options
+					// config: 'config/config.rb',
+					sassDir: ['components/halo/sass'],
+					cssDir: ['components/halo/css'],
+					outputStyle: "nested",
+					environment: 'production',
+					noLineComments: true,
+					require: ["susy", "breakpoint"],
+					trace: true
+				}
+			},
+			halo_dev: { // Another target
+				options: {
+					sassDir: ['components/halo/sass'],
+					cssDir: ['components/halo/css'],
+					outputStyle: "nested", // expanded, nested, compact, compressed
+					environment: 'development',
+					noLineComments: false,
+					require: ["susy", "breakpoint"],
+					trace: true
+				}
 			}
 		},
 		concat: {
@@ -176,19 +199,23 @@ module.exports = function(grunt) {
 			maps_css: {
 				files: ['components/mcmMaps/sass/**/*.{scss,sass}'],
 				tasks: ['compass:maps_dev', 'notify:watch_css'],
+			},
+			halo_css: {
+				files: ['components/halo/sass/**/*.{scss,sass}'],
+				tasks: ['compass:halo_dev', 'notify:watch_css'],
 			}
 		},
 		concurrent: {
 			watch: {
-				tasks: ['watch:js', 'watch:app_css', 'watch:map_css', 'watch:maps_css'],
+				tasks: ['watch:js', 'watch:app_css', 'watch:map_css', 'watch:maps_css', 'watch:halo_css'],
 				options: { logConcurrentOutput: true }
 			},
 			dev: {
-				tasks: ['jshint', 'compass:app_dev', 'compass:map_dev', 'compass:maps_dev'],
+				tasks: ['jshint', 'compass:app_dev', 'compass:map_dev', 'compass:maps_dev', 'compass:halo_dev'],
 				options: { logConcurrentOutput: true }
 			},
 			dist: {
-				tasks: ['jshint', 'compass:app_dist', 'compass:map_dist', 'compass:map_dist'],
+				tasks: ['jshint', 'compass:app_dist', 'compass:map_dist', 'compass:maps_dist', 'compass:halo_dist'],
 				options: { logConcurrentOutput: true }
 			}
 		},

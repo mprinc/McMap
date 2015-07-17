@@ -47,6 +47,9 @@ angular.module('mcmMapDirectives', ['Config'])
 					getContainer: function(){
 						return $element.find('.map-container');
 					},
+					addEntity: function(){
+						;
+					},
 					mapEntityClicked: function(mapEntity /*, mapEntityDom*/){
 						$scope.$apply(function () {
 							mapEntityClicked = mapEntity;

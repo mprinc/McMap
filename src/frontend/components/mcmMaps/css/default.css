@@ -53,41 +53,45 @@
     font-weight: bold;
     margin-bottom: 1em; }
   /* line 62, ../sass/default.scss */
-  .mapsList .list {
-    margin: 5px;
-    text: 18px;
-    border: 1px solid #aaa;
-    -moz-border-radius: 5px / 5px;
-    -webkit-border-radius: 5px 5px;
-    border-radius: 5px / 5px;
-    margin-bottom: 3px;
-    padding: 3px;
-    background-color: #888;
-    /*background-color: #ccc;
-    background-color: #aaf;*/ }
-    /* line 66, ../sass/default.scss */
-    .mapsList .list .active-selection {
-      background-color: #f99 !important;
-      color: #a00 !important; }
-    /* line 71, ../sass/default.scss */
-    .mapsList .list tr:nth-child(even) {
-      background: #ccc; }
-    /* line 72, ../sass/default.scss */
-    .mapsList .list tr:nth-child(odd) {
-      background: #aaa; }
-    /* line 74, ../sass/default.scss */
-    .mapsList .list tr:hover {
-      cursor: pointer;
-      background-color: #ffb !important; }
-    /* line 86, ../sass/default.scss */
-    .mapsList .list th {
-      background-color: #aaf;
-      border: 1px solid black;
-      padding: 5px; }
-    /* line 91, ../sass/default.scss */
-    .mapsList .list td {
-      border: 1px solid black;
-      padding: 5px; }
-  /* line 98, ../sass/default.scss */
+  .mapsList .list_container {
+    height: 80%;
+    overflow-y: scroll; }
+    /* line 65, ../sass/default.scss */
+    .mapsList .list_container .list {
+      margin: 5px;
+      text: 18px;
+      border: 1px solid #aaa;
+      -moz-border-radius: 5px / 5px;
+      -webkit-border-radius: 5px 5px;
+      border-radius: 5px / 5px;
+      margin-bottom: 25px;
+      padding: 3px;
+      background-color: #888;
+      /*background-color: #ccc;
+      background-color: #aaf;*/ }
+      /* line 69, ../sass/default.scss */
+      .mapsList .list_container .list .active-selection {
+        background-color: #f99 !important;
+        color: #a00 !important; }
+      /* line 74, ../sass/default.scss */
+      .mapsList .list_container .list tr:nth-child(even) {
+        background: #ccc; }
+      /* line 75, ../sass/default.scss */
+      .mapsList .list_container .list tr:nth-child(odd) {
+        background: #aaa; }
+      /* line 77, ../sass/default.scss */
+      .mapsList .list_container .list tr:hover {
+        cursor: pointer;
+        background-color: #ffb !important; }
+      /* line 89, ../sass/default.scss */
+      .mapsList .list_container .list th {
+        background-color: #aaf;
+        border: 1px solid black;
+        padding: 5px; }
+      /* line 94, ../sass/default.scss */
+      .mapsList .list_container .list td {
+        border: 1px solid black;
+        padding: 5px; }
+  /* line 103, ../sass/default.scss */
   .mapsList .buttons {
     text-align: left; }

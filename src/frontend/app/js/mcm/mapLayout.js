@@ -2,6 +2,7 @@
 'use strict';
 
 var MapLayout =  mcm.MapLayout = function(structure, configView, configNodes, configTree, clientApi, state, schema){
+	var that = this;
 	this.structure = structure;
 	this.configView = configView;
 	this.configNodes = configNodes;
@@ -13,6 +14,32 @@ var MapLayout =  mcm.MapLayout = function(structure, configView, configNodes, co
 	this.links = null;
 	this.dom = null;
 	this.tree = null;
+
+	var heloOptions = {
+		exclusive: true,
+		createAt: "sibling"
+	};
+	this.helo = new interaction.Halo();
+	this.helo.init(heloOptions, function(event){
+		var d = event.source.data();
+		if( Object.prototype.toString.call( d ) === '[object Array]' ) {
+			d = d[0];
+		}
+
+		switch(event.action){
+		case "delete":
+			that.clientApi.deleteNode(d);
+			that.clientApi.update(d);
+			break;
+		case "settings":
+			window.alert("No settings for the entity");
+			break;
+		case "add":
+			window.alert("Adding entity");
+			that.clientApi.addEntity(d);
+			break;
+		}
+	});
 };
 
 MapLayout.CONTAINS_OBJECT = "containsObject";
@@ -84,6 +111,7 @@ MapLayout.prototype.clickNode = function(d, dom, commingFromAngular, doNotBubleU
 	if(isSelected){
 		if(d) d.isSelected = false;
 		this.structure.unsetSelectedNode();
+		this.helo.destroy();
 	}else{
 		if(d && dom){
 			// var nodeHtml = nodesHtml[0];
@@ -93,8 +121,10 @@ MapLayout.prototype.clickNode = function(d, dom, commingFromAngular, doNotBubleU
 			});
 			d.isSelected = true;
 			this.structure.setSelectedNode(d);
+			this.helo.create(dom);
 		}else{
 			this.structure.unsetSelectedNode();
+			this.helo.destroy();
 		}
 	}
 

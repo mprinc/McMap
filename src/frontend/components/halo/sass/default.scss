@@ -1,31 +1,55 @@
+/*http://stackoverflow.com/questions/8061166/syntax-to-include-separate-sass-file*/
+@import "../../../app/sass/include";
+
 .halo {
 	position: absolute;
 	pointer-events: none;
+
+
+	.handle {
+		cursor: pointer;
+	}
+	.icon {
+		cursor: pointer;
+		position: absolute;
+		padding: 5px;
+		margin: 5px;
+		border: solid 3px rgba(150, 150, 255, 0.25);
+		background-color: rgba(200, 200, 255, 0.25);
+		@include box-shadow(2px 1px 3px 1px rgba(100, 100, 255, 0.75));
+		@include border-radius(10px, 10px);
+
+		pointer-events: auto;
+/*		width: 20px;
+		height: 20px;
+		background-size: 20px 20px;
+		background-repeat: no-repeat;
+*/
+		@include user-select(none);
+	}
+
+	.w{
+		left: -45px;
+		top: 30px;
+	}
+	.e{
+		right: -55px;
+		top: 30px;
+	}
+	.n{
+		left: calc(50% - 20px);
+		top: -48px;
+	}
+	.s{
+		left: calc(50% - 20px);
+		bottom: -55;
+	}
 }
 
 .halo.animate>div {
 	transition: background-size 80ms, width 80ms, height 80ms, top 150ms,left 150ms, bottom 150ms,right 150ms;
 }
 
-.halo .handle {
-	cursor: pointer;
-}
-
-.halo>div {
-	position: absolute;
-	pointer-events: auto;
-	width: 20px;
-	height: 20px;
-	background-size: 20px 20px;
-	background-repeat: no-repeat;
-
-	-moz-user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	-webkit-user-drag: none;
-	user-drag: none;
-}
 
 .halo .handle.nw {
 	top: -21px;

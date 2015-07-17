@@ -30,15 +30,17 @@
 				<button class="btn btn-primary" ng-click="showCreateNewMap()">Create New Model Component</button>
 			</span>
 		</p>
-		<table class="list">
-			<tr><th class="mcm_name">Name</th><th class="mcm_authors">Authors</th><th class="creation_date">Creation Date</th><th class="mcm_domains">Domains</th><th class="mcm_name">Id</th></tr>
-			<tr ng-click="selectItem(item)" ng-repeat="item in items" data-ng-class="{'active-selection': item._id == selectedItem._id}">
-				<td>{{item.name}}</td>
-				<td>{{item.dataContent.mcm.authors}}</td>
-				<td>{{item.createdAt}}</td>
-				<td>&nbsp;</td>
-				<td>{{item._id}}</td>
-			</tr>
-		</table>
+		<div class="list_container">
+			<table class="list">
+				<tr><th class="mcm_name">Name</th><th class="mcm_authors">Authors</th><th class="creation_date">Creation Date</th><th class="mcm_domains">Domains</th><th class="mcm_name">Id</th></tr>
+				<tr ng-click="selectItem(item)" ng-repeat="item in items" data-ng-class="{'active-selection': item._id == selectedItem._id}">
+					<td>{{item.name}}</td>
+					<td>{{item.dataContent.mcm.authors}}</td>
+					<td>{{item.createdAt}}</td>
+					<td>&nbsp;</td>
+					<td>{{item._id}}</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </div>
