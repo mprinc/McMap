@@ -38,7 +38,6 @@ halo.prototype.destroy = function () {
 };
 
 halo.prototype.create = function (objectDom, options) {
-	var that = this;
 	var objectView = d3.select(objectDom);
 	var haloView = null;
 	if(this.config.exclusive){
@@ -63,82 +62,48 @@ halo.prototype.create = function (objectDom, options) {
 		.style("z-index", 1001);
 	// haloView.text("Hello Halo!");
 
-	var iconBgView = haloView.append("div");
-	iconBgView
-		.classed({
-			icon: true,
-			w: true
-			})
-		.append("i")
-			.style("margin", "0.2em")
-		.classed({
-			'fa fa-pencil': true})
-	iconBgView.on("click", function(){
-		if(typeof that.callback == 'function') {
-			var event = {
-				action: "settings",
-				source: objectView
-			};
-			that.callback(event);
-		}
-	});
+	for(var i in options.icons){
+		var iconOptions = options.icons[i];
+		this._createIcon(haloView, objectView, iconOptions);
+	}
+};
+
+halo.prototype._createIcon = function(haloView, objectView, iconOptions){
+	var that = this;
 
 	var iconBgView = haloView.append("div");
+	var classes = {
+		icon: true
+	};
+	classes[iconOptions.position] = true;
 	iconBgView
-		.classed({
-			icon: true,
-			e: true
-			})
-		.append("i")
-			.style("margin", "0.2em")
-		.classed({
-			'fa fa-trash-o': true})
+		.classed(classes);
+
+	if(iconOptions.iconClass){
+		var classes = {
+			fa: true
+		};
+		classes[iconOptions.iconClass] = true;
+		iconBgView
+			.append("i")
+				.style("margin", "0.2em")
+				.classed(classes);
+	}
+	if(iconOptions.iconText){
+		var classes = {
+			'icon-text': true
+		};
+		iconBgView
+			.classed(classes)
+			.text(iconOptions.iconText);
+	}
 	iconBgView.on("click", function(){
+		d3.event.cancelBubble = true;
+
 		if(typeof that.callback == 'function') {
 			var event = {
-				action: "delete",
-				source: objectView
-			};
-			that.callback(event);
-		}
-	});
-
-	var iconBgView = haloView.append("div");
-	iconBgView
-		.classed({
-			icon: true,
-			e: true
-			})
-		.append("i")
-			.style("margin", "0.2em")
-		.classed({
-			'fa fa-trash-o': true})
-	iconBgView.on("click", function(){
-		if(typeof that.callback == 'function') {
-			var event = {
-				action: "delete",
-				source: objectView
-			};
-			that.callback(event);
-		}
-	});
-
-
-	var iconBgView = haloView.append("div");
-	iconBgView
-		.classed({
-			icon: true,
-			n: true
-			})
-		.append("i")
-			.style("margin", "0.2em")
-		.classed({
-			'fa fa-plus-circle': true})
-	iconBgView.on("click", function(){
-		if(typeof that.callback == 'function') {
-			var event = {
-				action: "add",
-				source: objectView
+				action: iconOptions.action,
+				source: objectView.node()
 			};
 			that.callback(event);
 		}

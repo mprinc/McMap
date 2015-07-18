@@ -21,7 +21,7 @@ var MapLayout =  mcm.MapLayout = function(structure, configView, configNodes, co
 	};
 	this.helo = new interaction.Halo();
 	this.helo.init(heloOptions, function(event){
-		var d = event.source.data();
+		var d = d3.select(event.source).data();
 		if( Object.prototype.toString.call( d ) === '[object Array]' ) {
 			d = d[0];
 		}
@@ -35,8 +35,46 @@ var MapLayout =  mcm.MapLayout = function(structure, configView, configNodes, co
 			window.alert("No settings for the entity");
 			break;
 		case "add":
-			window.alert("Adding entity");
-			that.clientApi.addEntity(d);
+			// window.alert("Adding entity");
+			// that.clientApi.addEntity(d);
+			// showing entity types icons
+			var haloAddEntityOptions = {
+				icons: [
+					{
+						position: "w",
+						iconText: "OB",
+						action: "add-entity:object"
+					},
+					{
+						position: "e",
+						iconText: "GR",
+						action: "add-entity:grid"
+					},
+					{
+						position: "n",
+						iconText: "PR",
+						action: "add-entity:process"
+					},
+					{
+						position: "s",
+						iconText: "AS",
+						action: "add-entity:assumption"
+					}
+				]
+			};
+			that.helo.create(event.source, haloAddEntityOptions);
+			break;
+		case "add-entity:object":
+			that.helo.destroy();
+			break;
+		case "add-entity:grid":
+			that.helo.destroy();
+			break;
+		case "add-entity:process":
+			that.helo.destroy();
+			break;
+		case "add-entity:assumption":
+			that.helo.destroy();
 			break;
 		}
 	});
@@ -106,6 +144,26 @@ MapLayout.prototype.clickNode = function(d, dom, commingFromAngular, doNotBubleU
 		"selected": false,
 		"unselected": true
 	});
+
+	var haloOptions = {
+		icons: [
+			{
+				position: "w",
+				iconClass: "fa-pencil",
+				action: "settings"
+			},
+			{
+				position: "e",
+				iconClass: "fa-trash-o",
+				action: "delete"
+			},
+			{
+				position: "n",
+				iconClass: "fa-plus-circle",
+				action: "add"
+			}
+		]
+	};
 	if(this.nodes) this.nodes.forEach(function(d){d.isSelected = false;});
 
 	if(isSelected){
@@ -121,7 +179,7 @@ MapLayout.prototype.clickNode = function(d, dom, commingFromAngular, doNotBubleU
 			});
 			d.isSelected = true;
 			this.structure.setSelectedNode(d);
-			this.helo.create(dom);
+			this.helo.create(dom, haloOptions);
 		}else{
 			this.structure.unsetSelectedNode();
 			this.helo.destroy();
