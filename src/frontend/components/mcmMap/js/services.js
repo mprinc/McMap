@@ -271,6 +271,11 @@ mcmMapServices.provider('McmMapSchemaService', {
 				icon: "O",
 				icon_fa: "tablet"
 			},
+			"containsVariable": {
+				typeClass: "edge_contains_variable",
+				icon: "V",
+				icon_fa: "car"
+			},
 			"containsVariableIn": {
 				typeClass: "edge_contains_variable_in",
 				icon: "IV",
@@ -344,12 +349,22 @@ mcmMapServices.provider('McmMapSchemaService', {
 				object: "process",
 				objects: "processes"
 			},
+			containsVariable: { /* group */
+				id: "containsVariable",
+				name: "containsVariable",
+				type: "containsVariable",
+				icon: "V",
+				description: "Variable",
+				object: "variable",
+				objects: "variables"
+			},
 			containsVariableIn: {
 				id: "containsVariableIn",
 				name: "containsVariableIn",
 				type: "containsVariableIn",
 				icon: "IV",
 				description: "Input Variable",
+				visualGroup: "containsVariable",
 				object: "variable",
 				objects: "input" // in-vars
 			},
@@ -359,6 +374,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 				type: "containsVariableOut",
 				icon: "OV",
 				description: "Output Variable",
+				visualGroup: "containsVariable",
 				object: "variable",
 				objects: "output" // out-vars
 			},
@@ -368,6 +384,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 				type: "containsVariableHV",
 				icon: "SV",
 				description: "Static Variable",
+				visualGroup: "containsVariable",
 				object: "variable",
 				objects: "static" // hp-vars
 			},
@@ -377,6 +394,7 @@ mcmMapServices.provider('McmMapSchemaService', {
 				type: "containsVariableCP",
 				icon: "CP",
 				description: "Configuration Parameter",
+				visualGroup: "containsVariable",
 				object: "variable",
 				objects: "config" // cp-vars
 			},

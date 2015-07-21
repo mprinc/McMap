@@ -74,6 +74,18 @@ MapVisualization.prototype.deleteEntity = function(d, settingsDom) {
 
 };
 
+// calculate number of children for the edge (d).
+// if the edge is group (it has edgeTypes property) than it summs up all edgeTypes in it
+MapVisualization.prototype._getChildrenCountForEdgeType = function(d) {
+	var childrenCount = this.mapStructure.getChildrenNodes(d.parent, d.type).length;
+	if('edgeTypes' in d){
+		for(var edgeType in d.edgeTypes){
+			childrenCount += this.mapStructure.getChildrenNodes(d.parent, edgeType).length;
+		}
+	}
+	return childrenCount;
+};
+
 MapVisualization.prototype.updateHtml = function(source) {
 	var that = this;
 
@@ -131,11 +143,11 @@ MapVisualization.prototype.updateHtml = function(source) {
 		"selectable": true
 	});
 
+	// adds expandable class if the node is edge and it has at least one child
 	nodeHtmlEnter.filter(function(d) {
 		// not expandable if it is not edge or it doesn't contain any entity
 		if(d.objectType != "edge") return false;
-		var children = that.mapStructure.getChildrenNodes(d.parent, d.type);
-		return (children.length > 0);
+		return (that._getChildrenCountForEdgeType(d) > 0);
 	})
 		.classed({
 		"expandable": true
@@ -205,20 +217,26 @@ MapVisualization.prototype.updateHtml = function(source) {
 							break;
 						default:
 							label = d.name;
-							break;					
+							break;
+					}
+					if(d.typeIcon){
+						label += " : <span class='icon-type'>"+d.typeIcon+"</span>";
 					}
 					return label;
 				case "edge":
-					var children = that.mapStructure.getChildrenNodes(d.parent, d.type);
+					var childrenCount = that._getChildrenCountForEdgeType(d);
 					return '<i style="margin:6px;" class="fa fa-'+that.schema.getEdgeStyle(d.type).icon_fa+'"></i>' + d.name + 
-						((children.length > 0) ? " <b>(" + children.length + ")</b>" : "");
+						((childrenCount > 0) ? " <b>(" + childrenCount + ")</b>" : "");
 			}
 		});
-	// expandable
+	// on click event for expandable edges (with at least one child)
 	nodeHtml.filter(function(d) {
 		return d3.select(this).classed("expandable");
 	})
 		.on("click", function(d){
+			// edgeTypesOpen is a way to communicate between layout and visualizaiton part if
+			// children of the edge should be visible or not
+			// here we set the edge to true/false and in layout we inject children in the tree or not
 			if(! d.parent.kNode.edgeTypesOpen){
 				d.parent.kNode.edgeTypesOpen = {};
 			}

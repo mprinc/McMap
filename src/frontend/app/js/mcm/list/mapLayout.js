@@ -123,25 +123,56 @@ MapLayout.prototype.generateTree = function(subtreeRoot){
 
 	var entityDesc = this.schema.getEntityDesc(subtreeRoot.kNode.type);
 	var nodeId = 0;
+	// support for group nodes that can contain group of edgeTypes
+	// (currently use to group all different variable types)
+	var groupNodes = {};
 	for(var edgeType in entityDesc.contains){
-		var label = this.schema.getEdgeDesc(edgeType).objects;
-		var edgeNode = { // visualization-node that represents edge
-			name: label,
-			objectType: "edge",
-			type: edgeType,
-			depth: 1,
-			parent: subtreeRoot,
-			id: nodeId++
-		};
-		this.nodes.push(edgeNode);
+		var edgeNode = null;
+		var edgeDesc = this.schema.getEdgeDesc(edgeType);
+		var label = edgeDesc.objects;
+		if(edgeDesc.visualGroup){
+			if(edgeDesc.visualGroup in groupNodes){
+				edgeNode = groupNodes[edgeDesc.visualGroup];				
+			}else{
+				var groupDesc = this.schema.getEdgeDesc(edgeDesc.visualGroup);
+				edgeNode = { // visualization-node that represents edge
+					name: groupDesc.objects,
+					objectType: "edge",
+					type: groupDesc.type,
+					depth: 1,
+					// it contains edge types that group holds in
+					edgeTypes: {},
+					parent: subtreeRoot,
+					id: nodeId++
+				};
+				this.nodes.push(edgeNode);
+				groupNodes[edgeDesc.visualGroup] = edgeNode;
+			}
+			edgeNode.edgeTypes[edgeType] = true;
+		}else{
+			edgeNode = { // visualization-node that represents edge
+				name: label,
+				objectType: "edge",
+				type: edgeType,
+				depth: 1,
+				parent: subtreeRoot,
+				id: nodeId++
+			};
+			this.nodes.push(edgeNode);
+		}
 
-		if(!(edgeType in subtreeRoot.kNode.edgeTypesOpen) || !subtreeRoot.kNode.edgeTypesOpen[edgeType]) continue;
+		// edgeTypesOpen is a way to communicate between layout and visualizaiton part if
+		// children of the edge should be visible or not
+		// here we inject children in the tree or not depending of edgeTypesOpen state (that is set in the layout)
+		if(!(edgeNode.type in subtreeRoot.kNode.edgeTypesOpen) || !subtreeRoot.kNode.edgeTypesOpen[edgeNode.type]) continue;
 
 		var subEntities = this.mapStructure.getChildrenNodes(subtreeRoot, edgeType);
 		for(var id in subEntities){
 			var subEntity = subEntities[id];
 			var nodeEntity = { // visualization-node that represents entity
 				name: subEntity.kNode.name,
+				// show type icon (for distinguishing) only if entity is part of group
+				typeIcon: edgeDesc.visualGroup ? edgeDesc.icon : null,
 				objectType: "entity",
 				type: subEntity.kNode.type,
 				depth: 2,
