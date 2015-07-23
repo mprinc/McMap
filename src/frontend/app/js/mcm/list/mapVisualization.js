@@ -220,7 +220,7 @@ MapVisualization.prototype.updateHtml = function(source) {
 							break;
 					}
 					if(d.typeIcon){
-						label += " : <span class='icon-type'>"+d.typeIcon+"</span>";
+						label += " (<span class='icon-type'>"+d.typeIcon+")</span>";
 					}
 					return label;
 				case "edge":

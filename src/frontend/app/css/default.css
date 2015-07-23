@@ -48,10 +48,10 @@ body {
   width: 100%;
   /*background-color: #dddd00;
   border: solid 1px #aaaa00;*/
-  overflow: hidden;
+  overflow-x: hidden;
   overflow-y: scroll;
   /* This is the default clearfix from Compass. You can opt to use other clearfix methods */
-  /*overflow: hidden;*/
+  overflow: hidden;
   *zoom: 1;
   /* The Container Mixin */
   max-width: 100%;
