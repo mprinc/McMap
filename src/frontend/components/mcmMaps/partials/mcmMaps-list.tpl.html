@@ -25,7 +25,7 @@
 		<br/>
 		<span class="table_title">Existing model components:</span>
 		<p class="buttons">
-			<button class="btn btn-primary" type="submit" ng-click="openMap()">Open Existing Model Component</button>
+			<button ng-if="selectedItem" class="btn btn-primary" type="submit" ng-click="openMap()">Open Selected Model Component</button>
 			<span class='showCreateNewMap' ng-class="{ 'displayNone': modeCreating == true }">
 				<button class="btn btn-primary" ng-click="showCreateNewMap()">Create New Model Component</button>
 			</span>
