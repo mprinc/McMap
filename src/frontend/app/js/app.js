@@ -37,57 +37,57 @@ angular.module('McModelarApp',[
 	, 'notifyServices'
 	, 'notifyDirectives'
 
-	, 'topiChatServices'
-	, 'topiChatDirectives'
+	// , 'topiChatServices'
+	// , 'topiChatDirectives'
 
 ])
 // routes
 .config(['$routeProvider', function($routeProvider) {
 	$routeProvider
 	.when('/map', {
-		templateUrl: '../components/mcmMap/partials/mcm-index.tpl.html'
+		templateUrl: 'components/mcmMap/partials/mcm-index.tpl.html'
 	})
 	.when('/map/id/:id', {
-		templateUrl: '../components/mcmMap/partials/mcm-index.tpl.html'
+		templateUrl: 'components/mcmMap/partials/mcm-index.tpl.html'
 	})
 	.when('/importAssumptions', {
-		templateUrl: '../components/mcmMap/partials/mcmImportAssumptions-index.tpl.html'
+		templateUrl: 'components/mcmMap/partials/mcmImportAssumptions-index.tpl.html'
 	})
 	.when('/importVariables', {
-		templateUrl: '../components/mcmMap/partials/mcmImportVariables-index.tpl.html'
+		templateUrl: 'components/mcmMap/partials/mcmImportVariables-index.tpl.html'
 	})
 	.when('/preferences', {
-		templateUrl: '../components/mcmMap/partials/mcm-preferences-index.tpl.html'
+		templateUrl: 'components/mcmMap/partials/mcm-preferences-index.tpl.html'
 	})
 	.when('/maps', {
-		templateUrl: '../components/mcmMaps/partials/index.tpl.html'
+		templateUrl: 'components/mcmMaps/partials/index.tpl.html'
 	})
 
 	// http://localhost:8410/app/index-dev.html#/login/iAmId
 	.when('/login', {
-		templateUrl: '../components/login/partials/index.tpl.html'
+		templateUrl: 'components/login/partials/index.tpl.html'
 	})
 	// http://localhost:8410/app/index-dev.html#/register
 	.when('/register', {
-		templateUrl: '../components/login/partials/register-index.tpl.html'
+		templateUrl: 'components/login/partials/register-index.tpl.html'
 	})
 	// http://localhost:8410/app/index-dev.html#/login/iAmId
 	.when('/login/iAmId/:iAmId?', {
-		templateUrl: '../components/login/partials/index.tpl.html'
+		templateUrl: 'components/login/partials/index.tpl.html'
 	})
 	// https://docs.angularjs.org/api/ngRoute/provider/$routeProvider
 	// http://stackoverflow.com/questions/17510962/can-angularjs-routes-have-optional-parameter-values
 	// http://localhost:8410/app/index-dev.html#/login/iAmId/55268521fb9a901e442172f8/token/1/route/whoAmI
 	.when('/login/iAmId/:iAmId/token/:token?/route/:route?', {
-		templateUrl: '../components/login/partials/index.tpl.html'
+		templateUrl: 'components/login/partials/index.tpl.html'
 	})
 	// http://localhost:8410/app/index-dev.html#/logout
 	.when('/logout', {
-		templateUrl: '../components/login/partials/logout-index.tpl.html'
+		templateUrl: 'components/login/partials/logout-index.tpl.html'
 	})
 	// http://localhost:8410/app/index-dev.html#/whoAmI
 	.when('/whoAmI', {
-		templateUrl: '../components/rima/partials/rima-whoAmI.tpl.html'
+		templateUrl: 'components/rima/partials/rima-whoAmI.tpl.html'
 	})
 
 	.otherwise({
@@ -95,9 +95,9 @@ angular.module('McModelarApp',[
 	});
 }])
 
-.config(["TopiChatServiceProvider", function(TopiChatServiceProvider) {
-  TopiChatServiceProvider.setActive(false);
-}]);
+// .config(["TopiChatServiceProvider", function(TopiChatServiceProvider) {
+//   TopiChatServiceProvider.setActive(false);
+// }]);
 
 
 // Disabling Debug Data

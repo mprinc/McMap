@@ -7,13 +7,13 @@
 		<link href="css/libs/bootstrap/bootstrap.css" rel="stylesheet">
 
 		<link href="css/default.css" rel="stylesheet">
-		<link href="../components/knalledgeMap/css/default.css" rel="stylesheet">
-		<link href="../components/mcmMap/css/default.css" rel="stylesheet">
-		<link href="../components/mcmMaps/css/default.css" rel="stylesheet">
-		<link href="../components/rima/css/default.css" rel="stylesheet">
-		<link href="../components/login/css/default.css" rel="stylesheet">
-		<link href="../components/halo/css/default.css" rel="stylesheet">
-		<link href="../components/rima/css/default.css" rel="stylesheet">
+		<link href="components/knalledgeMap/css/default.css" rel="stylesheet">
+		<link href="components/mcmMap/css/default.css" rel="stylesheet">
+		<link href="components/mcmMaps/css/default.css" rel="stylesheet">
+		<link href="components/rima/css/default.css" rel="stylesheet">
+		<link href="components/login/css/default.css" rel="stylesheet">
+		<link href="components/halo/css/default.css" rel="stylesheet">
+		<link href="components/rima/css/default.css" rel="stylesheet">
 		<link href="css/libs/wizard/ngWizard.css" rel="stylesheet">
 
 	</head>
@@ -21,12 +21,14 @@
 		<div login_check class="login-check"></div>
 		<div ng-view id="container"></div>
 
+		<script src="js/lib/debug.js"></script>
+		<script src="js/lib/debugpp.js"></script>
 		<script src="js/lib/jquery/jquery.js"></script>
 		<script src="js/lib/d3/d3.js"></script>
 		<script src="js/lib/interact-1.2.4.js"></script>
 		<script src="js/lib/keyboard.js"></script>
 		<script src="js/lib/tween/tween.js"></script>
-		
+
 		<script src="js/lib/angular/angular.js"></script>
 		<script src="js/lib/angular/angular-route.js"></script>
 		<script src="js/lib/angular/angular-animate.js"></script>
@@ -44,13 +46,13 @@
 		<script src="js/interaction/interaction.js"></script>
 		<script src="js/interaction/moveAndDrag.js"></script>
 		<script src="js/interaction/keyboard.js"></script>
-		<script src="../components/halo/index.js"></script>
+		<script src="components/halo/index.js"></script>
 		<script src="js/lib/socket.io/socket.io.js"></script>
 
 		<!--
 		cd /Users/sir/Documents/data/Development/McMap/src/frontend/app/js/
 		ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/frontend/app/js/knalledge/ knalledge -->
-		<script src="js/knalledge/knalledge.js"></script>
+		<script src="js/knalledge/index.js"></script>
 		<script src="js/knalledge/kEdge.js"></script>
 		<script src="js/knalledge/kNode.js"></script>
 		<script src="js/knalledge/kMap.js"></script>
@@ -89,25 +91,33 @@
 		<script src="js/mcm/list/mapLayout.js"></script>
 		<script src="js/mcm/list/mapVisualization.js"></script>
 
-		<script src="../components/mcmMap/js/directives.js"></script>
-		<script src="../components/mcmMap/js/services.js"></script>
+		<script src="components/knalledgeMap/js/services.js"></script>
+		<script src="components/knalledgeMap/js/directives.js"></script>
+		<script src="components/rima/js/services.js"></script>
+		<script src="components/rima/js/filters.js"></script>
+		<script src="components/rima/js/directives.js"></script>
+		<script src="components/notify/js/services.js"></script>
+		<script src="components/notify/js/directives.js"></script>
+		<script src="components/topiChat/js/services.js"></script>
+		<script src="components/topiChat/js/directives.js"></script>
 
-		<script src="../components/mcmMaps/js/directives.js"></script>
+		<script src="components/collaboPlugins/js/services.js"></script>
+		<script src="components/collaboPlugins/js/directives.js"></script>
 
-		<script src="../components/knalledgeMap/js/services.js"></script>
-		<script src="../components/knalledgeMap/js/directives.js"></script>
-		<script src="../components/rima/js/services.js"></script>
-		<script src="../components/rima/js/filters.js"></script>
-		<script src="../components/rima/js/directives.js"></script>
-		<script src="../components/notify/js/services.js"></script>
-		<script src="../components/notify/js/directives.js"></script>
-		<script src="../components/topiChat/js/services.js"></script>
-		<script src="../components/topiChat/js/directives.js"></script>
+		<script src="components/login/js/directives.js"></script>
+		<script src="components/login/js/services.js"></script>
 
-		<script src="../components/collaboPlugins/js/services.js"></script>
-		<script src="../components/collaboPlugins/js/directives.js"></script>
+		<script src="js/ng1_new_pre.js"></script>
+		<script src="components/collaboPlugins/globalEmitterService.js"></script>
+		<script src="components/collaboPlugins/globalEmitterServicesArray.js"></script>
+		<script src="components/knalledgeMap/knalledgeMapPolicyService.js"></script>
+		<script src="components/knalledgeMap/knalledgeMapViewService.js"></script>
+		<script src="js/ng1_new_post.js"></script>
 
-		<script src="../components/login/js/directives.js"></script>
-		<script src="../components/login/js/services.js"></script>
+		<script src="components/mcmMap/js/directives.js"></script>
+		<script src="components/mcmMap/js/services.js"></script>
+
+		<script src="components/mcmMaps/js/directives.js"></script>
+
 	</body>
 </html>

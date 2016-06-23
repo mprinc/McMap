@@ -1,0 +1,82 @@
+/*http://stackoverflow.com/questions/8061166/syntax-to-include-separate-sass-file*/
+/* @import "normalize"; */
+.mcmButton {
+  background-color: #dddddd;
+  border: solid 3px #555555;
+  font-weight: bold;
+  color: #888888;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  cursor: pointer; }
+  .mcmButton :hover {
+    background-color: #ffffff; }
+
+.creatingNewMap {
+  display: block;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding-top: 0.35em;
+  padding-bottom: 0.625em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  /*    border: 2px groove #333;
+      border: solid 1px #000;
+  */
+  padding: 10px; }
+  .creatingNewMap label {
+    width: 20em; }
+
+.displayNone {
+  display: none; }
+
+.mapsList {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  background-image: url("../../../../app/img/ESB_Logo_small.png");
+  background-repeat: no-repeat;
+  background-position-x: 36.5em;
+  background-position-y: -0.3em; }
+  .mapsList .description {
+    color: #aaf; }
+  .mapsList .table_title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 1em; }
+  .mapsList .list_container {
+    height: 80%;
+    overflow-y: scroll; }
+    .mapsList .list_container .list {
+      margin: 5px;
+      text: 18px;
+      border: 1px solid #aaa;
+      -moz-border-radius: 5px / 5px;
+      -webkit-border-radius: 5px 5px;
+      border-radius: 5px / 5px;
+      margin-bottom: 25px;
+      padding: 3px;
+      background-color: #888;
+      /*background-color: #ccc;
+      background-color: #aaf;*/ }
+      .mapsList .list_container .list .active-selection {
+        background-color: #f99 !important;
+        color: #a00 !important; }
+      .mapsList .list_container .list tr:nth-child(even) {
+        background: #ccc; }
+      .mapsList .list_container .list tr:nth-child(odd) {
+        background: #aaa; }
+      .mapsList .list_container .list tr:hover {
+        cursor: pointer;
+        background-color: #ffb !important; }
+      .mapsList .list_container .list th {
+        background-color: #aaf;
+        border: 1px solid black;
+        padding: 5px; }
+      .mapsList .list_container .list td {
+        border: 1px solid black;
+        padding: 5px; }
+  .mapsList .buttons {
+    text-align: left; }
+
+/*# sourceMappingURL=default.css.map */
