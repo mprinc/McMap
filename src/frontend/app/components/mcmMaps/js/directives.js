@@ -3,9 +3,16 @@
 
 angular.module('mcmMapsDirectives', ['Config'])
 
-	.directive('mcmMapsList', ["$rootScope", "$timeout", "$location", 'ConfigMapToolset', 'KnalledgeMapService', 'KnalledgeMapVOsService', 'RimaService',
-		function($rootScope, $timeout, $location, ConfigMapToolset, KnalledgeMapService, KnalledgeMapVOsService, RimaService){
+	.directive('mcmMapsList', ["$rootScope", "$timeout", "$location", 'Plugins', 'ConfigMapToolset', 'KnalledgeMapService', 'KnalledgeMapVOsService',
+		function($rootScope, $timeout, $location, Plugins, ConfigMapToolset, KnalledgeMapService, KnalledgeMapVOsService){
 		console.log("[mcmMapsList] loading directive");
+		try{
+			// * @param  {rima.rimaServices.RimaService}  RimaService
+			var RimaService = Plugins.rima.config.rimaService.available ?
+				$injector.get('RimaService') : null;
+		}catch(err){
+			console.warn(err);
+		}
 		return {
 			restrict: 'AE',
 			scope: {
@@ -48,7 +55,8 @@ angular.module('mcmMapsDirectives', ['Config'])
 					var rootNodeCreated = function(rootNode){
 						$scope.mapToCreate.rootNodeId = rootNode._id;
 						$scope.mapToCreate.type = "mcm_map";
-						$scope.mapToCreate.iAmId = RimaService.getActiveUserId();
+						$scope.mapToCreate.iAmId = RimaService ?
+						 RimaService.getActiveUserId() : Plugins.rima.config.rimaService.ANONYMOUS_USER_ID;
 						var map = KnalledgeMapService.create($scope.mapToCreate);
 						map.$promise.then(mapCreated);
 					}
@@ -59,7 +67,8 @@ angular.module('mcmMapsDirectives', ['Config'])
 					var rootNode = new knalledge.KNode();
 					rootNode.name = $scope.mapToCreate.name;
 					rootNode.type = "model_component";
-					rootNode.iAmId = RimaService.getActiveUserId();
+					rootNode.iAmId = RimaService ?
+					 RimaService.getActiveUserId() : Plugins.rima.config.rimaService.ANONYMOUS_USER_ID;
 					rootNode.mapId = null;
 					rootNode.visual = {
 					    isOpen: true,

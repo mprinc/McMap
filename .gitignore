@@ -40,3 +40,4 @@ typings/
 manual_typings/
 *.zip
 doc/
+old_versions/
