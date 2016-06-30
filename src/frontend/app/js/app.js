@@ -39,7 +39,7 @@ angular.module('McModelarApp',[
 
 	// , 'topiChatServices'
 	// , 'topiChatDirectives'
-
+	// , 'McModelarNg2'
 ])
 // routes
 .config(['$routeProvider', function($routeProvider) {
@@ -48,7 +48,7 @@ angular.module('McModelarApp',[
 		templateUrl: 'components/mcmMap/partials/mcm-index.tpl.html'
 	})
 	.when('/map/id/:id', {
-		templateUrl: 'components/mcmMap/partials/mcm-index.tpl.html'
+		templateUrl: 'components/mcmMap/partials/mcm-main-index.tpl.html'
 	})
 	.when('/importAssumptions', {
 		templateUrl: 'components/mcmMap/partials/mcmImportAssumptions-index.tpl.html'

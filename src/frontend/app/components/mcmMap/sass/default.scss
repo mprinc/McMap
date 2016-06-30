@@ -267,6 +267,22 @@ $map: layout(12 1/4 fluid isolate inside);
 	@include user-select(none);
 }
 
+.mcm_main{
+	position: relative;
+	height: 100%;
+	width: 100%;
+	z-index: 5;
+	position:relative;
+	background-color: #ddddff;
+	border: solid 1px #aaaaff;
+	overflow-x: scroll;
+	overflow-y: scroll;
+	@include border-radius(10px, 10px);
+/*	http://compass-style.org/reference/compass/css3/user_interface/#mixin-user-select
+	http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting*/
+	@include user-select(none);
+}
+
 .map_svg{
 	height: 100%;
 	width: 100%;

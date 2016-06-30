@@ -4,9 +4,11 @@ import {upgradeAdapter} from './upgrade_adapter';
 import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
 
 import {LoginStatusComponent} from '../components/login/login-status-component';
-// import {KnalledgeMapMain} from '../components/knalledgeMap/main';
+import {McmMain} from '../components/mcmMap/mcmMain';
 import {KnalledgeMapPolicyService} from '../components/knalledgeMap/knalledgeMapPolicyService';
 import {KnalledgeMapViewService} from '../components/knalledgeMap/knalledgeMapViewService';
+import {McmMapPolicyService} from '../components/mcmMap/mcmMapPolicyService';
+import {McmMapViewService} from '../components/mcmMap/mcmMapViewService';
 import {TopiChatReports} from '../components/topiChat/reports';
 import {GlobalEmitterService} from '../components/collaboPlugins/globalEmitterService';
 import {GlobalEmitterServicesArray} from '../components/collaboPlugins/globalEmitterServicesArray';
@@ -27,23 +29,23 @@ angular.module('knalledgeMapDirectives')
     .directive({
         'loginStatus':
             upgradeAdapter.downgradeNg2Component(LoginStatusComponent)
-        // ,
-        // 'knalledgeMapMain':
-        //     upgradeAdapter.downgradeNg2Component(KnalledgeMapMain)
     })
     ;
+
+// angular.module('McModelarNg2', ['mcmMapsDirectives']);
+
+angular.module('mcmMapsDirectives')
+     .directive({
+         'mcmMain':
+             upgradeAdapter.downgradeNg2Component(McmMain)
+    })
+    ;
+
 
 var topiChatServices = angular.module('topiChatServices');
 topiChatServices
     .service('TopiChatConfigService', TopiChatConfigService)
     .service('TopiChatService', TopiChatService)
-    ;
-
-angular.module('KnAllEdgeNg2', ['knalledgeMapDirectives'])
-    //  .directive({
-    //     'knalledgeMapMain':
-    //         upgradeAdapter.downgradeNg2Component(KnalledgeMapMain)
-    // })
     ;
 
 // In Angular 2, we have to add a provider configuration for the component’s injector,
@@ -52,10 +54,18 @@ angular.module('KnAllEdgeNg2', ['knalledgeMapDirectives'])
 // upgradeAdapter.addProvider(GlobalEmitterServicesArray);
 
 // registering ng1 services (written in TypeScript) into/as ng1 services
-var knalledgeMapServicesModule = angular.module('knalledgeMapServices');
+var knalledgeMapServicesModule =
+    angular.module('knalledgeMapServices');
 knalledgeMapServicesModule
   .service('KnalledgeMapPolicyService', KnalledgeMapPolicyService)
-  .service('KnalledgeMapViewService', KnalledgeMapViewService)
+  .service('KnalledgeMapViewService', KnalledgeMapViewService);
+
+var mcmMapServicesModule =    
+    angular.module('mcmMapServices');
+mcmMapServicesModule
+    .service('McmMapPolicyService', McmMapPolicyService)
+    .service('McmMapViewService', McmMapViewService)
+
  // .service('GlobalEmitterService', upgradeAdapter.downgradeNg2Provider(GlobalEmitterService))
  // .service('GlobalEmitterService', GlobalEmitterService)
  .service('GlobalEmitterServicesArray', GlobalEmitterServicesArray)
@@ -63,7 +73,6 @@ knalledgeMapServicesModule
   ;
 
 // upgrading ng1 services into ng2 space
-upgradeAdapter.upgradeNg1Provider('KnalledgeMapViewService');
 upgradeAdapter.upgradeNg1Provider('KnAllEdgeRealTimeService');
 upgradeAdapter.upgradeNg1Provider('RimaService');
 upgradeAdapter.upgradeNg1Provider('KnalledgeMapVOsService');
@@ -73,7 +82,10 @@ upgradeAdapter.upgradeNg1Provider('TopiChatService');
 upgradeAdapter.upgradeNg1Provider('GlobalEmitterServicesArray');
 
 // upgrading ng1 services (written in TS) into ng2 space
+upgradeAdapter.upgradeNg1Provider('KnalledgeMapViewService');
 upgradeAdapter.upgradeNg1Provider('KnalledgeMapPolicyService');
+upgradeAdapter.upgradeNg1Provider('McmMapViewService');
+upgradeAdapter.upgradeNg1Provider('McmMapPolicyService');
 
 
 var injector:Injector = new Injector();

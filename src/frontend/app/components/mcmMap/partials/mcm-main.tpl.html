@@ -1,0 +1,91 @@
+<!-- main container -->
+<div layout="column" layout-fill>
+    <!-- content -->
+    <md-sidenav-layout layout="row" flex style="overflow: auto; height: 100%;">
+        <!-- <md-sidenav #options align="left" layout="column" [style]="hasMedia('gt-sm') ? 'side' : 'over'"> -->
+        <md-sidenav #options [opened]="true" align="end" mode="side" layout="column">
+            <md-content>
+                <div style="text-align: right;">
+                    <button md-raised-button (click)="options.close()" align="right" class="md-primary" hide-gt-md>
+                        Close
+                    </button>
+                </div>
+                <knalledge-map-list class="knalledge_map_list"></knalledge-map-list>
+            </md-content>
+        </md-sidenav>
+        <!-- Tools -->
+        <md-sidenav #settings align="start" style="min-width: 200px; max-width: 300px; width: 30%;" class="md-sidenav-left md-whiteframe-z2">
+            <md-content>
+                <div style="text-align: right;">
+                    <button md-raised-button (click)="settings.close()" align="right" class="md-primary">
+                        Close
+                    </button>
+                </div>
+                <knalledge-map-tools class="knalledge_map_tools"></knalledge-map-tools>
+            </md-content>
+        </md-sidenav>
+
+        <!-- Main content -->
+        <md-content class="knalledge_map_index" flex>
+            <div layout-fill layout-align="stretch stretch">
+                <div class="knalledge_map_middle" layout-fill layout="column">
+                    <!-- toolbar -->
+                    <md-toolbar class="toolbar md-theme-indigo" color="primary" style="width: 100%;">
+                        <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap style="width: 100%;">
+                            <section class="commands" layout="row" layout-sm="column" layout-align="left center" layout-wrap>
+                                <button md-fab class="md-primary" aria-label="Configuration" (click)="settings.toggle()" [hidden]="leftOpened">
+                                    <i title="Settings" md-icon>settings</i>
+                                </button>
+                                <!-- <button md-fab class="md-primary" aria-label="Configuration" (click)="options.open()" hide-gt-md> -->
+                                <button md-fab class="md-primary" aria-label="Configuration" (click)="options.toggle()">
+                                    <i title="Configuration" md-icon>chrome_reader_mode</i>
+                                </button>
+
+                                <button md-fab class="md-primary" aria-label="Maps" (click)="go('maps')" *ngIf="policyConfig.moderating.enabled">
+                                    <i title="Maps List" md-icon>map</i>
+                                </button>
+
+                                <button md-fab class="md-primary" aria-label="Plugins" (click)="go('plugins')" *ngIf="policyConfig.moderating.enabled">
+                                    <i title="Plugins" md-icon>extension</i>
+                                </button>
+                            </section>
+
+                            <section class="whoAmI" layout="row" layout-sm="column" layout-align="right center" layout-wrap>
+                                <button md-fab class="md-primary" aria-label="Person" (click)="go('login')">
+                                    <i title="Login" md-icon>person</i>
+                                </button>
+
+                                <button md-fab class="md-primary" aria-label="Logout" (click)="go('logout')">
+                                    <i title="Logout" md-icon>directions run</i>
+                                </button>
+                            </section>
+                        </section>
+                    </md-toolbar>
+
+                    <!-- MCM Map List -->
+                    <mcm-list-component (selectedItem)="onSelectedItem($event)" class="knalledge_map" flex style="overflow: auto; height: 100%;"></mcm-list-component>
+
+                    <md-toolbar *ngIf="itemToolbar.visible" class="toolbar md-theme-indigo" color="accent" style="width: 100%;">
+                        <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap style="width: 100%;">
+                            <section class="commands" layout="row" layout-sm="column" layout-align="left center" layout-wrap>
+                                <button md-fab class="md-primary" aria-label="Delete" (click)="settings.toggle()">
+                                    <i title="delete" md-icon>delete</i>
+                                </button>
+                                <!-- <button md-fab class="md-primary" aria-label="Configuration" (click)="options.open()" hide-gt-md> -->
+                                <button md-fab class="md-primary" aria-label="Edit" (click)="options.toggle()">
+                                    <i title="Edit" md-icon>border_color</i>
+                                </button>
+
+                                {{itemSelected.name}}
+
+                                <button md-fab class="md-primary" aria-label="Close" (click)="onSelectedItem()">
+                                    <i title="Close" md-icon>close</i>
+                                </button>
+                            </section>
+                        </section>
+                    </md-toolbar>
+                </div>
+            </div>
+        </md-content>
+    </md-sidenav-layout>
+</div>
