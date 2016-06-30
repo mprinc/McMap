@@ -28,7 +28,7 @@ var plugins = {
         }
 	},
 	"request": {
-        active: true,
+        active: false,
         services: {
             requestService: {
 				name: 'RequestService',
@@ -46,6 +46,17 @@ var plugins = {
 			mapVisualizeHaloPlugins: ['requestService'],
 			// mapInteractionPlugins: ['requestService'],
 			keboardPlugins: ['requestService']
+		}
+	},
+	"suggestion": {
+        active: true,
+        services: {
+            suggestionService: {
+				name: 'SuggestionService',
+				path: 'suggestion.SuggestionService'
+            }
+        },
+		plugins: {
 		}
 	},
 	notify: {
