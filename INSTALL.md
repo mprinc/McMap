@@ -9,21 +9,21 @@ ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/models/ mode
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/modules/ modules
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/tools/ tools
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/node_modules/ node_modules
-ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
+# ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
 
 #Server:
 ln -s /var/www/knalledge/src/backend/models/ models
 ln -s /var/www/knalledge/src/backend/modules/ modules
 ln -s /var/www/knalledge/src/backend/tools/ tools
 ln -s /var/www/knalledge/src/backend/node_modules/ node_modules
-ln -s /var/www/knalledge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
+# ln -s /var/www/knalledge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
 
 #Sinisa:
 ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/backend/models/ models
 ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/backend/modules/ modules
 ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/backend/tools/ tools
 ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/backend/node_modules/ node_modules
-ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
+# ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
 
 cp -r /Users/sasha/Documents/data/development/KnAllEdge/src/backend/config .
 cp /Users/sasha/Documents/data/development/KnAllEdge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
