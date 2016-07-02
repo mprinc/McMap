@@ -87,15 +87,15 @@ SUB_PROJECTS.MCM.COMPILATION = {
         GENERIC: false,
         // if value of the path key is not set to object, default values will be considered
         PATHS: {
-            '': {destDir: APP_SRC, cssDir: 'css'},
-            'components/collaboPlugins': {destDir: APP_SRC, cssDir: 'css'},
-            'components/knalledgeMap': {destDir: APP_SRC, cssDir: 'css'},
-            'components/login': {destDir: APP_SRC, cssDir: 'css'},
-            'components/notify': {destDir: APP_SRC, cssDir: 'css'},
-            'components/rima': {destDir: APP_SRC, cssDir: 'css'},
-            'components/topiChat': {destDir: APP_SRC, cssDir: 'css'},
-            'components/mcmMap': {destDir: APP_SRC, cssDir: 'css'},
-            'components/mcmMaps': {destDir: APP_SRC, cssDir: 'css'}
+            '': { destDir: APP_SRC, cssDir: 'css' },
+            'components/collaboPlugins': { destDir: APP_SRC, cssDir: 'css' },
+            'components/knalledgeMap': { destDir: APP_SRC, cssDir: 'css' },
+            'components/login': { destDir: APP_SRC, cssDir: 'css' },
+            'components/notify': { destDir: APP_SRC, cssDir: 'css' },
+            'components/rima': { destDir: APP_SRC, cssDir: 'css' },
+            'components/topiChat': { destDir: APP_SRC, cssDir: 'css' },
+            'components/mcmMap': { destDir: APP_SRC, cssDir: 'css' },
+            'components/mcmMaps': { destDir: APP_SRC, cssDir: 'css' }
         }
     }
 };
@@ -115,131 +115,135 @@ interface IDependency {
 
 // Declare local files that needs to be injected
 const SUB_PROJECTS_FILES = {
-MCM: {
-    APP_ASSETS: [
-    // (NG2-) MATERIAL
-        { src: 'ng2-material/font/MaterialIcons-Regular.*', asset: true, dest: CSS_DEST }
-    ],
-    NPM_DEPENDENCIES: [
-    // LIBS
-        { src: join(APP_DEST, 'js/lib/debug.js'), inject: 'libs', noNorm: true},
-        { src: join(APP_SRC, '../bower_components/debugpp/index.js'), inject: 'libs', noNorm: true},
-        { src: join(APP_SRC, '../bower_components/halo/index.js'), inject: 'libs', noNorm: true},
-        { src: join(APP_SRC, '../components/utils/index.js'), inject: 'libs', noNorm: true},
+    MCM: {
+        APP_ASSETS: [
+            // (NG2-) MATERIAL
+            { src: 'ng2-material/font/MaterialIcons-Regular.*', asset: true, dest: CSS_DEST }
+        ],
+        NPM_DEPENDENCIES: [
+            // LIBS
+            { src: join(APP_DEST, 'js/lib/debug.js'), inject: 'libs', noNorm: true },
+            { src: join(APP_SRC, '../bower_components/debugpp/index.js'), inject: 'libs', noNorm: true },
+            { src: join(APP_SRC, '../bower_components/halo/index.js'), inject: 'libs', noNorm: true },
+            { src: join(APP_SRC, '../components/utils/index.js'), inject: 'libs', noNorm: true },
 
-    // MCM APP
-        { src: join(APP_DEST, 'js/config/config.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/config/config.env.js'), inject: true, noNorm: true},
-        { src: join(APP_DEST, 'js/config/config.plugins.js'), inject: true, noNorm: true},
+            // MCM APP
+            { src: join(APP_DEST, 'js/config/config.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/config/config.env.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/config/config.plugins.js'), inject: true, noNorm: true },
 
-		{ src: join(APP_DEST, 'js/interaction/interaction.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/interaction/moveAndDrag.js'), inject: true, noNorm: true},
-        // { src: join(APP_DEST, 'js/interaction/mapInteraction.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/interaction/keyboard.js'), inject: true, noNorm: true},
+            { src: join(APP_DEST, 'js/mcmInteraction/interaction.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/mcmInteraction/moveAndDrag.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/mcmInteraction/keyboard.js'), inject: true, noNorm: true },
 
-    // KNALLEDGE CORE
-		{ src: join(APP_DEST, 'js/knalledge/index.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/knalledge/kNode.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/knalledge/kEdge.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/knalledge/kMap.js'), inject: true, noNorm: true},
-    { src: join(APP_DEST, 'js/knalledge/request.js'), inject: true, noNorm: true}, // from TS
-    { src: join(APP_DEST, 'js/knalledge/suggestion.js'), inject: true, noNorm: true}, // from TS
-    { src: join(APP_DEST, 'js/knalledge/change.js'), inject: true, noNorm: true}, // from TS
-		{ src: join(APP_DEST, 'js/knalledge/WhoAmI.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/knalledge/HowAmI.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/knalledge/WhatAmI.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/knalledge/vkNode.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/knalledge/vkEdge.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/knalledge/state.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/knalledge/mapStructure.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/knalledge/mapLayout.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/knalledge/mapVisualization.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/knalledge/mapLayoutTree.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/knalledge/mapVisualizationTree.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/knalledge/mapLayoutFlat.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/knalledge/mapVisualizationFlat.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/knalledge/mapLayoutGraph.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/knalledge/mapVisualizationGraph.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/knalledge/mapManager.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/knalledge/map.js'), inject: true, noNorm: true},
+            // KNALLEDGE CORE
+            { src: join(APP_DEST, 'js/knalledge/index.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/knalledge/kNode.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/knalledge/kEdge.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/knalledge/kMap.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/knalledge/request.js'), inject: true, noNorm: true }, // from TS
+            { src: join(APP_DEST, 'js/knalledge/suggestion.js'), inject: true, noNorm: true }, // from TS
+            { src: join(APP_DEST, 'js/knalledge/change.js'), inject: true, noNorm: true }, // from TS
+            { src: join(APP_DEST, 'js/knalledge/WhoAmI.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/knalledge/HowAmI.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/knalledge/WhatAmI.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/knalledge/vkNode.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/knalledge/vkEdge.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/knalledge/state.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/knalledge/mapStructure.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/knalledge/mapLayout.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/knalledge/mapVisualization.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/knalledge/mapLayoutTree.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/knalledge/mapVisualizationTree.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/knalledge/mapLayoutFlat.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/knalledge/mapVisualizationFlat.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/knalledge/mapLayoutGraph.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/knalledge/mapVisualizationGraph.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/knalledge/mapManager.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/knalledge/map.js'), inject: true, noNorm: true },
 
-    // COMPONENTS
+            // COMPONENTS
+            // TODO: Load only if knalledgeMap component for visualization is added as a plugin
+            { src: join(APP_DEST, 'js/interaction/interaction.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/interaction/moveAndDrag.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/interaction/mapInteraction.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/interaction/keyboard.js'), inject: true, noNorm: true },
 
-		{ src: join(APP_DEST, 'js/mcm/mcm.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/mcm/map.js'), inject: true, noNorm: true},
-        { src: join(APP_DEST, 'js/mcm/mapLayout.js'), inject: true, noNorm: true},
-        { src: join(APP_DEST, 'js/mcm/mapVisualization.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/mcm/entitiesToolset.js'), inject: true, noNorm: true},
+            { src: join(APP_DEST, 'js/mcm/mcm.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/mcm/map.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/mcm/mapLayout.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/mcm/mapVisualization.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/mcm/entitiesToolset.js'), inject: true, noNorm: true },
 
-        { src: join(APP_DEST, 'js/mcm/list/list.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'js/mcm/list/map.js'), inject: true, noNorm: true},
-        { src: join(APP_DEST, 'js/mcm/list/mapLayout.js'), inject: true, noNorm: true},
-        { src: join(APP_DEST, 'js/mcm/list/mapVisualization.js'), inject: true, noNorm: true},
+            { src: join(APP_DEST, 'js/mcm/list/list.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/mcm/list/map.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/mcm/list/mapLayout.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/mcm/list/mapVisualization.js'), inject: true, noNorm: true },
 
-		{ src: join(APP_DEST, 'components/collaboPlugins/js/services.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'components/collaboPlugins/js/directives.js'), inject: true, noNorm: true},
+            { src: join(APP_DEST, 'components/collaboPlugins/js/services.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'components/collaboPlugins/js/directives.js'), inject: true, noNorm: true },
 
-        { src: join(APP_DEST, 'components/halo/index.js'), inject: true, noNorm: true},
+            { src: join(APP_DEST, 'components/halo/index.js'), inject: true, noNorm: true },
 
-		{ src: join(APP_DEST, 'components/knalledgeMap/js/directives.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'components/knalledgeMap/js/services.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'components/rima/js/directives.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'components/rima/js/services.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'components/rima/js/filters.js'), inject: true, noNorm: true},
-        { src: join(APP_DEST, 'components/mcmMap/js/directives.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'components/mcmMap/js/services.js'), inject: true, noNorm: true},
-        { src: join(APP_DEST, 'components/mcmMaps/js/directives.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'components/notify/js/directives.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'components/notify/js/services.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'components/topiChat/js/directives.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'components/topiChat/js/services.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'components/login/js/directives.js'), inject: true, noNorm: true},
-		{ src: join(APP_DEST, 'components/login/js/services.js'), inject: true, noNorm: true},
+            { src: join(APP_DEST, 'components/knalledgeMap/js/directives.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'components/knalledgeMap/js/services.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'components/rima/js/directives.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'components/rima/js/services.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'components/rima/js/filters.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'components/mcmMap/js/directives.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'components/mcmMap/js/services.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'components/mcmMaps/js/directives.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'components/notify/js/directives.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'components/notify/js/services.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'components/topiChat/js/directives.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'components/topiChat/js/services.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'components/login/js/directives.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'components/login/js/services.js'), inject: true, noNorm: true },
 
-	// PLUGINS: TODO: We want to avoid hardoced registering plugins here!
-		// { src: join(APP_DEST, 'components/ontov/js/vendor/jquery-1.8.3.js'), inject: true, noNorm: true},
+            // PLUGINS: TODO: We want to avoid hardoced registering plugins here!
+            // { src: join(APP_DEST, 'components/ontov/js/vendor/jquery-1.8.3.js'), inject: true, noNorm: true},
 
-    // ng1 registration and bootstrap
-        // { src: join(APP_DEST, 'components/knalledgeMap/knalledgeMapPolicyService.js'), inject: true, noNorm: true},
-        // { src: join(APP_DEST, 'components/knalledgeMap/knalledgeMapViewService.js'), inject: true, noNorm: true},
-        // { src: join(APP_DEST, 'js/app_pre.js'), inject: true, noNorm: true},
-        { src: join(APP_DEST, 'js/app.js'), inject: true, noNorm: true},
+            // ng1 registration and bootstrap
+            // { src: join(APP_DEST, 'components/knalledgeMap/knalledgeMapPolicyService.js'), inject: true, noNorm: true},
+            // { src: join(APP_DEST, 'components/knalledgeMap/knalledgeMapViewService.js'), inject: true, noNorm: true},
+            // { src: join(APP_DEST, 'js/app_pre.js'), inject: true, noNorm: true},
+            { src: join(APP_DEST, 'js/app.js'), inject: true, noNorm: true },
 
-    // CSS
-    // LIBS
-		{ src: join(APP_SRC, 'css/libs/bootstrap/bootstrap.css'), inject: true, dest: CSS_DEST , noNorm: true},
-		{ src: join(APP_SRC, 'css/libs/textAngular/textAngular.css'), inject: true, dest: CSS_DEST , noNorm: true},
+            // CSS
+            // LIBS
+            { src: join(APP_SRC, 'css/libs/bootstrap/bootstrap.css'), inject: true, dest: CSS_DEST, noNorm: true },
+            { src: join(APP_SRC, 'css/libs/textAngular/textAngular.css'), inject: true, dest: CSS_DEST, noNorm: true },
 
-    // KNALLEDGE CORE
-		{ src: join(APP_SRC, 'css/libs/wizard/ngWizard.css'), inject: true, dest: CSS_DEST , noNorm: true},
+            // KNALLEDGE CORE
+            { src: join(APP_SRC, 'css/libs/wizard/ngWizard.css'), inject: true, dest: CSS_DEST, noNorm: true },
 
-        { src: join(APP_SRC, 'css/default app.css'), inject: true, dest: CSS_DEST, noNorm: true },
-		{ src: join(APP_SRC, 'css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
-		{ src: join(APP_SRC, 'components/knalledgeMap/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
-		{ src: join(APP_SRC, 'components/knalledgeMap/css/graph.css'), inject: true, dest: CSS_DEST, noNorm: true },
-        { src: join(APP_SRC, '../bower_components/halo/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true},
-		{ src: join(APP_SRC, 'components/rima/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
-		{ src: join(APP_SRC, 'components/login/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
-        { src: join(APP_SRC, 'components/mcmMap/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
-        { src: join(APP_SRC, 'components/mcmMaps/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
-		{ src: join(APP_SRC, 'components/notify/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
-		{ src: join(APP_SRC, 'components/topiChat/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
-		{ src: join(APP_SRC, 'components/collaboPlugins/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
+            { src: join(APP_SRC, 'css/default app.css'), inject: true, dest: CSS_DEST, noNorm: true },
+            { src: join(APP_SRC, 'css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
+            { src: join(APP_SRC, 'components/knalledgeMap/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
+            { src: join(APP_SRC, 'components/knalledgeMap/css/graph.css'), inject: true, dest: CSS_DEST, noNorm: true },
+            { src: join(APP_SRC, '../bower_components/halo/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
+            { src: join(APP_SRC, 'components/rima/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
+            { src: join(APP_SRC, 'components/login/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
+            { src: join(APP_SRC, 'components/mcmMap/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
+            { src: join(APP_SRC, 'components/mcmMaps/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
+            { src: join(APP_SRC, 'components/notify/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
+            { src: join(APP_SRC, 'components/topiChat/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
+            { src: join(APP_SRC, 'components/collaboPlugins/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
 
-	// KNALLEDGE PLUGINS, TODO: we want to avoid hardoced registering plugins here
-		// { src: join(APP_SRC, 'components/ontov/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
+            // KNALLEDGE PLUGINS, TODO: we want to avoid hardoced registering plugins here
+            // { src: join(APP_SRC, 'components/ontov/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
 
-    // (NG2-) MATERIAL
-        { src: 'ng2-material/ng2-material.css', inject: true, dest: CSS_DEST },
-        { src: 'ng2-material/font/font.css', inject: true, dest: CSS_DEST }
-    ],
-    DEV_NPM_DEPENDENCIES: [
-    ],
-    PROD_NPM_DEPENDENCIES: [
-        // ng1 templates (build.js.prod:inlineNg1Templates())
-                { src: join(TMP_DIR, 'js/ng1Templates.js'), inject: true, noNorm: true}
-    ]
-}
+            // (NG2-) MATERIAL
+            { src: 'ng2-material/ng2-material.css', inject: true, dest: CSS_DEST },
+            { src: 'ng2-material/font/font.css', inject: true, dest: CSS_DEST }
+        ],
+        DEV_NPM_DEPENDENCIES: [
+        ],
+        PROD_NPM_DEPENDENCIES: [
+            // ng1 templates (build.js.prod:inlineNg1Templates())
+            { src: join(TMP_DIR, 'js/ng1Templates.js'), inject: true, noNorm: true }
+        ]
+    }
 };
 
 export const SUB_PROJECTS_FILE = SUB_PROJECTS_FILES[SUB_PROJECT_NAME];
@@ -256,30 +260,30 @@ const NPM_DEPENDENCIES: IDependency[] = [
     { src: 'es6-shim/es6-shim.js', inject: 'shims' },
     { src: 'systemjs/dist/system.src.js', inject: 'shims' },
 
-    { src: join(APP_DEST, 'js/lib/jquery/jquery.js'), inject: 'libs', noNorm: true},
-    { src: join(APP_DEST, 'js/lib/bootstrap/bootstrap.js'), inject: 'libs', noNorm: true},
+    { src: join(APP_DEST, 'js/lib/jquery/jquery.js'), inject: 'libs', noNorm: true },
+    { src: join(APP_DEST, 'js/lib/bootstrap/bootstrap.js'), inject: 'libs', noNorm: true },
 
-    { src: 'angular/angular.js', inject: 'libs'},
-    { src: 'angular-route/angular-route.js', inject: 'libs'},
-    { src: 'angular-sanitize/angular-sanitize.js', inject: 'libs'},
-    { src: 'angular-resource/angular-resource.js', inject: 'libs'},
-    { src: 'angular-animate/angular-animate.js', inject: 'libs'},
-    { src: 'ngstorage/ngStorage.js', inject: 'libs'},
+    { src: 'angular/angular.js', inject: 'libs' },
+    { src: 'angular-route/angular-route.js', inject: 'libs' },
+    { src: 'angular-sanitize/angular-sanitize.js', inject: 'libs' },
+    { src: 'angular-resource/angular-resource.js', inject: 'libs' },
+    { src: 'angular-animate/angular-animate.js', inject: 'libs' },
+    { src: 'ngstorage/ngStorage.js', inject: 'libs' },
 
-    { src: join(APP_DEST, 'js/lib/d3/d3.js'), inject: 'libs', noNorm: true},
-    { src: join(APP_DEST, 'js/lib/interact-1.2.4.js'), inject: 'libs', noNorm: true},
-    { src: join(APP_DEST, 'js/lib/keyboard.js'), inject: 'libs', noNorm: true},
-    { src: join(APP_DEST, 'js/lib/deepAssign.js'), inject: 'libs', noNorm: true},
-    { src: join(APP_DEST, 'js/lib/tween/tween.js'), inject: 'libs', noNorm: true},
-    { src: join(APP_DEST, 'js/lib/socket.io/socket.io.js'), inject: 'libs', noNorm: true},
-    { src: join(APP_DEST, 'js/lib/ui-bootstrap/ui-bootstrap-tpls-0.12.1.js'), inject: 'libs', noNorm: true},
-    { src: join(APP_DEST, 'js/lib/angular/ui-bootstrap-tpls.min.js'), inject: 'libs', noNorm: true},
+    { src: join(APP_DEST, 'js/lib/d3/d3.js'), inject: 'libs', noNorm: true },
+    { src: join(APP_DEST, 'js/lib/interact-1.2.4.js'), inject: 'libs', noNorm: true },
+    { src: join(APP_DEST, 'js/lib/keyboard.js'), inject: 'libs', noNorm: true },
+    { src: join(APP_DEST, 'js/lib/deepAssign.js'), inject: 'libs', noNorm: true },
+    { src: join(APP_DEST, 'js/lib/tween/tween.js'), inject: 'libs', noNorm: true },
+    { src: join(APP_DEST, 'js/lib/socket.io/socket.io.js'), inject: 'libs', noNorm: true },
+    { src: join(APP_DEST, 'js/lib/ui-bootstrap/ui-bootstrap-tpls-0.12.1.js'), inject: 'libs', noNorm: true },
+    { src: join(APP_DEST, 'js/lib/angular/ui-bootstrap-tpls.min.js'), inject: 'libs', noNorm: true },
 
-    { src: join(APP_DEST, 'js/lib/textAngular/textAngular-rangy.min.js'), inject: 'libs', noNorm: true},
-    { src: join(APP_DEST, 'js/lib/textAngular/textAngular-sanitize.js'), inject: 'libs', noNorm: true},
-    { src: join(APP_DEST, 'js/lib/textAngular/textAngular.min.js'), inject: 'libs', noNorm: true},
-    { src: join(APP_DEST, 'js/lib/wizard/ngWizard.js'), inject: 'libs', noNorm: true},
-    { src: join(APP_DEST, 'js/lib/socket.io/angular.socket.io.js'), inject: 'libs', noNorm: true},
+    { src: join(APP_DEST, 'js/lib/textAngular/textAngular-rangy.min.js'), inject: 'libs', noNorm: true },
+    { src: join(APP_DEST, 'js/lib/textAngular/textAngular-sanitize.js'), inject: 'libs', noNorm: true },
+    { src: join(APP_DEST, 'js/lib/textAngular/textAngular.min.js'), inject: 'libs', noNorm: true },
+    { src: join(APP_DEST, 'js/lib/wizard/ngWizard.js'), inject: 'libs', noNorm: true },
+    { src: join(APP_DEST, 'js/lib/socket.io/angular.socket.io.js'), inject: 'libs', noNorm: true },
 
     { src: 'rxjs/bundles/Rx.js', inject: 'libs' },
 ];
@@ -304,12 +308,12 @@ const PROD_NPM_DEPENDENCIES: IDependency[] = [
 
 export const DEV_DEPENDENCIES = normalizeDependencies(NPM_DEPENDENCIES.
     concat(DEV_NPM_DEPENDENCIES, SUB_PROJECTS_FILE.NPM_DEPENDENCIES,
-        SUB_PROJECTS_FILE.DEV_NPM_DEPENDENCIES, SUB_PROJECTS_FILE.APP_ASSETS)
+    SUB_PROJECTS_FILE.DEV_NPM_DEPENDENCIES, SUB_PROJECTS_FILE.APP_ASSETS)
     );
 
 export const PROD_DEPENDENCIES = normalizeDependencies(NPM_DEPENDENCIES.
     concat(PROD_NPM_DEPENDENCIES, SUB_PROJECTS_FILE.NPM_DEPENDENCIES,
-        SUB_PROJECTS_FILE.PROD_NPM_DEPENDENCIES, SUB_PROJECTS_FILE.APP_ASSETS)
+    SUB_PROJECTS_FILE.PROD_NPM_DEPENDENCIES, SUB_PROJECTS_FILE.APP_ASSETS)
     );
 
 export const DEPENDENCIES = ENV === 'dev' ? DEV_DEPENDENCIES : PROD_DEPENDENCIES;
@@ -318,56 +322,56 @@ export const DEPENDENCIES = ENV === 'dev' ? DEV_DEPENDENCIES : PROD_DEPENDENCIES
 // ----------------
 // SystemsJS Configuration.
 
-    var config = {
-        "defaultJSExtensions":true,
-        "defaultExtension": "js",
-        "map": {
-            "ng2-material": "ng2-material/index.js",
-            // "symbol-observable": "symbol-observable/index.js"
-        },
-        packageConfigPaths: ['./node_modules/*/package.json',
-         './node_modules/@angular/*/package.json',
-         './node_modules/@angular2-material/*/package.json'
-        ],
-        packages: {
-            rxjs: { defaultExtension: 'js' },
-            "symbol-observable": {main: "index.js"}
-        },
-        paths:{
-            [BOOTSTRAP_MODULE]: `${APP_BASE}${BOOTSTRAP_MODULE}`,
-            // 'rxjs/*': `${APP_BASE}rxjs/*`,
-            '*': `./node_modules/*`,
-        }
-    };
+var config = {
+    "defaultJSExtensions": true,
+    "defaultExtension": "js",
+    "map": {
+        "ng2-material": "ng2-material/index.js",
+        // "symbol-observable": "symbol-observable/index.js"
+    },
+    packageConfigPaths: ['./node_modules/*/package.json',
+        './node_modules/@angular/*/package.json',
+        './node_modules/@angular2-material/*/package.json'
+    ],
+    packages: {
+        rxjs: { defaultExtension: 'js' },
+        "symbol-observable": { main: "index.js" }
+    },
+    paths: {
+        [BOOTSTRAP_MODULE]: `${APP_BASE}${BOOTSTRAP_MODULE}`,
+        // 'rxjs/*': `${APP_BASE}rxjs/*`,
+        '*': `./node_modules/*`,
+    }
+};
 
-    // put the names of any of your Material components here
-    var materialPkgs = [
-      'core',
-      'checkbox',
-      'sidenav',
-      'checkbox',
-      'input',
-      'progress-bar',
-      'progress-circle',
-      'radio',
-      'tabs',
-      'toolbar'
-    ];
+// put the names of any of your Material components here
+var materialPkgs = [
+    'core',
+    'checkbox',
+    'sidenav',
+    'checkbox',
+    'input',
+    'progress-bar',
+    'progress-circle',
+    'radio',
+    'tabs',
+    'toolbar'
+];
 
-    // for(var pI in materialPkgs){
-    //     var pkg = materialPkgs[pI];
-    //     config.packages['@angular2-material/'+pkg] = {main: pkg+'.js'};
-    // }
+// for(var pI in materialPkgs){
+//     var pkg = materialPkgs[pI];
+//     config.packages['@angular2-material/'+pkg] = {main: pkg+'.js'};
+// }
 
-    // put the names of any of your Angular components here
-    var angularPkgs = [
-        'common', 'compiler', 'core', 'http', 'platform-browser', 'platform-browser-dynamic', 'router', 'router-deprecated', 'upgrade'
-    ];
-    // for(var pI in angularPkgs){
-    //     var pkg = angularPkgs[pI];
-    //     config.packages['@angular/'+pkg] = {main: 'index.js', defaultExtension: 'js'};
-    // }
-    const SYSTEM_CONFIG_DEV = config;
+// put the names of any of your Angular components here
+var angularPkgs = [
+    'common', 'compiler', 'core', 'http', 'platform-browser', 'platform-browser-dynamic', 'router', 'router-deprecated', 'upgrade'
+];
+// for(var pI in angularPkgs){
+//     var pkg = angularPkgs[pI];
+//     config.packages['@angular/'+pkg] = {main: 'index.js', defaultExtension: 'js'};
+// }
+const SYSTEM_CONFIG_DEV = config;
 
 // TODO: Fix
 // const SYSTEM_CONFIG_PROD = {
@@ -406,7 +410,7 @@ export const SYSTEM_BUILDER_CONFIG = config;
 function normalizeDependencies(deps: IDependency[]) {
     deps
         .filter((d: IDependency) => !/\*/.test(d.src)) // Skip globs
-        .forEach((d: IDependency) => {if (d.noNorm !== true) d.src = require.resolve(d.src);});
+        .forEach((d: IDependency) => { if (d.noNorm !== true) d.src = require.resolve(d.src); });
     return deps;
 }
 
