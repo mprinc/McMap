@@ -19,12 +19,15 @@ const BUNDLER_OPTIONS = {
   format: 'cjs',
   // https://github.com/systemjs/builder#minification-options
   minify: true,
+  sourceMaps: true,
+  lowResSourceMaps: false,
   mangle: false
 };
 
 // builds from SYSTEM_BUILDER_CONFIG.paths a SystemJS bundle into JS_DEST/JS_PROD_APP_BUNDLE
 export = function bundles(gulp, plugins) {
   return function (done) {
+    console.log("SYSTEM_BUILDER_CONFIG: ", JSON.stringify(SYSTEM_BUILDER_CONFIG));
     let builder = new Builder(SYSTEM_BUILDER_CONFIG);
     // makes a (Self-Executing) bundle that is independent of the SystemJS loader entirely
     // This bundle file can then be included with a <script> tag, and no other dependencies would need to be included in the page.
@@ -34,6 +37,10 @@ export = function bundles(gulp, plugins) {
     // will then have its exports output as the CommonJS exports of the whole SFX bundle itself
     // when run in a CommonJS environment
     // it saves it into JS_DEST/JS_PROD_APP_BUNDLE
+
+    console.log("starting file: ", join(TMP_DIR, BOOTSTRAP_MODULE));
+    console.log("output file: ", join(JS_DEST, JS_PROD_APP_BUNDLE));
+
     builder
       .buildStatic(join(TMP_DIR, BOOTSTRAP_MODULE),
                    join(JS_DEST, JS_PROD_APP_BUNDLE),

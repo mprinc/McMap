@@ -166,7 +166,7 @@ const SUB_PROJECTS_FILES = {
             // TODO: Load only if knalledgeMap component for visualization is added as a plugin
             { src: join(APP_DEST, 'js/interaction/interaction.js'), inject: true, noNorm: true },
             { src: join(APP_DEST, 'js/interaction/moveAndDrag.js'), inject: true, noNorm: true },
-            { src: join(APP_DEST, 'js/interaction/mapInteraction.js'), inject: true, noNorm: true },
+            // { src: join(APP_DEST, 'js/interaction/mapInteraction.js'), inject: true, noNorm: true },
             { src: join(APP_DEST, 'js/interaction/keyboard.js'), inject: true, noNorm: true },
 
             { src: join(APP_DEST, 'js/mcm/mcm.js'), inject: true, noNorm: true },
@@ -327,7 +327,26 @@ var config = {
     "defaultExtension": "js",
     "map": {
         "ng2-material": "ng2-material/index.js",
-        // "symbol-observable": "symbol-observable/index.js"
+        // "symbol-observable": "symbol-observable/index.js",
+        "components/knalledgeMap/main": "components/knalledgeMap/main.js"
+    },
+
+    // TODO: should we add all dependencies to the all components
+    // that are not statically imported
+    // Example: components/knalledgeMap/main.js imports
+    // components/topPanel/topPanel.js only if the config.plugins.js says so
+    // it seems it doesn't make builder to inject it in the app_bundle.js
+
+    // https://github.com/systemjs/systemjs/blob/master/docs/module-formats.md
+    // https://github.com/systemjs/systemjs/blob/master/docs/config-api.md#meta
+    meta: {
+        "components/knalledgeMap/main": {
+            format: "global",
+            // deps: ["components/topPanel/topPanel"]
+        },
+        // "components/topPanel/topPanel": {
+        //     build: true
+        // }
     },
     packageConfigPaths: ['./node_modules/*/package.json',
         './node_modules/@angular/*/package.json',
@@ -385,12 +404,16 @@ const SYSTEM_CONFIG_DEV = config;
 
 export const SYSTEM_CONFIG = SYSTEM_CONFIG_DEV;
 
+console.log("[config.ts] SYSTEM_CONFIG: ", JSON.stringify(SYSTEM_CONFIG));
+
 // https://github.com/systemjs/systemjs/blob/master/docs/config-api.md
 // https://github.com/ModuleLoader/es6-module-loader/blob/master/docs/loader-config.md#paths-implementation
 config.paths[`${TMP_DIR}/*`] = `${TMP_DIR}/*`;
 // config.paths['*'] = 'node_modules/*';
 
 export const SYSTEM_BUILDER_CONFIG = config;
+
+console.log("[config.ts] SYSTEM_BUILDER_CONFIG: ", JSON.stringify(SYSTEM_BUILDER_CONFIG));
 
 // export const SYSTEM_BUILDER_CONFIG = {
 //     defaultJSExtensions: true,

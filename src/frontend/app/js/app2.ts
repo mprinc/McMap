@@ -3,6 +3,7 @@ import {upgradeAdapter} from './upgrade_adapter';
 
 import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
 
+import {KnalledgeMapMain} from '../components/knalledgeMap/main';
 import {LoginStatusComponent} from '../components/login/login-status-component';
 import {McmMain} from '../components/mcmMap/mcmMain';
 import {KnalledgeMapPolicyService} from '../components/knalledgeMap/knalledgeMapPolicyService';
@@ -17,15 +18,23 @@ import {TopiChatService} from '../components/topiChat/topiChatService';
 
 
 // import {BroadcastManagerService} from '../components/collaboBroadcasting/broadcastManagerService';
-// import { MapInteraction } from './interaction/mapInteraction';
+
+// add only if knalledgeMap plugin is added
+import { MapInteraction } from './interaction/mapInteraction';
 
 import { Injector } from '../components/utils/injector';
 /// <reference path="../../../typings/browser/ambient/angular/angular.d.ts" />
 /// <reference path="../../../typings/browser/ambient/angular-route/angular-route.d.ts" />
 
+// Loading plugins' dependencies
+import './pluginDependencies';
 
 // registering ng2 directives in ng1 space
 angular.module('knalledgeMapDirectives')
+    .directive({
+       'knalledgeMapMain':
+           upgradeAdapter.downgradeNg2Component(KnalledgeMapMain)
+    })
     .directive({
         'loginStatus':
             upgradeAdapter.downgradeNg2Component(LoginStatusComponent)
@@ -60,7 +69,7 @@ knalledgeMapServicesModule
   .service('KnalledgeMapPolicyService', KnalledgeMapPolicyService)
   .service('KnalledgeMapViewService', KnalledgeMapViewService);
 
-var mcmMapServicesModule =    
+var mcmMapServicesModule =
     angular.module('mcmMapServices');
 mcmMapServicesModule
     .service('McmMapPolicyService', McmMapPolicyService)
@@ -92,7 +101,7 @@ var injector:Injector = new Injector();
 injector.addPath("collaboPlugins.globalEmitterServicesArray", GlobalEmitterServicesArray);
 injector.addPath("collaboPlugins.globalEmitterService", GlobalEmitterService);
 injector.addPath("utils.globalEmitterService", Injector);
-// injector.addPath("interaction.MapInteraction", MapInteraction);
+injector.addPath("interaction.MapInteraction", MapInteraction);
 
 angular.module('Config')
 	.constant("injector", injector)
