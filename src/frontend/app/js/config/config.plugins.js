@@ -3,6 +3,24 @@
 
 /* Configuration */
 var plugins = {
+	"ViewComponents": {
+		"knalledgeMap.Main": {
+			components: {
+				TopPanel: {
+					active: false,
+					path: "/components/topPanel/topPanel"
+				}
+			}
+		},
+		"knalledgeMap.KnalledgeMapTools": {
+			components: {
+				GardeningControls: {
+					active: false,
+					path: "/components/gardening/gardening-controls.component"
+				}
+			}
+		}
+	},
 	"knalledgeMap": {
         active: true,
         config: {
@@ -14,6 +32,20 @@ var plugins = {
                 available: false
             }
         }
+	},
+	"topPanel": {
+        active: false,
+        config: {
+            suggestion: {
+				available: false
+            },
+			request: {
+				available: false
+            },
+        }
+	},
+	"ontov": {
+        active: false
 	},
 	"rima": {
         active: true,
@@ -67,6 +99,16 @@ var plugins = {
 		},
 		plugins: {
 			mapVisualizePlugins: ['NotifyNodeService']
+		}
+	},
+	gardening: {
+		active: false,
+		services: {
+			ApprovalNodeService: {
+			}
+		},
+		plugins: {
+			mapVisualizePlugins: ['ApprovalNodeService']
 		}
 	}
 };

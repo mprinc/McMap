@@ -132,7 +132,7 @@ const SUB_PROJECTS_FILES = {
             { src: join(APP_DEST, 'js/config/config.env.js'), inject: true, noNorm: true },
             { src: join(APP_DEST, 'js/config/config.plugins.js'), inject: true, noNorm: true },
 
-            { src: join(APP_DEST, 'js/mcmInteraction/interaction.js'), inject: true, noNorm: true },
+            { src: join(APP_DEST, 'js/mcmInteraction/mcmInteraction.js'), inject: true, noNorm: true },
             { src: join(APP_DEST, 'js/mcmInteraction/moveAndDrag.js'), inject: true, noNorm: true },
             { src: join(APP_DEST, 'js/mcmInteraction/keyboard.js'), inject: true, noNorm: true },
 
