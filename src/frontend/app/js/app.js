@@ -27,9 +27,11 @@ var requiresList = [
 	, 'mcmMapsDirectives' // KnAllEdge Map component
 ];
 
-requiresList.push('rimaServices');
-requiresList.push('rimaDirectives');
-requiresList.push('rimaFilters');
+if(window.Config.Plugins.rima.config.rimaService.available){
+	requiresList.push('rimaServices');
+	requiresList.push('rimaDirectives');
+	requiresList.push('rimaFilters');
+}
 
 requiresList.push('loginServices');
 requiresList.push('loginDirectives');

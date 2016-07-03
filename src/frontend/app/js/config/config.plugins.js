@@ -17,6 +17,10 @@ var plugins = {
 				GardeningControls: {
 					active: false,
 					path: "/components/gardening/gardening-controls.component"
+				},
+				RimaUsersList: {
+					active: false,
+					path: "/components/rima/rimaUsersList"
 				}
 			}
 		}
@@ -51,8 +55,9 @@ var plugins = {
         active: true,
         config: {
             rimaService: {
-				available: false,
+				available: true,
 				ANONYMOUS_USER_ID: "55268521fb9a901e442172f8",
+				ANONYMOUS_USER_NAME: "Anonymous",
 				// should the service wait for users be broadcasted from other components
 				// (like KnalledgeMapVOsService) or request loading all of them?
                 waitToReceiveRimaList: true
