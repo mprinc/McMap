@@ -2087,6 +2087,25 @@
   -ms-user-select: none;
   -webkit-user-select: none;
   user-select: none; }
+  .mcm_main .toolbar .itemTitle {
+    font-weight: bold; }
+
+.mcm_list_component md-list {
+  width: 100%; }
+  .mcm_list_component md-list md-subheader {
+    font-weight: bold;
+    font-size: 1.2em; }
+  .mcm_list_component md-list md-list-item {
+    cursor: pointer;
+    width: 100%; }
+    .mcm_list_component md-list md-list-item:nth-child(even) {
+      background: #fff; }
+    .mcm_list_component md-list md-list-item:nth-child(odd) {
+      background: #eee; }
+    .mcm_list_component md-list md-list-item .selected {
+      background-color: #fdd;
+      font-weight: bold;
+      border-left: 2px doted #bbb; }
 
 .map_svg {
   height: 100%;

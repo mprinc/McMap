@@ -60,7 +60,7 @@ import {GlobalEmitterServicesArray} from '../collaboPlugins/GlobalEmitterService
         MdToolbar,
         McmListComponent,
         upgradeAdapter.upgradeNg1Component('mcmMapList'),
-    //  upgradeAdapter.upgradeNg1Component('ibisTypesList'),
+        //  upgradeAdapter.upgradeNg1Component('ibisTypesList'),
     ],
     // necessary for having relative paths for templateUrl
     // http://schwarty.com/2015/12/22/angular2-relative-paths-for-templateurl-and-styleurls/
@@ -74,29 +74,57 @@ export class McmMain {
     viewConfig: any;
     status: String;
     itemSelected: any;
+    itemContainer: any;
     itemToolbar: any = {
         visible: false
     };
 
     constructor(
-      // public router: Router,
-      @Inject('McmMapViewService') mcmMapViewService: McmMapViewService,
-      @Inject('McmMapPolicyService') private mcmMapPolicyService: McmMapPolicyService,
-      @Inject('GlobalEmitterServicesArray') private globalEmitterServicesArray: GlobalEmitterServicesArray
-      ) {
-      console.log('[McmMain]');
-      this.viewConfig = mcmMapViewService.get().config;
-      this.policyConfig = mcmMapPolicyService.get().config;
-      // globalEmitterServicesArray.register('McmMain');
-      // globalEmitterServicesArray.get().subscribe('McmMain', (data) => alert("[McmMain]:"+data));
-      // globalEmitterServicesArray.broadcast('McmMain', "Hello from KnalledgeMaMcmMainpTools!");
+        // public router: Router,
+        @Inject('McmMapViewService') mcmMapViewService: McmMapViewService,
+        @Inject('McmMapPolicyService') private mcmMapPolicyService: McmMapPolicyService,
+        @Inject('GlobalEmitterServicesArray') private globalEmitterServicesArray: GlobalEmitterServicesArray
+        ) {
+        console.log('[McmMain]');
+        this.viewConfig = mcmMapViewService.get().config;
+        this.policyConfig = mcmMapPolicyService.get().config;
+        // globalEmitterServicesArray.register('McmMain');
+        // globalEmitterServicesArray.get().subscribe('McmMain', (data) => alert("[McmMain]:"+data));
+        // globalEmitterServicesArray.broadcast('McmMain', "Hello from KnalledgeMaMcmMainpTools!");
 
-      var nodeMediaClickedEventName = "nodeMediaClickedEvent";
-      this.globalEmitterServicesArray.register(nodeMediaClickedEventName);
+        var nodeMediaClickedEventName = "nodeMediaClickedEvent";
+        this.globalEmitterServicesArray.register(nodeMediaClickedEventName);
 
-      this.globalEmitterServicesArray.get(nodeMediaClickedEventName).subscribe('mcmMap.Main', function(vkNode) {
-          console.log("media clicked: ", vkNode.kNode.name);
-      });
+        this.globalEmitterServicesArray.get(nodeMediaClickedEventName).subscribe('mcmMap.Main', function(vkNode) {
+            console.log("media clicked: ", vkNode.kNode.name);
+        });
+
+        this.itemContainer = {
+            name: "land_surface",
+            entityGroups: [{
+                name: 'objects',
+                values: [
+                    {
+                        name: "river"
+                    },
+                    {
+                        name: "bank"
+                    }
+                ]
+            },
+                {
+                    name: 'assumptions',
+                    values: [
+                        {
+                            name: "boundary"
+                        },
+                        {
+                            name: "divided"
+                        }
+                    ]
+                }
+            ]
+        };
     };
 
     // http://learnangular2.com/events/
@@ -104,6 +132,11 @@ export class McmMain {
         item = (this.itemSelected !== item) ? item : null;
         this.itemSelected = item;
         this.itemToolbar.visible = !!item;
+    }
+
+    onItemContainerChanged(item: any) {
+        item = (this.itemContainer !== item) ? item : null;
+        this.itemContainer = item;
     }
 
     go(path: string) {

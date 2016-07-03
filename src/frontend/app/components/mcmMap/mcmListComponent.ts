@@ -53,9 +53,10 @@ import {GlobalEmitterServicesArray} from '../collaboPlugins/GlobalEmitterService
 export class McmListComponent {
     policyConfig: any;
     viewConfig: any;
-    item: any;
+    itemContainer: any;
+    itemSelected: any;
     // https://angular.io/docs/ts/latest/cookbook/component-communication.html#!#child-to-parent
-    @Output() selectedItem = new EventEmitter<any>();
+    @Output() selectItem = new EventEmitter<any>();
 
     constructor(
         // public router: Router,
@@ -75,7 +76,8 @@ export class McmListComponent {
             console.log("media clicked: ", vkNode.kNode.name);
         });
 
-        this.item = {
+        this.itemContainer = {
+            name: "land_surface",
             entityGroups: [{
                 name: 'objects',
                 values: [
@@ -84,6 +86,15 @@ export class McmListComponent {
                     },
                     {
                         name: "bank"
+                    },
+                    {
+                        name: "cannal"
+                    },
+                    {
+                        name: "shore"
+                    },
+                    {
+                        name: "tide"
                     }
                 ]
             },
@@ -103,8 +114,11 @@ export class McmListComponent {
     };
 
     onClicked(value: any){
-        this.selectedItem.emit(value);
+        this.itemSelected = this.itemSelected !== value ?
+            value : null;
+        this.selectItem.emit(value);
     }
+
     go(path: string) {
         // TODO: not implemented
         // alert("Not implemented");

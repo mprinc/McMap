@@ -3,7 +3,7 @@
     <!-- content -->
     <md-sidenav-layout layout="row" flex style="overflow: auto; height: 100%;">
         <!-- <md-sidenav #options align="left" layout="column" [style]="hasMedia('gt-sm') ? 'side' : 'over'"> -->
-        <md-sidenav #options [opened]="true" align="end" mode="side" layout="column">
+        <md-sidenav #options [opened]="false" align="end" mode="side" layout="column">
             <md-content>
                 <div style="text-align: right;">
                     <button md-raised-button (click)="options.close()" align="right" class="md-primary" hide-gt-md>
@@ -33,12 +33,12 @@
                     <md-toolbar class="toolbar md-theme-indigo" color="primary" style="width: 100%;">
                         <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap style="width: 100%;">
                             <section class="commands" layout="row" layout-sm="column" layout-align="left center" layout-wrap>
-                                <button md-fab class="md-primary" aria-label="Configuration" (click)="settings.toggle()" [hidden]="leftOpened">
+                                <button md-fab class="md-primary" aria-label="Configuration" (click)="settings.toggle()" [hidden]="settings.opened">
                                     <i title="Settings" md-icon>settings</i>
                                 </button>
-                                <!-- <button md-fab class="md-primary" aria-label="Configuration" (click)="options.open()" hide-gt-md> -->
-                                <button md-fab class="md-primary" aria-label="Configuration" (click)="options.toggle()">
-                                    <i title="Configuration" md-icon>chrome_reader_mode</i>
+
+                                <button md-fab class="md-primary" aria-label="Options" (click)="options.toggle()">
+                                    <i title="Options" md-icon>chrome_reader_mode</i>
                                 </button>
 
                                 <button md-fab class="md-primary" aria-label="Maps" (click)="go('maps')" *ngIf="policyConfig.moderating.enabled">
@@ -49,6 +49,15 @@
                                     <i title="Plugins" md-icon>extension</i>
                                 </button>
                             </section>
+
+                            <span flex></span>
+                            <button md-fab class="md-primary" aria-label="Navigate Back" (click)="back()">
+                                <i title="Back" md-icon>navigate_before</i>
+                            </button>
+
+                            <span class="itemTitle">
+                                {{itemContainer?.name}}
+                            </span>
 
                             <section class="whoAmI" layout="row" layout-sm="column" layout-align="right center" layout-wrap>
                                 <button md-fab class="md-primary" aria-label="Person" (click)="go('login')">
@@ -63,27 +72,28 @@
                     </md-toolbar>
 
                     <!-- MCM Map List -->
-                    <mcm-list-component (selectedItem)="onSelectedItem($event)" class="knalledge_map" flex style="overflow: auto; height: 100%;"></mcm-list-component>
+                    <mcm-list-component (selectItem)="onSelectedItem($event)" flex style="overflow: auto; height: 100%;"></mcm-list-component>
 
                     <md-toolbar *ngIf="itemToolbar.visible" class="toolbar md-theme-indigo" color="accent" style="width: 100%;">
-                        <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap style="width: 100%;">
-                            <section class="commands" layout="row" layout-sm="column" layout-align="left center" layout-wrap>
-                                <button md-fab class="md-primary" aria-label="Delete" (click)="settings.toggle()">
-                                    <i title="delete" md-icon>delete</i>
-                                </button>
-                                <!-- <button md-fab class="md-primary" aria-label="Configuration" (click)="options.open()" hide-gt-md> -->
-                                <button md-fab class="md-primary" aria-label="Edit" (click)="options.toggle()">
-                                    <i title="Edit" md-icon>border_color</i>
-                                </button>
+                        <button md-fab class="md-primary" aria-label="Delete" (click)="settings.toggle()">
+                            <i title="delete" md-icon>delete</i>
+                        </button>
+                        <!-- <button md-fab class="md-primary" aria-label="Configuration" (click)="options.open()" hide-gt-md> -->
+                        <button md-fab class="md-primary" aria-label="Edit" (click)="options.toggle()">
+                            <i title="Edit" md-icon>border_color</i>
+                        </button>
 
-                                {{itemSelected.name}}
+                        <span class="itemTitle">
+                            {{itemSelected.name}}
+                        </span>
 
-                                <button md-fab class="md-primary" aria-label="Close" (click)="onSelectedItem()">
-                                    <i title="Close" md-icon>close</i>
-                                </button>
-                            </section>
-                        </section>
+                        <span flex></span>
+
+                        <button md-fab class="md-primary" aria-label="Close" (click)="onSelectedItem()">
+                            <i title="Close" md-icon>close</i>
+                        </button>
                     </md-toolbar>
+                    <div style="height: 20px;"></div>
                 </div>
             </div>
         </md-content>

@@ -1,23 +1,13 @@
-<div class="plugin">
-<md-content>
-    <md-list>
-        <md-subheader class="">Earh</md-subheader>
-        <md-list-item class="md-1-line" *ngFor="let entityGroup of item.entityGroups">
-            <div class="md-list-item-text" layout="column">
-                <h1>{{entityGroup.name}}</h1>
-                <md-list>
-                        <md-subheader class="">Internal</md-subheader>
-                    <md-list-item class="md-1-line" *ngFor="let value of entityGroup.values">
-                        <div class="md-list-item-text" layout="column" (click)="onClicked(value);">
-                            <h2>{{ value.name }}</h2>
-                        </div>
-                    </md-list-item>
-                </md-list>
-            </div>
-        </md-list-item>
-
-        <md-divider></md-divider>
-        <md-subheader class="md-no-sticky">Special</md-subheader>
-    </md-list>
-</md-content>
+<div class="mcm_list_component">
+    <md-content>
+        <md-list>
+            <md-list-item [class.selected]="value === itemSelected" class="md-1-line" (click)="onClicked(value);" *ngFor="let value of itemContainer.entityGroups[0].values">
+                {{ value?.name }}
+                <span flex></span>
+                <button md-button class="md-icon-button md-primary" aria-label="Enter" (click)="enter(value)">
+                    <i title="Enter" md-icon>navigate_next</i>
+                </button>
+            </md-list-item>
+        </md-list>
+    </md-content>
 </div>

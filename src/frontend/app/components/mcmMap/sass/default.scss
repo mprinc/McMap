@@ -281,8 +281,38 @@ $map: layout(12 1/4 fluid isolate inside);
 /*	http://compass-style.org/reference/compass/css3/user_interface/#mixin-user-select
 	http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting*/
 	@include user-select(none);
+
+	.toolbar {
+		.itemTitle {
+			font-weight: bold;
+		}
+	}
 }
 
+.mcm_list_component{
+	md-list{
+		width: 100%;
+
+		md-subheader{
+			font-weight: bold;
+			font-size: 1.2em;
+		}
+
+		md-list-item{
+			cursor: pointer;
+			width: 100%;
+
+			&:nth-child(even) {background: #fff}
+			&:nth-child(odd) {background: #eee}
+
+			.selected{
+				background-color: #fdd;
+				font-weight: bold;
+				border-left: 2px doted #bbb;
+			}
+		}
+	}
+}
 .map_svg{
 	height: 100%;
 	width: 100%;
