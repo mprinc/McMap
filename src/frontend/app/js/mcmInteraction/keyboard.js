@@ -3,7 +3,7 @@
 
 //http://robertwhurst.github.io/KeyboardJS/
 //	https://github.com/RobertWHurst/KeyboardJS
-var Keyboard =  interaction.Keyboard = function(clientApi){
+var Keyboard =  mcmInteraction.Keyboard = function(clientApi){
 	this.clientApi = clientApi;
 	this.editingNodeHtml = null;
 };
@@ -29,7 +29,7 @@ Keyboard.prototype.initializeKeyboard = function() {
 			});
 		//}
 	}.bind(this), function(){}.bind(this));
-	
+
 	//TODO: Delete edge
 };
 

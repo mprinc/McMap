@@ -30,7 +30,7 @@ EntitiesToolset.prototype.init = function() {
 		}
 	};
 
-	interaction.MoveAndDrag.InitializeDragging(draggingConfig);
+	mcmInteraction.MoveAndDrag.InitializeDragging(draggingConfig);
 	this.update();
 };
 

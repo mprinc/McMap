@@ -1,7 +1,7 @@
 (function () { // This prevents problems when concatenating scripts that aren't strict.
 'use strict';
 
-var MoveAndDrag =  interaction.MoveAndDrag = function(){
+var MoveAndDrag =  mcmInteraction.MoveAndDrag = function(){
 };
 
 /**

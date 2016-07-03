@@ -68,7 +68,7 @@ Map.prototype.initializeKeyboard = function() {
 		deleteNode: this.mapStructure.deleteNode.bind(this.mapStructure)
 	};
 
-	this.keyboardInteraction = new interaction.Keyboard(keyboardClientInterface);
+	this.keyboardInteraction = new mcmInteraction.Keyboard(keyboardClientInterface);
 	this.keyboardInteraction.init();
 };
 
@@ -90,13 +90,13 @@ Map.prototype.initializeManipulation = function() {
 	this.draggingConfig.target.updateDatumPosition = this.mapLayout.updateDatumPosition.bind(this.mapLayout);
 	this.draggingConfig.target.callbacks.onend = manipulationEnded;
 
-	interaction.MoveAndDrag.InitializeDragging(this.draggingConfig);
+	mcmInteraction.MoveAndDrag.InitializeDragging(this.draggingConfig);
 
 	this.resizingConfig = this.config.interaction.resizingConfig;
 	this.resizingConfig.target.cloningContainer = that.mapVisualization.dom.divMapHtml.node();
 	this.resizingConfig.target.callbacks.onend = manipulationEnded;
 
-	interaction.MoveAndDrag.InitializeResizing(this.resizingConfig);
+	mcmInteraction.MoveAndDrag.InitializeResizing(this.resizingConfig);
 
 	var draggAndDropEnded = function(targetD3, relatedTargetD3, draggedIn){
 		var d = targetD3 ? targetD3.datum() : null;
@@ -111,7 +111,7 @@ Map.prototype.initializeManipulation = function() {
 	this.draggingInConfig = this.config.interaction.draggingInConfig;
 	this.draggingInConfig.draggable.callbacks.onend = draggAndDropEnded;
 
-	interaction.MoveAndDrag.InitializeDraggingIn(this.draggingInConfig);
+	mcmInteraction.MoveAndDrag.InitializeDraggingIn(this.draggingInConfig);
 };
 
 }()); // end of 'use strict';

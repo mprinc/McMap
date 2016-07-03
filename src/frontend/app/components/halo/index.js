@@ -7,7 +7,7 @@ if(typeof interaction === 'undefined'){
 'use strict';
 
 
-var halo =  interaction.Halo = function(){
+var halo =  mcmInteraction.Halo = function(){
 };
 
 /**
@@ -34,7 +34,7 @@ halo.prototype.init = function (config, callback) {
 };
 
 halo.prototype.destroy = function () {
-	d3.select("#"+interaction.Halo.HALO_VIEW_ID).remove();
+	d3.select("#"+mcmInteraction.Halo.HALO_VIEW_ID).remove();
 };
 
 halo.prototype.create = function (objectDom, options) {
@@ -49,7 +49,7 @@ halo.prototype.create = function (objectDom, options) {
 		break;
 	}
 	if(this.config.exclusive){
-		haloView.attr("id", interaction.Halo.HALO_VIEW_ID);
+		haloView.attr("id", mcmInteraction.Halo.HALO_VIEW_ID);
 	}
 	haloView
 		.classed({

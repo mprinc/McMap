@@ -19,7 +19,7 @@ var MapLayout =  mcm.MapLayout = function(structure, configView, configNodes, co
 		exclusive: true,
 		createAt: "sibling"
 	};
-	this.helo = new interaction.Halo();
+	this.helo = new mcmInteraction.Halo();
 	this.helo.init(heloOptions, function(event){
 		var d = d3.select(event.source).data();
 		if( Object.prototype.toString.call( d ) === '[object Array]' ) {
@@ -295,16 +295,16 @@ MapLayout.prototype.generateTree = function(source){
 				var vkChild = vkChildren[i];
 				vkChild.xA = that.configNodes.html.dimensions.margines.left + vkNode.xA + vkChild.x;
 				vkChild.yA = that.configNodes.html.dimensions.margines.top + vkNode.yA + vkChild.y;
-				
+
 				updateChildrenDimensions(vkChild);
-				
+
 				if(widthA < vkChild.x + vkChild.widthA){
-					widthA = vkChild.x + vkChild.widthA + 
+					widthA = vkChild.x + vkChild.widthA +
 						that.configNodes.html.dimensions.margines.left +
 						that.configNodes.html.dimensions.margines.right;
 				}
 				if(heightA < vkChild.y + vkChild.heightA){
-					heightA = vkChild.y + vkChild.heightA + 
+					heightA = vkChild.y + vkChild.heightA +
 						that.configNodes.html.dimensions.margines.top +
 						that.configNodes.html.dimensions.margines.bottom;
 				}

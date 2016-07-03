@@ -21,7 +21,7 @@ var Map =  mcm.list.Map = function(parentDom, config, clientApi, schema, mapServ
 		childClicked: this.childClicked.bind(this),
 		backClicked: this.backClicked.bind(this)
 	};
-	this.mapVisualization = new mcm.list.MapVisualization(this.parentDom, mapVisualizationApi, this.mapStructure, 
+	this.mapVisualization = new mcm.list.MapVisualization(this.parentDom, mapVisualizationApi, this.mapStructure,
 		this.config.transitions, this.config.nodes, this.config.edges, this.schema, this.mcmMapViewService);
 
 	var mapLayoutApi = {
@@ -103,7 +103,7 @@ Map.prototype.initializeManipulation = function() {
 	this.draggingInConfig = this.config.interaction.draggingInConfig;
 	this.draggingInConfig.draggable.callbacks.onend = draggAndDropEnded;
 
-	interaction.MoveAndDrag.InitializeDraggingIn(this.draggingInConfig);
+	mcmInteraction.MoveAndDrag.InitializeDraggingIn(this.draggingInConfig);
 };
 
 }()); // end of 'use strict';

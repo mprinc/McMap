@@ -4,50 +4,63 @@
 
 /* App Module */
 
-angular.module('McModelarApp',[
+var requiresList = [
 	  'ngRoute'
 	, 'ngSanitize' // necessary for outputing HTML in angular directive
-	// http://www.yearofmoo.com/2013/08/remastered-animation-in-angularjs-1-2.html
-	// http://outlandish.com/blog/conditional-view-change-animations-in-angular-js/
-	// https://scotch.io/tutorials/animating-angularjs-apps-ngview
-	// https://docs.angularjs.org/api/ngRoute/directive/ngView
-	, 'ngAnimate' // necessary for animating views
 	, 'ngStorage' // local storage support for Angular
+	, 'ngAnimate'
 
-	, 'ngWizard'
 	, 'ui.bootstrap' // UI-bootstrap
+	// , 'textAngular'
+	// , 'textAngularSetup'
+	, 'ngWizard'
 	, 'btford.socket-io'
 
 	, 'collaboPluginsServices'
 	, 'collaboPluginsDirectives'
 
+	, 'knalledgeMapServices' // KnAllEdge Map component
+	, 'knalledgeMapDirectives'
+
 	, 'mcmMapDirectives' // KnAllEdge Map component
 	, 'mcmMapServices'
-	, 'knalledgeMapDirectives' // KnAllEdge Map component
-	, 'knalledgeMapServices'
 	, 'mcmMapsDirectives' // KnAllEdge Map component
+];
 
-	, 'loginServices'
-	, 'loginDirectives'
+requiresList.push('rimaServices');
+requiresList.push('rimaDirectives');
+requiresList.push('rimaFilters');
 
-	, 'rimaServices'
-	, 'rimaDirectives'
-	, 'rimaFilters'
+requiresList.push('loginServices');
+requiresList.push('loginDirectives');
 
-	, 'notifyServices'
-	, 'notifyDirectives'
+requiresList.push('notifyServices');
+requiresList.push('notifyDirectives');
 
-	// , 'topiChatServices'
-	// , 'topiChatDirectives'
-	// , 'McModelarNg2'
-])
+// requiresList.push('topiChatServices');
+// requiresList.push('topiChatDirectives');
+
+// we want to avoid hardoced registering plugins here
+// requiresList.push('ontovServices');
+
+// requiresList.push('requestServices');
+// requiresList.push('suggestionServices');
+// requiresList.push('changeServices');
+
+angular.module('McModelarApp', requiresList)
 // routes
 .config(['$routeProvider', function($routeProvider) {
 	$routeProvider
-	.when('/map', {
-		templateUrl: 'components/mcmMap/partials/mcm-index.tpl.html'
-	})
 	.when('/map/id/:id', {
+		templateUrl: 'components/knalledgeMap/partials/new-index.tpl.html',
+		// https://docs.angularjs.org/api/ngRoute/provider/$routeProvider
+		// http://stackoverflow.com/questions/17981281/change-route-parameters-without-updating-view
+		reloadOnSearch: false
+	})
+	.when('/mcmap', {
+		templateUrl: 'components/mcmMap/partials/mcm-index.tpl.html',
+	})
+	.when('/mcmap/id/:id', {
 		templateUrl: 'components/mcmMap/partials/mcm-main-index.tpl.html'
 	})
 	.when('/importAssumptions', {
