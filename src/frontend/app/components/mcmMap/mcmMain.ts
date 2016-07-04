@@ -15,6 +15,8 @@ import {McmMapViewService} from './mcmMapViewService';
 // import {RequestService} from '../request/request.service';
 import {GlobalEmitterServicesArray} from '../collaboPlugins/GlobalEmitterServicesArray';
 
+import {MapLoader} from '../../js/knalledge/mapLoader';
+import {McmMapLayout} from './mcmMapLayout';
 /**
  * Directive that handles the MCM main directive
  *
@@ -41,6 +43,8 @@ import {GlobalEmitterServicesArray} from '../collaboPlugins/GlobalEmitterService
 //     {path: '/disaster', name: 'Asteroid', redirectTo: ['CrisisCenter', 'CrisisDetail', {id:3}]}
 // ])
 //
+
+declare var knalledge;
 
 @Component({
     selector: 'mcm-main',
@@ -78,19 +82,22 @@ export class McmMain {
     itemToolbar: any = {
         visible: false
     };
+    mapLoader: MapLoader;
+    model;
+    mapStructure;
+    mcmMapLayout:McmMapLayout;
 
     constructor(
         // public router: Router,
         @Inject('McmMapViewService') mcmMapViewService: McmMapViewService,
         @Inject('McmMapPolicyService') private mcmMapPolicyService: McmMapPolicyService,
+        @Inject('KnalledgeMapService') private knalledgeMapService,
+        @Inject('KnalledgeMapVOsService') private knalledgeMapVOsService,
         @Inject('GlobalEmitterServicesArray') private globalEmitterServicesArray: GlobalEmitterServicesArray
-        ) {
+    ) {
         console.log('[McmMain]');
         this.viewConfig = mcmMapViewService.get().config;
         this.policyConfig = mcmMapPolicyService.get().config;
-        // globalEmitterServicesArray.register('McmMain');
-        // globalEmitterServicesArray.get().subscribe('McmMain', (data) => alert("[McmMain]:"+data));
-        // globalEmitterServicesArray.broadcast('McmMain', "Hello from KnalledgeMaMcmMainpTools!");
 
         var nodeMediaClickedEventName = "nodeMediaClickedEvent";
         this.globalEmitterServicesArray.register(nodeMediaClickedEventName);
@@ -98,6 +105,12 @@ export class McmMain {
         this.globalEmitterServicesArray.get(nodeMediaClickedEventName).subscribe('mcmMap.Main', function(vkNode) {
             console.log("media clicked: ", vkNode.kNode.name);
         });
+
+        let mapId = '5564ce0e77a67c82a0394699';
+        this.mapLoader = new MapLoader(mapId,
+            this.knalledgeMapService, this.knalledgeMapVOsService,
+            this.globalEmitterServicesArray);
+        this.mapLoader.onMapLoaded(this.mapLoaded.bind(this));
 
         this.itemContainer = {
             name: "land_surface",
@@ -126,6 +139,16 @@ export class McmMain {
             ]
         };
     };
+    ngOnInit() {
+        this.mapLoader.init();
+    }
+
+    mapLoaded(model){
+        this.model = model;
+        this.mapStructure = this.knalledgeMapVOsService.mapStructure;
+        this.mcmMapLayout = new McmMapLayout(this.mapStructure);
+        this.mcmMapLayout.generateView();
+    }
 
     // http://learnangular2.com/events/
     onSelectedItem(item: any) {

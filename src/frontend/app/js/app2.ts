@@ -21,6 +21,7 @@ import {TopiChatService} from '../components/topiChat/topiChatService';
 
 // add only if knalledgeMap plugin is added
 import { MapInteraction } from './interaction/mapInteraction';
+import { MapLoader } from './knalledge/mapLoader';
 
 import { Injector } from '../components/utils/injector';
 /// <reference path="../../../typings/browser/ambient/angular/angular.d.ts" />
@@ -87,6 +88,7 @@ upgradeAdapter.upgradeNg1Provider('RimaService');
 upgradeAdapter.upgradeNg1Provider('Plugins');
 // upgradeAdapter.upgradeNg1Provider('$injector');
 upgradeAdapter.upgradeNg1Provider('KnalledgeMapVOsService');
+upgradeAdapter.upgradeNg1Provider('KnalledgeMapService');
 // upgradeAdapter.upgradeNg1Provider('BroadcastManagerService');
 upgradeAdapter.upgradeNg1Provider('TopiChatConfigService');
 upgradeAdapter.upgradeNg1Provider('TopiChatService');
@@ -104,6 +106,7 @@ injector.addPath("collaboPlugins.globalEmitterServicesArray", GlobalEmitterServi
 injector.addPath("collaboPlugins.globalEmitterService", GlobalEmitterService);
 injector.addPath("utils.globalEmitterService", Injector);
 injector.addPath("interaction.MapInteraction", MapInteraction);
+injector.addPath("knalledge.MapLoader", MapLoader);
 
 angular.module('Config')
 	.constant("injector", injector)
