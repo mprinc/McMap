@@ -1,39 +1,39 @@
 {
-  "name": "McModelar-frontend",
-  "version": "1.0.1",
-  "homepage": "https://github.com/mprinc/McModelar",
-  "authors": [
-    "Sasha Mile Rudan <mprinc@gmail.com>"
-  ],
-  "description": "McModelar frontend",
-  "main": "index.html",
-  "moduleType": [
-    "es6",
-    "globals",
-    "node"
-  ],
-  "keywords": [
-    "McModelar",
-    "model",
-    "geophysics"
-    "KnAllEdge",
-    "knowledge",
-    "collaboration",
-    "collective",
-    "mind"
-  ],
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "debugpp": "~1.1.13"
-  },
-  "resolutions": {
-    "debugpp": "~1.2.0"
-  }
+    "name": "McModelar-frontend",
+    "version": "1.0.1",
+    "homepage": "https://github.com/mprinc/McModelar",
+    "authors": [
+        "Sasha Mile Rudan <mprinc@gmail.com>"
+    ],
+    "description": "McModelar frontend",
+    "main": "index.html",
+    "moduleType": [
+        "es6",
+        "globals",
+        "node"
+    ],
+    "keywords": [
+        "McModelar",
+        "model",
+        "geophysics",
+        "KnAllEdge",
+        "knowledge",
+        "collaboration",
+        "collective",
+        "mind"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "debugpp": "~1.1.13"
+    },
+    "resolutions": {
+        "debugpp": "~1.2.0"
+    }
 }

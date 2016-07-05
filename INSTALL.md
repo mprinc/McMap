@@ -4,12 +4,18 @@
 
 cd backend
 
-#Sasa
+#Sasa (sasha)
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/models/ models
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/modules/ modules
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/tools/ tools
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/node_modules/ node_modules
 # ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
+
+#Sasa (mprinc)
+ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/backend/models/ models
+ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/backend/modules/ modules
+ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/backend/tools/ tools
+ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/backend/node_modules/ node_modules
 
 #Server:
 ln -s /var/www/knalledge/src/backend/models/ models
@@ -32,12 +38,23 @@ cp /Users/sasha/Documents/data/development/KnAllEdge/src/backend/package.json pa
 
 # FRONTEND
 
-## Sasha
+## Sasha (sasha)
 
 ```sh
 cd frontend/app/js
 rm interaction
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/js/interaction interaction
+ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/js/knalledge knalledge
+```
+
+#Sasa (mprinc)
+
+```sh
+cd frontend/app/js
+rm knalledge interaction
+ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/js/interaction interaction
+ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/js/knalledge knalledge
+```
 
 ## Server
 
@@ -49,20 +66,35 @@ ln -s /var/www/knalledge_frontend/dist/dev/js/knalledge knalledge
 
 # COMPONENTS
 cd frontend/app/components
+rm collaboPlugins knalledgeMap login notify rima topiChat utils
 
-# Sasha
+# Sasha (sasha)
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/rima rima
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/notify notify
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/topiChat topiChat
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/collaboPlugins collaboPlugins
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/login login
-ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/utils .
+ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/utils utils
 
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/knalledgeMap knalledgeMap
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/topPanel topPanel
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/request request
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/suggestion suggestion
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/ontov ontov
+
+# Sasha (mprinc)
+ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/rima rima
+ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/notify notify
+ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/topiChat topiChat
+ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/collaboPlugins collaboPlugins
+ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/login login
+ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/utils utils
+
+ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/knalledgeMap knalledgeMap
+ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/topPanel topPanel
+ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/request request
+ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/suggestion suggestion
+ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/ontov ontov
 
 # Server
 rm knalledgeMap rima notify topiChat collaboPlugins login
@@ -73,7 +105,7 @@ ln -s /var/www/knalledge_frontend/dist/dev/components/notify notify
 ln -s /var/www/knalledge_frontend/dist/dev/components/topiChat topiChat
 ln -s /var/www/knalledge_frontend/dist/dev/components/collaboPlugins collaboPlugins
 ln -s /var/www/knalledge_frontend/dist/dev/components/login login
-ln -s /var/www/knalledge_frontend/dist/dev/components/utils .
+ln -s /var/www/knalledge_frontend/dist/dev/components/utils utils
 
 cd backend/tools
 node createDemoData.js ../../frontend/app/data/sample-small.json
