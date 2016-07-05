@@ -2101,11 +2101,13 @@
     .mcm_list_component md-list md-list-item:nth-child(even) {
       background: #fff; }
     .mcm_list_component md-list md-list-item:nth-child(odd) {
-      background: #eee; }
-    .mcm_list_component md-list md-list-item .selected {
-      background-color: #fdd;
+      background: #e8e8e8; }
+    .mcm_list_component md-list md-list-item.selected {
+      background-color: #fee;
       font-weight: bold;
-      border-left: 2px doted #bbb; }
+      border-left: 5px dotted #bbb;
+      margin-left: 3px;
+      color: #f88; }
 
 .map_svg {
   height: 100%;

@@ -6,8 +6,8 @@ declare var knalledge;
  */
 
 export class NodeWithChildren {
-     node: any;
-     children: NodeWithEdge[];
+    node: any;
+    children: NodeWithEdge[];
 }
 
 export class NodeWithEdge {
@@ -16,7 +16,7 @@ export class NodeWithEdge {
 };
 
 export class McmMapLayout {
-    itemParent:NodeWithChildren;
+    itemParent: NodeWithChildren;
 
     constructor(private mapStructure) {
     };
@@ -24,17 +24,19 @@ export class McmMapLayout {
     generateView() {
         this.itemParent = new NodeWithChildren();
         this.itemParent.node =
-        this.mapStructure.rootNode;
+            // this.mapStructure.rootNode;
+            this.mapStructure.getSelectedNode();
         let childrenEdges = this.mapStructure.getChildrenEdges(this.itemParent.node);
         this.itemParent.children = [];
-        for(let eI=0; eI<childrenEdges.length; eI++){
+        for (let eI = 0; eI < childrenEdges.length; eI++) {
             let edge = childrenEdges[eI];
             let nWR = new NodeWithEdge();
             nWR.edge = edge;
-            nWR.node = this.mapStructure.getVKNodeByKId(edge.kEdge.sourceId);
+            nWR.node = this.mapStructure.getVKNodeByKId(edge.kEdge.targetId);
+            this.itemParent.children.push(nWR);
         }
         console.log("[McmMapLayout] this.itemParent: ", this.itemParent);
 
-        // this.mapStructure.getSelectedNode();
+        return this.itemParent;
     };
 }

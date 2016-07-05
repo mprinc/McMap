@@ -1,10 +1,10 @@
 <div class="mcm_list_component">
     <md-content>
         <md-list>
-            <md-list-item [class.selected]="value === itemSelected" class="md-1-line" (click)="onClicked(value);" *ngFor="let value of itemContainer.entityGroups[0].values">
-                {{ value?.name }}
+            <md-list-item [class.selected]="item === itemSelected" class="md-1-line" (click)="onClicked(item);" *ngFor="let item of itemContainer?.children">
+                {{ item?.node?.kNode?.name }}
                 <span flex></span>
-                <button md-button class="md-icon-button md-primary" aria-label="Enter" (click)="enter(value)">
+                <button md-button class="md-icon-button md-primary" aria-label="Enter" (click)="onEnterItemClicked(item)">
                     <i title="Enter" md-icon>navigate_next</i>
                 </button>
             </md-list-item>

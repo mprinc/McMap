@@ -303,12 +303,14 @@ $map: layout(12 1/4 fluid isolate inside);
 			width: 100%;
 
 			&:nth-child(even) {background: #fff}
-			&:nth-child(odd) {background: #eee}
+			&:nth-child(odd) {background: #e8e8e8}
 
-			.selected{
-				background-color: #fdd;
+			&.selected{
+				background-color: #fee;
 				font-weight: bold;
-				border-left: 2px doted #bbb;
+				border-left: 5px dotted #bbb;
+				margin-left: 3px;
+				color: #f88;
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-import {Component, Inject, EventEmitter, Output} from '@angular/core';
+import {Component, Inject, EventEmitter, Output, Input} from '@angular/core';
 import {upgradeAdapter} from '../../js/upgrade_adapter';
 import {MD_SIDENAV_DIRECTIVES} from '@angular2-material/sidenav';
 import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS, Media} from "ng2-material";
@@ -12,6 +12,8 @@ import {McmMapPolicyService} from './mcmMapPolicyService';
 import {McmMapViewService} from './mcmMapViewService';
 // import {RequestService} from '../request/request.service';
 import {GlobalEmitterServicesArray} from '../collaboPlugins/GlobalEmitterServicesArray';
+
+import {NodeWithChildren} from './mcmMapLayout';
 
 // TODO: probable remove later, this is just to trigger starting the service
 // import {BroadcastManagerService} from '../collaboBroadcasting/broadcastManagerService';
@@ -53,10 +55,11 @@ import {GlobalEmitterServicesArray} from '../collaboPlugins/GlobalEmitterService
 export class McmListComponent {
     policyConfig: any;
     viewConfig: any;
-    itemContainer: any;
-    itemSelected: any;
+    @Input() itemContainer: NodeWithChildren;
+    itemSelected: NodeWithChildren;
     // https://angular.io/docs/ts/latest/cookbook/component-communication.html#!#child-to-parent
     @Output() selectItem = new EventEmitter<any>();
+    @Output() enterItem = new EventEmitter<any>();
 
     constructor(
         // public router: Router,
@@ -75,60 +78,15 @@ export class McmListComponent {
         this.globalEmitterServicesArray.get(nodeMediaClickedEventName).subscribe('mcmMap.Main', function(vkNode) {
             console.log("media clicked: ", vkNode.kNode.name);
         });
-
-        this.itemContainer = {
-            name: "land_surface",
-            entityGroups: [{
-                name: 'objects',
-                values: [
-                    {
-                        name: "river"
-                    },
-                    {
-                        name: "bank"
-                    },
-                    {
-                        name: "cannal"
-                    },
-                    {
-                        name: "shore"
-                    },
-                    {
-                        name: "tide"
-                    }
-                ]
-            },
-                {
-                    name: 'assumptions',
-                    values: [
-                        {
-                            name: "boundary"
-                        },
-                        {
-                            name: "divided"
-                        }
-                    ]
-                }
-            ]
-        };
     };
 
-    onClicked(value: any){
-        this.itemSelected = this.itemSelected !== value ?
-            value : null;
-        this.selectItem.emit(value);
+    onClicked(item: any){
+        this.itemSelected = this.itemSelected !== item ?
+            item : null;
+        this.selectItem.emit(item);
     }
 
-    go(path: string) {
-        // TODO: not implemented
-        // alert("Not implemented");
-        // this.router.navigate(['/hero', hero.id]);
-        //I assumed your `/home` route name is `Home`
-        // this._router.navigate([path]); //this will navigate to Home state.
-        //below way is to navigate by URL
-        //this.router.navigateByUrl('/home')
-        // https://angular.io/docs/ts/latest/api/common/index/Location-class.html
-        // this.location.go('#/' + path);
-        window.location.href = '#/' + path;
-    };
+    onEnterItemClicked(item: any){
+        this.enterItem.emit(item);
+    }
 }

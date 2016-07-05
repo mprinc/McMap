@@ -16,7 +16,7 @@ import {McmMapViewService} from './mcmMapViewService';
 import {GlobalEmitterServicesArray} from '../collaboPlugins/GlobalEmitterServicesArray';
 
 import {MapLoader} from '../../js/knalledge/mapLoader';
-import {McmMapLayout} from './mcmMapLayout';
+import {McmMapLayout, NodeWithChildren} from './mcmMapLayout';
 /**
  * Directive that handles the MCM main directive
  *
@@ -78,7 +78,7 @@ export class McmMain {
     viewConfig: any;
     status: String;
     itemSelected: any;
-    itemContainer: any;
+    itemContainer: NodeWithChildren;
     itemToolbar: any = {
         visible: false
     };
@@ -111,33 +111,6 @@ export class McmMain {
             this.knalledgeMapService, this.knalledgeMapVOsService,
             this.globalEmitterServicesArray);
         this.mapLoader.onMapLoaded(this.mapLoaded.bind(this));
-
-        this.itemContainer = {
-            name: "land_surface",
-            entityGroups: [{
-                name: 'objects',
-                values: [
-                    {
-                        name: "river"
-                    },
-                    {
-                        name: "bank"
-                    }
-                ]
-            },
-                {
-                    name: 'assumptions',
-                    values: [
-                        {
-                            name: "boundary"
-                        },
-                        {
-                            name: "divided"
-                        }
-                    ]
-                }
-            ]
-        };
     };
     ngOnInit() {
         this.mapLoader.init();
@@ -147,19 +120,38 @@ export class McmMain {
         this.model = model;
         this.mapStructure = this.knalledgeMapVOsService.mapStructure;
         this.mcmMapLayout = new McmMapLayout(this.mapStructure);
-        this.mcmMapLayout.generateView();
+        this.itemContainer = this.mcmMapLayout.generateView();
+        this.onSelectedItem();
     }
 
     // http://learnangular2.com/events/
-    onSelectedItem(item: any) {
+    onSelectedItem(item: NodeWithChildren=null) {
         item = (this.itemSelected !== item) ? item : null;
         this.itemSelected = item;
         this.itemToolbar.visible = !!item;
     }
 
+    onEnteredItem(item: NodeWithChildren) {
+        // TODO: move to map
+        this.mapStructure.setSelectedNode(item.node);
+        this.itemContainer = this.mcmMapLayout.generateView();
+        this.onSelectedItem();
+    }
+
+    // TODO: move to map
+    navigateBack() {
+        let parentNodes = this.mapStructure.getParentNodes(this.itemContainer.node);
+        this.onSelectedItem();
+        if(parentNodes.length > 0){
+            this.mapStructure.setSelectedNode(parentNodes[0]);
+            this.itemContainer = this.mcmMapLayout.generateView();
+        }
+    }
+
     onItemContainerChanged(item: any) {
         item = (this.itemContainer !== item) ? item : null;
         this.itemContainer = item;
+        this.onSelectedItem();
     }
 
     go(path: string) {

@@ -50,14 +50,15 @@
                                 </button>
                             </section>
 
-                            <span flex></span>
-                            <button md-fab class="md-primary" aria-label="Navigate Back" (click)="back()">
+                            <button md-fab class="md-primary" aria-label="Navigate Back" (click)="navigateBack()">
                                 <i title="Back" md-icon>navigate_before</i>
                             </button>
 
                             <span class="itemTitle">
-                                {{itemContainer?.name}}
+                                {{itemContainer?.node?.kNode?.name}}
                             </span>
+
+                            <span flex></span>
 
                             <section class="whoAmI" layout="row" layout-sm="column" layout-align="right center" layout-wrap>
                                 <button md-fab class="md-primary" aria-label="Person" (click)="go('login')">
@@ -72,7 +73,7 @@
                     </md-toolbar>
 
                     <!-- MCM Map List -->
-                    <mcm-list-component (selectItem)="onSelectedItem($event)" flex style="overflow: auto; height: 100%;"></mcm-list-component>
+                    <mcm-list-component (selectItem)="onSelectedItem($event)" (enterItem)="onEnteredItem($event)" [itemContainer]="itemContainer" flex style="overflow: auto; height: 100%;"></mcm-list-component>
 
                     <md-toolbar *ngIf="itemToolbar.visible" class="toolbar md-theme-indigo" color="accent" style="width: 100%;">
                         <button md-fab class="md-primary" aria-label="Delete" (click)="settings.toggle()">
@@ -84,7 +85,7 @@
                         </button>
 
                         <span class="itemTitle">
-                            {{itemSelected.name}}
+                            {{itemSelected?.node?.kNode?.name}}
                         </span>
 
                         <span flex></span>
