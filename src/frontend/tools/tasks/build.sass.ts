@@ -1,6 +1,8 @@
 import {join} from 'path';
 import {APP_SRC} from '../config';
 
+var vfs = require('vinyl-fs');
+
 // compiles all ts files (except tests/template ones) and type definitions,
 // replace templates in them and adds sourcemaps and copies into APP_DEST
 export = function buildCss(gulp, plugins) {
@@ -24,9 +26,9 @@ export = function buildCss(gulp, plugins) {
     let src = [
       join(APP_SRC, '**/sass/*.scss')
     ];
-    return gulp.src(src)
+    return vfs.src(src)
       .pipe(plugins.plumber(plumberErrorHandler))
       .pipe(plugins.sass())
-      .pipe(gulp.dest(APP_SRC));
+      .pipe(vfs.dest(APP_SRC));
   };
 };

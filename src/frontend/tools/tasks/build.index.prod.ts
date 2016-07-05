@@ -10,20 +10,22 @@ import {
   JS_PROD_SHIMS_BUNDLE
 } from '../config';
 
+var vfs = require('vinyl-fs');
+
 // injects css and js shims and bundles into APP_SRC/'index.html'
 export = function buildIndexProd(gulp, plugins) {
   return function () {
-    return gulp.src(join(APP_SRC, 'index.html'))
+    return vfs.src(join(APP_SRC, 'index.html'))
       .pipe(injectJs())
       .pipe(injectCss())
       .pipe(plugins.template(templateLocals()))
-      .pipe(gulp.dest(APP_DEST));
+      .pipe(vfs.dest(APP_DEST));
   };
 
   function inject(...files) {
     return plugins.inject(
       // https://www.npmjs.com/package/gulp-inject
-      gulp.src(files, {
+      vfs.src(files, {
         read: false
       }), {
         // https://www.npmjs.com/package/gulp-inject#injecting-into-a-json-file

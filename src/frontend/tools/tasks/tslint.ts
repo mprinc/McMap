@@ -1,6 +1,8 @@
 import {join} from 'path';
 import {APP_SRC, TOOLS_DIR, NG2LINT_RULES} from '../config';
 
+var vfs = require('vinyl-fs');
+
 export = function tslint(gulp, plugins) {
   return function () {
     let src = [
@@ -10,7 +12,7 @@ export = function tslint(gulp, plugins) {
       '!' + join(TOOLS_DIR, '**/*.d.ts')
     ];
 
-    return gulp.src(src)
+    return vfs.src(src)
       .pipe(plugins.tslint({
         rulesDirectory: NG2LINT_RULES
       }))

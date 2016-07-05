@@ -5,6 +5,8 @@ import {
   JS_DEST
 } from '../config';
 
+var vfs = require('vinyl-fs');
+
 // JS: minify all shims/libs/inject==true dependencies into JS_DEST/JS_PROD_SHIMS_BUNDLE
 export = function bundles(gulp, plugins) {
   return function () {
@@ -22,7 +24,7 @@ export = function bundles(gulp, plugins) {
     }
 
     function bundleShims() {
-      return gulp.src(getShims())
+      return vfs.src(getShims())
       // Minify files with UglifyJS
       // https://www.npmjs.com/package/gulp-uglify
       // Strip comments and sourcemaps
@@ -30,7 +32,7 @@ export = function bundles(gulp, plugins) {
         mangle: false
       }))
       .pipe(plugins.concat(JS_PROD_SHIMS_BUNDLE))
-      .pipe(gulp.dest(JS_DEST));
+      .pipe(vfs.dest(JS_DEST));
     }
   };
 };

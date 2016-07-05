@@ -2,6 +2,8 @@ import {join} from 'path';
 import {APP_SRC, APP_DEST} from '../config';
 import {templateLocals, tsProjectFn} from '../utils';
 
+var vfs = require('vinyl-fs');
+
 export = function buildJSE2e(gulp, plugins) {
   return function () {
     let tsProject = tsProjectFn(plugins);
@@ -10,7 +12,7 @@ export = function buildJSE2e(gulp, plugins) {
       join(APP_SRC, '**/*.ts'),
       '!' + join(APP_SRC, '**/*.spec.ts')
     ];
-    let result = gulp.src(src)
+    let result = vfs.src(src)
       .pipe(plugins.plumber())
       .pipe(plugins.sourcemaps.init())
       .pipe(plugins.typescript(tsProject));
@@ -18,6 +20,6 @@ export = function buildJSE2e(gulp, plugins) {
     return result.js
       .pipe(plugins.sourcemaps.write())
       .pipe(plugins.template(templateLocals()))
-      .pipe(gulp.dest(APP_DEST));
+      .pipe(vfs.dest(APP_DEST));
   };
 };

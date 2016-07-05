@@ -1,6 +1,7 @@
 import * as merge from 'merge-stream';
 import {join} from 'path';
 import {APP_SRC, APP_DEST, ASSETS_SRC, PROD_DEPENDENCIES} from '../config';
+var vfs = require('vinyl-fs');
 
 // copies set of asset files (not *.ts, *.js, *.html, *.css) from APP_SRC to APP_DEST
 // it excludes empty folders
@@ -17,9 +18,9 @@ export = function buildAssetsProd(gulp, plugins) {
       // http://stackoverflow.com/questions/26784094/can-i-use-a-gulp-task-with-multiple-sources-and-multiple-destinations
       var tasks = externalAssetFiles.map(function(element){
         // https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpsrcglobs-options
-        return gulp.src(element.src)
+        return vfs.src(element.src)
             // https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpdestpath-options
-            .pipe(gulp.dest(element.dest));
+            .pipe(vfs.dest(element.dest));
       });
 
       return merge(...tasks);
@@ -41,7 +42,7 @@ export = function buildAssetsProd(gulp, plugins) {
         });
       };
 
-      return gulp.src([
+      return vfs.src([
         join(APP_SRC, '**'),
         '!' + join(APP_SRC, '**', '*.ts'),
         '!' + join(APP_SRC, '**', '*.css'),
@@ -49,7 +50,7 @@ export = function buildAssetsProd(gulp, plugins) {
         '!' + join(ASSETS_SRC, '**', '*.js')
       ])
         .pipe(onlyDirs(es))
-        .pipe(gulp.dest(APP_DEST));
+        .pipe(vfs.dest(APP_DEST));
     }
   };
 };

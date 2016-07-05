@@ -2,6 +2,8 @@ import {join} from 'path';
 import {APP_SRC, APP_DEST, DEV_DEPENDENCIES, SUB_PROJECT} from '../config';
 import {templateLocals} from '../utils';
 
+var vfs = require('vinyl-fs');
+
 // inject all (shims/libs/and inject='true') dependencies under coresponding placeholders
 // adds a versioning (current date) sufix to each file to avoid cashing issues
 export = function buildIndexDev(gulp, plugins) {
@@ -9,14 +11,14 @@ export = function buildIndexDev(gulp, plugins) {
   console.log("[build.index.dev] process.cwd(): ", process.cwd());
 
   return function () {
-    var stream = gulp.src(join(APP_DEST, 'index.html'))
+    var stream = vfs.src(join(APP_DEST, 'index.html'))
       .pipe(inject('shims')) // inject all depencencies (d.inject == 'shims') under 'shims' placeholder
       .pipe(inject('libs')) // d.inject == 'libs'
       .pipe(inject())   // inject all depencencies (d.inject == true)
                         // under default ('inject:js' or 'inject:css' depending on the file type) placeholder
       // uses CONFIG exports in templates
       .pipe(plugins.template(templateLocals()))
-      .pipe(gulp.dest(APP_DEST));
+      .pipe(vfs.dest(APP_DEST));
 
       stream.on('end', function() {
           console.log("[build.index.dev] injected:", plugins.sniff.get("injected"));
@@ -30,7 +32,7 @@ export = function buildIndexDev(gulp, plugins) {
   function inject(name?: string) {
     var nameInner = name || 'default';
 
-    var sourceStream = gulp.src(getInjectablesDependenciesRef(name), { read: false })
+    var sourceStream = vfs.src(getInjectablesDependenciesRef(name), { read: false })
         .pipe(plugins.sniff(nameInner, {captureFolders: true, captureFilenames: true}));
 
     sourceStream.on('end', function() {

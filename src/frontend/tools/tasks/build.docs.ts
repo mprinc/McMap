@@ -1,5 +1,6 @@
 import {join} from 'path';
 import {APP_SRC, APP_TITLE, DOCS_DEST} from '../config';
+var vfs = require('vinyl-fs');
 
 export = function buildDocs(gulp, plugins, option) {
   return function() {
@@ -11,7 +12,7 @@ export = function buildDocs(gulp, plugins, option) {
       '!' + join(APP_SRC, '**/*.e2e.ts')
     ];
 
-    return gulp.src(src)
+    return vfs.src(src)
       .pipe(plugins.typedoc({
         // TypeScript options (see typescript docs)
         module: 'commonjs',

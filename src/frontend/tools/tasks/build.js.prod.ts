@@ -4,6 +4,8 @@ import {APP_SRC, TMP_DIR, SUB_PROJECT} from '../config';
 import {templateLocals, tsProjectFn} from '../utils';
 // import * as runSequence from 'run-sequence';
 
+var vfs = require('vinyl-fs');
+
 // resolves external ng2 templates into inline, compiles typescript,
 // and parses output with Lo-Dash/Underscore template renders/precompiles
 // and outputs everything to TMP_DIR
@@ -37,7 +39,7 @@ export = function buildJSProd(gulp, plugins) {
                 '!' + join(APP_SRC, '**/index.html')
             ];
             if(debug) plugins.util.log("[inlineNg1Templates] src: ", src);
-            let stream = gulp.src(src)
+            let stream = vfs.src(src)
                 .pipe(plugins.plumber())
                 .pipe(plugins.sniff('inlineNg1Templates'))
             // https://www.npmjs.com/package/gulp-angular-templatecache
@@ -56,7 +58,7 @@ export = function buildJSProd(gulp, plugins) {
             // in that way we can use (in src/buttons/main.ts) something like:
             //    if ('<%= ENV %>' === 'prod') { enableProdMode(); }
                 .pipe(plugins.template(templateLocals()))
-                .pipe(gulp.dest(TMP_DIR));
+                .pipe(vfs.dest(TMP_DIR));
         }
 
         function inlineNg2TemplatesAndCompileTs() {
@@ -82,14 +84,14 @@ export = function buildJSProd(gulp, plugins) {
 
             if(debug) plugins.util.log("[inlineNg2TemplatesAndCompileTs] src: ", src);
 
-            let result = gulp.src(src)
+            let result = vfs.src(src)
                 .pipe(plugins.sniff("inlineNg2TemplatesAndCompileTs", { captureFolders: true, captureFilenames: true }))
                 .pipe(plugins.plumber())
             // https://www.npmjs.com/package/gulp-inline-ng2-template#configuration
                 .pipe(plugins.inlineNg2Template(INLINE_OPTIONS))
                 .pipe(plugins.typescript(tsProject))
                 .pipe(plugins.template(templateLocals()))
-                .pipe(gulp.dest(TMP_DIR));
+                .pipe(vfs.dest(TMP_DIR));
 
             result.on('end', function() {
                 // if(debug) plugins.util.log("[build.js.prod] (name:%s): ", "inlineNg2TemplatesAndCompileTs",
@@ -107,7 +109,7 @@ export = function buildJSProd(gulp, plugins) {
                         // in that way we can use (in src/buttons/main.ts) something like:
                         //    if ('<%= ENV %>' === 'prod') { enableProdMode(); }
                             .pipe(plugins.template(templateLocals()))
-                            .pipe(gulp.dest(TMP_DIR));
+                            .pipe(vfs.dest(TMP_DIR));
             */
         }
     };

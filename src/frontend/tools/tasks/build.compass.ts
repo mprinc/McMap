@@ -3,13 +3,15 @@ import {join} from 'path';
 import {APP_SRC, APP_DEST, COMPASS_CONFIG} from '../config';
 // import {noop} from 'gulp-util';
 
+var vfs = require('vinyl-fs');
+
 // compiles all ts files (except tests/template ones) and type definitions,
 // replace templates in them and adds sourcemaps and copies into APP_DEST
 export = function buildCss(gulp, plugins) {
   let debug = false;
   return function() {
     //   if(!COMPASS_CONFIG) return noop();
-    //   gulp.src(APP_SRC)
+    //   vfs.src(APP_SRC)
     // .pipe(noop());
 
     //the title and icon that will be used for the Grunt notifications
@@ -39,7 +41,7 @@ export = function buildCss(gulp, plugins) {
         // https://www.npmjs.com/package/gulp-compass#sass
         // http://stackoverflow.com/questions/29481629/stylesheets-must-be-in-the-sass-directory-error-with-gulp-compass
         // https://github.com/appleboy/gulp-compass/issues/61
-        var task = gulp.src(scssFiles)
+        var task = vfs.src(scssFiles)
             // .pipe(plugins.filenames("compass-sass"))
             .pipe(plugins.plumber(plumberErrorHandler))
             .pipe(plugins.compass({
@@ -58,7 +60,7 @@ export = function buildCss(gulp, plugins) {
             task: 'compile' // 'watch'
           }))
           // doesn't have any effect
-            .pipe(gulp.dest(distPathCss));
+            .pipe(vfs.dest(distPathCss));
 
         // if(debug) plugins.util.log("[compassTask] compass-sass files:", plugins.filenames.get());
         return task;
