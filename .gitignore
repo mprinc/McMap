@@ -41,3 +41,4 @@ manual_typings/
 *.zip
 doc/
 old_versions/
+frontend_local/
