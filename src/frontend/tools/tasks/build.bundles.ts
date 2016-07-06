@@ -28,9 +28,10 @@ export = function bundles(gulp, plugins) {
       // Minify files with UglifyJS
       // https://www.npmjs.com/package/gulp-uglify
       // Strip comments and sourcemaps
-      .pipe(plugins.uglify({
-        mangle: false
-      }))
+      // TODO: fix problem with uglify, DISABLED at the moment
+    //   .pipe(plugins.uglify({
+    //     mangle: false
+    //   }))
       .pipe(plugins.concat(JS_PROD_SHIMS_BUNDLE))
       .pipe(vfs.dest(JS_DEST));
     }

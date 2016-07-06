@@ -81,9 +81,13 @@ gulp.task('build.js.prod', done =>
 
 // just for testing and accessing directly to a task
 // it is ok to rename build.bundles to anything
+// you need to set env before that:
+// for production: export NODE_ENV=prod
+// for development: export NODE_ENV=dev
+// then run: npm run temp
 gulp.task('temp', done =>
     runSequence(
-        'build.compass', // ng2/Lo-Dash/Underscore templates, compiles typescript -> TMP_DIR
+        'build.js.prod',
         done));
 
 // just for testing and accessing directly to a task

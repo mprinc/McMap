@@ -1,4 +1,0 @@
-app/components/knalledgeMap/knalledgeMapPolicyService.ts
-app/components/knalledgeMap/knalledgeMapViewService.ts
-app/components/collaboPlugins/globalEmitterService.ts
-app/components/collaboPlugins/globalEmitterServicesArray.ts

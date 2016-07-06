@@ -13,7 +13,7 @@ var vfs = require('vinyl-fs');
 // and achieve something like (see the example in src/buttons/main.ts):
 //    if ('<%= ENV %>' === 'prod') { enableProdMode(); }
 export = function buildJSProd(gulp, plugins) {
-    let debug = false;
+    let debug = true;
     return function() {
         // https://www.npmjs.com/package/merge-stream
         // return merge(inlineNg1Templates(), inlineNg2TemplatesAndCompileTs());
@@ -39,17 +39,24 @@ export = function buildJSProd(gulp, plugins) {
                 '!' + join(APP_SRC, '**/index.html')
             ];
             if(debug) plugins.util.log("[inlineNg1Templates] src: ", src);
-            let stream = vfs.src(src)
+
+            let stream = vfs.src(src, {followSymlinks: true});
+            if(SUB_PROJECT.SYM_LINKS_EXISTS){
+                stream = stream
+                .pipe(plugins.filter(['app/components/**/*.*']));
+            }
+
+            stream = stream
                 .pipe(plugins.plumber())
                 .pipe(plugins.sniff('inlineNg1Templates'))
-            // https://www.npmjs.com/package/gulp-angular-templatecache
+                // https://www.npmjs.com/package/gulp-angular-templatecache
                 .pipe(plugins.angularTemplatecache('js/ng1Templates.js', INLINE_OPTIONS));
 
             stream.on('end', function() {
                 if(debug) plugins.util.log("[build.js.prod] inlineNg1Templates:", plugins.sniff.get("inlineNg1Templates"));
             });
 
-            return stream
+            stream = stream
             // renders/precompiles Lo-Dash/Underscore templates
             // https://www.npmjs.com/package/gulp-template
 
@@ -57,8 +64,17 @@ export = function buildJSProd(gulp, plugins) {
             // provides them to be used as data for rendering
             // in that way we can use (in src/buttons/main.ts) something like:
             //    if ('<%= ENV %>' === 'prod') { enableProdMode(); }
-                .pipe(plugins.template(templateLocals()))
+                .pipe(plugins.template(templateLocals()));
+
+            if(SUB_PROJECT.SYM_LINKS_EXISTS){
+                stream = stream
+                    .pipe(plugins.replace(/put\(\"app\/components/g, 'put\(\"components'));
+            }
+
+            stream = stream
                 .pipe(vfs.dest(TMP_DIR));
+
+            return stream;
         }
 
         function inlineNg2TemplatesAndCompileTs() {
