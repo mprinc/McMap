@@ -48,6 +48,22 @@ var plugins = {
             },
         }
 	},
+	“mapsList”: {
+		active: true,
+		config: {
+			openMap: {
+				routes: [{
+					route: '/mcmap'
+					name: 'McM-map',
+					icon ''
+				}, {
+					route: '/map'
+					name: 'map',
+					icon ''
+				}]
+			}
+		}
+	},
 	"ontov": {
         active: false
 	},
