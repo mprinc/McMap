@@ -76,7 +76,7 @@ cd frontend/app/components
 rm collaboPlugins knalledgeMap login notify rima topiChat utils
 ```
 
-# Sasha (sasha)
+## Sasha (sasha)
 ```sh
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/rima rima
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/notify notify
@@ -92,7 +92,7 @@ ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/compone
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/ontov ontov
 ```
 
-# Sasha (mprinc)
+## Sasha (mprinc)
 
 ```sh
 ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/rima rima
@@ -109,7 +109,7 @@ ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/compon
 ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/ontov ontov
 ```
 
-# Server
+## Server
 
 ```sh
 rm knalledgeMap rima notify topiChat collaboPlugins login
@@ -145,15 +145,7 @@ tsc @tsc_compile.txt
 
 # Installing new machine
 
-## backend
-
-```sh
-cp -r /Users/sasha/Documents/data/development/KnAllEdge/src/backend/config .
-cp /Users/sasha/Documents/data/development/KnAllEdge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
-cp /Users/sasha/Documents/data/development/KnAllEdge/src/backend/package.json package.json
-```
-
-## problems
+## general
 
 + get backup of working machine
 + git clone ...
@@ -167,6 +159,16 @@ cp /Users/sasha/Documents/data/development/KnAllEdge/src/backend/package.json pa
     + backend
         + just symbolic linking
 + now you can do symbolic linking
+
+## backend
+
+```sh
+cp -r /Users/sasha/Documents/data/development/KnAllEdge/src/backend/config .
+cp /Users/sasha/Documents/data/development/KnAllEdge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
+cp /Users/sasha/Documents/data/development/KnAllEdge/src/backend/package.json package.json
+```
+
+# Deployment
 
 ## Production deployment
 
