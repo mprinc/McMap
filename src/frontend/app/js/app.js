@@ -74,6 +74,9 @@ angular.module('McModelarApp', requiresList)
 	.when('/preferences', {
 		templateUrl: 'components/mcmMap/partials/mcm-preferences-index.tpl.html'
 	})
+	.when('/maps-old', {
+		templateUrl: 'components/mcmMaps/partials/index.tpl.html'
+	})
 	.when('/maps', {
 		templateUrl: 'components/mcmMaps/partials/index.tpl.html'
 	})
