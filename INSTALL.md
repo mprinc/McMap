@@ -50,7 +50,7 @@ ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/js/inte
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/js/knalledge knalledge
 ```
 
-#Sasa (mprinc)
+## Sasa (mprinc)
 
 ```sh
 cd frontend/app/js
