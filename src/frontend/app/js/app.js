@@ -78,7 +78,7 @@ angular.module('McModelarApp', requiresList)
 		templateUrl: 'components/mcmMaps/partials/index.tpl.html'
 	})
 	.when('/maps', {
-		templateUrl: 'components/mcmMaps/partials/index.tpl.html'
+		templateUrl: 'components/mapsList/maps-list-index.tpl.html'
 	})
 
 	// http://localhost:8410/app/index-dev.html#/login/iAmId

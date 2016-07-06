@@ -98,6 +98,7 @@ ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/compone
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/suggestion suggestion
 
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/ontov ontov
+ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/mapsList mapsList
 ```
 
 ## Sasha (mprinc)
@@ -116,6 +117,7 @@ ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/compon
 ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/suggestion suggestion
 
 ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/ontov ontov
+ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/mapsList mapsList
 ```
 
 
@@ -134,6 +136,7 @@ ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/frontend/app/component
 ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/frontend/app/components/suggestion suggestion
 
 ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/frontend/app/components/ontov ontov
+ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/frontend/app/components/mapsList mapsList
 ```
 
 

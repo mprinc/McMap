@@ -48,18 +48,20 @@ var plugins = {
             },
         }
 	},
-	“mapsList”: {
+	"mapsList": {
 		active: true,
 		config: {
+			//map_path,
+			//
 			openMap: {
 				routes: [{
-					route: '/mcmap'
+					route: '/mcmap',
 					name: 'McM-map',
-					icon ''
+					icon: ''
 				}, {
-					route: '/map'
+					route: '/map',
 					name: 'map',
-					icon ''
+					icon: ''
 				}]
 			}
 		}
