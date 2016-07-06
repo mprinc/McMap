@@ -170,7 +170,36 @@ cp /Users/sasha/Documents/data/development/KnAllEdge/src/backend/package.json pa
 
 # Deployment
 
-## Production deployment
+## Production deployment - backend
+
+Start a SFTP client and navigate to the backend folder on server:  `/var/www/headsware/earthcube/src/backend`
+
+upload:
+
++ EarthCubeBackend.js
+
+zip -r -X prod-backend-2016.07.05-2.zip EarthCubeBackend.js
+Login to the server and unpack CF system and configure it:
+
+open on server ssh and do:
+
+
+```sh
+cd /var/www/headsware/earthcube/src/backend
+
+su
+
+/usr/bin/nodejs /var/www/headsware/earthcube/src/backend/EarthCubeBackend.js 8042
+
+start mcm-b
+restart mcm-b
+stop mcm-b
+status mcm-b
+exit
+
+```
+
+## Production deployment - frontend
 
 There are two groups of actions to be done. First on local machine, then on the server
 
@@ -180,7 +209,7 @@ There are two groups of actions to be done. First on local machine, then on the 
 cdd
 cd EarthCube/McMap/src/frontend
 npm run build.prod
-zip -r -X prod-2016.07.05-1.zip dist/prod
+zip -r -X prod-2016.07.05-2.zip dist/prod
 ```
 
 #### Upload on the server
@@ -198,7 +227,7 @@ Login to the server and unpack CF system and configure it:
 ssh mprinc@knalledge.org
 cd /var/www/headsware/earthcube-test/src/frontend/prod
 rm -rf components/ css/ data/ dist/ fonts/ images/ js/ sass/
-unzip prod-2016.07.05-1.zip
+unzip prod-2016.07.05-2.zip
 mv dist/prod/* .
 rm -r dist/
 
