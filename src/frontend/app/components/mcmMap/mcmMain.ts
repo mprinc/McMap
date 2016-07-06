@@ -17,6 +17,8 @@ import {GlobalEmitterServicesArray} from '../collaboPlugins/GlobalEmitterService
 
 import {MapLoader} from '../../js/knalledge/mapLoader';
 import {McmMapLayout, NodeWithChildren} from './mcmMapLayout';
+import {McmMapInteraction} from './mcmMapInteraction';
+
 /**
  * Directive that handles the MCM main directive
  *
@@ -45,6 +47,7 @@ import {McmMapLayout, NodeWithChildren} from './mcmMapLayout';
 //
 
 declare var knalledge;
+declare var window;
 
 @Component({
     selector: 'mcm-main',
@@ -86,6 +89,7 @@ export class McmMain {
     model;
     mapStructure;
     mcmMapLayout:McmMapLayout;
+    mcmMapInteraction:McmMapInteraction;
 
     constructor(
         // public router: Router,
@@ -106,14 +110,50 @@ export class McmMain {
             console.log("media clicked: ", vkNode.kNode.name);
         });
 
-        let mapId = '5564ce0e77a67c82a0394699';
+        let parsedObj = this.parseParameters();
+        // '5564ce0e77a67c82a0394699'
+        let mapId = parsedObj.parameters.id;
         this.mapLoader = new MapLoader(mapId,
             this.knalledgeMapService, this.knalledgeMapVOsService,
             this.globalEmitterServicesArray);
         this.mapLoader.onMapLoaded(this.mapLoaded.bind(this));
+
+        var clientApi = {};
+        this.mcmMapInteraction = new McmMapInteraction();
     };
     ngOnInit() {
         this.mapLoader.init();
+    }
+
+    parseParameters(url?){
+        url = (typeof url !== 'undefined') ? url :
+            window.location.href;
+
+        // http://localhost:5556/#/mcmap/id/5564ce0e77a67c82a0394699/?node_id=55a42cf9d625640931bcd685
+        let parsedObj:any = {
+            path: '',
+            parameters: {}
+        };
+        let regex = new RegExp(
+            "\\#\\/([^\\/]+)(\\/([^\\/]+)\\/([^\\/\\?\\&]+))+"
+        );
+
+        let results = regex.exec(url);
+
+        if(!results) return parsedObj;
+
+        parsedObj.path = results[1];
+        parsedObj.parameters[results[3]] = results[4];
+
+        regex = new RegExp(
+            "\\?(([^\\=]+)\\=([^\\/\\?\\&]+))"
+        );
+        results = regex.exec(url);
+        if(!results) return parsedObj;
+
+        parsedObj.parameters[results[2]] = results[3];
+
+        return parsedObj;
     }
 
     mapLoaded(model){
