@@ -63,12 +63,15 @@ cd /var/www/headsware/earthcube/src
 cd frontend/app/js
 rm knalledge
 ln -s /var/www/knalledge_frontend/dist/dev/js/knalledge knalledge
+```
 
 # COMPONENTS
+```sh
 cd frontend/app/components
 rm collaboPlugins knalledgeMap login notify rima topiChat utils
 
 # Sasha (sasha)
+```sh
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/rima rima
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/notify notify
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/topiChat topiChat
@@ -81,8 +84,11 @@ ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/compone
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/request request
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/suggestion suggestion
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/ontov ontov
+```
 
 # Sasha (mprinc)
+
+```sh
 ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/rima rima
 ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/notify notify
 ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/topiChat topiChat
@@ -95,8 +101,11 @@ ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/compon
 ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/request request
 ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/suggestion suggestion
 ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/ontov ontov
+```
 
 # Server
+
+```sh
 rm knalledgeMap rima notify topiChat collaboPlugins login
 
 ln -s /var/www/knalledge_frontend/dist/dev/components/knalledgeMap knalledgeMap
@@ -127,3 +136,18 @@ Gulp doesn't follow symlinks and folders, and it crashes with an ambigous error:
 cd frontend
 tsc @tsc_compile.txt
 ```
+
+# Installing new machine (problems)
+
++ get backup of working machine
++ git clone ...
++ copy/overwrite folders/files
+    + frontend
+        + bower_components
+        + node_modules
+        + tools/manual_typings
+        + typings
+        + typings.json
+    + backend
+        + just symbolic linking
++ now you can do symbolic linking
