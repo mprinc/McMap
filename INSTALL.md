@@ -2,6 +2,7 @@
 
 ```sh
 cd backend
+rm models modules tools node_modules
 ```
 
 ## Sasa (sasha)
@@ -21,6 +22,14 @@ ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/backend/tools/ tool
 ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/backend/node_modules/ node_modules
 ```
 
+## Sinisa:
+```sh
+ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/backend/models/ models
+ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/backend/modules/ modules
+ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/backend/tools/ tools
+ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/backend/node_modules/ node_modules
+```
+
 ## Server:
 ```sh
 ln -s /var/www/knalledge/src/backend/models/ models
@@ -30,22 +39,15 @@ ln -s /var/www/knalledge/src/backend/node_modules/ node_modules
 # ln -s /var/www/knalledge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
 ```
 
-## Sinisa:
-```sh
-ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/backend/models/ models
-ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/backend/modules/ modules
-ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/backend/tools/ tools
-ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/backend/node_modules/ node_modules
-# ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
-```
-
 # FRONTEND
+```sh
+cd frontend/app/js
+rm knalledge interaction
+```
 
 ## Sasha (sasha)
 
 ```sh
-cd frontend/app/js
-rm knalledge interaction
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/js/interaction interaction
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/js/knalledge knalledge
 ```
@@ -53,10 +55,15 @@ ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/js/knal
 ## Sasa (mprinc)
 
 ```sh
-cd frontend/app/js
-rm knalledge interaction
 ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/js/interaction interaction
 ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/js/knalledge knalledge
+```
+
+## Sinisha
+
+```sh
+ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/frontend/app/js/interaction interaction
+ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/frontend/app/js/knalledge knalledge
 ```
 
 ## Server
@@ -73,7 +80,7 @@ ln -s /var/www/headsware/earthcube-test/src/frontend/dist/dev/js/interaction int
 
 ```sh
 cd frontend/app/components
-rm collaboPlugins knalledgeMap login notify rima topiChat utils
+rm rima notify topiChat collaboPlugins login utils knalledgeMap topPanel request suggestion ontov
 ```
 
 ## Sasha (sasha)
@@ -89,6 +96,7 @@ ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/compone
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/topPanel topPanel
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/request request
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/suggestion suggestion
+
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/components/ontov ontov
 ```
 
@@ -106,8 +114,28 @@ ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/compon
 ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/topPanel topPanel
 ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/request request
 ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/suggestion suggestion
+
 ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/components/ontov ontov
 ```
+
+
+## Sinisha
+```sh
+ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/frontend/app/components/rima rima
+ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/frontend/app/components/notify notify
+ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/frontend/app/components/topiChat topiChat
+ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/frontend/app/components/collaboPlugins collaboPlugins
+ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/frontend/app/components/login login
+ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/frontend/app/components/utils utils
+
+ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/frontend/app/components/knalledgeMap knalledgeMap
+ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/frontend/app/components/topPanel topPanel
+ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/frontend/app/components/request request
+ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/frontend/app/components/suggestion suggestion
+
+ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/frontend/app/components/ontov ontov
+```
+
 
 ## Server
 
@@ -151,10 +179,10 @@ tsc @tsc_compile.txt
 + git clone ...
 + copy/overwrite folders/files
     + frontend
-        + bower_components
-        + node_modules
-        + tools/manual_typings
-        + typings
+        + bower_components/
+        + node_modules/
+        + tools/manual_typings/
+        + typings/
         + typings.json
     + backend
         + just symbolic linking
