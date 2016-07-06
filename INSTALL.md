@@ -1,39 +1,42 @@
 # BACKEND
 
 ```sh
-
 cd backend
+```
 
-#Sasa (sasha)
+## Sasa (sasha)
+```sh
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/models/ models
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/modules/ modules
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/tools/ tools
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/node_modules/ node_modules
 # ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
+```
 
-#Sasa (mprinc)
+## Sasa (mprinc)
+```sh
 ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/backend/models/ models
 ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/backend/modules/ modules
 ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/backend/tools/ tools
 ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/backend/node_modules/ node_modules
+```
 
-#Server:
+## Server:
+```sh
 ln -s /var/www/knalledge/src/backend/models/ models
 ln -s /var/www/knalledge/src/backend/modules/ modules
 ln -s /var/www/knalledge/src/backend/tools/ tools
 ln -s /var/www/knalledge/src/backend/node_modules/ node_modules
 # ln -s /var/www/knalledge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
+```
 
-#Sinisa:
+## Sinisa:
+```sh
 ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/backend/models/ models
 ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/backend/modules/ modules
 ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/backend/tools/ tools
 ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/backend/node_modules/ node_modules
 # ln -s /Users/sir/Documents/data/Development/KnAllEdge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
-
-cp -r /Users/sasha/Documents/data/development/KnAllEdge/src/backend/config .
-cp /Users/sasha/Documents/data/development/KnAllEdge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
-cp /Users/sasha/Documents/data/development/KnAllEdge/src/backend/package.json package.json
 ```
 
 # FRONTEND
@@ -42,7 +45,7 @@ cp /Users/sasha/Documents/data/development/KnAllEdge/src/backend/package.json pa
 
 ```sh
 cd frontend/app/js
-rm interaction
+rm knalledge interaction
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/js/interaction interaction
 ln -s /Users/sasha/Documents/data/development/KnAllEdge/src/frontend/app/js/knalledge knalledge
 ```
@@ -61,8 +64,9 @@ ln -s /Users/mprinc/Documents/data/development/KnAllEdge/src/frontend/app/js/kna
 ```sh
 cd /var/www/headsware/earthcube/src
 cd frontend/app/js
-rm knalledge
+rm knalledge interaction
 ln -s /var/www/headsware/earthcube-test/src/frontend/dist/dev/js/knalledge knalledge
+ln -s /var/www/headsware/earthcube-test/src/frontend/dist/dev/js/interaction interaction
 ```
 
 # COMPONENTS
@@ -139,7 +143,17 @@ cd frontend
 tsc @tsc_compile.txt
 ```
 
-# Installing new machine (problems)
+# Installing new machine
+
+## backend
+
+```sh
+cp -r /Users/sasha/Documents/data/development/KnAllEdge/src/backend/config .
+cp /Users/sasha/Documents/data/development/KnAllEdge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
+cp /Users/sasha/Documents/data/development/KnAllEdge/src/backend/package.json package.json
+```
+
+## problems
 
 + get backup of working machine
 + git clone ...
@@ -190,7 +204,7 @@ cd /var/www/headsware/earthcube-test/src/frontend
 
 # replace
 # `env=envs.localhost` -> `env=envs.server`
-sed -i 's/env\=envs\.localhost/env\=envs\.server/g' prod/js/shims_bundle.js
+sed -i 's/env\s*\=\s*envs\.localhost/env\=envs\.server/g' prod/js/shims_bundle.js
 sed -i 's/base\ href\=\"\/\"/base\ href\=\"\/prod\/\"/' prod/index.html
 
 #optional commenting:
