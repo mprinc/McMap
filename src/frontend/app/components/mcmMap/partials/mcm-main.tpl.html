@@ -30,24 +30,28 @@
             <div layout-fill layout-align="stretch stretch">
                 <div class="knalledge_map_middle" layout-fill layout="column">
                     <!-- toolbar -->
-                    <md-toolbar class="toolbar md-theme-indigo" color="primary" style="width: 100%;">
+                    <md-toolbar class="toolbar" color="primary" style="width: 100%;">
                         <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap style="width: 100%;">
                             <section class="commands" layout="row" layout-sm="column" layout-align="left center" layout-wrap>
-                                <button md-fab class="md-primary" aria-label="Configuration" (click)="settings.toggle()" [hidden]="settings.opened">
+                                <!-- <button md-fab class="md-primary" aria-label="Configuration" (click)="settings.toggle()" [hidden]="settings.opened">
                                     <i title="Settings" md-icon>settings</i>
                                 </button>
 
                                 <button md-fab class="md-primary" aria-label="Options" (click)="options.toggle()">
                                     <i title="Options" md-icon>chrome_reader_mode</i>
-                                </button>
+                                </button> -->
 
-                                <button md-fab class="md-primary" aria-label="Maps" (click)="go('maps')" *ngIf="policyConfig.moderating.enabled">
+                                <button md-fab class="md-primary" aria-label="Maps" (click)="go('maps')">
                                     <i title="Maps List" md-icon>map</i>
                                 </button>
 
-                                <button md-fab class="md-primary" aria-label="Plugins" (click)="go('plugins')" *ngIf="policyConfig.moderating.enabled">
-                                    <i title="Plugins" md-icon>extension</i>
+                                <button md-fab class="md-primary" aria-label="Filter type" (click)="filterToolbar.visible=!filterToolbar.visible;">
+                                    <i title="Filter type" md-icon>filter_center_focus</i>
                                 </button>
+
+                                <!-- <button md-fab class="md-primary" aria-label="Plugins" (click)="go('plugins')"  [hidden]="!policyConfig.moderating.enabled">
+                                    <i title="Plugins" md-icon>extension</i>
+                                </button> -->
                             </section>
 
                             <button md-fab class="md-primary" aria-label="Navigate Back" (click)="navigateBack()">
@@ -56,11 +60,12 @@
 
                             <span class="itemTitle">
                                 {{itemContainer?.node?.kNode?.name}}
+                                 ({{getEntityFilterText()}})
                             </span>
 
                             <span flex></span>
 
-                            <section class="whoAmI" layout="row" layout-sm="column" layout-align="right center" layout-wrap>
+                            <section class="whoAmI" layout="row" layout-sm="column" layout-align="end center" layout-wrap>
                                 <button md-fab class="md-primary" aria-label="Person" (click)="go('login')">
                                     <i title="Login" md-icon>person</i>
                                 </button>
@@ -75,7 +80,7 @@
                     <!-- MCM Map List -->
                     <mcm-list-component (selectItem)="onSelectedItem($event)" (enterItem)="onEnteredItem($event)" [itemContainer]="itemContainer" flex style="overflow: auto; height: 100%;"></mcm-list-component>
 
-                    <md-toolbar *ngIf="itemToolbar.visible" class="toolbar md-theme-indigo" color="accent" style="width: 100%;">
+                    <md-toolbar *ngIf="itemToolbar.visible" class="toolbar"  color="accent" style="width: 100%;">
                         <button md-fab class="md-primary" aria-label="Delete" (click)="settings.toggle()">
                             <i title="delete" md-icon>delete</i>
                         </button>
@@ -85,15 +90,35 @@
                         </button>
 
                         <span class="itemTitle">
-                            {{itemSelected?.node?.kNode?.name}}
+                            {{itemHighlited?.node?.kNode?.name}}
                         </span>
 
                         <span flex></span>
 
+                        <button md-fab class="md-primary" aria-label="Delete" (click)="onDeleteItem(itemHighlited)">
+                            <i title="Delete" md-icon>delete</i>
+                        </button>
                         <button md-fab class="md-primary" aria-label="Close" (click)="onSelectedItem()">
                             <i title="Close" md-icon>close</i>
                         </button>
                     </md-toolbar>
+
+                    <md-toolbar *ngIf="filterToolbar.visible" class="toolbar" color="primary" style="width: 100%;" layout-align="center center">
+                        <!-- https://material.angularjs.org/latest/layout/container -->
+                        <section layout="column" layout-gt-sm="row" layout-align="center center" layout-wrap style="width: 100%;">
+                            <div>Select entity type</div>
+                            <button *ngIf="getEntityFilter() !== 'object'" md-raised-button class="md-primary" aria-label="Objects" (click)="setEntityFilter('object')">
+                                Objects
+                            </button>
+                            <button *ngIf="getEntityFilter() !== 'assumption'" md-raised-button class="md-primary" aria-label="Assumptions" (click)="setEntityFilter('assumption')">
+                                Assumptions
+                            </button>
+                            <button *ngIf="getEntityFilter() !== 'grid'" md-raised-button class="md-primary" aria-label="Grids" (click)="setEntityFilter('grid')">
+                                Grids
+                            </button>
+                        </section>
+                    </md-toolbar>
+
                     <div style="height: 20px;"></div>
                 </div>
             </div>

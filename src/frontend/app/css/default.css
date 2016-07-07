@@ -28,6 +28,10 @@ body {
   overflow-x: hidden;
   overflow-y: scroll; }
 
+md-toolbar-row {
+  height: auto !important;
+  padding: 3px; }
+
 .text-not-selectable {
   -webkit-touch-callout: none;
   -webkit-user-select: none;

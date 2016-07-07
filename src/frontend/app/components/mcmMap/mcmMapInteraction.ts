@@ -6,6 +6,8 @@ declare var debugpp;
 const STATUS_MAP: string = "STATUS_MAP";
 const STATUS_EDITOR: string = "STATUS_EDITOR";
 
+import {NodeWithChildren} from './mcmMapLayout';
+
 export class McmMapInteraction {
     private status: string;
 
@@ -17,10 +19,12 @@ export class McmMapInteraction {
     private editingNodeInProgress;
 
     constructor(
-        public clientApi
+        public clientApi,
+        public localApi
     ) {
         this.clientApi = clientApi;
         this.debug = debugpp.debug('interaction.McmMapInteraction');
+        this.init();
     };
 
     init() {
@@ -54,166 +58,33 @@ export class McmMapInteraction {
         this.clientApi.searchNodeByName();
     };
 
-    nodeMediaClicked(node) {
-      if(!this.isStatusMap()) return;
-      if(!node){
-          node = this.clientApi.getSelectedNode();
-      }
-      if(node){
-        this.clientApi.nodeMediaClicked(node);
-      }
-    }
-
-    addLink() {
-        window.alert("This funcionality is not supported yet");
-        return;
-        // var node = this.clientApi.getSelectedNode();
-        // if (node) { // if source node is selected
-        //     this.clientApi.knalledgeState.addingLinkFrom = node;
-        // }
-    };
-
-    deleteNode() {
+    deleteNode(item: NodeWithChildren) {
         if (!this.isStatusMap()) return;
-        if (!this.clientApi.getSelectedNode()) return; // no parent node selected
+        // if (!this.clientApi.getSelectedNode()) return;
+        if (!item) return;
         //var that = this;
         //if(confirm("Are you sure you want to delete this node od KnAllEdge?")) {
-        var parentNodes = this.clientApi.getParentNodes(this.clientApi.getSelectedNode());
-        this.clientApi.deleteNode(this.clientApi.getSelectedNode());
-        if (parentNodes.length > 0 && parentNodes[0]) {
-            this.clientApi.nodeSelected(parentNodes[0]);
-        }
+        this.clientApi.deleteNode(item.node);
 
-        this.clientApi.update(this.clientApi.getSelectedNode(), function() {
-            // that.clientApi.nodeSelected(null); //TODO: set to parent
-        });
-        //}
+        this.localApi.setHighlitedItem();
+        this.clientApi.update();
     };
 
-    addImage() {
-        if (!this.isStatusMap()) return;
-        var node = this.clientApi.getSelectedNode();
-
-        this.clientApi.addImage(node);
-    };
-
-    removeImage() {
-        if (!this.isStatusMap()) return;
-        console.log("Removing image");
-        this.clientApi.removeImage();
-    };
-
-    exitEditingNode() {
-        if (this.editingNodeInProgress) {
-            // this._exitEditingNode();
-        }
-        if (!this.isStatusMap()) return;
-    }
-
-    navigateLeft() {
-        if (this.editingNodeInProgress || !this.clientApi.getSelectedNode()) return;
-        if (!this.isStatusMap()) return;
-
-        // TODO: TOFIX: BUG: This will work only for a map that injects parent property in node
-        if (this.clientApi.getSelectedNode().parent) {
-            this.clientApi.nodeSelected(this.clientApi.getSelectedNode().parent);
+    navigateBack() {
+        let parentNodes = this.clientApi.getParentNodes(this.localApi.getItemContainer().node);
+        this.localApi.setHighlitedItem();
+        if(parentNodes.length > 0){
+            this.clientApi.setSelectedNode(parentNodes[0]);
+            this.clientApi.update();
         }
     };
 
-    navigateRight() {
-        if (this.editingNodeInProgress || !this.clientApi.getSelectedNode()) return;
-        if (!this.isStatusMap()) return;
+    navigateItem(item: NodeWithChildren) {
+        if(!item) return;
 
-        if (this.clientApi.getSelectedNode().children) {
-            this.clientApi.nodeSelected(this.clientApi.getSelectedNode().children[0]);
-        }
-    };
-
-    _iterateThroughSiblings(shouldConsiderNodeFunc) {
-        // currently selected node
-        var currentNode = this.clientApi.getSelectedNode();
-        // {x,y} coordinates of the currently selected node
-        var currentNodePos = this.clientApi.getCoordinatesFromDatum(currentNode);
-        if (this.editingNodeInProgress || !currentNode) return;
-        if (!this.isStatusMap()) return;
-
-        // siblings of the currently selected node
-        var siblings = currentNode.parent ? currentNode.parent.children : null;
-        if (!siblings) return;
-
-        // position of the current node among siblings
-        var currentNodeIndex = null;
-        for (var i = 0; i < siblings.length; i++) {
-            if (siblings[i] === currentNode) {
-                currentNodeIndex = i;
-            }
-        }
-
-        var chosenSibling = null;
-        var chosenSiblingPos = null;
-        var chosenSiblingIndex = null;
-        for (var i = 0; i < siblings.length; i++) {
-            var sibling = siblings[i];
-            if (sibling === currentNode) continue;
-
-            var siblingPos = this.clientApi.getCoordinatesFromDatum(sibling);
-            if (shouldConsiderNodeFunc(currentNode, currentNodePos, currentNodeIndex,
-                sibling, siblingPos, i, chosenSibling, chosenSiblingPos, chosenSiblingIndex)
-                ) {
-                chosenSibling = siblings[i];
-                chosenSiblingPos = siblingPos;
-                chosenSiblingIndex = i;
-            }
-        }
-
-        if (chosenSibling) this.clientApi.nodeSelected(chosenSibling);
-    };
-
-    navigateDown() {
-        var shouldConsiderNodeFunc: Function = function(currentNode, currentNodePos,
-            currentNodeIndex, sibling, siblingPos, siblingIndex,
-            chosenSiblingBellow, chosenSiblingBellowPos, chosenSiblingBellowIndex
-            ) {
-            var consider: boolean = (
-                siblingPos &&
-                // if sibling is bellow (by x) or after (by index) current node
-                (siblingPos.y > currentNodePos.y || siblingIndex >= currentNodeIndex) &&
-                // if sibling is above (by x) or before (by index) of the chosenSiblingBellow
-                (!chosenSiblingBellow ||
-                    (siblingPos.y < chosenSiblingBellowPos.y || siblingIndex < chosenSiblingBellowIndex)
-                    )
-                );
-            return consider;
-        };
-        this._iterateThroughSiblings(shouldConsiderNodeFunc);
-    };
-
-    navigateUp() {
-        var shouldConsiderNodeFunc: Function = function(currentNode, currentNodePos,
-            currentNodeIndex, sibling, siblingPos, siblingIndex,
-            chosenSiblingAbove, chosenSiblingAbovePos, chosenSiblingAboveIndex
-            ) {
-            var consider: boolean = (
-                siblingPos &&
-                // if sibling is above (by x) or before (by index) current node
-                (siblingPos.y < currentNodePos.y || siblingIndex < currentNodeIndex) &&
-                // if sibling is bellow (by x) or after (by index) of the chosenSiblingAbove
-                (!chosenSiblingAbove ||
-                    (siblingPos.y > chosenSiblingAbovePos.y || siblingIndex > chosenSiblingAboveIndex)
-                    )
-                );
-            return consider;
-        };
-        this._iterateThroughSiblings(shouldConsiderNodeFunc);
-    };
-
-    toggleNode() {
-        if (this.editingNodeInProgress) return;
-        if (!this.isStatusMap()) return;
-        var node = this.clientApi.getSelectedNode();
-        node.isOpen = !node.isOpen;
-        this.clientApi.updateNode(node, knalledge.MapStructure.UPDATE_NODE_APPEARENCE);
-        this.clientApi.update(node);
+        this.clientApi.setSelectedNode(item.node);
+        this.localApi.setHighlitedItem();
+        this.clientApi.update();
     };
 
     addSiblingNode(nodeType?, edgeType?) {

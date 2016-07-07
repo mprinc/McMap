@@ -42,6 +42,7 @@ manual_typings/
 doc/
 old_versions/
 frontend_local/
+
 src/frontend/app/components/ontov
 src/frontend/app/components/request
 src/frontend/app/components/suggestion
@@ -55,6 +56,8 @@ src/frontend/app/components/topiChat
 src/frontend/app/components/utils
 src/frontend/app/js/interaction
 src/frontend/app/js/knalledge
+src/frontend/app/components/mapsList
+
 src/backend/models
 src/backend/modules
 src/backend/tools

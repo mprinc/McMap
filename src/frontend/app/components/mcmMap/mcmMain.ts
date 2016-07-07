@@ -80,9 +80,12 @@ export class McmMain {
     policyConfig: any;
     viewConfig: any;
     status: String;
-    itemSelected: any;
+    itemHighlited: any;
     itemContainer: NodeWithChildren;
     itemToolbar: any = {
+        visible: false
+    };
+    filterToolbar: any = {
         visible: false
     };
     mapLoader: MapLoader;
@@ -118,11 +121,27 @@ export class McmMain {
             this.globalEmitterServicesArray);
         this.mapLoader.onMapLoaded(this.mapLoaded.bind(this));
 
-        var clientApi = {};
-        this.mcmMapInteraction = new McmMapInteraction();
+        this.mcmMapLayout =
+            new McmMapLayout();
     };
     ngOnInit() {
         this.mapLoader.init();
+    }
+
+    getEntityFilter(){
+        return this.mcmMapLayout.getEntityFilter();
+    }
+
+    getEntityFilterText(){
+        let entityType =
+            this.mcmMapLayout.getEntityFilter();
+        var typeToText = {
+            object: "Objects",
+            grid: "Grids",
+            assumption: "Assumptions"
+        };
+
+        return typeToText[entityType];
     }
 
     parseParameters(url?){
@@ -159,33 +178,66 @@ export class McmMain {
     mapLoaded(model){
         this.model = model;
         this.mapStructure = this.knalledgeMapVOsService.mapStructure;
-        this.mcmMapLayout = new McmMapLayout(this.mapStructure);
+        this.mcmMapLayout.init(this.mapStructure);
         this.itemContainer = this.mcmMapLayout.generateView();
         this.onSelectedItem();
+
+        var clientApi = {
+            getParentNodes: this.mapStructure.getParentNodes.bind(this.mapStructure),
+            setSelectedNode: this.mapStructure.setSelectedNode.bind(this.mapStructure),
+            generateView: this.mcmMapLayout.generateView.bind(this.mcmMapLayout),
+            deleteNode:
+            this.mapStructure.deleteNode.bind(this.mapStructure),
+            update: this.update.bind(this)
+        };
+        var localApi = {
+            getItemContainer: this.getItemContainer.bind(this),
+            setItemContainer: this.setItemContainer.bind(this),
+            setHighlitedItem: this.setHighlitedItem.bind(this)
+        };
+        this.mcmMapInteraction = new McmMapInteraction(clientApi, localApi);
+    }
+
+    setHighlitedItem(item: NodeWithChildren=null){
+        item = (this.itemHighlited !== item) ? item : null;
+        this.itemHighlited = item;
+        this.itemToolbar.visible = !!item;
+    }
+
+    getItemContainer(){
+        return this.itemContainer;
+    }
+
+    setItemContainer(item){
+        this.itemContainer = item;
     }
 
     // http://learnangular2.com/events/
     onSelectedItem(item: NodeWithChildren=null) {
-        item = (this.itemSelected !== item) ? item : null;
-        this.itemSelected = item;
-        this.itemToolbar.visible = !!item;
+        this.setHighlitedItem(item);
     }
 
     onEnteredItem(item: NodeWithChildren) {
-        // TODO: move to map
-        this.mapStructure.setSelectedNode(item.node);
-        this.itemContainer = this.mcmMapLayout.generateView();
-        this.onSelectedItem();
+        this.mcmMapInteraction.navigateItem(item);
     }
 
-    // TODO: move to map
+    onDeleteItem(item: NodeWithChildren) {
+        this.mcmMapInteraction.deleteNode(item);
+    }
+
+    setEntityFilter(entityType:string) {
+        this.mcmMapLayout.setEntityFilter(entityType);
+        this.filterToolbar.visible = false;
+        this.update();
+    }
+
+    update() {
+        let nodeWChildren = this.mcmMapLayout.generateView();
+        this.setItemContainer(nodeWChildren);
+    }
+
     navigateBack() {
-        let parentNodes = this.mapStructure.getParentNodes(this.itemContainer.node);
-        this.onSelectedItem();
-        if(parentNodes.length > 0){
-            this.mapStructure.setSelectedNode(parentNodes[0]);
-            this.itemContainer = this.mcmMapLayout.generateView();
-        }
+        this.mcmMapInteraction.navigateBack();
     }
 
     onItemContainerChanged(item: any) {
