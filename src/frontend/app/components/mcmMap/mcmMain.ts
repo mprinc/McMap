@@ -234,6 +234,7 @@ export class McmMain {
 
     onEnteredItem(item: NodeWithChildren) {
         this.mcmMapInteraction.navigateItem(item);
+        this.filterToolbar.visible = false;
     }
 
     onDeleteItem(item: NodeWithChildren) {
@@ -253,6 +254,7 @@ export class McmMain {
 
     navigateBack() {
         this.mcmMapInteraction.navigateBack();
+        this.filterToolbar.visible = false;
     }
 
     onItemContainerChanged(item: any) {
