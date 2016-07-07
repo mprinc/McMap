@@ -87,6 +87,23 @@ export class McmMapInteraction {
         this.clientApi.update();
     };
 
+    discussItem(item: NodeWithChildren) {
+        if(!item) return;
+        console.log("[discussItem]", item);
+        var mapId: string = item.node.kNode.mapId;
+        var nodeId: string = item.node.kNode._id;
+        this.openNode(mapId, nodeId);
+        // this.clientApi.setSelectedNode(item.node);
+        // this.localApi.setHighlitedItem();
+        // this.clientApi.update();
+    };
+
+    openNode(mapId: string, nodeId: string){
+      var mapRoute = 'map'; //Config.Plugins.mapsList.config.openMap.routes[0].route;
+      window.location.href = "#"+ mapRoute +"/id/" + mapId + "?node_id=" + nodeId; //
+      //e.g. http://localhost:5555/#/map/id/56f53217ff0a4e5536dc770b?node_id=56f54eb5ff0a4e5536dc775e
+    }
+
     addSiblingNode(nodeType?, edgeType?) {
         var parentNode = this.clientApi.getSelectedNode().parent;
         this.addNode(parentNode, nodeType, edgeType);

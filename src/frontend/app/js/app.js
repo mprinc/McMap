@@ -39,6 +39,8 @@ requiresList.push('loginDirectives');
 requiresList.push('notifyServices');
 requiresList.push('notifyDirectives');
 
+requiresList.push('gardeningServices');
+
 // requiresList.push('topiChatServices');
 // requiresList.push('topiChatDirectives');
 

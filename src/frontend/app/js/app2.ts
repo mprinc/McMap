@@ -16,7 +16,7 @@ import {GlobalEmitterService} from '../components/collaboPlugins/globalEmitterSe
 import {GlobalEmitterServicesArray} from '../components/collaboPlugins/globalEmitterServicesArray';
 import {TopiChatConfigService} from '../components/topiChat/topiChatConfigService';
 import {TopiChatService} from '../components/topiChat/topiChatService';
-
+import {ApprovalNodeService} from '../components/gardening/approval.node.service';
 
 // import {BroadcastManagerService} from '../components/collaboBroadcasting/broadcastManagerService';
 
@@ -63,6 +63,12 @@ topiChatServices
     .service('TopiChatService', TopiChatService)
     ;
 
+var gardeningServices = angular.module('gardeningServices');
+gardeningServices
+    .service('ApprovalNodeService', ApprovalNodeService)
+    ;
+
+
 // In Angular 2, we have to add a provider configuration for the component’s injector,
 // but since we don’t bootstrap using Angular 2, there’s no way to do so.
 // ngUpgrade allows us to add a provider using the addProvider() method to solve this scenario.
@@ -103,6 +109,7 @@ upgradeAdapter.upgradeNg1Provider('GlobalEmitterServicesArray');
 upgradeAdapter.upgradeNg1Provider('KnalledgeMapViewService');
 upgradeAdapter.upgradeNg1Provider('KnalledgeMapPolicyService');
 upgradeAdapter.upgradeNg1Provider('McmMapPolicyService');
+upgradeAdapter.upgradeNg1Provider('ApprovalNodeService');
 
 upgradeAdapter.upgradeNg1Provider('McmMapSchemaService');
 upgradeAdapter.upgradeNg1Provider('McmMapAssumptionService');

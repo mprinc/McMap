@@ -91,6 +91,11 @@
                             <i title="Edit" md-icon>border_color</i>
                         </button> -->
 
+                        <button md-fab class="md-primary" aria-label="Discuss" (click)="onDiscussItem(itemHighlited)">
+                            <i title="Discuss" md-icon>feedback</i>
+                            <!-- https://design.google.com/icons/#ic_feedback -->
+                        </button>
+
                         <span class="itemTitle">
                             {{itemHighlited?.node?.kNode?.name}}
                         </span>
