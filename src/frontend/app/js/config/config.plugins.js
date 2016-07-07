@@ -56,11 +56,11 @@ var plugins = {
 			//
 			openMap: {
 				routes: [{
-					route: '/mcmap',
+					route: 'mcmap',
 					name: 'McM-map',
 					icon: ''
 				}, {
-					route: '/map',
+					route: 'map',
 					name: 'map',
 					icon: ''
 				}]
