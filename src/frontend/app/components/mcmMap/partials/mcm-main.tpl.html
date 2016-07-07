@@ -117,13 +117,13 @@
                         <section layout="column" layout-gt-sm="row" layout-align="center center" layout-wrap style="width: 100%;">
                             <div>Select entity type</div>
                             <button *ngIf="getEntityFilter() !== 'object'" md-raised-button class="md-primary" aria-label="Objects" (click)="setEntityFilter('object')">
-                                Objects
+                                Objects ({{getNumberOfEntities('object')}})
                             </button>
                             <button *ngIf="getEntityFilter() !== 'assumption'" md-raised-button class="md-primary" aria-label="Assumptions" (click)="setEntityFilter('assumption')">
-                                Assumptions
+                                Assumptions ({{getNumberOfEntities('assumption')}})
                             </button>
                             <button *ngIf="getEntityFilter() !== 'grid'" md-raised-button class="md-primary" aria-label="Grids" (click)="setEntityFilter('grid')">
-                                Grids
+                                Grids ({{getNumberOfEntities('grid')}})
                             </button>
                         </section>
                     </md-toolbar>

@@ -57,4 +57,22 @@ export class McmMapLayout {
 
         return this.itemParent;
     };
+
+    getChildrenNumberForEntityType(entityType) {
+      let itemNo: number = 0;
+      this.itemParent = new NodeWithChildren();
+      this.itemParent.node =
+          // this.mapStructure.rootNode;
+          this.mapStructure.getSelectedNode();
+      let childrenEdges = this.mapStructure.getChildrenEdges(this.itemParent.node);
+      this.itemParent.children = [];
+      for (let eI = 0; eI < childrenEdges.length; eI++) {
+          let edge = childrenEdges[eI];
+          let node = this.mapStructure.getVKNodeByKId(edge.kEdge.targetId);
+          if(node && node.kNode.type === entityType){
+              itemNo++;
+          }
+      }
+      return itemNo;
+    }
 }

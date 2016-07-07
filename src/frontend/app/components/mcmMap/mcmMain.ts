@@ -144,6 +144,11 @@ export class McmMain {
         return typeToText[entityType];
     }
 
+    getNumberOfEntities(entityType){
+      console.log("[getNumberOfEntities] entityType:", entityType);
+      return this.mcmMapLayout.getChildrenNumberForEntityType(entityType);
+    }
+
     getNumberOfFilteredEntities(){
       return this.itemContainer && this.itemContainer.children ? this.itemContainer.children.length : null;
     }
