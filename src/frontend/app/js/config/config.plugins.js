@@ -15,12 +15,16 @@ var plugins = {
 		"knalledgeMap.KnalledgeMapTools": {
 			components: {
 				GardeningControls: {
-					active: false,
+					active: true,
 					path: "/components/gardening/gardening-controls.component"
 				},
 				RimaUsersList: {
-					active: false,
+					active: true,
 					path: "/components/rima/rimaUsersList"
+				},
+				IbisTypesList: {
+					active: true,
+					path: "/components/knalledgeMap/ibisTypesList"
 				}
 			}
 		}
@@ -126,7 +130,7 @@ var plugins = {
 		}
 	},
 	gardening: {
-		active: false,
+		active: true,
 		services: {
 			ApprovalNodeService: {
 			}

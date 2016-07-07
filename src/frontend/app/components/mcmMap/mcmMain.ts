@@ -251,6 +251,10 @@ export class McmMain implements AfterViewInit{
         this.mcmMapInteraction.deleteNode(item);
     }
 
+    onDiscussItem(item: NodeWithChildren) {
+        this.mcmMapInteraction.discussItem(item);
+    }
+
     setEntityFilter(entityType:string) {
         this.mcmMapLayout.setEntityFilter(entityType);
         this.filterToolbar.visible = false;
