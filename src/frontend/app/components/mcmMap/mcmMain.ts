@@ -255,6 +255,16 @@ export class McmMain implements AfterViewInit{
         this.mcmMapInteraction.discussItem(item);
     }
 
+    onCommentItem(item: NodeWithChildren) {
+        this.mcmMapInteraction.commentItem(item);
+    }
+
+    onQuestionItem(item: NodeWithChildren) {
+        this.mcmMapInteraction.questionItem(item);
+    }
+
+
+
     setEntityFilter(entityType:string) {
         this.mcmMapLayout.setEntityFilter(entityType);
         this.filterToolbar.visible = false;
