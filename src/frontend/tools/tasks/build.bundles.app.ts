@@ -18,7 +18,7 @@ const BUNDLER_OPTIONS = {
   // http://requirejs.org/docs/commonjs.html
   format: 'cjs',
   // https://github.com/systemjs/builder#minification-options
-  minify: true,
+  minify: false,
   sourceMaps: true,
   lowResSourceMaps: false,
   mangle: false
