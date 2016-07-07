@@ -10,27 +10,23 @@ import { Router, ROUTER_DIRECTIVES} from '@angular/router';
 
 import {McmMapPolicyService} from './mcmMapPolicyService';
 import {McmMapViewService} from './mcmMapViewService';
-// import {RequestService} from '../request/request.service';
 import {GlobalEmitterServicesArray} from '../collaboPlugins/GlobalEmitterServicesArray';
 
 import {NodeWithChildren} from './mcmMapLayout';
-
-// TODO: probable remove later, this is just to trigger starting the service
-// import {BroadcastManagerService} from '../collaboBroadcasting/broadcastManagerService';
 
 /**
  * Directive that handles the main KnAllEdge or rather CollaboFramework user interface
  *
  * Selector: `mcm-list-component`
- * @class McmListComponent
+ * @class McmSelectEntityComponent
  * @memberof mcm
  * @constructor
 */
 
 @Component({
-    selector: 'mcm-list-component',
+    selector: 'mcm-select-entity',
     moduleId: module.id,
-    templateUrl: 'partials/mcm-list-component.tpl.html',
+    templateUrl: 'partials/mcm-select-entity-component.tpl.html',
     providers: [
         MATERIAL_PROVIDERS,
         OVERLAY_PROVIDERS
@@ -45,9 +41,7 @@ import {NodeWithChildren} from './mcmMapLayout';
     `]
 })
 
-export class McmListComponent {
-    policyConfig: any;
-    viewConfig: any;
+export class McmSelectEntityComponent {
     @Input() itemContainer: NodeWithChildren;
     itemSelected: NodeWithChildren;
     // https://angular.io/docs/ts/latest/cookbook/component-communication.html#!#child-to-parent
@@ -56,21 +50,9 @@ export class McmListComponent {
 
     constructor(
         // public router: Router,
-        @Inject('McmMapViewService') mcmMapViewService: McmMapViewService,
-        @Inject('McmMapPolicyService') private mcmMapPolicyService: McmMapPolicyService,
         @Inject('GlobalEmitterServicesArray') private globalEmitterServicesArray: GlobalEmitterServicesArray
-    // @Inject('BroadcastManagerService') broadcastManagerService:BroadcastManagerService
-        ) {
-        console.log('[McmMain]');
-        this.viewConfig = mcmMapViewService.get().config;
-        this.policyConfig = mcmMapPolicyService.get().config;
-
-        var nodeMediaClickedEventName = "nodeMediaClickedEvent";
-        this.globalEmitterServicesArray.register(nodeMediaClickedEventName);
-
-        this.globalEmitterServicesArray.get(nodeMediaClickedEventName).subscribe('mcmMap.Main', function(vkNode) {
-            console.log("media clicked: ", vkNode.kNode.name);
-        });
+    ) {
+        console.log('[McmSelectEntityComponent]');
     };
 
     onClicked(item: any){

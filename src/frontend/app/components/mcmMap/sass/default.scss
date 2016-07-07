@@ -173,6 +173,14 @@ $map: layout(12 1/4 fluid isolate inside);
 	overflow-y: scroll;
 }
 
+#popupContainer{
+	position: relative;
+
+	.creatingNewMap{
+
+	}
+}
+
 /* ------------------------
  mcm_map_tools
 ------------------------ */

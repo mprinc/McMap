@@ -1,20 +1,6 @@
 <!-- main container -->
+<mcm-select-entity #selectEntityComponent></mcm-select-entity>
 <div layout="column" layout-fill>
-    <div class="md-padding" id="popupContainer">
-        <md-dialog #selectEntityDialog class="creatingNewMap" (onClose)="mapDialogClosed($event)">
-          <md-dialog-title>Entity Creation</md-dialog-title>
-
-            <md-dialog-actions>
-                <button md-button (click)="mapDialog.close(false)">
-                    <span>Cancel</span>
-                </button>
-                <button md-button class="md-primary" (click)="mapDialog.close(true)">
-                    <span *ngIf="modeEditing">Update</span><span *ngIf="modeCreating">Create</span>
-                </button>
-            </md-dialog-actions>
-        </md-dialog>
-    </div>
-
     <!-- content -->
     <md-sidenav-layout layout="row" flex style="overflow: auto; height: 100%;">
         <!-- <md-sidenav #options align="left" layout="column" [style]="hasMedia('gt-sm') ? 'side' : 'over'"> -->
@@ -98,13 +84,12 @@
                     <mcm-list-component (selectItem)="onSelectedItem($event)" (enterItem)="onEnteredItem($event)" [itemContainer]="itemContainer" flex style="overflow: auto; height: 100%;"></mcm-list-component>
 
                     <md-toolbar *ngIf="itemToolbar.visible" class="toolbar"  color="accent" style="width: 100%;">
-                        <button md-fab class="md-primary" aria-label="Delete" (click)="settings.toggle()">
-                            <i title="delete" md-icon>delete</i>
+                        <button md-fab class="md-primary" aria-label="Delete" (click)="onDeleteItem(itemHighlited)">
+                            <i title="Delete" md-icon>delete</i>
                         </button>
-                        <!-- <button md-fab class="md-primary" aria-label="Configuration" (click)="options.open()" hide-gt-md> -->
-                        <button md-fab class="md-primary" aria-label="Edit" (click)="options.toggle()">
+                        <!-- <button md-fab class="md-primary" aria-label="Edit" (click)="options.toggle()">
                             <i title="Edit" md-icon>border_color</i>
-                        </button>
+                        </button> -->
 
                         <span class="itemTitle">
                             {{itemHighlited?.node?.kNode?.name}}
@@ -112,9 +97,6 @@
 
                         <span flex></span>
 
-                        <button md-fab class="md-primary" aria-label="Delete" (click)="onDeleteItem(itemHighlited)">
-                            <i title="Delete" md-icon>delete</i>
-                        </button>
                         <button md-fab class="md-primary" aria-label="Close" (click)="onSelectedItem()">
                             <i title="Close" md-icon>close</i>
                         </button>

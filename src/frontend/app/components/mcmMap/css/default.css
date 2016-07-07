@@ -1981,6 +1981,9 @@
   overflow-x: hidden;
   overflow-y: scroll; }
 
+#popupContainer {
+  position: relative; }
+
 /* ------------------------
  mcm_map_tools
 ------------------------ */

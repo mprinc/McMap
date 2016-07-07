@@ -9,6 +9,7 @@ import {OVERLAY_PROVIDERS} from '@angular2-material/core/overlay/overlay';
 import { Router, ROUTER_DIRECTIVES} from '@angular/router';
 
 import {McmListComponent} from './mcmListComponent';
+import {McmSelectEntityComponent} from './mcmSelectEntity.component';
 
 import {McmMapPolicyService} from './mcmMapPolicyService';
 import {McmMapViewService} from './mcmMapViewService';
@@ -66,12 +67,8 @@ declare var window;
         ROUTER_DIRECTIVES,
         MdToolbar,
         McmListComponent,
-        upgradeAdapter.upgradeNg1Component('mcmMapList'),
-        //  upgradeAdapter.upgradeNg1Component('ibisTypesList'),
+        McmSelectEntityComponent
     ],
-    // necessary for having relative paths for templateUrl
-    // http://schwarty.com/2015/12/22/angular2-relative-paths-for-templateurl-and-styleurls/
-    // t_emplateUrl: 'components/mcmMap/partials/main.tpl.html',
     styles: [`
     `]
 })
@@ -101,7 +98,8 @@ export class McmMain {
         @Inject('KnalledgeMapService') private knalledgeMapService,
         @Inject('KnalledgeMapVOsService') private knalledgeMapVOsService,
         @Inject('GlobalEmitterServicesArray') private globalEmitterServicesArray: GlobalEmitterServicesArray,
-        @Inject('McmMapAssumptionService') private mcmMapAssumptionService
+        @Inject('McmMapAssumptionService') private mcmMapAssumptionService,
+        @Inject('McmMapObjectService') private mcmMapObjectService
     ) {
         console.log('[McmMain]');
         this.viewConfig = mcmMapViewService.get().config;
@@ -225,6 +223,7 @@ export class McmMain {
     addEntity(){
         var itemCategoriesAll = this.mcmMapAssumptionService.getAssumptionsCategories();
         console.log("itemCategoriesAll: ", Object.keys(itemCategoriesAll));
+        this.mcmMapObjectService.getObjectDescByLabel();
     }
 
     // http://learnangular2.com/events/

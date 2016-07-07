@@ -1,0 +1,14 @@
+<div class="md-padding" id="popupContainer">
+    <md-dialog #selectEntityDialog class="creatingNewMap" (onClose)="mapDialogClosed($event)">
+      <md-dialog-title>Entity Creation</md-dialog-title>
+
+        <md-dialog-actions>
+            <button md-button (click)="mapDialog.close(false)">
+                <span>Cancel</span>
+            </button>
+            <button md-button class="md-primary" (click)="mapDialog.close(true)">
+                <span *ngIf="modeEditing">Update</span><span *ngIf="modeCreating">Create</span>
+            </button>
+        </md-dialog-actions>
+    </md-dialog>
+</div>
