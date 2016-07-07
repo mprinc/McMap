@@ -16,7 +16,7 @@ cd EarthCube/McMap/src/
 
 First be sure you have instaled [local web server](https://www.npmjs.com/package/http-server):
 ```sh
-npm install http-server -g
+sudo npm install http-server -g
 ```
 
 build production:
