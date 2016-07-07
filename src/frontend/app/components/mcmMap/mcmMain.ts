@@ -145,6 +145,10 @@ export class McmMain {
         return typeToText[entityType];
     }
 
+    getNumberOfFilteredEntities(){
+      return this.itemContainer && this.itemContainer.children ? this.itemContainer.children.length : null;
+    }
+
     parseParameters(url?){
         url = (typeof url !== 'undefined') ? url :
             window.location.href;
