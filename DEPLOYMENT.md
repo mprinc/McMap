@@ -12,6 +12,28 @@ cd EarthCube/McMap/src/
 ./scripts/deploy-frontend.sh
 ```
 
+### Host prod build on local server
+
+First be sure you have instaled [local web server](https://www.npmjs.com/package/http-server):
+```sh
+npm install http-server -g
+```
+
+build production:
+```sh
+cdd
+cd EarthCube/McMap/src/frontend
+npm run build.prod
+```
+
+run local server and open it:
+```sh
+cd dist/prod
+http-server
+```
+
+Navigate to [the localhost](http://localhost:8080/)
+
 ### Old way
 There are two groups of actions to be done. First on local machine, then on the server
 
