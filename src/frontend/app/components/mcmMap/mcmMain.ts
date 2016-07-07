@@ -149,6 +149,16 @@ export class McmMain implements AfterViewInit{
         return typeToText[entityType];
     }
 
+    getEdgeNameFromEntityName(entityType){
+        var entityToEdge = {
+            object: "containsObject",
+            grid: "containsGrid",
+            assumption: "containsAssumption",
+            variable: "containsVariable"
+        };
+        return entityToEdge[entityType];
+    }
+
     getNumberOfEntities(entityType){
       console.log("[getNumberOfEntities] entityType:", entityType);
       return this.mcmMapLayout.getChildrenNumberForEntityType(entityType);
@@ -228,6 +238,21 @@ export class McmMain implements AfterViewInit{
 
     toAddEntity(entityType, item){
         console.log("[toAddEntity] entityType: %s, item:", entityType, item);
+
+        var sourceNode = this.mapStructure.getSelectedNode();
+
+        var vkNode = new knalledge.VKNode();
+    	vkNode.kNode = new knalledge.KNode();
+        vkNode.kNode.type = entityType;
+        vkNode.kNode.name = item.node.name;
+
+        var vkEdge = new knalledge.VKEdge();
+        vkEdge.kEdge = new knalledge.KEdge();
+        vkEdge.kEdge.type = this.getEdgeNameFromEntityName(entityType);
+
+        this.mapStructure.createNodeWithEdge(sourceNode, vkEdge, vkNode, function(){
+            this.update();
+        }.bind(this));
     }
 
     addEntity(){

@@ -90,6 +90,7 @@ export class McmSelectEntityComponent implements AfterViewInit{
             item : null;
         this.selectItem.emit(item);
         if(typeof this.showCallback === 'function'){
+            this.mdDialog.close();
             this.showCallback(this.showEntityType, item);
         }
     }
