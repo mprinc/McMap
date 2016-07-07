@@ -107,9 +107,7 @@ upgradeAdapter.upgradeNg1Provider('McmMapPolicyService');
 
 
 var injector:Injector = new Injector();
-injector.addPath("collaboPlugins.globalEmitterServicesArray", GlobalEmitterServicesArray);
-injector.addPath("collaboPlugins.globalEmitterService", GlobalEmitterService);
-injector.addPath("utils.globalEmitterService", Injector);
+injector.addPath("utils.Injector", Injector);
 injector.addPath("interaction.MapInteraction", MapInteraction);
 injector.addPath("knalledge.MapLoader", MapLoader);
 
