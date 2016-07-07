@@ -51,6 +51,7 @@ var plugins = {
 	"mapsList": {
 		active: true,
 		config: {
+			title: 'MCM',
 			//map_path,
 			//
 			openMap: {
