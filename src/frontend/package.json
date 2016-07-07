@@ -152,6 +152,7 @@
     "phantomjs-prebuilt": "^2.1.4",
     "protractor": "^3.0.0",
     "remap-istanbul": "^0.5.1",
+    "replacestream": "^4.0.0",
     "requirejs": "*",
     "rimraf": "^2.5.2",
     "run-sequence": "^1.1.0",
