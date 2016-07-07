@@ -45,7 +45,7 @@
                                     <i title="Maps List" md-icon>map</i>
                                 </button>
 
-                                <button md-fab class="md-primary" aria-label="Filter type" (click)="filterToolbar.visible=!filterToolbar.visible;">
+                                <button md-fab class="md-primary" aria-label="Filter type" (click)="filterToolbar.visible=!filterToolbar.visible; itemToolbar.visible = false;">
                                     <i title="Filter type" md-icon>filter_center_focus</i>
                                 </button>
 
@@ -113,8 +113,8 @@
                             <button *ngIf="getEntityFilter() !== 'object'" md-raised-button class="md-primary" aria-label="Objects" (click)="setEntityFilter('object')">
                                 Objects ({{getNumberOfEntities('object')}})
                             </button>
-                            <button *ngIf="getEntityFilter() !== 'variable'" md-raised-button class="md-primary" aria-label="Variables" (click)="setEntityFilter('variable')">
-                                Variables ({{getNumberOfEntities('variable')}})
+                            <button *ngIf="getEntityFilter() !== 'variable'" md-raised-button class="md-primary" aria-label="Quantities" (click)="setEntityFilter('variable')">
+                                Quantities ({{getNumberOfEntities('variable')}})
                             </button>
                             <button *ngIf="getEntityFilter() !== 'assumption'" md-raised-button class="md-primary" aria-label="Assumptions" (click)="setEntityFilter('assumption')">
                                 Assumptions ({{getNumberOfEntities('assumption')}})

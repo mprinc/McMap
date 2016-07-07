@@ -143,7 +143,7 @@ export class McmMain implements AfterViewInit{
             object: "Objects",
             grid: "Grids",
             assumption: "Assumptions",
-            variable: "Variables"
+            variable: "Quantities"
         };
 
         return typeToText[entityType];

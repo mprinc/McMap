@@ -23,7 +23,7 @@ var plugins = {
 					path: "/components/rima/rimaUsersList"
 				},
 				IbisTypesList: {
-					active: true,
+					active: false,
 					path: "/components/knalledgeMap/ibisTypesList"
 				}
 			}
