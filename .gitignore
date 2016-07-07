@@ -42,3 +42,4 @@ manual_typings/
 doc/
 old_versions/
 frontend_local/
+src/frontend/app/components/mapsList

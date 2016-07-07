@@ -17,9 +17,25 @@ export class NodeWithEdge {
 
 export class McmMapLayout {
     itemParent: NodeWithChildren;
+    entityType: string;
+    mapStructure: any;
 
-    constructor(private mapStructure) {
+    constructor() {
+        this.setEntityFilter('object');
     };
+
+    init(mapStructure:any){
+        this.mapStructure = mapStructure;
+        this.setEntityFilter('object');
+    }
+
+    setEntityFilter(entityType:string){
+        this.entityType = entityType;
+    }
+
+    getEntityFilter(){
+        return this.entityType;
+    }
 
     generateView() {
         this.itemParent = new NodeWithChildren();
@@ -33,7 +49,9 @@ export class McmMapLayout {
             let nWR = new NodeWithEdge();
             nWR.edge = edge;
             nWR.node = this.mapStructure.getVKNodeByKId(edge.kEdge.targetId);
-            this.itemParent.children.push(nWR);
+            if(!this.entityType || (nWR.node && nWR.node.kNode.type === this.entityType)){
+                this.itemParent.children.push(nWR);
+            }
         }
         console.log("[McmMapLayout] this.itemParent: ", this.itemParent);
 
