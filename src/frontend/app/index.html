@@ -117,11 +117,28 @@
 
 	    <% if (ENV === 'dev') { %>
 	    <script>
-	    System.import('./js/app2')
-	      .catch(function (e) {
-	        console.error(e,
-	          'Report this error at https://github.com/mprinc/McModelar/issues');
-	      });
+		console.warn("[collaboPlugins] Loading pluginsPreloader");
+		var pluginsPreloaderImportPromise =
+			System.import('./components/collaboPlugins/pluginsPreloader');
+		pluginsPreloaderImportPromise.catch(function(e) {
+			console.error(
+				"[collaboPlugins] Error loading pluginsPreloader",
+				e,
+				'Report this error at https://github.com/mprinc/KnAllEdge/issues');
+		});
+
+		pluginsPreloaderImportPromise.then(function(pluginsPreloaderImport){
+			console.warn("[collaboPlugins] Waiting for plugins' components to load before loading the rest of the CollaboFramework System - MCM Tool");
+			var pluginsPreloaderClass = pluginsPreloaderImport.PluginsPreloader;
+			pluginsPreloaderClass.componentsPromise.then(function(){
+				console.warn("[collaboPlugins] Loading rest of the CollaboFramework System - MCM Tool");
+				System.import('./js/app2')
+					.catch(function(e) {
+						console.error(e,
+							'Report this error at https://github.com/mprinc/KnAllEdge/issues');
+					});
+			})
+		});
 	    </script>
 	    <% } %>
 
