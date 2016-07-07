@@ -59,8 +59,17 @@
                             </button>
 
                             <span class="itemTitle">
-                                {{itemContainer?.node?.kNode?.name}}
-                                 ({{getEntityFilterText()}})
+                                {{itemContainer?.node?.kNode?.name}} : {{getEntityFilterText()}}
+                                (
+                                <span [ngSwitch]="getNumberOfFilteredEntities() === null">
+                                  <span *ngSwitchCase="true">
+                                    <i class="fa fa-refresh fa-spin"></i><span class="sr-only">Loading...</span>
+                                  </span>
+                                  <span *ngSwitchCase="false">
+                                    {{getNumberOfFilteredEntities()}}
+                                  </span>
+                                </span>
+                                )
                             </span>
 
                             <span flex></span>
