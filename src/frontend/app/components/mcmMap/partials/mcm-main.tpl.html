@@ -57,7 +57,9 @@
                             <button md-fab class="md-primary" aria-label="Navigate Back" (click)="navigateBack()">
                                 <i title="Back" md-icon>navigate_before</i>
                             </button>
-
+                            <button md-fab class="md-primary" aria-label="Add Entity" (click)="addEntity()">
+                                <i title="Add Entity" md-icon>add</i>
+                            </button>
                             <span class="itemTitle">
                                 {{itemContainer?.node?.kNode?.name}} : {{getEntityFilterText()}}
                                 (
