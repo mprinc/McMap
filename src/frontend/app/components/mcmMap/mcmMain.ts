@@ -100,7 +100,8 @@ export class McmMain {
         @Inject('McmMapPolicyService') private mcmMapPolicyService: McmMapPolicyService,
         @Inject('KnalledgeMapService') private knalledgeMapService,
         @Inject('KnalledgeMapVOsService') private knalledgeMapVOsService,
-        @Inject('GlobalEmitterServicesArray') private globalEmitterServicesArray: GlobalEmitterServicesArray
+        @Inject('GlobalEmitterServicesArray') private globalEmitterServicesArray: GlobalEmitterServicesArray,
+        @Inject('McmMapAssumptionService') private mcmMapAssumptionService
     ) {
         console.log('[McmMain]');
         this.viewConfig = mcmMapViewService.get().config;
@@ -210,6 +211,11 @@ export class McmMain {
 
     setItemContainer(item){
         this.itemContainer = item;
+    }
+
+    addEntity(){
+        var itemCategoriesAll = this.mcmMapAssumptionService.getAssumptionsCategories();
+        console.log("itemCategoriesAll: ", Object.keys(itemCategoriesAll));
     }
 
     // http://learnangular2.com/events/

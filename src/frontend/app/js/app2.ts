@@ -102,9 +102,18 @@ upgradeAdapter.upgradeNg1Provider('GlobalEmitterServicesArray');
 // upgrading ng1 services (written in TS) into ng2 space
 upgradeAdapter.upgradeNg1Provider('KnalledgeMapViewService');
 upgradeAdapter.upgradeNg1Provider('KnalledgeMapPolicyService');
-upgradeAdapter.upgradeNg1Provider('McmMapViewService');
 upgradeAdapter.upgradeNg1Provider('McmMapPolicyService');
 
+upgradeAdapter.upgradeNg1Provider('McmMapSchemaService');
+upgradeAdapter.upgradeNg1Provider('McmMapAssumptionService');
+upgradeAdapter.upgradeNg1Provider('McmMapObjectService');
+upgradeAdapter.upgradeNg1Provider('McmMapVariableQuantityService');
+upgradeAdapter.upgradeNg1Provider('McmMapVariableOperatorService');
+upgradeAdapter.upgradeNg1Provider('McmMapChangesService');
+upgradeAdapter.upgradeNg1Provider('McmMapProcessService');
+upgradeAdapter.upgradeNg1Provider('McmMapGridService');
+upgradeAdapter.upgradeNg1Provider('McmMapVisualService');
+upgradeAdapter.upgradeNg1Provider('McmMapViewService');
 
 var injector:Injector = new Injector();
 injector.addPath("utils.Injector", Injector);
