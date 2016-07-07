@@ -1,4 +1,6 @@
 import {Component, Inject} from '@angular/core';
+import { AfterViewInit, ViewChild } from
+'@angular/core';
 import {upgradeAdapter} from '../../js/upgrade_adapter';
 import {MD_SIDENAV_DIRECTIVES} from '@angular2-material/sidenav';
 import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS, Media} from "ng2-material";
@@ -73,7 +75,7 @@ declare var window;
     `]
 })
 
-export class McmMain {
+export class McmMain implements AfterViewInit{
     policyConfig: any;
     viewConfig: any;
     status: String;
@@ -90,6 +92,8 @@ export class McmMain {
     mapStructure;
     mcmMapLayout:McmMapLayout;
     mcmMapInteraction:McmMapInteraction;
+    @ViewChild(McmSelectEntityComponent) private mcmSelectEntityComponent:McmSelectEntityComponent;
+
 
     constructor(
         // public router: Router,
@@ -97,9 +101,7 @@ export class McmMain {
         @Inject('McmMapPolicyService') private mcmMapPolicyService: McmMapPolicyService,
         @Inject('KnalledgeMapService') private knalledgeMapService,
         @Inject('KnalledgeMapVOsService') private knalledgeMapVOsService,
-        @Inject('GlobalEmitterServicesArray') private globalEmitterServicesArray: GlobalEmitterServicesArray,
-        @Inject('McmMapAssumptionService') private mcmMapAssumptionService,
-        @Inject('McmMapObjectService') private mcmMapObjectService
+        @Inject('GlobalEmitterServicesArray') private globalEmitterServicesArray: GlobalEmitterServicesArray
     ) {
         console.log('[McmMain]');
         this.viewConfig = mcmMapViewService.get().config;
@@ -127,6 +129,9 @@ export class McmMain {
         this.mapLoader.init();
     }
 
+    ngAfterViewInit() {
+    }
+
     getEntityFilter(){
         return this.mcmMapLayout.getEntityFilter();
     }
@@ -137,7 +142,8 @@ export class McmMain {
         var typeToText = {
             object: "Objects",
             grid: "Grids",
-            assumption: "Assumptions"
+            assumption: "Assumptions",
+            variable: "Variables"
         };
 
         return typeToText[entityType];
@@ -220,10 +226,15 @@ export class McmMain {
         this.itemContainer = item;
     }
 
+    toAddEntity(entityType, item){
+        console.log("[toAddEntity] entityType: %s, item:", entityType, item);
+    }
+
     addEntity(){
-        var itemCategoriesAll = this.mcmMapAssumptionService.getAssumptionsCategories();
-        console.log("itemCategoriesAll: ", Object.keys(itemCategoriesAll));
-        this.mcmMapObjectService.getObjectDescByLabel();
+        let entityType =
+            this.mcmMapLayout.getEntityFilter();
+
+        this.mcmSelectEntityComponent.show(entityType, this.toAddEntity.bind(this));
     }
 
     // http://learnangular2.com/events/

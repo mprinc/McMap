@@ -1,5 +1,4 @@
 <!-- main container -->
-<mcm-select-entity #selectEntityComponent></mcm-select-entity>
 <div layout="column" layout-fill>
     <!-- content -->
     <md-sidenav-layout layout="row" flex style="overflow: auto; height: 100%;">
@@ -109,6 +108,9 @@
                             <button *ngIf="getEntityFilter() !== 'object'" md-raised-button class="md-primary" aria-label="Objects" (click)="setEntityFilter('object')">
                                 Objects ({{getNumberOfEntities('object')}})
                             </button>
+                            <button *ngIf="getEntityFilter() !== 'variable'" md-raised-button class="md-primary" aria-label="Variables" (click)="setEntityFilter('variable')">
+                                Variables ({{getNumberOfEntities('variable')}})
+                            </button>
                             <button *ngIf="getEntityFilter() !== 'assumption'" md-raised-button class="md-primary" aria-label="Assumptions" (click)="setEntityFilter('assumption')">
                                 Assumptions ({{getNumberOfEntities('assumption')}})
                             </button>
@@ -124,3 +126,4 @@
         </md-content>
     </md-sidenav-layout>
 </div>
+<mcm-select-entity #selectEntityComponent></mcm-select-entity>

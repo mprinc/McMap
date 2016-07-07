@@ -2074,3 +2074,21 @@ $color_preferences_border: gray;
 			@include border-radius(10px, 10px);
 			@include box-shadow(4px 3px 7px 2px rgba(150, 150, 255, 0.75));
 }
+
+mcm-select-entity{
+	md-list-item{
+		cursor: pointer;
+	}
+}
+
+.md-overlay-container{
+	height: 90%;
+
+	.md-overlay-pane{
+		height: 90%;
+
+		.md-dialog{
+			height: 100%;
+		}
+	}
+}

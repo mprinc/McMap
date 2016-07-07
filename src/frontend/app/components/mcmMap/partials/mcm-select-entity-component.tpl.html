@@ -1,14 +1,32 @@
 <div class="md-padding" id="popupContainer">
-    <md-dialog #selectEntityDialog class="creatingNewMap" (onClose)="mapDialogClosed($event)">
-      <md-dialog-title>Entity Creation</md-dialog-title>
+    <md-dialog #selectEntityDialog class="creatingNewMap" (onClose)="onSelectEntityDialogClosed($event)">
+        <md-dialog-title>{{searchTitle}}</md-dialog-title>
+        <div layout="column" class="md-inline-form">
+          <form>
+              <div>
+                  <md-input placeholder="Search ..." style="width: 100%" [(ngModel)]="searchCriteria"  (keyup)="onSearchChanged($event)"></md-input>
+              </div>
+          </form>
+        </div>
 
+        <md-content flex style="overflow: auto; height: 100%;">
+            <md-list>
+                <md-list-item [class.selected]="item === itemSelected" class="md-1-line" (click)="onClicked(item); $event.stopPropagation()" *ngFor="let item of itemContainer?.children">
+                    {{ item?.node?.name }}
+                    <span flex></span>
+                    <!-- <button md-button class="md-icon-button md-primary" aria-label="Enter" (click)="onEnterItemClicked(item); $event.stopPropagation()">
+                        <i title="Enter" md-icon>navigate_next</i>
+                    </button> -->
+                </md-list-item>
+            </md-list>
+        </md-content>
         <md-dialog-actions>
-            <button md-button (click)="mapDialog.close(false)">
+            <button md-button (click)="selectEntityDialog.close(false)">
                 <span>Cancel</span>
             </button>
-            <button md-button class="md-primary" (click)="mapDialog.close(true)">
-                <span *ngIf="modeEditing">Update</span><span *ngIf="modeCreating">Create</span>
-            </button>
+            <!-- <button md-button class="md-primary" (click)="selectEntityDialog.close(true)">
+                <span>Create</span>
+            </button> -->
         </md-dialog-actions>
     </md-dialog>
 </div>
