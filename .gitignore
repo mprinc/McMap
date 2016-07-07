@@ -57,6 +57,7 @@ src/frontend/app/components/utils
 src/frontend/app/js/interaction
 src/frontend/app/js/knalledge
 src/frontend/app/components/mapsList
+src/frontend/app/components/gardening
 
 src/backend/models
 src/backend/modules
