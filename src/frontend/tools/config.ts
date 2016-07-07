@@ -123,7 +123,8 @@ const SUB_PROJECTS_FILES = {
     MCM: {
         APP_ASSETS: [
             // (NG2-) MATERIAL
-            { src: 'ng2-material/font/MaterialIcons-Regular.*', asset: true, dest: CSS_DEST }
+            { src: 'ng2-material/font/MaterialIcons-Regular.*', asset: true, dest: CSS_DEST },
+            { src: join(APP_SRC, 'data'), asset: true, dest: APP_DEST, noNorm: true }
         ],
         NPM_DEPENDENCIES: [
             // LIBS
