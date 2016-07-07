@@ -4,6 +4,7 @@ import {upgradeAdapter} from './upgrade_adapter';
 import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
 
 import {KnalledgeMapMain} from '../components/knalledgeMap/main';
+import {MapsList} from '../components/mapsList/maps-list.component';
 import {LoginStatusComponent} from '../components/login/login-status-component';
 import {McmMain} from '../components/mcmMap/mcmMain';
 import {KnalledgeMapPolicyService} from '../components/knalledgeMap/knalledgeMapPolicyService';
@@ -40,6 +41,10 @@ angular.module('knalledgeMapDirectives')
         'loginStatus':
             upgradeAdapter.downgradeNg2Component(LoginStatusComponent)
     })
+    .directive({
+       'mapsList':
+           upgradeAdapter.downgradeNg2Component(MapsList)
+   })
     ;
 
 // angular.module('McModelarNg2', ['mcmMapsDirectives']);
