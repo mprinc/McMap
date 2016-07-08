@@ -26,7 +26,7 @@ var plugins = {
 					active: false,
 					path: "/components/knalledgeMap/ibisTypesList"
 				}
-			}
+			},
 		}
 	},
 	"knalledgeMap": {
@@ -36,9 +36,12 @@ var plugins = {
 				// should map participants be broadcasted after loading map
                 broadcastMapUsers: true
             },
-			knAllEdgeRealTimeService: {
+						knAllEdgeRealTimeService: {
                 available: false
-            }
+            },
+						externalInterface:{
+							backFromMap: true
+						}
         }
 	},
 	"topPanel": {

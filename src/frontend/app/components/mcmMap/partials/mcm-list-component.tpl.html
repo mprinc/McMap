@@ -2,7 +2,7 @@
     <md-content>
         <md-list>
             <md-list-item [class.selected]="item === itemSelected" class="md-1-line" (click)="onEnterItemClicked(item); $event.stopPropagation()" *ngFor="let item of itemContainer?.children">
-                {{ item?.node?.kNode?.name }}<span class='item-discussion' [hidden]="!existsDialogueOverItem(item)"><i title="discussion is going on" md-icon>speaker_notes</i></span>
+                {{ item?.node?.kNode?.name }}<span class='item-collaboration' [hidden]="!existsDialogueOverItem(item)"><i title="collaboration is going on" md-icon>speaker_notes</i></span>
                 <span flex></span>
                 <button md-button class="md-icon-button md-primary" aria-label="Options" (click)="onClicked(item); $event.stopPropagation()">
                     <i title="Enter" md-icon>reorder</i>

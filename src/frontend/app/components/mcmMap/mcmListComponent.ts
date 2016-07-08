@@ -84,6 +84,6 @@ export class McmListComponent {
     }
 
     existsDialogueOverItem(item){
-      return true; //TOOD: because of not being able to access mcmMapLayout from here to call existsDialogueOverItem() 
+      return false; //TOOD: because of not being able to access mcmMapLayout from here to call existsDialogueOverItem() 
     }
 }

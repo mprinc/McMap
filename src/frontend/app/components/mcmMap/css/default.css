@@ -2092,13 +2092,20 @@
   user-select: none; }
   .mcm_main .toolbar .itemTitle {
     font-weight: bold; }
-  .mcm_main .toolbar .discussion {
+  .mcm_main .toolbar .questionIcon {
+    font-weight: bolder;
+    font-size: 2.3em;
+    margin-top: -0.3em;
+    color: #fdffc0; }
+  .mcm_main .toolbar .commentIcon {
+    color: #aaffaa; }
+  .mcm_main .toolbar .collaboration {
     padding: 3px;
     margin-left: 3px;
     margin-right: 3px;
     border-left: solid 1px #000050;
     border-right: solid 1px #000050; }
-    .mcm_main .toolbar .discussion .discussion-notification {
+    .mcm_main .toolbar .collaboration .collaboration-notification {
       padding-left: 3px;
       padding-right: 3px;
       color: #000090; }
@@ -2111,8 +2118,7 @@
   .mcm_list_component md-list md-subheader {
     font-weight: bold;
     font-size: 1.2em; }
-  .mcm_list_component md-list .item-discussion {
-    color: red;
+  .mcm_list_component md-list .item-collaboration {
     margin-left: 5px; }
   .mcm_list_component md-list md-list-item {
     cursor: pointer;

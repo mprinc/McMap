@@ -104,10 +104,10 @@
                         <!-- <button md-fab class="md-primary" aria-label="Edit" (click)="options.toggle()">
                             <i title="Edit" md-icon>border_color</i>
                         </button> -->
-                        <span class="discussion">
-                          <span class="discussion-notification" [ngSwitch]="existsDialogueOverItem()">
-                            <span *ngSwitchCase="true">Others discuss this. Join</span>
-                            <span *ngSwitchCase="false">Discuss this</span>
+                        <span class="collaboration">
+                          <span class="collaboration-notification" [ngSwitch]="existsDialogueOverItem()">
+                            <span *ngSwitchCase="true">Others collaborate on this. Join</span>
+                            <span *ngSwitchCase="false">Collaborate on this</span>
                           </span>
 
                             <!-- <button md-fab class="md-primary" aria-label="Discuss" (click)="onDiscussItem(itemHighlited)">
@@ -116,14 +116,14 @@
                             </button> -->
 
                             <button md-fab class="md-primary" aria-label="Comment" (click)="onCommentItem(itemHighlited)">
-                                <i title="Comment" md-icon>comment</i>
+                                <i class="commentIcon" title="Comment" md-icon>comment</i>
                             </button>
 
                             <button md-fab class="md-primary" aria-label="Question" (click)="onQuestionItem(itemHighlited)">
-                                <i title="Question" md-icon>?</i>
+                                <i class="questionIcon" title="Question" md-icon>?</i>
                             </button>
                         </span>
-                        
+
                         <span class="itemTitle">
                             {{itemHighlited?.node?.kNode?.name}}
                         </span>
