@@ -2,24 +2,21 @@
 'use strict';
 
 var MapVisualization =  mcm.MapVisualization = function(parentDom, clientApi, mapStructure, configView, configTransitions, configNodes, configEdges, resizingConfig, schema, mcmMapViewService){
-	this.dom = {
-		parentDom: parentDom,
-		divMap: null,
-		divMapHtml: null,
-		divMapSvg: null,
-		svg: null
-	};
-	this.clientApi = clientApi;
-	this.mapStructure = mapStructure;
-	this.mapLayout = null;
-	this.schema = schema;
-	this.mcmMapViewService = mcmMapViewService;
+	this.destroyed = false;
 
-	this.configView = configView;
-	this.configTransitions = configTransitions;
-	this.configNodes = configNodes;
-	this.configEdges = configEdges;
-	this.resizingConfig = resizingConfig;
+	this.dom = null;
+
+	this.clientApi = null;
+	this.mapStructure = null;
+	this.mapLayout = null;
+	this.schema = null;
+	this.mcmMapViewService = null;
+
+	this.configView = null;
+	this.configTransitions = null;
+	this.configNodes = null;
+	this.configEdges = null;
+	this.resizingConfig = null;
 	this.editingNodeHtml = null;
 };
 
@@ -54,6 +51,23 @@ MapVisualization.prototype.init = function(mapLayout, callback){
 		if(callback) callback();
 	}, 25);
 
+};
+
+MapVisualization.prototype.destroy = function(){
+	this.destroyed = true;
+	this.dom = null;
+	this.clientApi = null;
+	this.mapStructure = null;
+	this.mapLayout = null;
+	this.schema = null;
+	this.mcmMapViewService = null;
+
+	this.configView = configView;
+	this.configTransitions = configTransitions;
+	this.configNodes = configNodes;
+	this.configEdges = configEdges;
+	this.resizingConfig = resizingConfig;
+	this.editingNodeHtml = null;
 };
 
 MapVisualization.prototype.getDom = function(){
@@ -290,7 +304,7 @@ MapVisualization.prototype.updateHtmlTransitions = function(source, nodeHtmlData
 			return x + "px";
 		})
 		.style("min-width", function(d) {
-			var width = d.width;	
+			var width = d.width;
 			// console.log("[nodeHtmlEnter] d: %s, width: %s", d.name, width);
 			return width + "px";
 		})
@@ -341,7 +355,7 @@ MapVisualization.prototype.updateHtmlTransitions = function(source, nodeHtmlData
 			.style("left", function(d){
 				// Transition nodes to the toggling node's new position
 				if(that.configTransitions.exit.referToToggling){
-					return source.x + "px";					
+					return source.x + "px";
 				}else{ // Transition nodes to the parent node's new position
 					return (d.parent ? d.parent.x : d.x) + "px";
 				}
@@ -372,7 +386,7 @@ MapVisualization.prototype.updateNodeDimensions = function(){
 	// 	// Get centroid(this.d)
 	// 	d.width = parseInt(d3.select(this).style("width"));
 	// 	d.height = parseInt(d3.select(this).style("height"));
-	// 	// d3.select(this).style("top", function(d) { 
+	// 	// d3.select(this).style("top", function(d) {
 	// 	// 	return "" + that.mapLayout.getHtmlNodePosition(d) + "px";
 	// 	// })
 	// });
