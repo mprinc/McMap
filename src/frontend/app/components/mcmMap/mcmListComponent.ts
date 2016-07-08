@@ -51,6 +51,7 @@ export class McmListComponent {
     policyConfig: any;
     viewConfig: any;
     @Input() itemContainer: NodeWithChildren;
+    @Input() existsDialogueOverItem: Function;
     itemSelected: NodeWithChildren;
     // https://angular.io/docs/ts/latest/cookbook/component-communication.html#!#child-to-parent
     @Output() selectItem = new EventEmitter<any>();
@@ -89,7 +90,8 @@ export class McmListComponent {
       return NodeGardened.getApprovalState(item.node.kNode) === ApprovalState.DISAPPROVED;
     }
 
-    existsDialogueOverItem(item){
-      return false; //TOOD: because of not being able to access mcmMapLayout from here to call existsDialogueOverItem()
+    _existsDialogueOverItem(item){
+        //   return false; //TOOD: because of not being able to access mcmMapLayout from here to call existsDialogueOverItem()
+        return this.existsDialogueOverItem(item);
     }
 }

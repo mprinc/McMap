@@ -101,6 +101,8 @@ export class McmMain implements AfterViewInit{
     mapStructure;
     mcmMapLayout:McmMapLayout;
     mcmMapInteraction:McmMapInteraction;
+    existsDialogueOverItem_binded:Function;
+
     @ViewChild(McmSelectEntityComponent) private mcmSelectEntityComponent:McmSelectEntityComponent;
     @ViewChild(KnalledgeCreateNodeComponent) private knalledgeCreateNodeComponent:KnalledgeCreateNodeComponent;
 
@@ -115,6 +117,8 @@ export class McmMain implements AfterViewInit{
         @Inject('GlobalEmitterServicesArray') private globalEmitterServicesArray: GlobalEmitterServicesArray
     ) {
         console.log('[McmMain]');
+        this.existsDialogueOverItem_binded =
+            this.existsDialogueOverItem.bind(this);
         this.mcmViewConfig = mcmMapViewService.get().config;
         this.mcmPolicyConfig = mcmMapPolicyService.get().config;
         this.policyConfig = knalledgeMapPolicyService.get().config;
@@ -178,8 +182,12 @@ export class McmMain implements AfterViewInit{
         return typeToText[entityType];
     }
 
-    existsDialogueOverItem(){
-      return this.mcmMapLayout.existsDialogueOverItem(this.itemHighlited.node);
+    existsDialogueOverItem(item?){
+        if(!item){
+            item = this.itemHighlited.node;
+        }
+      return this.mcmMapLayout
+        .existsDialogueOverItem(item);
     }
 
     getEdgeNameFromEntityName(entityType){
