@@ -4,6 +4,8 @@ import {MD_SIDENAV_DIRECTIVES} from '@angular2-material/sidenav';
 import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS, Media} from "ng2-material";
 import {MdToolbar} from '@angular2-material/toolbar';
 import {OVERLAY_PROVIDERS} from '@angular2-material/core/overlay/overlay';
+import {NodeGardened, ApprovalState} from '../gardening/NodeGardened';
+
 // http://stackoverflow.com/questions/35533783/angular2-unable-to-navigate-to-url-using-location-gourl
 
 import { Router, ROUTER_DIRECTIVES} from '@angular/router';
@@ -83,7 +85,11 @@ export class McmListComponent {
         this.enterItem.emit(item);
     }
 
+    isDisapproved(item){
+      return NodeGardened.getApprovalState(item.node.kNode) === ApprovalState.DISAPPROVED;
+    }
+
     existsDialogueOverItem(item){
-      return false; //TOOD: because of not being able to access mcmMapLayout from here to call existsDialogueOverItem() 
+      return false; //TOOD: because of not being able to access mcmMapLayout from here to call existsDialogueOverItem()
     }
 }

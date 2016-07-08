@@ -333,9 +333,14 @@ $map: layout(12 1/4 fluid isolate inside);
 			font-weight: bold;
 			font-size: 1.2em;
 		}
-		.item-collaboration{
-			// color: red;
+		.states-actions{
 			margin-left: 5px;
+			padding-left: 3px;
+			padding-right: 3px;
+			.item-collaboration{
+				// color: red;
+				margin-left: 5px;
+			}
 		}
 
 		md-list-item{
