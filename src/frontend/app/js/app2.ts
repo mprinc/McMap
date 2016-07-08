@@ -18,6 +18,7 @@ import {TopiChatConfigService} from '../components/topiChat/topiChatConfigServic
 import {TopiChatService} from '../components/topiChat/topiChatService';
 import {ApprovalNodeService} from '../components/gardening/approval.node.service';
 
+
 // import {BroadcastManagerService} from '../components/collaboBroadcasting/broadcastManagerService';
 
 // add only if knalledgeMap plugin is added
@@ -110,6 +111,7 @@ upgradeAdapter.upgradeNg1Provider('KnalledgeMapViewService');
 upgradeAdapter.upgradeNg1Provider('KnalledgeMapPolicyService');
 upgradeAdapter.upgradeNg1Provider('McmMapPolicyService');
 upgradeAdapter.upgradeNg1Provider('ApprovalNodeService');
+upgradeAdapter.upgradeNg1Provider('IbisTypesService');
 
 upgradeAdapter.upgradeNg1Provider('McmMapSchemaService');
 upgradeAdapter.upgradeNg1Provider('McmMapAssumptionService');
