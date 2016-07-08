@@ -95,7 +95,11 @@
                     </md-toolbar>
 
                     <!-- MCM Map List -->
-                    <mcm-list-component (selectItem)="onSelectedItem($event)" (enterItem)="onEnteredItem($event)" [itemContainer]="itemContainer" flex style="overflow: auto; height: 100%;"></mcm-list-component>
+                    <mcm-list-component
+                    [itemContainer]="itemContainer"
+                    [existsDialogueOverItem]="existsDialogueOverItem_binded"
+                    (selectItem)="onSelectedItem($event)"
+                    (enterItem)="onEnteredItem($event)" flex style="overflow: auto; height: 100%;"></mcm-list-component>
 
                     <md-toolbar *ngIf="itemToolbar.visible" class="toolbar"  color="accent" style="width: 100%;">
                         <button md-fab class="md-primary" aria-label="Delete" (click)="onDeleteItem(itemHighlited)">
