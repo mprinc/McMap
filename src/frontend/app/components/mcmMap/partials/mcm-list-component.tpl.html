@@ -4,8 +4,12 @@
             <md-list-item [class.selected]="item === itemSelected" class="md-1-line" (click)="onEnterItemClicked(item); $event.stopPropagation()" *ngFor="let item of itemContainer?.children">
                 {{ item?.node?.kNode?.name }}
                 <span class="states-actions">
-                  <span class='item-collaboration' [hidden]="!_existsDialogueOverItem(item)"></span>
-                  <span class='item-approval' [hidden]="!isDisapproved(item)"><i title="disapproved" md-icon>thumb_down</i></span>
+                  <span class='item-collaboration' [hidden]="!_existsDialogueOverItem(item)">
+                      <i title="chat" md-icon>thumb_down</i>
+                  </span>
+                  <span class='item-approval' [hidden]="!isDisapproved(item)">
+                      <i title="disapproved" md-icon>thumb_down</i>
+                  </span>
                 </span>
                 <span flex></span>
                 <button md-button class="md-icon-button md-primary" aria-label="Options" (click)="onClicked(item); $event.stopPropagation()">
