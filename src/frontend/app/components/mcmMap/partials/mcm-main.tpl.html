@@ -105,9 +105,17 @@
                             <i title="Edit" md-icon>border_color</i>
                         </button> -->
 
-                        <button md-fab class="md-primary" aria-label="Discuss" (click)="onDiscussItem(itemHighlited)">
+                        <!-- <button md-fab class="md-primary" aria-label="Discuss" (click)="onDiscussItem(itemHighlited)">
                             <i title="Discuss" md-icon>feedback</i>
-                            <!-- https://design.google.com/icons/#ic_feedback -->
+                             https://design.google.com/icons/#ic_feedback
+                        </button> -->
+
+                        <button md-fab class="md-primary" aria-label="Comment" (click)="onCommentItem(itemHighlited)">
+                            <i title="Comment" md-icon>comment</i>
+                        </button>
+
+                        <button md-fab class="md-primary" aria-label="Question" (click)="onQuestionItem(itemHighlited)">
+                            <i title="Question" md-icon>?</i>
                         </button>
 
                         <span class="itemTitle">

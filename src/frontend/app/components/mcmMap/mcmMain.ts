@@ -15,6 +15,8 @@ import {McmSelectEntityComponent} from './mcmSelectEntity.component';
 
 import {McmMapPolicyService} from './mcmMapPolicyService';
 import {McmMapViewService} from './mcmMapViewService';
+import {KnalledgeMapPolicyService} from '../knalledgeMap/knalledgeMapPolicyService';
+
 // import {RequestService} from '../request/request.service';
 import {GlobalEmitterServicesArray} from '../collaboPlugins/GlobalEmitterServicesArray';
 
@@ -76,8 +78,9 @@ declare var window;
 })
 
 export class McmMain implements AfterViewInit{
+    mcmPolicyConfig: any;
+    mcmViewConfig: any;
     policyConfig: any;
-    viewConfig: any;
     status: String;
     itemHighlited: any;
     itemContainer: NodeWithChildren;
@@ -101,6 +104,7 @@ export class McmMain implements AfterViewInit{
 
     constructor(
         // public router: Router,
+        @Inject('KnalledgeMapPolicyService') knalledgeMapPolicyService:KnalledgeMapPolicyService,
         @Inject('McmMapViewService') mcmMapViewService: McmMapViewService,
         @Inject('McmMapPolicyService') private mcmMapPolicyService: McmMapPolicyService,
         @Inject('KnalledgeMapService') private knalledgeMapService,
@@ -108,8 +112,9 @@ export class McmMain implements AfterViewInit{
         @Inject('GlobalEmitterServicesArray') private globalEmitterServicesArray: GlobalEmitterServicesArray
     ) {
         console.log('[McmMain]');
-        this.viewConfig = mcmMapViewService.get().config;
-        this.policyConfig = mcmMapPolicyService.get().config;
+        this.mcmViewConfig = mcmMapViewService.get().config;
+        this.mcmPolicyConfig = mcmMapPolicyService.get().config;
+        this.policyConfig = knalledgeMapPolicyService.get().config;
 
         var nodeMediaClickedEventName = "nodeMediaClickedEvent";
         this.globalEmitterServicesArray.register(nodeMediaClickedEventName);
@@ -302,6 +307,18 @@ export class McmMain implements AfterViewInit{
     onDiscussItem(item: NodeWithChildren) {
         this.mcmMapInteraction.discussItem(item);
     }
+
+    onCommentItem(item: NodeWithChildren) {
+      this.policyConfig.knalledgeMap.nextNodeType = "type_ibis_comment";
+      this.mcmMapInteraction.commentItem(item);
+    }
+
+    onQuestionItem(item: NodeWithChildren) {
+      this.policyConfig.knalledgeMap.nextNodeType = "type_ibis_question";
+      this.mcmMapInteraction.questionItem(item);
+    }
+
+
 
     setEntityFilter(entityType:string) {
         this.mcmMapLayout.setEntityFilter(entityType);

@@ -98,6 +98,22 @@ export class McmMapInteraction {
         // this.clientApi.update();
     };
 
+    commentItem(item: NodeWithChildren) {
+        if(!item) return;
+        console.log("[discussItem]", item);
+        var mapId: string = item.node.kNode.mapId;
+        var nodeId: string = item.node.kNode._id;
+        this.openNode(mapId, nodeId);
+    };
+
+    questionItem(item: NodeWithChildren) {
+        if(!item) return;
+        console.log("[discussItem]", item);
+        var mapId: string = item.node.kNode.mapId;
+        var nodeId: string = item.node.kNode._id;
+        this.openNode(mapId, nodeId);
+    };
+
     openNode(mapId: string, nodeId: string){
       var mapRoute = 'map'; //Config.Plugins.mapsList.config.openMap.routes[0].route;
       window.location.href = "#"+ mapRoute +"/id/" + mapId + "?node_id=" + nodeId; //
