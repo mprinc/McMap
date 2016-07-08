@@ -92,6 +92,7 @@ export class McmListComponent {
 
     _existsDialogueOverItem(item){
         //   return false; //TOOD: because of not being able to access mcmMapLayout from here to call existsDialogueOverItem()
-        return this.existsDialogueOverItem(item);
+        var existDialogue = this.existsDialogueOverItem(item);
+        return existDialogue;
     }
 }

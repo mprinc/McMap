@@ -186,10 +186,10 @@ export class McmMain implements AfterViewInit{
 
     existsDialogueOverItem(item?){
         if(!item){
-            item = this.itemHighlited.node;
+            item = this.itemHighlited;
         }
       return this.mcmMapLayout
-        .existsDialogueOverItem(item);
+        .existsDialogueOverItem(item.node);
     }
 
     getEdgeNameFromEntityName(entityType){
