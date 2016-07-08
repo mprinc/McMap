@@ -104,10 +104,19 @@
                         <!-- <button md-fab class="md-primary" aria-label="Edit" (click)="options.toggle()">
                             <i title="Edit" md-icon>border_color</i>
                         </button> -->
+
+                        <span class="itemTitle">
+                            {{itemHighlited?.node?.kNode?.name}}
+                        </span>
+
+                        <span flex></span>
+
                         <span class="collaboration">
                           <span class="collaboration-notification" [ngSwitch]="existsDialogueOverItem()">
-                            <span *ngSwitchCase="true">Others collaborate on this. Join</span>
-                            <span *ngSwitchCase="false">Collaborate on this</span>
+
+                              <button md-raised-button *ngSwitchCase="true" (click)="collaborateOnEntity()" class="md-accent md-hue-1">Join Collabo</button>
+
+                              <button md-raised-button *ngSwitchCase="false" (click)="collaborateOnEntity()" class="md-accent md-hue-1">Start Collabo</button>
                           </span>
 
                             <!-- <button md-fab class="md-primary" aria-label="Discuss" (click)="onDiscussItem(itemHighlited)">
@@ -123,12 +132,6 @@
                                 <i class="questionIcon" title="Question" md-icon>?</i>
                             </button>
                         </span>
-
-                        <span class="itemTitle">
-                            {{itemHighlited?.node?.kNode?.name}}
-                        </span>
-
-                        <span flex></span>
 
                         <button md-fab class="md-primary" aria-label="Close" (click)="onSelectedItem()">
                             <i title="Close" md-icon>close</i>
@@ -165,3 +168,4 @@
     </md-sidenav-layout>
 </div>
 <mcm-select-entity #selectEntityComponent></mcm-select-entity>
+<knalledge-create-node #knalledgeCreateNodeComponent></knalledge-create-node>

@@ -12,6 +12,7 @@ import { Router, ROUTER_DIRECTIVES} from '@angular/router';
 
 import {McmListComponent} from './mcmListComponent';
 import {McmSelectEntityComponent} from './mcmSelectEntity.component';
+import {KnalledgeCreateNodeComponent} from '../knalledgeMap/knalledgeCreateNode.component';
 
 import {McmMapPolicyService} from './mcmMapPolicyService';
 import {McmMapViewService} from './mcmMapViewService';
@@ -71,7 +72,8 @@ declare var window;
         ROUTER_DIRECTIVES,
         MdToolbar,
         McmListComponent,
-        McmSelectEntityComponent
+        McmSelectEntityComponent,
+        KnalledgeCreateNodeComponent
     ],
     styles: [`
     `]
@@ -82,7 +84,7 @@ export class McmMain implements AfterViewInit{
     mcmViewConfig: any;
     policyConfig: any;
     status: String;
-    itemHighlited: any;
+    itemHighlited: NodeWithChildren;
     itemContainer: NodeWithChildren;
     itemToolbar: any = {
         visible: false
@@ -100,6 +102,7 @@ export class McmMain implements AfterViewInit{
     mcmMapLayout:McmMapLayout;
     mcmMapInteraction:McmMapInteraction;
     @ViewChild(McmSelectEntityComponent) private mcmSelectEntityComponent:McmSelectEntityComponent;
+    @ViewChild(KnalledgeCreateNodeComponent) private knalledgeCreateNodeComponent:KnalledgeCreateNodeComponent;
 
 
     constructor(
@@ -292,6 +295,35 @@ export class McmMain implements AfterViewInit{
         this.mcmSelectEntityComponent.show(entityType, this.toAddEntity.bind(this));
     }
 
+
+    toAddCFNode(knalledgeNodeType, knalledgeEdgeType, nodeName){
+        console.log("[toAddCFNode] knalledgeNodeType: %s, knalledgeEdgeType: %s, nodeName:",
+        knalledgeNodeType, knalledgeEdgeType, nodeName);
+
+        var sourceNode = this.itemHighlited.node;
+
+        var vkNode = new knalledge.VKNode();
+    	vkNode.kNode = new knalledge.KNode();
+        vkNode.kNode.type = knalledgeNodeType;
+        vkNode.kNode.name = nodeName;
+
+        var vkEdge = new knalledge.VKEdge();
+        vkEdge.kEdge = new knalledge.KEdge();
+        vkEdge.kEdge.type = knalledgeEdgeType;
+
+        this.mapStructure.createNodeWithEdge(sourceNode, vkEdge, vkNode, function(){
+            this.update();
+        }.bind(this));
+    }
+
+    addCFNode(knalledgeNodeType, knalledgeEdgeType){
+        this.knalledgeCreateNodeComponent.show(knalledgeNodeType, knalledgeEdgeType, this.toAddCFNode.bind(this));
+    }
+
+    collaborateOnEntity(){
+        this.mcmMapInteraction.questionItem(this.itemHighlited);
+    }
+
     // http://learnangular2.com/events/
     onSelectedItem(item: NodeWithChildren=null) {
         this.setHighlitedItem(item);
@@ -311,13 +343,15 @@ export class McmMain implements AfterViewInit{
     }
 
     onCommentItem(item: NodeWithChildren) {
-      this.policyConfig.knalledgeMap.nextNodeType = "type_ibis_comment";
-      this.mcmMapInteraction.commentItem(item);
+    //   this.policyConfig.knalledgeMap.nextNodeType = "type_ibis_comment";
+    //   this.mcmMapInteraction.commentItem(item);
+        this.addCFNode("type_ibis_comment", "type_ibis_comment");
     }
 
     onQuestionItem(item: NodeWithChildren) {
       this.policyConfig.knalledgeMap.nextNodeType = "type_ibis_question";
-      this.mcmMapInteraction.questionItem(item);
+    //   this.mcmMapInteraction.questionItem(item);
+        this.addCFNode("type_ibis_question", "type_ibis_question");
     }
 
 
