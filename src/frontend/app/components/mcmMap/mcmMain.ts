@@ -17,6 +17,7 @@ import {KnalledgeCreateNodeComponent} from '../knalledgeMap/knalledgeCreateNode.
 import {McmMapPolicyService} from './mcmMapPolicyService';
 import {McmMapViewService} from './mcmMapViewService';
 import {KnalledgeMapPolicyService} from '../knalledgeMap/knalledgeMapPolicyService';
+import {ApprovalNodeService} from '../gardening/approval.node.service';
 
 // import {RequestService} from '../request/request.service';
 import {GlobalEmitterServicesArray} from '../collaboPlugins/GlobalEmitterServicesArray';
@@ -110,6 +111,7 @@ export class McmMain implements AfterViewInit{
     constructor(
         // public router: Router,
         @Inject('KnalledgeMapPolicyService') knalledgeMapPolicyService:KnalledgeMapPolicyService,
+        @Inject('ApprovalNodeService') private approvalNodeService:ApprovalNodeService,
         @Inject('McmMapViewService') mcmMapViewService: McmMapViewService,
         @Inject('McmMapPolicyService') private mcmMapPolicyService: McmMapPolicyService,
         @Inject('KnalledgeMapService') private knalledgeMapService,
@@ -311,7 +313,7 @@ export class McmMain implements AfterViewInit{
         var sourceNode = this.itemHighlited.node;
 
         var vkNode = new knalledge.VKNode();
-    	vkNode.kNode = new knalledge.KNode();
+    	  vkNode.kNode = new knalledge.KNode();
         vkNode.kNode.type = knalledgeNodeType;
         vkNode.kNode.name = nodeName;
 
@@ -324,7 +326,7 @@ export class McmMain implements AfterViewInit{
         }.bind(this));
     }
 
-    addCFNode(knalledgeNodeType, knalledgeEdgeType){
+    addCFNode(knalledgeNodeType, knalledgeEdgeType, title?: string){
         this.knalledgeCreateNodeComponent.show(knalledgeNodeType, knalledgeEdgeType, this.toAddCFNode.bind(this));
     }
 
@@ -353,6 +355,17 @@ export class McmMain implements AfterViewInit{
     onCommentItem(item: NodeWithChildren) {
     //   this.policyConfig.knalledgeMap.nextNodeType = "type_ibis_comment";
     //   this.mcmMapInteraction.commentItem(item);
+        this.addCFNode("type_ibis_comment", "type_ibis_comment");
+    }
+
+    disapproveItem(item){
+      this.approvalNodeService.disapproveNode(item.node);
+    }
+
+    onDisapprovingItem(item: NodeWithChildren) {
+    //   this.policyConfig.knalledgeMap.nextNodeType = "type_ibis_comment";
+    //   this.mcmMapInteraction.commentItem(item);
+        this.disapproveItem(item);
         this.addCFNode("type_ibis_comment", "type_ibis_comment");
     }
 
