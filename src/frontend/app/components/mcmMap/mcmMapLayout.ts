@@ -40,8 +40,8 @@ export class McmMapLayout {
     generateView() {
         this.itemParent = new NodeWithChildren();
         this.itemParent.node =
-            // this.mapStructure.rootNode;
-            this.mapStructure.getSelectedNode();
+            this.mapStructure.getSelectedNode() ||
+            this.mapStructure.rootNode;
         let childrenEdges = this.mapStructure.getChildrenEdges(this.itemParent.node);
         this.itemParent.children = [];
         for (let eI = 0; eI < childrenEdges.length; eI++) {

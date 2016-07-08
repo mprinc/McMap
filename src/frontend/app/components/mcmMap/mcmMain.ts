@@ -87,6 +87,10 @@ export class McmMain implements AfterViewInit{
     filterToolbar: any = {
         visible: false
     };
+    itemContainerProperties: any = {
+        visible: false
+    };
+
     mapLoader: MapLoader;
     model;
     mapStructure;
@@ -132,6 +136,22 @@ export class McmMain implements AfterViewInit{
     ngAfterViewInit() {
     }
 
+    getEntityFullName(entity){
+        var fullName = "";
+        var parentNodes = [entity.node];
+
+        do{
+            var parentNode = parentNodes[0];
+            if(parentNode.kNode.type === 'object' ||
+            parentNode.kNode.type === 'model_component'){
+                fullName = parentNode.kNode.name + (fullName ? "_" + fullName : "");
+            }
+            parentNodes =
+                this.mapStructure.getParentNodes(parentNode);
+        }while(parentNodes && parentNodes.length);
+        return fullName;
+    }
+
     getEntityFilter(){
         return this.mcmMapLayout.getEntityFilter();
     }
@@ -143,7 +163,8 @@ export class McmMain implements AfterViewInit{
             object: "Objects",
             grid: "Grids",
             assumption: "Assumptions",
-            variable: "Quantities"
+            variable: "Quantities",
+            process: "Processes"
         };
 
         return typeToText[entityType];
@@ -154,7 +175,8 @@ export class McmMain implements AfterViewInit{
             object: "containsObject",
             grid: "containsGrid",
             assumption: "containsAssumption",
-            variable: "containsVariable"
+            variable: "containsVariable",
+            process: "containsProcess"
         };
         return entityToEdge[entityType];
     }
@@ -226,6 +248,7 @@ export class McmMain implements AfterViewInit{
         item = (this.itemHighlited !== item) ? item : null;
         this.itemHighlited = item;
         this.itemToolbar.visible = !!item;
+        // this.filterToolbar.visible = false;
     }
 
     getItemContainer(){
@@ -269,7 +292,7 @@ export class McmMain implements AfterViewInit{
 
     onEnteredItem(item: NodeWithChildren) {
         this.mcmMapInteraction.navigateItem(item);
-        this.filterToolbar.visible = false;
+        // this.filterToolbar.visible = false;
     }
 
     onDeleteItem(item: NodeWithChildren) {
@@ -282,7 +305,7 @@ export class McmMain implements AfterViewInit{
 
     setEntityFilter(entityType:string) {
         this.mcmMapLayout.setEntityFilter(entityType);
-        this.filterToolbar.visible = false;
+        // this.filterToolbar.visible = false;
         this.update();
     }
 
@@ -293,7 +316,7 @@ export class McmMain implements AfterViewInit{
 
     navigateBack() {
         this.mcmMapInteraction.navigateBack();
-        this.filterToolbar.visible = false;
+        // this.filterToolbar.visible = false;
     }
 
     onItemContainerChanged(item: any) {

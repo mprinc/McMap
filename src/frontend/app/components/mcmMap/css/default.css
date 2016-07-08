@@ -2093,6 +2093,9 @@
   .mcm_main .toolbar .itemTitle {
     font-weight: bold; }
 
+.clickable_text {
+  cursor: pointer; }
+
 .mcm_list_component md-list {
   width: 100%; }
   .mcm_list_component md-list md-subheader {

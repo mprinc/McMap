@@ -61,11 +61,11 @@ var plugins = {
 			openMap: {
 				routes: [{
 					route: 'mcmap',
-					name: 'McM-map',
+					name: 'MCM-Map',
 					icon: ''
 				}, {
 					route: 'map',
-					name: 'map',
+					name: 'KnAllEdge-Map',
 					icon: ''
 				}]
 			}
