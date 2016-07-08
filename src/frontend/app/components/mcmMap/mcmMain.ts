@@ -175,6 +175,10 @@ export class McmMain implements AfterViewInit{
         return typeToText[entityType];
     }
 
+    existsDialogueOverItem(){
+      return this.mcmMapLayout.existsDialogueOverItem(this.itemHighlited.node);
+    }
+
     getEdgeNameFromEntityName(entityType){
         var entityToEdge = {
             object: "containsObject",
@@ -284,9 +288,7 @@ export class McmMain implements AfterViewInit{
     }
 
     addEntity(){
-        let entityType =
-            this.mcmMapLayout.getEntityFilter();
-
+        let entityType = this.mcmMapLayout.getEntityFilter();
         this.mcmSelectEntityComponent.show(entityType, this.toAddEntity.bind(this));
     }
 

@@ -104,20 +104,26 @@
                         <!-- <button md-fab class="md-primary" aria-label="Edit" (click)="options.toggle()">
                             <i title="Edit" md-icon>border_color</i>
                         </button> -->
+                        <span class="discussion">
+                          <span class="discussion-notification" [ngSwitch]="existsDialogueOverItem()">
+                            <span *ngSwitchCase="true">Others discuss this. Join</span>
+                            <span *ngSwitchCase="false">Discuss this</span>
+                          </span>
 
-                        <!-- <button md-fab class="md-primary" aria-label="Discuss" (click)="onDiscussItem(itemHighlited)">
-                            <i title="Discuss" md-icon>feedback</i>
-                             https://design.google.com/icons/#ic_feedback
-                        </button> -->
+                            <!-- <button md-fab class="md-primary" aria-label="Discuss" (click)="onDiscussItem(itemHighlited)">
+                              <i title="Discuss" md-icon>feedback</i>
+                               https://design.google.com/icons/#ic_feedback
+                            </button> -->
 
-                        <button md-fab class="md-primary" aria-label="Comment" (click)="onCommentItem(itemHighlited)">
-                            <i title="Comment" md-icon>comment</i>
-                        </button>
+                            <button md-fab class="md-primary" aria-label="Comment" (click)="onCommentItem(itemHighlited)">
+                                <i title="Comment" md-icon>comment</i>
+                            </button>
 
-                        <button md-fab class="md-primary" aria-label="Question" (click)="onQuestionItem(itemHighlited)">
-                            <i title="Question" md-icon>?</i>
-                        </button>
-
+                            <button md-fab class="md-primary" aria-label="Question" (click)="onQuestionItem(itemHighlited)">
+                                <i title="Question" md-icon>?</i>
+                            </button>
+                        </span>
+                        
                         <span class="itemTitle">
                             {{itemHighlited?.node?.kNode?.name}}
                         </span>

@@ -291,8 +291,21 @@ $map: layout(12 1/4 fluid isolate inside);
 	@include user-select(none);
 
 	.toolbar {
+		$border-color: #000050;
 		.itemTitle {
 			font-weight: bold;
+		}
+		.discussion{
+			padding: 3px;
+			margin-left: 3px;
+			margin-right: 3px;
+			border-left: solid 1px $border-color;
+			border-right: solid 1px $border-color;
+			.discussion-notification{
+				padding-left: 3px;
+				padding-right: 3px;
+				color: #000090;
+			}
 		}
 	}
 }
@@ -308,6 +321,10 @@ $map: layout(12 1/4 fluid isolate inside);
 		md-subheader{
 			font-weight: bold;
 			font-size: 1.2em;
+		}
+		.item-discussion{
+			color: red;
+			margin-left: 5px;
 		}
 
 		md-list-item{

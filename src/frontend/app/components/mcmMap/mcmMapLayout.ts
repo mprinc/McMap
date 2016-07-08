@@ -70,4 +70,19 @@ export class McmMapLayout {
       }
       return itemNo;
     }
+
+    existsDialogueOverItem(vkNode?:any) {
+      if (!vkNode){
+        vkNode = this.mapStructure.getSelectedNode();
+      }
+      if(vkNode){
+        let childrenNodes = this.mapStructure.getChildrenNodes(vkNode);
+        for (let eI = 0; eI < childrenNodes.length; eI++) {
+            if(childrenNodes[eI].kNode.isIbis()){
+              return true;
+            }
+        }
+      }
+      return false;
+    }
 }

@@ -2092,6 +2092,16 @@
   user-select: none; }
   .mcm_main .toolbar .itemTitle {
     font-weight: bold; }
+  .mcm_main .toolbar .discussion {
+    padding: 3px;
+    margin-left: 3px;
+    margin-right: 3px;
+    border-left: solid 1px #000050;
+    border-right: solid 1px #000050; }
+    .mcm_main .toolbar .discussion .discussion-notification {
+      padding-left: 3px;
+      padding-right: 3px;
+      color: #000090; }
 
 .clickable_text {
   cursor: pointer; }
@@ -2101,6 +2111,9 @@
   .mcm_list_component md-list md-subheader {
     font-weight: bold;
     font-size: 1.2em; }
+  .mcm_list_component md-list .item-discussion {
+    color: red;
+    margin-left: 5px; }
   .mcm_list_component md-list md-list-item {
     cursor: pointer;
     width: 100%; }
