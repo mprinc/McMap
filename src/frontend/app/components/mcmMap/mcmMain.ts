@@ -326,8 +326,15 @@ export class McmMain implements AfterViewInit{
         }.bind(this));
     }
 
-    addCFNode(knalledgeNodeType, knalledgeEdgeType, title: string = null){
-        this.knalledgeCreateNodeComponent.show(knalledgeNodeType, knalledgeEdgeType, title, this.toAddCFNode.bind(this));
+    addCFNode(knalledgeNodeType, knalledgeEdgeType, title: string = null, callback:Function = null){
+      var that = this;
+      var callbackAdd:Function = callback ?
+      function(){
+        that.toAddCFNode.bind(that);
+        callback();
+      }
+      : this.toAddCFNode.bind(this);
+      this.knalledgeCreateNodeComponent.show(knalledgeNodeType, knalledgeEdgeType, title, callbackAdd);
     }
 
     collaborateOnEntity(){
@@ -365,8 +372,11 @@ export class McmMain implements AfterViewInit{
     onDisapprovingItem(item: NodeWithChildren) {
     //   this.policyConfig.knalledgeMap.nextNodeType = "type_ibis_comment";
     //   this.mcmMapInteraction.commentItem(item);
-        this.disapproveItem(item);
-        this.addCFNode("type_ibis_comment", "type_ibis_comment", "Why you disapprove it?");
+      var that = this;
+      var disapproved: Function = function(){
+        that.disapproveItem(item);
+      };
+        this.addCFNode("type_ibis_comment", "type_ibis_comment", "Why do you disapprove it?", disapproved);
     }
 
     onQuestionItem(item: NodeWithChildren) {
