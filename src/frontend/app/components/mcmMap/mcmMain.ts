@@ -91,7 +91,7 @@ export class McmMain implements AfterViewInit{
         visible: false
     };
     filterToolbar: any = {
-        visible: false
+        visible: true
     };
     itemContainerProperties: any = {
         visible: false
