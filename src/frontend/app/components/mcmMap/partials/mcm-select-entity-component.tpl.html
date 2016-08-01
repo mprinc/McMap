@@ -2,11 +2,11 @@
     <md-dialog #selectEntityDialog class="selectEntityDialog" (onClose)="onSelectEntityDialogClosed($event)">
         <md-dialog-title>{{searchTitle}}</md-dialog-title>
         <div layout="column" class="md-inline-form">
-          <form>
+          <!-- <form> -->
               <div>
-                  <md-input placeholder="Search ..." style="width: 100%" [(ngModel)]="searchCriteria"  (keyup)="onSearchChanged($event)"></md-input>
+                  <md-input placeholder="Search ..." style="width: 100%" [(ngModel)]="searchCriteria" name="searchCriteria" (keyup)="onSearchChanged($event)"></md-input>
               </div>
-          </form>
+          <!-- </form> -->
         </div>
 
         <md-content flex style="overflow: auto; height: 100%;">

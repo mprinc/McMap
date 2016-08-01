@@ -1,7 +1,4 @@
-import {Component, Inject, EventEmitter, Output, Input} from '@angular/core';
-import { AfterViewInit, ViewChild } from
-'@angular/core';
-import {FORM_DIRECTIVES} from '@angular/common';
+import {Component, Inject, EventEmitter, Output, Input, AfterViewInit, ViewChild} from '@angular/core';
 import {MD_INPUT_DIRECTIVES} from '@angular2-material/input';
 import {upgradeAdapter} from '../../js/upgrade_adapter';
 import {MD_SIDENAV_DIRECTIVES} from '@angular2-material/sidenav';
@@ -43,7 +40,7 @@ declare var window;
         MD_SIDENAV_DIRECTIVES,
         ROUTER_DIRECTIVES,
         MdToolbar,
-        MD_INPUT_DIRECTIVES, FORM_DIRECTIVES
+        MD_INPUT_DIRECTIVES
     ],
     styles: [`
     `]
