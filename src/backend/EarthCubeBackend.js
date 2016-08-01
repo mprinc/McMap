@@ -70,6 +70,8 @@ var howAmIs = app.resource('howAmIs', require('./modules/howAmI'), {id: 'type?/:
 
 /* GENERAL */
 var syncing = app.resource('syncing', require('./modules/syncing'), {id: 'type?/:searchParam?/:searchParam2?'});
+var dbAudits = app.resource('dbAudits', require('./modules/dbAudit'), {id: 'type?/:searchParam?'});
+var session = app.resource('session', require('./modules/session'), {id: 'type?/:searchParam?'});
 
 http.createServer(app).listen(app.get('port'), function() {
 	console.log("Listening on " + app.get('port'));

@@ -58,6 +58,10 @@ src/frontend/app/js/interaction
 src/frontend/app/js/knalledge
 src/frontend/app/components/mapsList
 src/frontend/app/components/gardening
+src/frontend/app/components/bottomPanel
+src/frontend/app/components/change
+src/frontend/app/components/mediaShow
+src/frontend/app/components/puzzles.js
 
 src/backend/models
 src/backend/modules
