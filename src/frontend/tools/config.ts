@@ -3,6 +3,9 @@ import {argv} from 'yargs';
 import {normalize, join} from 'path';
 import * as chalk from 'chalk';
 
+var PluginsConfig = require('../app/js/config/config.plugins');
+
+console.log("Plugins.gardening: ", PluginsConfig.plugins.gardening);
 // --------------
 // Configuration.
 
@@ -11,26 +14,14 @@ const ENVIRONMENTS = {
     PRODUCTION: 'prod'
 };
 
-export const SUB_PROJECT_NAME = argv['sub-project'] || 'MCM';
+export const SUB_PROJECT_NAME = argv['sub-project'] || PluginsConfig.project.name;
 
-const SUB_PROJECTS = {
-    MCM: {
-        BOOTSTRAP_MODULE: 'js/app2',
-        BOOTSTRAP_MODULE_HOT_LOADER: 'hot_loader_app2',
-        SELECTOR: 'button-basic-usage',
-        APP_SRC: 'app',
-        APP_TITLE: 'McModelar',
-        COMPILATION: {},
-        SYM_LINKS_EXISTS: true
-    },
-};
-
-export const SUB_PROJECT = SUB_PROJECTS[SUB_PROJECT_NAME];
+export const SUB_PROJECT = PluginsConfig.project.subProjects[SUB_PROJECT_NAME];
 
 console.log('__dirname: ', __dirname);
 // console.log("SUB_PROJECT: ", SUB_PROJECT);
 
-export const PORT = argv['port'] || 5556;
+export const PORT = argv['port'] || PluginsConfig.project.port || 5556;
 export const PROJECT_ROOT = normalize(join(__dirname, '..'));
 export const ENV = getEnvironment();
 export const DEBUG = argv['debug'] || false;
@@ -56,12 +47,14 @@ export const DIST_DIR = 'dist';
 export const DEV_DEST = `${DIST_DIR}/dev`;
 export const PROD_DEST = `${DIST_DIR}/prod`;
 export const TMP_DIR = ENV === 'dev' ? `${DIST_DIR}/dev` : `${DIST_DIR}/tmp`;
+// this is necessary to help Atom to work with ` character
 export const APP_DEST = `${DIST_DIR}/${ENV}`;
 export const APP_DEST_FROM_HERE = join('..', APP_DEST);
 export const CSS_DEST = `${APP_DEST}/css`;
 export const FONTS_DEST = `${APP_DEST}/fonts`;
 export const JS_DEST = `${APP_DEST}/js`;
 export const APP_ROOT = ENV === 'dev' ? `${APP_BASE}${APP_DEST}/` : `${APP_BASE}`;
+// this is necessary to help Atom to work with ` character
 export const VERSION = appVersion();
 
 export const CSS_PROD_BUNDLE = 'all.css';
@@ -74,190 +67,257 @@ export const VERSION_NODE = '4.0.0';
 console.log('APP_SRC: %s, APP_SRC_FROM_HERE: ', APP_SRC, APP_SRC_FROM_HERE);
 console.log('APP_DEST: %s, APP_DEST_FROM_HERE: ', APP_DEST, APP_DEST_FROM_HERE);
 
-SUB_PROJECTS.MCM.COMPILATION = {
-    ADD_ANTICACHE_SUFIX: false,
-    INLINE_NG1: {
-        SRC: SUB_PROJECT.SYM_LINKS_EXISTS ?
-            // this does work for symbolic links
-            ['**/*.tpl.html'] :
-            // this doesn't work for symbolic links
-            [join(APP_SRC, '**/*.tpl.html')]
-    },
-    INLINE: {
-        USE_RELATIVE_PATHS: true
-    },
-    COMPASS: {
-        // NOTE: !!!if true, this will output css files into sass folder!!!
-        // due to [issue-61](https://github.com/appleboy/gulp-compass/issues/61)
-        GENERIC: false,
-        // if value of the path key is not set to object, default values will be considered
-        PATHS: {
-            '': { destDir: APP_SRC, cssDir: 'css' },
-            'components/collaboPlugins': { destDir: APP_SRC, cssDir: 'css' },
-            'components/knalledgeMap': { destDir: APP_SRC, cssDir: 'css' },
-            'components/login': { destDir: APP_SRC, cssDir: 'css' },
-            'components/notify': { destDir: APP_SRC, cssDir: 'css' },
-            'components/gardening': { destDir: APP_SRC, cssDir: 'css' },
-            'components/rima': { destDir: APP_SRC, cssDir: 'css' },
-            'components/topiChat': { destDir: APP_SRC, cssDir: 'css' },
-            'components/mcmMap': { destDir: APP_SRC, cssDir: 'css' },
-            'components/mcmMaps': { destDir: APP_SRC, cssDir: 'css' },
-            'components/mapsList': { destDir: APP_SRC, cssDir: 'css' }
-        }
-    }
-};
-
 export const COMPASS_CONFIG = SUB_PROJECT.COMPILATION.COMPASS;
 console.log("SUB_PROJECT: ", SUB_PROJECT);
+
+function replaceStrPaths(pathArray:string[]):string{
+    if(!Array.isArray(pathArray) || pathArray.length !== 2)
+        return null;
+
+    var folder = pathArray[0];
+    var file = pathArray[1];
+    switch(folder){
+        case 'APP_SRC_STR':
+            folder = APP_SRC;
+            break;
+        case 'APP_DEST_STR':
+            folder = APP_DEST;
+            break;
+    }
+    return folder + "/" + file;
+}
+
+// fixing/patching project variables
+var inlineNg1 = SUB_PROJECT.COMPILATION.INLINE_NG1.SRC;
+for(var i in inlineNg1){
+    if(Array.isArray(inlineNg1[i])){
+        console.log("inlineNg1.before: ", inlineNg1[i]);
+        inlineNg1[i] = replaceStrPaths(inlineNg1[i]);
+        console.log("inlineNg1.after: ", inlineNg1[i]);
+    }
+}
 
 export const NG2LINT_RULES = customRules();
 
 interface IDependency {
     src: string;
-    inject: string | boolean;
+    inject?: string | boolean;
     asset?: boolean; // if set to true it will be copied to final destination
     dest?: string;
     noNorm?: boolean; // if true, dependency will not get normalize with normalizeDependencies()
 }
 
-// Declare local files that needs to be injected
-const SUB_PROJECTS_FILES = {
-    MCM: {
-        APP_ASSETS: [
-            // (NG2-) MATERIAL
-            { src: 'ng2-material/font/MaterialIcons-Regular.*', asset: true, dest: CSS_DEST },
-            { src: join(APP_SRC, 'data'), asset: true, dest: APP_DEST, noNorm: true }
-        ],
-        NPM_DEPENDENCIES: [
-            // LIBS
-            { src: join(APP_DEST, 'js/lib/debug.js'), inject: 'libs', noNorm: true },
-            { src: join(APP_SRC, '../bower_components/debugpp/index.js'), inject: 'libs', noNorm: true },
-            { src: join(APP_SRC, '../bower_components/halo/index.js'), inject: 'libs', noNorm: true },
-
-            // MCM APP
-            { src: join(APP_SRC, 'js/config/config.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/config/config.env.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/config/config.plugins.js'), inject: true, noNorm: true },
-
-            { src: join(APP_DEST, 'js/mcmInteraction/mcmInteraction.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/mcmInteraction/moveAndDrag.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/mcmInteraction/keyboard.js'), inject: true, noNorm: true },
-
-            // KNALLEDGE CORE
-            { src: join(APP_SRC, 'js/knalledge/index.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/knalledge/kNode.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/knalledge/kEdge.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/knalledge/kMap.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/knalledge/WhoAmI.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/knalledge/HowAmI.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/knalledge/WhatAmI.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/knalledge/vkNode.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/knalledge/vkEdge.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/knalledge/state.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/knalledge/mapStructure.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/knalledge/mapLayout.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/knalledge/mapVisualization.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/knalledge/mapLayoutTree.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/knalledge/mapVisualizationTree.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/knalledge/mapLayoutFlat.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/knalledge/mapVisualizationFlat.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/knalledge/mapLayoutGraph.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/knalledge/mapVisualizationGraph.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/knalledge/mapManager.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/knalledge/map.js'), inject: true, noNorm: true },
-
-            // COMPONENTS
-            // TODO: Load only if knalledgeMap component for visualization is added as a plugin
-            { src: join(APP_SRC, 'js/interaction/interaction.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/interaction/moveAndDrag.js'), inject: true, noNorm: true },
-            // { src: join(APP_SRC, 'js/interaction/mapInteraction.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/interaction/keyboard.js'), inject: true, noNorm: true },
-
-            { src: join(APP_SRC, 'js/mcm/mcm.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/mcm/map.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/mcm/mapLayout.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/mcm/mapVisualization.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/mcm/entitiesToolset.js'), inject: true, noNorm: true },
-
-            { src: join(APP_SRC, 'js/mcm/list/list.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/mcm/list/map.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/mcm/list/mapLayout.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'js/mcm/list/mapVisualization.js'), inject: true, noNorm: true },
-
-            { src: join(APP_SRC, 'components/collaboPlugins/js/services.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'components/collaboPlugins/js/directives.js'), inject: true, noNorm: true },
-
-            { src: join(APP_SRC, 'components/halo/index.js'), inject: true, noNorm: true },
-
-            { src: join(APP_SRC, 'components/knalledgeMap/js/directives.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'components/knalledgeMap/js/services.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'components/rima/js/directives.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'components/rima/js/services.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'components/rima/js/filters.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'components/mcmMap/js/directives.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'components/mcmMap/js/services.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'components/mcmMap/js/mcmMapAssumption.service.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'components/mcmMap/js/mcmMapSchema.service.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'components/mcmMap/js/mcmMapObject.service.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'components/mcmMap/js/mcmMapVariableQuantity.service.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'components/mcmMap/js/mcmMapVariableOperator.service.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'components/mcmMaps/js/directives.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'components/notify/js/directives.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'components/notify/js/services.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'components/gardening/js/services.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'components/topiChat/js/directives.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'components/topiChat/js/services.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'components/login/js/directives.js'), inject: true, noNorm: true },
-            { src: join(APP_SRC, 'components/login/js/services.js'), inject: true, noNorm: true },
-
-            // PLUGINS: TODO: We want to avoid hardoced registering plugins here!
-            // { src: join(APP_SRC, 'components/ontov/js/vendor/jquery-1.8.3.js'), inject: true, noNorm: true},
-
-            // ng1 registration and bootstrap
-            // { src: join(APP_SRC, 'components/knalledgeMap/knalledgeMapPolicyService.js'), inject: true, noNorm: true},
-            // { src: join(APP_SRC, 'components/knalledgeMap/knalledgeMapViewService.js'), inject: true, noNorm: true},
-            // { src: join(APP_SRC, 'js/app_pre.js'), inject: true, noNorm: true},
-            { src: join(APP_SRC, 'js/app.js'), inject: true, noNorm: true },
-
-            // CSS
-            // LIBS
-            { src: join(APP_SRC, 'css/libs/bootstrap/bootstrap.css'), inject: true, dest: CSS_DEST, noNorm: true },
-            { src: join(APP_SRC, 'css/libs/textAngular/textAngular.css'), inject: true, dest: CSS_DEST, noNorm: true },
-
-            // KNALLEDGE CORE
-            { src: join(APP_SRC, 'css/libs/wizard/ngWizard.css'), inject: true, dest: CSS_DEST, noNorm: true },
-
-            { src: join(APP_SRC, 'css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
-            { src: join(APP_SRC, 'components/knalledgeMap/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
-            { src: join(APP_SRC, 'components/knalledgeMap/css/graph.css'), inject: true, dest: CSS_DEST, noNorm: true },
-            { src: join(APP_SRC, '../bower_components/halo/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
-            { src: join(APP_SRC, 'components/rima/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
-            { src: join(APP_SRC, 'components/login/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
-            { src: join(APP_SRC, 'components/mcmMap/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
-            { src: join(APP_SRC, 'components/mcmMaps/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
-            { src: join(APP_SRC, 'components/notify/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
-            { src: join(APP_SRC, 'components/gardening/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
-            { src: join(APP_SRC, 'components/topiChat/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
-            { src: join(APP_SRC, 'components/collaboPlugins/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
-            { src: join(APP_SRC, 'components/mapsList/css/maps-list.component.css'), inject: true, dest: CSS_DEST, noNorm: true },
-
-            // KNALLEDGE PLUGINS, TODO: we want to avoid hardoced registering plugins here
-            // { src: join(APP_SRC, 'components/ontov/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
-
-            // (NG2-) MATERIAL
-            { src: 'ng2-material/ng2-material.css', inject: true, dest: CSS_DEST },
-            { src: 'ng2-material/font/font.css', inject: true, dest: CSS_DEST }
-        ],
-        DEV_NPM_DEPENDENCIES: [
-        ],
-        PROD_NPM_DEPENDENCIES: [
-            // ng1 templates (build.js.prod:inlineNg1Templates())
-            { src: join(TMP_DIR, 'js/ng1Templates.js'), inject: true, noNorm: true }
-        ]
-    }
+// http://stackoverflow.com/questions/12787781/type-definition-in-object-literal-in-typescript
+interface IDependencyStructure {
+    APP_ASSETS: IDependency[];
+    NPM_DEPENDENCIES: IDependency[];
+    DEV_NPM_DEPENDENCIES: IDependency[];
+    PROD_NPM_DEPENDENCIES: IDependency[];
 };
 
-export const SUB_PROJECTS_FILE = SUB_PROJECTS_FILES[SUB_PROJECT_NAME];
+// Declare local files that needs to be injected
+const SUB_PROJECTS_FILE:IDependencyStructure = {
+    APP_ASSETS: [
+        // (NG2-) MATERIAL
+        { src: 'ng2-material/font/MaterialIcons-Regular.*', asset: true, dest: CSS_DEST },
+        { src: join(APP_SRC, 'data'), asset: true, dest: APP_DEST, noNorm: true }
+    ],
+    NPM_DEPENDENCIES: [
+        // LIBS
+        { src: join(APP_SRC, 'js/lib/debug.js'), inject: 'libs', noNorm: true },
+        { src: join(APP_SRC, '../bower_components/debugpp/index.js'), inject: 'libs', noNorm: true },
+        { src: join(APP_SRC, '../bower_components/halo/index.js'), inject: 'libs', noNorm: true },
+
+        // MCM APP
+        { src: join(APP_SRC, 'js/config/config.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/config/config.env.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/config/config.plugins.js'), inject: true, noNorm: true },
+
+        { src: join(APP_DEST, 'js/mcmInteraction/mcmInteraction.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/mcmInteraction/moveAndDrag.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/mcmInteraction/keyboard.js'), inject: true, noNorm: true },
+
+        // KNALLEDGE CORE
+        { src: join(APP_SRC, 'js/knalledge/index.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/kNode.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/kEdge.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/kMap.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/WhoAmI.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/HowAmI.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/WhatAmI.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/vkNode.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/vkEdge.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/state.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/mapStructure.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/mapLayout.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/mapVisualization.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/mapLayoutTree.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/mapVisualizationTree.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/mapLayoutFlat.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/mapVisualizationFlat.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/mapLayoutGraph.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/mapVisualizationGraph.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/mapManager.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/map.js'), inject: true, noNorm: true },
+
+        // COMPONENTS
+        { src: join(APP_SRC, 'components/puzzles.js'), inject: true, noNorm: true },
+        // TODO: Load only if knalledgeMap component for visualization is added as a plugin
+        { src: join(APP_SRC, 'js/interaction/interaction.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/interaction/moveAndDrag.js'), inject: true, noNorm: true },
+        // { src: join(APP_SRC, 'js/interaction/mapInteraction.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/interaction/keyboard.js'), inject: true, noNorm: true },
+
+        { src: join(APP_SRC, 'js/mcm/mcm.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/mcm/map.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/mcm/mapLayout.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/mcm/mapVisualization.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/mcm/entitiesToolset.js'), inject: true, noNorm: true },
+
+        { src: join(APP_SRC, 'js/mcm/list/list.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/mcm/list/map.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/mcm/list/mapLayout.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/mcm/list/mapVisualization.js'), inject: true, noNorm: true },
+
+        { src: join(APP_SRC, 'components/halo/index.js'), inject: true, noNorm: true },
+
+        { src: join(APP_SRC, 'components/mcmMap/js/directives.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'components/mcmMap/js/services.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'components/mcmMap/js/mcmMapAssumption.service.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'components/mcmMap/js/mcmMapSchema.service.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'components/mcmMap/js/mcmMapObject.service.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'components/mcmMap/js/mcmMapVariableQuantity.service.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'components/mcmMap/js/mcmMapVariableOperator.service.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'components/mcmMaps/js/directives.js'), inject: true, noNorm: true },
+
+        // PLUGINS: TODO: We want to avoid hardoced registering plugins here!
+        // { src: join(APP_SRC, 'components/ontov/js/vendor/jquery-1.8.3.js'), inject: true, noNorm: true},
+
+        // ng1 registration and bootstrap
+        // { src: join(APP_SRC, 'components/knalledgeMap/knalledgeMapPolicyService.js'), inject: true, noNorm: true},
+        // { src: join(APP_SRC, 'components/knalledgeMap/knalledgeMapViewService.js'), inject: true, noNorm: true},
+        // { src: join(APP_SRC, 'js/app_pre.js'), inject: true, noNorm: true},
+        { src: join(APP_SRC, 'js/app.js'), inject: true, noNorm: true },
+
+        // CSS
+        // LIBS
+        { src: join(APP_SRC, 'css/libs/bootstrap/bootstrap.css'), inject: true, dest: CSS_DEST, noNorm: true },
+        { src: join(APP_SRC, 'css/libs/textAngular/textAngular.css'), inject: true, dest: CSS_DEST, noNorm: true },
+
+        // KNALLEDGE CORE
+        { src: join(APP_SRC, 'css/libs/wizard/ngWizard.css'), inject: true, dest: CSS_DEST, noNorm: true },
+
+        { src: join(APP_SRC, 'css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
+        { src: join(APP_SRC, '../bower_components/halo/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
+        { src: join(APP_SRC, 'components/mcmMap/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
+        { src: join(APP_SRC, 'components/mcmMaps/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
+
+        // KNALLEDGE PLUGINS, TODO: we want to avoid hardoced registering plugins here
+
+        // (NG2-) MATERIAL
+        { src: 'ng2-material/ng2-material.css', inject: true, dest: CSS_DEST },
+        { src: 'ng2-material/font/font.css', inject: true, dest: CSS_DEST }
+    ],
+    DEV_NPM_DEPENDENCIES: [
+    ],
+    PROD_NPM_DEPENDENCIES: [
+        // ng1 templates (build.js.prod:inlineNg1Templates())
+        { src: join(TMP_DIR, 'js/ng1Templates.js'), inject: true, noNorm: true }
+    ]
+};
+
+var npmDependencies = SUB_PROJECTS_FILE.NPM_DEPENDENCIES;
+var puzzlesBuild = PluginsConfig.plugins.puzzlesBuild;
+var puzzlesConfig = PluginsConfig.plugins.puzzlesConfig;
+
+// Example
+
+function injectJsDependencyFactory(dependencies:IDependency[], puzzleBuild:any){
+    // Example
+    // { src: join('components/gardening/js/services.js'), inject: true, noNorm: true },
+
+    var jsDpendencyTemplate = { src: null,
+        inject: true, noNorm: true
+    };
+
+    var path = replaceStrPaths(puzzleBuild.path);
+
+    function injectJsDependency(injectJs:string){
+        var dependency:any = {};
+        Object.assign(dependency, jsDpendencyTemplate);
+        dependency.src = (path) ?
+            path + "/" + injectJs : injectJs;
+        dependencies.push(dependency);
+    }
+    return injectJsDependency;
+}
+
+function injectCssDependencyFactory(dependencies:IDependency[], puzzleBuild:any){
+    // Example
+    // { src: join(APP_SRC, 'components/gardening/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
+
+    var cssDpendencyTemplate = { src: null, dest: CSS_DEST,
+        inject: true, noNorm: true
+    };
+
+    var path = replaceStrPaths(puzzleBuild.path);
+
+    function injectCssDependency(injectCss:string){
+        var dependency:any = {};
+        Object.assign(dependency, cssDpendencyTemplate);
+        dependency.src = (path) ?
+            path + "/" + injectCss : injectCss;
+        dependencies.push(dependency);
+    }
+    return injectCssDependency;
+}
+
+function injectPuzzle(dependencies:IDependency[], puzzleBuild:any){
+
+    let injectJsDependency = injectJsDependencyFactory(dependencies, puzzleBuild);
+
+    if(Array.isArray(puzzleBuild.injectJs)){
+        for(let i in puzzleBuild.injectJs){
+            let injectJs = puzzleBuild.injectJs[i];
+            injectJsDependency(injectJs);
+        }
+    }else if(puzzleBuild.injectJs){
+        let injectJs = puzzleBuild.injectJs;
+        injectJsDependency(injectJs);
+    }
+
+    let injectCssDependency = injectCssDependencyFactory(dependencies, puzzleBuild);
+
+    if(Array.isArray(puzzleBuild.injectCss)){
+        for(let i in puzzleBuild.injectCss){
+            let injectCss = puzzleBuild.injectCss[i];
+            injectCssDependency(injectCss);
+        }
+    }else if(puzzleBuild.injectCss){
+        let injectCss = puzzleBuild.injectCss;
+        injectCssDependency(injectCss);
+    }
+}
+
+for(var puzzleName in puzzlesBuild){
+    var puzzleBuild = puzzlesBuild[puzzleName];
+    console.log("puzzleBuild: ", puzzleBuild);
+
+    // if not configured or set as unavailable do not inject it
+    if(!(puzzleName in puzzlesConfig) || !puzzlesConfig[puzzleName].available) continue;
+
+    if('path' in puzzleBuild){
+        injectPuzzle(npmDependencies, puzzleBuild);
+    }else{
+        for(var subPuzzleName in puzzleBuild){
+            var subPuzzleBuild = puzzleBuild[subPuzzleName];
+            console.log("subPuzzleBuild: ", subPuzzleBuild);
+            if('path' in subPuzzleBuild){
+                injectPuzzle(npmDependencies, subPuzzleBuild);
+            }
+        }
+    }
+}
 
 if (ENABLE_HOT_LOADING) {
     console.log(chalk.bgRed.white.bold('The hot loader is temporary disabled.'));
@@ -382,6 +442,7 @@ var materialPkgs = [
     'checkbox',
     'sidenav',
     'checkbox',
+    'forms',
     'input',
     'progress-bar',
     'progress-circle',
@@ -397,7 +458,7 @@ var materialPkgs = [
 
 // put the names of any of your Angular components here
 var angularPkgs = [
-    'common', 'compiler', 'core', 'http', 'platform-browser', 'platform-browser-dynamic', 'router', 'router-deprecated', 'upgrade'
+    'common', 'compiler', 'core', 'forms', 'http', 'platform-browser', 'platform-browser-dynamic', 'router', 'router-deprecated', 'upgrade'
 ];
 // for(var pI in angularPkgs){
 //     var pkg = angularPkgs[pI];

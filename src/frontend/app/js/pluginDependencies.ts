@@ -6,10 +6,11 @@
 // var cTopPanel = TopPanel;
 
 import {GardeningControls} from '../components/gardening/gardening-controls.component';
-var cGardeningControls = GardeningControls;
-
 import {RimaUsersList} from '../components/rima/rimaUsersList';
-var cRimaUsersList = RimaUsersList;
-
 import {IbisTypesList} from '../components/knalledgeMap/ibisTypesList';
-var cIbisTypesList = IbisTypesList;
+
+export var components:any = {};
+
+components['/components/gardening/gardening-controls.component'] = GardeningControls;
+components['/components/rima/rimaUsersList'] = RimaUsersList;
+components['/components/knalledgeMap/ibisTypesList'] = IbisTypesList;

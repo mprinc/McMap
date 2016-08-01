@@ -17,7 +17,12 @@ import {GlobalEmitterServicesArray} from '../components/collaboPlugins/globalEmi
 import {TopiChatConfigService} from '../components/topiChat/topiChatConfigService';
 import {TopiChatService} from '../components/topiChat/topiChatService';
 import {ApprovalNodeService} from '../components/gardening/approval.node.service';
+import {ChangeService} from '../components/change/change.service';
+import {MATERIAL_PROVIDERS} from 'ng2-material';
 
+import {CollaboGrammarService} from '../components/collaboPlugins/CollaboGrammarService';
+
+import { disableDeprecatedForms, provideForms } from '@angular/forms';
 
 // import {BroadcastManagerService} from '../components/collaboBroadcasting/broadcastManagerService';
 
@@ -57,6 +62,19 @@ angular.module('mcmMapsDirectives')
     })
     ;
 
+upgradeAdapter.addProvider(MATERIAL_PROVIDERS);
+
+/** for Angular Forms:
+* instead of
+* `bootstrap(AppComponent, [
+* disableDeprecatedForms(),
+* provideForms()
+* ])`
+* that cannot be used until we bootstrap as Angular 2
+*/
+
+upgradeAdapter.addProvider(disableDeprecatedForms());
+upgradeAdapter.addProvider(provideForms());
 
 var topiChatServices = angular.module('topiChatServices');
 topiChatServices
@@ -97,7 +115,9 @@ mcmMapServicesModule
 // upgrading ng1 services into ng2 space
 upgradeAdapter.upgradeNg1Provider('KnAllEdgeRealTimeService');
 upgradeAdapter.upgradeNg1Provider('RimaService');
+upgradeAdapter.upgradeNg1Provider('CollaboPluginsService');
 upgradeAdapter.upgradeNg1Provider('Plugins');
+upgradeAdapter.upgradeNg1Provider('ENV');
 // upgradeAdapter.upgradeNg1Provider('$injector');
 upgradeAdapter.upgradeNg1Provider('KnalledgeMapVOsService');
 upgradeAdapter.upgradeNg1Provider('KnalledgeMapService');
@@ -132,6 +152,22 @@ injector.addPath("knalledge.MapLoader", MapLoader);
 angular.module('Config')
 	.constant("injector", injector)
 ;
+
+import { HTTP_PROVIDERS } from '@angular/http';
+upgradeAdapter.addProvider(HTTP_PROVIDERS);
+
+upgradeAdapter.addProvider(ChangeService);
+var changeServices =
+    angular.module('changeServices');
+changeServices.
+    service('ChangeService', upgradeAdapter.downgradeNg2Provider(ChangeService));
+
+upgradeAdapter.addProvider(CollaboGrammarService);
+var collaboServices =
+    angular.module('collaboPluginsServices');
+collaboServices.
+    service('CollaboGrammarService', upgradeAdapter.downgradeNg2Provider(CollaboGrammarService));
+
 
 // console.log('GOTOVO ng2 a');
 

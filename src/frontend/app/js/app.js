@@ -27,7 +27,7 @@ var requiresList = [
 	, 'mcmMapsDirectives' // KnAllEdge Map component
 ];
 
-if(window.Config.Plugins.rima.config.rimaService.available){
+if(window.Config.Plugins.puzzles.rima.config.rimaService.available){
 	requiresList.push('rimaServices');
 	requiresList.push('rimaDirectives');
 	requiresList.push('rimaFilters');
@@ -41,15 +41,14 @@ requiresList.push('notifyDirectives');
 
 requiresList.push('gardeningServices');
 
-// requiresList.push('topiChatServices');
+requiresList.push('topiChatServices');
 // requiresList.push('topiChatDirectives');
 
 // we want to avoid hardoced registering plugins here
-// requiresList.push('ontovServices');
 
 // requiresList.push('requestServices');
 // requiresList.push('suggestionServices');
-// requiresList.push('changeServices');
+requiresList.push('changeServices');
 
 angular.module('McModelarApp', requiresList)
 // routes
@@ -80,7 +79,7 @@ angular.module('McModelarApp', requiresList)
 		templateUrl: 'components/mcmMaps/partials/index.tpl.html'
 	})
 	.when('/maps', {
-		templateUrl: 'components/mapsList/maps-list-index.tpl.html'
+		templateUrl: 'components/mapsList/partials/maps-list-index.tpl.html'
 	})
 
 	// http://localhost:8410/app/index-dev.html#/login/iAmId
