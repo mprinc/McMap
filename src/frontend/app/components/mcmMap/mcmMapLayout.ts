@@ -60,6 +60,7 @@ export class McmMapLayout {
 
     getChildrenNumberForEntityType(entityType) {
       let itemNo: number = 0;
+      if(!this.mapStructure) return;
       var vkNode = this.mapStructure.getSelectedNode();
       let childrenNodes = this.mapStructure.getChildrenNodes(vkNode);
       for (let eI = 0; eI < childrenNodes.length; eI++) {
