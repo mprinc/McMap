@@ -34,9 +34,16 @@ body {
 }
 
 
-md-toolbar-row{
-	height: auto !important;
-	padding: 3px;
+md-toolbar{
+	&.flexible{
+		height: auto !important;
+		min-height: auto !important;
+
+		md-toolbar-row{
+			height: auto !important;
+			padding: 3px;
+		}
+	}
 }
 
 .text-not-selectable {

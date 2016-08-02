@@ -28,9 +28,12 @@ body {
   overflow-x: hidden;
   overflow-y: scroll; }
 
-md-toolbar-row {
+md-toolbar-row.flexible {
   height: auto !important;
   padding: 3px; }
+  md-toolbar-row.flexible md-toolbar {
+    height: auto !important;
+    min-height: auto !important; }
 
 .text-not-selectable {
   -webkit-touch-callout: none;
