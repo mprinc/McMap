@@ -1,39 +1,39 @@
 <!-- main container -->
 <div layout="column" layout-fill>
-    <!-- content -->
-    <md-sidenav-layout layout="row" flex style="overflow: auto; height: 100%;">
-        <!-- <md-sidenav #options align="left" layout="column" [style]="hasMedia('gt-sm') ? 'side' : 'over'"> -->
-        <md-sidenav #options [opened]="false" align="end" mode="side" layout="column">
-            <md-content>
-                <div style="text-align: right;">
-                    <button md-raised-button (click)="options.close()" align="right" class="md-primary" hide-gt-md>
-                        Close
-                    </button>
-                </div>
-                <knalledge-map-list class="knalledge_map_list"></knalledge-map-list>
-            </md-content>
-        </md-sidenav>
-        <!-- Tools -->
-        <md-sidenav #settings align="start" style="min-width: 200px; max-width: 300px; width: 30%;" class="md-sidenav-left md-whiteframe-z2">
-            <md-content>
-                <div style="text-align: right;">
-                    <button md-raised-button (click)="settings.close()" align="right" class="md-primary">
-                        Close
-                    </button>
-                </div>
-                <knalledge-map-tools class="knalledge_map_tools"></knalledge-map-tools>
-            </md-content>
-        </md-sidenav>
+  <!-- content -->
+  <md-sidenav-layout layout="row" flex style="overflow: auto; height: 100%;">
+    <!-- <md-sidenav #options align="left" layout="column" [style]="hasMedia('gt-sm') ? 'side' : 'over'"> -->
+    <md-sidenav #options [opened]="false" align="end" mode="side" layout="column">
+      <md-content>
+        <div style="text-align: right;">
+          <button md-raised-button (click)="options.close()" align="right" class="md-primary" hide-gt-md>
+            Close
+          </button>
+        </div>
+        <knalledge-map-list class="knalledge_map_list"></knalledge-map-list>
+      </md-content>
+    </md-sidenav>
+    <!-- Tools -->
+    <md-sidenav #settings align="start" style="min-width: 200px; max-width: 300px; width: 30%;" class="md-sidenav-left md-whiteframe-z2">
+      <md-content>
+        <div style="text-align: right;">
+          <button md-raised-button (click)="settings.close()" align="right" class="md-primary">
+            Close
+          </button>
+        </div>
+        <knalledge-map-tools class="knalledge_map_tools"></knalledge-map-tools>
+      </md-content>
+    </md-sidenav>
 
-        <!-- Main content -->
-        <md-content class="knalledge_map_index" flex>
-            <div layout-fill layout-align="stretch stretch">
-                <div class="knalledge_map_middle" layout-fill layout="column">
-                    <!-- toolbar -->
-                    <md-toolbar class="toolbar" color="primary" style="width: 100%;">
-                        <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap style="width: 100%;">
-                            <section class="commands" layout="row" layout-sm="column" layout-align="left center" layout-wrap>
-                                <!-- <button md-fab class="md-primary" aria-label="Configuration" (click)="settings.toggle()" [hidden]="settings.opened">
+    <!-- Main content -->
+    <md-content class="knalledge_map_index" flex>
+      <div layout-fill layout-align="stretch stretch">
+        <div class="knalledge_map_middle" layout-fill layout="column">
+          <!-- toolbar -->
+          <md-toolbar class="toolbar" color="primary" style="width: 100%;">
+            <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap style="width: 100%;">
+              <section class="commands" layout="row" layout-sm="column" layout-align="left center" layout-wrap>
+                <!-- <button md-fab class="md-primary" aria-label="Configuration" (click)="settings.toggle()" [hidden]="settings.opened">
                                     <i title="Settings" md-icon>settings</i>
                                 </button>
 
@@ -41,81 +41,77 @@
                                     <i title="Options" md-icon>chrome_reader_mode</i>
                                 </button> -->
 
-                                <button md-fab class="md-primary" aria-label="Maps" (click)="go('maps')">
-                                    <i title="Maps List" md-icon>map</i>
-                                </button>
+                <button md-fab class="md-primary" aria-label="Maps" (click)="go('maps')">
+                  <i title="Maps List" md-icon>map</i>
+                </button>
 
-                                <button md-fab class="md-primary" aria-label="Filter type" (click)="filterToolbar.visible=!filterToolbar.visible; itemToolbar.visible = false;">
-                                    <i title="Filter type" md-icon>filter_center_focus</i>
-                                </button>
+                <button md-fab class="md-primary" aria-label="Filter type" (click)="filterToolbar.visible=!filterToolbar.visible; itemToolbar.visible = false;">
+                  <i title="Filter type" md-icon>filter_center_focus</i>
+                </button>
 
-                                <!-- <button md-fab class="md-primary" aria-label="Plugins" (click)="go('plugins')"  [hidden]="!policyConfig.moderating.enabled">
+                <!-- <button md-fab class="md-primary" aria-label="Plugins" (click)="go('plugins')"  [hidden]="!policyConfig.moderating.enabled">
                                     <i title="Plugins" md-icon>extension</i>
                                 </button> -->
-                            </section>
+              </section>
 
-                            <button md-fab class="md-primary" aria-label="Navigate Back" (click)="navigateBack()">
-                                <i title="Back" md-icon>navigate_before</i>
-                            </button>
-                            <button md-fab class="md-primary" aria-label="Add Entity" (click)="addEntity()">
-                                <i title="Add Entity" md-icon>add</i>
-                            </button>
+              <button md-fab class="md-primary" aria-label="Navigate Back" (click)="navigateBack()">
+                <i title="Back" md-icon>navigate_before</i>
+              </button>
+              <button md-fab class="md-primary" aria-label="Add Entity" (click)="addEntity()">
+                <i title="Add Entity" md-icon>add</i>
+              </button>
 
-                            <span class="itemTitle clickable_text" (click)="itemContainerProperties.visible=!itemContainerProperties.visible">
+              <span class="itemTitle clickable_text" (click)="itemContainerProperties.visible=!itemContainerProperties.visible">
                                 {{itemContainer?.node?.kNode?.name}}
                             </span>
 
-                            <span class="itemTitle clickable_text" (click)="filterToolbar.visible=!filterToolbar.visible; itemToolbar.visible = false;">
+              <span class="itemTitle clickable_text" (click)="filterToolbar.visible=!filterToolbar.visible; itemToolbar.visible = false;">
                                 : {{getEntityFilterText()}}
                                (<span [ngSwitch]="getNumberOfFilteredEntities() === null"><span *ngSwitchCase="true"><i class="fa fa-refresh fa-spin"></i><span class="sr-only">Loading...</span></span><span *ngSwitchCase="false">{{getNumberOfFilteredEntities()}}</span></span>)
-                            </span>
+              </span>
 
-                            <span flex></span>
+              <span flex></span>
 
-                            <section class="whoAmI" layout="row" layout-sm="column" layout-align="end center" layout-wrap>
-                                <button md-fab class="md-primary" aria-label="Person" (click)="go('login')">
-                                    <i title="Login" md-icon>person</i>
-                                </button>
+              <section class="whoAmI" layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+                <button md-fab class="md-primary" aria-label="Person" (click)="go('login')">
+                  <i title="Login" md-icon>person</i>
+                </button>
 
-                                <button md-fab class="md-primary" aria-label="Logout" (click)="go('logout')">
+                <!-- <button md-fab class="md-primary" aria-label="Logout" (click)="go('logout')">
                                     <i title="Logout" md-icon>directions run</i>
-                                </button>
-                            </section>
-                        </section>
-                    </md-toolbar>
+                                </button> -->
+              </section>
+            </section>
+          </md-toolbar>
 
-                    <md-toolbar *ngIf="itemContainerProperties.visible" class="toolbar" color="primary" style="width: 100%;" layout-align="center center">
-                        <section layout="column" layout-gt-sm="row" layout-align="center center" layout-wrap style="width: 100%;">
+          <md-toolbar *ngIf="itemContainerProperties.visible" class="toolbar" color="primary" style="width: 100%;" layout-align="center center">
+            <section layout="column" layout-gt-sm="row" layout-align="center center" layout-wrap style="width: 100%;">
 
-                            <span class="itemTitle clickable_text" (click)="itemContainerProperties.visible=false;">
+              <span class="itemTitle clickable_text" (click)="itemContainerProperties.visible=false;">
                                 {{getEntityFullName(itemContainer)}}
                             </span>
 
-                        </section>
-                    </md-toolbar>
+            </section>
+          </md-toolbar>
 
-                    <!-- MCM Map List -->
-                    <mcm-list-component
-                    [itemContainer]="itemContainer"
-                    [existsDialogueOverItem]="existsDialogueOverItem_binded"
-                    (selectItem)="onSelectedItem($event)"
-                    (enterItem)="onEnteredItem($event)" flex style="overflow: auto; height: 100%;"></mcm-list-component>
+          <!-- MCM Map List -->
+          <mcm-list-component [itemContainer]="itemContainer" [existsDialogueOverItem]="existsDialogueOverItem_binded" (selectItem)="onSelectedItem($event)" (enterItem)="onEnteredItem($event)" flex style="overflow: auto; height: 100%;"></mcm-list-component>
 
-                    <md-toolbar *ngIf="itemToolbar.visible" class="toolbar"  color="accent" style="width: 100%;">
-                        <button md-fab class="md-primary" aria-label="Delete" (click)="onDeleteItem(itemHighlited)">
-                            <i title="Delete" md-icon>delete</i>
-                        </button>
-                        <!-- <button md-fab class="md-primary" aria-label="Edit" (click)="options.toggle()">
+          <md-toolbar *ngIf="itemToolbar.visible" class="toolbar" color="accent" style="width: 100%;">
+            <button md-fab class="md-primary" aria-label="Delete" (click)="onDeleteItem(itemHighlited)">
+              <i title="Delete" md-icon>delete</i>
+            </button>
+            <!-- <button md-fab class="md-primary" aria-label="Edit" (click)="options.toggle()">
                             <i title="Edit" md-icon>border_color</i>
                         </button> -->
 
-                        <span class="itemTitle">
+            <span class="itemTitle">
                             {{itemHighlited?.node?.kNode?.name}}
                         </span>
 
-                        <span flex></span>
+            <span flex></span>
 
-                        <span class="collaboration">
+            <span class="collaboration">
                           <span class="collaboration-notification" [ngSwitch]="existsDialogueOverItem()">
 
                               <button md-raised-button *ngSwitchCase="true" (click)="collaborateOnEntity()" class="md-accent md-hue-1">Join Collabo</button>
@@ -123,57 +119,57 @@
                               <button md-raised-button *ngSwitchCase="false" (click)="collaborateOnEntity()" class="md-accent md-hue-1">Start Collabo</button>
                           </span>
 
-                            <!-- <button md-fab class="md-primary" aria-label="Discuss" (click)="onDiscussItem(itemHighlited)">
+            <!-- <button md-fab class="md-primary" aria-label="Discuss" (click)="onDiscussItem(itemHighlited)">
                               <i title="Discuss" md-icon>feedback</i>
                                https://design.google.com/icons/#ic_feedback
                             </button> -->
 
-                            <button md-fab class="md-primary" aria-label="Comment" (click)="onCommentItem(itemHighlited)">
-                                <i class="commentIcon" title="Comment" md-icon>comment</i>
-                            </button>
+            <button md-fab class="md-primary" aria-label="Comment" (click)="onCommentItem(itemHighlited)">
+              <i class="commentIcon" title="Comment" md-icon>comment</i>
+            </button>
 
-                            <button md-fab class="md-primary" aria-label="Question" (click)="onQuestionItem(itemHighlited)">
-                                <i class="questionIcon" title="Question" md-icon>?</i>
-                            </button>
+            <button md-fab class="md-primary" aria-label="Question" (click)="onQuestionItem(itemHighlited)">
+              <i class="questionIcon" title="Question" md-icon>?</i>
+            </button>
 
-                            <button md-fab class="md-primary" aria-label="Disapprove" (click)="onDisapprovingItem(itemHighlited)">
-                              <i title="disapprove" md-icon>thumb_down</i>
-                            </button>
-                        </span>
+            <button md-fab class="md-primary" aria-label="Disapprove" (click)="onDisapprovingItem(itemHighlited)">
+              <i title="disapprove" md-icon>thumb_down</i>
+            </button>
+            </span>
 
-                        <button md-fab class="md-primary" aria-label="Close" (click)="onSelectedItem()">
-                            <i title="Close" md-icon>close</i>
-                        </button>
-                    </md-toolbar>
+            <button md-fab class="md-primary" aria-label="Close" (click)="onSelectedItem()">
+              <i title="Close" md-icon>close</i>
+            </button>
+          </md-toolbar>
 
-                    <md-toolbar *ngIf="filterToolbar.visible" class="toolbar" color="primary" style="width: 100%;" layout-align="center center">
-                        <!-- https://material.angularjs.org/latest/layout/container -->
-                        <section layout="column" layout-gt-sm="row" layout-align="center center" layout-wrap style="width: 100%;">
-                            <div>Select entity type</div>
-                            <button *ngIf="getEntityFilter() !== 'object'" md-raised-button class="md-primary" aria-label="Objects" (click)="setEntityFilter('object')">
-                                Objects ({{getNumberOfEntities('object')}})
-                            </button>
-                            <button *ngIf="getEntityFilter() !== 'variable'" md-raised-button class="md-primary" aria-label="Quantities" (click)="setEntityFilter('variable')">
-                                Quantities ({{getNumberOfEntities('variable')}})
-                            </button>
-                            <button *ngIf="getEntityFilter() !== 'assumption'" md-raised-button class="md-primary" aria-label="Assumptions" (click)="setEntityFilter('assumption')">
-                                Assumptions ({{getNumberOfEntities('assumption')}})
-                            </button>
-                            <button *ngIf="getEntityFilter() !== 'grid'" md-raised-button class="md-primary" aria-label="Grids" (click)="setEntityFilter('grid')">
-                                Grids ({{getNumberOfEntities('grid')}})
-                            </button>
+          <md-toolbar *ngIf="filterToolbar.visible" class="toolbar" color="primary" style="width: 100%;" layout-align="center center">
+            <!-- https://material.angularjs.org/latest/layout/container -->
+            <section layout="column" layout-gt-sm="row" layout-align="center center" layout-wrap style="width: 100%;">
+              <div>Select entity type</div>
+              <button *ngIf="getEntityFilter() !== 'object'" md-raised-button class="md-primary" aria-label="Objects" (click)="setEntityFilter('object')">
+                Objects ({{getNumberOfEntities('object')}})
+              </button>
+              <button *ngIf="getEntityFilter() !== 'variable'" md-raised-button class="md-primary" aria-label="Quantities" (click)="setEntityFilter('variable')">
+                Quantities ({{getNumberOfEntities('variable')}})
+              </button>
+              <button *ngIf="getEntityFilter() !== 'assumption'" md-raised-button class="md-primary" aria-label="Assumptions" (click)="setEntityFilter('assumption')">
+                Assumptions ({{getNumberOfEntities('assumption')}})
+              </button>
+              <button *ngIf="getEntityFilter() !== 'grid'" md-raised-button class="md-primary" aria-label="Grids" (click)="setEntityFilter('grid')">
+                Grids ({{getNumberOfEntities('grid')}})
+              </button>
 
-                            <button *ngIf="getEntityFilter() !== 'process'" md-raised-button class="md-primary" aria-label="Processes" (click)="setEntityFilter('process')">
-                                Processes ({{getNumberOfEntities('process')}})
-                            </button>
-                        </section>
-                    </md-toolbar>
+              <button *ngIf="getEntityFilter() !== 'process'" md-raised-button class="md-primary" aria-label="Processes" (click)="setEntityFilter('process')">
+                Processes ({{getNumberOfEntities('process')}})
+              </button>
+            </section>
+          </md-toolbar>
 
-                    <div style="height: 20px;"></div>
-                </div>
-            </div>
-        </md-content>
-    </md-sidenav-layout>
+          <div style="height: 20px;"></div>
+        </div>
+      </div>
+    </md-content>
+  </md-sidenav-layout>
 </div>
 <mcm-select-entity #selectEntityComponent></mcm-select-entity>
 <knalledge-create-node #knalledgeCreateNodeComponent></knalledge-create-node>
