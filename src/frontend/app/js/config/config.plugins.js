@@ -170,11 +170,12 @@ var plugins = {
 		},
 		ontov: {
 			path: [APP_SRC_STR, 'components/ontov'],
-			injectJs: ['js/vendor/underscore-1.8.3.min.js', 'js/vendor/underscore-1.8.3.min.js',
-			'js/vendor/backbone-1.1.2.min.js',
-			'js/vendor/query-engine.js',
-			'js/vendor/dependencies.js',
-			'js/vendor/visualsearch.js'
+			injectJs: [
+				'js/vendor/underscore-1.8.3.min.js',
+				'js/vendor/backbone-1.1.2.min.js',
+				'js/vendor/query-engine.js',
+				'js/vendor/dependencies.js',
+				'js/vendor/visualsearch.js'
 			],
 			injectCss: ['css/default.css', 'css/visualsearch/visualsearch-datauri.css']
 		},
