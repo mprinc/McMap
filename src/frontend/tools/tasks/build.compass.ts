@@ -8,7 +8,7 @@ var vfs = require('vinyl-fs');
 // compiles all ts files (except tests/template ones) and type definitions,
 // replace templates in them and adds sourcemaps and copies into APP_DEST
 export = function buildCss(gulp, plugins) {
-  let debug = false;
+  let debug = true;
   return function() {
     //   if(!COMPASS_CONFIG) return noop();
     //   vfs.src(APP_SRC)
@@ -93,8 +93,13 @@ export = function buildCss(gulp, plugins) {
               if('cssDir' in pathVal) cssDir = pathVal.cssDir;
               if('destDir' in pathVal) destDir = pathVal.destDir;
           }
-          appPath = join(APP_SRC, path);
-          projectPath = join(__dirname, '../..', appPath, 'sass');
+          if(pathVal.isPathFull){
+            appPath = path;
+            projectPath = join(__dirname, '../..', path, 'sass');
+          }else{
+            appPath = join(APP_SRC, path);
+            projectPath = join(__dirname, '../..', appPath, 'sass');
+          }
           distPath = join(destDir, path);
           distPathCss = join(distPath, cssDir);
           scssFiles = ['*.scss'];

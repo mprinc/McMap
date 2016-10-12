@@ -17,9 +17,6 @@ import {GlobalEmitterServicesArray} from '../collaboPlugins/GlobalEmitterService
 
 import {NodeWithChildren} from './mcmMapLayout';
 
-// TODO: probable remove later, this is just to trigger starting the service
-// import {BroadcastManagerService} from '../collaboBroadcasting/broadcastManagerService';
-
 /**
  * Directive that handles the main KnAllEdge or rather CollaboFramework user interface
  *

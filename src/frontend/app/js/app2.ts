@@ -24,8 +24,6 @@ import {CollaboGrammarService} from '../components/collaboPlugins/CollaboGrammar
 
 import { disableDeprecatedForms, provideForms } from '@angular/forms';
 
-// import {BroadcastManagerService} from '../components/collaboBroadcasting/broadcastManagerService';
-
 // add only if knalledgeMap plugin is added
 import { MapInteraction } from './interaction/mapInteraction';
 import { MapLoader } from './knalledge/mapLoader';

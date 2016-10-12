@@ -48,7 +48,7 @@ export = function buildAssetsDev(gulp, plugins) {
         // ;
 
         stream.on('end', function() {
-            console.log("[build.assets.dev] internal-assets:", plugins.sniff.get("internal-assets"));
+            // console.log("[build.assets.dev] internal-assets:", plugins.sniff.get("internal-assets"));
         });
 
       return stream;

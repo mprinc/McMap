@@ -1,7 +1,8 @@
+import {join} from 'path';
 import * as util from 'gulp-util';
 import * as chalk from 'chalk';
 import * as del from 'del';
-import {DIST_DIR, DEV_DEST, PROD_DEST, TMP_DIR} from '../config';
+import {DIST_DIR, DEV_DEST, PROD_DEST, TMP_DIR_BASE} from '../config';
 
 export = function clean(gulp, plugins, option) {
 
@@ -31,7 +32,7 @@ function cleanDev(done) {
 }
 
 function cleanProd(done) {
-  del([PROD_DEST, TMP_DIR]).then((paths) => {
+  del([PROD_DEST, TMP_DIR_BASE]).then((paths) => {
     util.log('Deleted', chalk.yellow(paths && paths.join(', ') || '-'));
     done();
   });

@@ -1,4 +1,5 @@
-cf_folder='/Users/sasha/Documents/data/development/KnAllEdge/src'
+#cf_folder='/Users/sasha/Documents/data/development/KnAllEdge/src'
+cf_folder='/Users/mprinc/Documents/data/development/KnAllEdge/src'
 export cf_folder
 components_folder='app/components'
 
@@ -16,5 +17,21 @@ do
   # else
   #   echo "unlinking $component"
   #   unlink "$components_folder/$component"
+  fi
+done
+
+## declare an array components
+declare -a otherRefs=("app/js/knalledge" "app/js/interaction")
+
+## now loop through the above array
+for otherRef in "${otherRefs[@]}"
+do
+  echo "checking $otherRef"
+  if [ ! -e "./$otherRef" ];  then
+      echo "linking $otherRef"
+      ln -s $cf_folder/frontend/$otherRef "./$otherRef"
+  # else
+  #   echo "unlinking $otherRef"
+  #   unlink "$otherRefs_folder/$otherRef"
   fi
 done

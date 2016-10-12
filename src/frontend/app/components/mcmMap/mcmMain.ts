@@ -94,7 +94,7 @@ export class McmMain implements AfterViewInit{
         visible: true
     };
     itemContainerProperties: any = {
-        visible: false
+        visible: true
     };
 
     mapLoader: MapLoader;
@@ -148,22 +148,6 @@ export class McmMain implements AfterViewInit{
     }
 
     ngAfterViewInit() {
-    }
-
-    getEntityFullName(entity){
-        var fullName = "";
-        var parentNodes = [entity.node];
-
-        do{
-            var parentNode = parentNodes[0];
-            if(parentNode.kNode.type === 'object' ||
-            parentNode.kNode.type === 'model_component'){
-                fullName = parentNode.kNode.name + (fullName ? "_" + fullName : "");
-            }
-            parentNodes =
-                this.mapStructure.getParentNodes(parentNode);
-        }while(parentNodes && parentNodes.length);
-        return fullName;
     }
 
     getEntityFilter(){

@@ -1,5 +1,6 @@
 import * as gulp from 'gulp';
 import {runSequence, task} from './tools/utils';
+import {WATCH_BUILD_RULES, WATCH_CHANGED} from './tools/config';
 
 // --------------
 // Clean (override).
@@ -10,6 +11,12 @@ gulp.task('check.versions', () => task('check.versions'));
 gulp.task('build.docs', () => task('build.docs'));
 gulp.task('serve.docs', () => task('serve.docs'));
 gulp.task('serve.coverage', task('serve.coverage'));
+
+gulp.task('build.compass', task('build.compass'));
+gulp.task('build.assets.dev', task('build.assets.dev'));
+gulp.task('tslint', task('tslint'));
+gulp.task('build.js.dev', task('build.js.dev'));
+gulp.task('build.index.dev', task('build.index.dev'));
 
 // --------------
 // Build dev.
@@ -34,6 +41,14 @@ runSequence(// 'clean.dev', // cleans prod (folder, ...)
             'build.js.dev', // compiles ts files, replace templates and adds sourcemaps -> APP_DEST
             // 'build.index.dev', // inject all dependencies under coresponding placeholders
             done));
+
+// builds project in a smart way, building only necessary phases
+// waiting for user to aprove building, etc
+import {buildProject} from './tools/utils/build.dev.smart';
+gulp.task('build.dev.smart', function(done){
+    buildProject(done);
+});
+
 
 // --------------
 // Build dev watch.
@@ -65,8 +80,8 @@ gulp.task('build.prod', done =>
               'build.html_css.prod',    // project css and html (templates) -> TMP_DIR,
                                         // external css -> CSS_DEST
               'build.js.prod', // ng2/Lo-Dash/Underscore templates, compiles typescript -> TMP_DIR
-              'build.bundles', // JS: minify all js dependencies -> JS_DEST/JS_PROD_SHIMS_BUNDLE
-              'build.bundles.app',  // builds from SYSTEM_BUILDER_CONFIG.paths (all code used in the project)
+              'build.bundles', // JS: minify and concatenate all js dependencies -> JS_DEST/JS_PROD_SHIMS_BUNDLE
+              'build.bundles.app',  // builds with SystemJS Builder from SYSTEM_BUILDER_CONFIG.paths (all code used in the project)
                                     // a SystemJS bundle into JS_DEST/JS_PROD_APP_BUNDLE
               'build.index.prod', // injects css/js shims/bundles -> APP_SRC/'index.html'
               done));
@@ -87,7 +102,7 @@ gulp.task('build.js.prod', done =>
 // then run: npm run temp
 gulp.task('temp', done =>
     runSequence(
-        'build.js.prod',
+        'build.bundles.app',
         done));
 
 // just for testing and accessing directly to a task
@@ -139,6 +154,22 @@ gulp.task('serve.dev', done =>
             'watch.serve', // watch on the project changes
                         // (if any file in APP_SRC is changed it runs 'build.dev' again)
             done));
+
+// --------------
+// Start smart server development
+// builds project in a smart way, watching for and then building only necessary phases
+// waiting for user to aprove building, etc
+import {printCommands} from './tools/utils/build.dev.smart';
+gulp.task('serve.dev.smart', done =>
+  runSequence(
+            'build.dev.smart', // builds dev version of project
+            'server.start', // starts server
+            'watch.serve.smart', // watch on the project changes
+                        // (if any file in APP_SRC is changed it runs 'build.dev' again)
+            function(err){
+              printCommands();
+              done(err);
+            }));
 
 // --------------
 // Serve dev

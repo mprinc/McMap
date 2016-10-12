@@ -8,7 +8,7 @@ export = function buildJSTest(gulp, plugins) {
   return function () {
     let tsProject = tsProjectFn(plugins);
     let src = [
-      'typings/browser.d.ts',
+      'typings/index.d.ts',
       join(APP_SRC, '**/*.ts'),
       '!' + join(APP_SRC, '**/*.e2e.ts'),
       '!' + join(APP_SRC, `${BOOTSTRAP_MODULE}.ts`)

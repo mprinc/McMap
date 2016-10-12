@@ -9,21 +9,28 @@ var vfs = require('vinyl-fs');
 export = function buildAssetsProd(gulp, plugins) {
   return function() {
     // https://www.npmjs.com/package/merge-stream
-    return merge(copyProjectInternalAsets(), copyProjectExternalAsets());
+    return merge(/*copyProjectInternalAsets(), */ copyProjectExternalAsets());
 
     // copies all external asset dependencies (d.asset === true)
     // to their designated destionations (d.dest)
     function copyProjectExternalAsets() {
+      console.log("[copyProjectExternalAsets] starting");
       var externalAssetFiles = PROD_DEPENDENCIES.filter(d => d.asset);
-      // http://stackoverflow.com/questions/26784094/can-i-use-a-gulp-task-with-multiple-sources-and-multiple-destinations
-      var tasks = externalAssetFiles.map(function(element){
-        // https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpsrcglobs-options
-        return vfs.src(element.src)
-            // https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpdestpath-options
-            .pipe(vfs.dest(element.dest));
-      });
+      console.log("[copyProjectExternalAsets] externalAssetFiles: ", externalAssetFiles);
 
-      return merge(...tasks);
+      if(externalAssetFiles.length === 0){
+        return gulp.src([]);
+      }else{
+        // http://stackoverflow.com/questions/26784094/can-i-use-a-gulp-task-with-multiple-sources-and-multiple-destinations
+        var tasks = externalAssetFiles.map(function(element){
+          // https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpsrcglobs-options
+          return vfs.src(element.src)
+              // https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpdestpath-options
+              .pipe(vfs.dest(element.dest));
+        });
+
+        return merge(...tasks);
+      }
     }
 
     // copies set of asset files (not *.ts, *.js, *.html, *.css) from APP_SRC to APP_DEST

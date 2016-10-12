@@ -5,38 +5,11 @@ cd backend
 rm models modules tools node_modules
 ```
 
-## Sasa (sasha)
++ open scripts/install.sh
++ set properly the cf_folder variable
++
 ```sh
-ln -s $cf_folder/backend/models/ models
-ln -s $cf_folder/backend/modules/ modules
-ln -s $cf_folder/backend/tools/ tools
-ln -s $cf_folder/backend/node_modules/ node_modules
-# ln -s $cf_folder/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
-```
-
-## Sasa (mprinc)
-```sh
-ln -s $cf_folder/backend/models/ models
-ln -s $cf_folder/backend/modules/ modules
-ln -s $cf_folder/backend/tools/ tools
-ln -s $cf_folder/backend/node_modules/ node_modules
-```
-
-## Sinisa:
-```sh
-ln -s $cf_folder/backend/models/ models
-ln -s $cf_folder/backend/modules/ modules
-ln -s $cf_folder/backend/tools/ tools
-ln -s $cf_folder/backend/node_modules/ node_modules
-```
-
-## Server:
-```sh
-ln -s /var/www/knalledge/src/backend/models/ models
-ln -s /var/www/knalledge/src/backend/modules/ modules
-ln -s /var/www/knalledge/src/backend/tools/ tools
-ln -s /var/www/knalledge/src/backend/node_modules/ node_modules
-# ln -s /var/www/knalledge/src/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
+./scripts/install.sh
 ```
 
 # FRONTEND

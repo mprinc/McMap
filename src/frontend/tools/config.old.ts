@@ -14,7 +14,6 @@ const ENVIRONMENTS = {
     PRODUCTION: 'prod'
 };
 
-
 export const SUB_PROJECT_NAME = argv['sub-project'] || PluginsConfig.project.name;
 
 export const SUB_PROJECT = PluginsConfig.project.subProjects[SUB_PROJECT_NAME];
@@ -22,7 +21,7 @@ export const SUB_PROJECT = PluginsConfig.project.subProjects[SUB_PROJECT_NAME];
 console.log('__dirname: ', __dirname);
 // console.log("SUB_PROJECT: ", SUB_PROJECT);
 
-export const PORT = argv['port'] || PluginsConfig.project.port || 8000;
+export const PORT = argv['port'] || PluginsConfig.project.port || 5556;
 export const PROJECT_ROOT = normalize(join(__dirname, '..'));
 export const ENV = getEnvironment();
 export const DEBUG = argv['debug'] || false;
@@ -47,9 +46,7 @@ export const DOCS_DEST = 'docs';
 export const DIST_DIR = 'dist';
 export const DEV_DEST = `${DIST_DIR}/dev`;
 export const PROD_DEST = `${DIST_DIR}/prod`;
-export const TMP_DIR_BASE = ENV === 'dev' ? `${DIST_DIR}/dev` : `${DIST_DIR}/tmp`;
-// this is necessary to help Atom to work with ` character
-export const TMP_DIR = ENV === 'dev' ? `${DIST_DIR}/dev` : `${DIST_DIR}/tmp/app`;
+export const TMP_DIR = ENV === 'dev' ? `${DIST_DIR}/dev` : `${DIST_DIR}/tmp`;
 // this is necessary to help Atom to work with ` character
 export const APP_DEST = `${DIST_DIR}/${ENV}`;
 export const APP_DEST_FROM_HERE = join('..', APP_DEST);
@@ -58,8 +55,6 @@ export const FONTS_DEST = `${APP_DEST}/fonts`;
 export const JS_DEST = `${APP_DEST}/js`;
 export const APP_ROOT = ENV === 'dev' ? `${APP_BASE}${APP_DEST}/` : `${APP_BASE}`;
 // this is necessary to help Atom to work with ` character
-export const DEV_PUZZLES_SRC = SUB_PROJECT.DEV_PUZZLES_SRC;
-export const DEV_PUZZLES_DEST = `${DIST_DIR}/${ENV}/${SUB_PROJECT.DEV_PUZZLES}`;
 export const VERSION = appVersion();
 
 export const CSS_PROD_BUNDLE = 'all.css';
@@ -75,139 +70,21 @@ console.log('APP_DEST: %s, APP_DEST_FROM_HERE: ', APP_DEST, APP_DEST_FROM_HERE);
 export const COMPASS_CONFIG = SUB_PROJECT.COMPILATION.COMPASS;
 console.log("SUB_PROJECT: ", SUB_PROJECT);
 
-export var BUILD_SEQUENCE: [
-  'clean.dev', // cleans prod (folder, ...)
-  'build.compass', // compiles COMPASS files -> APP_DEST
-  'build.assets.dev',   // copies asset files (not *.ts) from APP_SRC -> APP_DEST
-                        // (and dependencies assets -> d.dest)
-  'tslint', // ts linting
-  'build.js.dev', // compiles ts files, replace templates and adds sourcemaps -> APP_DEST
-  'build.index.dev' // inject all dependencies under coresponding placeholders
-];
+function replaceStrPaths(pathArray:string[]):string{
+    if(!Array.isArray(pathArray) || pathArray.length !== 2)
+        return null;
 
-// states used to support smart building process
-export var WATCH_BUILD_STATE:any = {
-  printCommands: true, // print commands on any action
-  autoBuild: false, // build after any watch trigger
-  autoReload: true, // reload browser after any build
-  notifyOnReload: true, // audio notify on reloading the browser
-  everyBuildIsFull: false // should every triggered/requested build be full ?
-};
-
-// set of watch rules that will set particular steps of building process in response
-export var WATCH_BUILD_RULES:any = {
-};
-
-// COMPASS/SASS rule
-WATCH_BUILD_RULES[join(APP_SRC, '**/*.scss')] = {
-  steps: {
-    'clean.dev': false,
-    'build.compass': true,
-    'build.assets.dev': true,
-    'tslint': false,
-    'build.js.dev': false,
-    'build.index.dev': true,
-  }
-};
-
-// JS rule
-WATCH_BUILD_RULES[join(APP_SRC, '**/*.js')] = {
-  steps: {
-    'clean.dev': false,
-    'build.compass': false,
-    'build.assets.dev': true,
-    'tslint': false,
-    'build.js.dev': false,
-    'build.index.dev': true,
-  }
-};
-
-// TS rule
-WATCH_BUILD_RULES[join(APP_SRC, '**/*.ts')] = {
-  steps: {
-    'clean.dev': false,
-    'build.compass': false,
-    'build.assets.dev': false,
-    'tslint': true,
-    'build.js.dev': true,
-    'build.index.dev': false,
-  }
-};
-
-// DEV_PUZZLES_SRC related
-// COMPASS/SASS rule
-WATCH_BUILD_RULES[join(DEV_PUZZLES_SRC, '**/*.scss')] = {
-  steps: {
-    'clean.dev': false,
-    'build.compass': true,
-    'build.assets.dev': true,
-    'tslint': false,
-    'build.js.dev': false,
-    'build.index.dev': true,
-  }
-};
-
-// JS rule
-WATCH_BUILD_RULES[join(DEV_PUZZLES_SRC, '**/*.js')] = {
-  steps: {
-    'clean.dev': false,
-    'build.compass': false,
-    'build.assets.dev': true,
-    'tslint': false,
-    'build.js.dev': false,
-    'build.index.dev': true,
-  }
-};
-
-// TS rule
-WATCH_BUILD_RULES[join(DEV_PUZZLES_SRC, '**/*.ts')] = {
-  steps: {
-    'clean.dev': false,
-    'build.compass': false,
-    'build.assets.dev': false,
-    'tslint': true,
-    'build.js.dev': true,
-    'build.index.dev': false,
-  }
-};
-
-export var WATCH_BUILD_CHANGED_FILES = {};
-
-// the set of building tasks that are set to be built on the next build
-export var WATCH_CHANGED:any = {
-  'clean.dev': false,
-  'build.compass': false,
-  'build.assets.dev': false,
-  'tslint': false,
-  'build.js.dev': false,
-  'build.index.dev': false
-};
-
-/**
- * Replaces string version(s) of APP paths with real path values and returns string path
- * @param  {string[]|string} pathArray array of pa
- * @return {string} substituted path
- */
-function replaceStrPaths(pathArray:string[]|string, parentPath?:string):string{
-    if(typeof pathArray === 'string') pathArray = [<string>pathArray];
-
-    var path = "";
-    for(var pI in <string[]>pathArray){
-      var pathPart = pathArray[pI];
-      switch(pathPart){
-          case 'APP_SRC_STR':
-              pathPart = APP_SRC;
-              break;
-          case 'APP_DEST_STR':
-              pathPart = APP_DEST;
-              break;
-          case '.':
-              pathPart = parentPath ? parentPath : pathPart;
-              break;
-      }
-      path += (path.length > 0) ? "/"+pathPart : pathPart;
+    var folder = pathArray[0];
+    var file = pathArray[1];
+    switch(folder){
+        case 'APP_SRC_STR':
+            folder = APP_SRC;
+            break;
+        case 'APP_DEST_STR':
+            folder = APP_DEST;
+            break;
     }
-    return path;
+    return folder + "/" + file;
 }
 
 // fixing/patching project variables
@@ -239,10 +116,11 @@ interface IDependencyStructure {
 };
 
 // Declare local files that needs to be injected
-export const SUB_PROJECTS_FILE:IDependencyStructure = {
+const SUB_PROJECTS_FILE:IDependencyStructure = {
     APP_ASSETS: [
         // (NG2-) MATERIAL
-        { src: 'ng2-material/font/MaterialIcons-Regular.*', asset: true, dest: CSS_DEST }
+        { src: 'ng2-material/font/MaterialIcons-Regular.*', asset: true, dest: CSS_DEST },
+        { src: join(APP_SRC, 'data'), asset: true, dest: APP_DEST, noNorm: true }
     ],
     NPM_DEPENDENCIES: [
         // LIBS
@@ -250,10 +128,14 @@ export const SUB_PROJECTS_FILE:IDependencyStructure = {
         { src: join(APP_SRC, '../bower_components/debugpp/index.js'), inject: 'libs', noNorm: true },
         { src: join(APP_SRC, '../bower_components/halo/index.js'), inject: 'libs', noNorm: true },
 
-        // KNALLEDGE APP
+        // MCM APP
         { src: join(APP_SRC, 'js/config/config.js'), inject: true, noNorm: true },
         { src: join(APP_SRC, 'js/config/config.env.js'), inject: true, noNorm: true },
         { src: join(APP_SRC, 'js/config/config.plugins.js'), inject: true, noNorm: true },
+
+        { src: join(APP_DEST, 'js/mcmInteraction/mcmInteraction.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/mcmInteraction/moveAndDrag.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/mcmInteraction/keyboard.js'), inject: true, noNorm: true },
 
         // KNALLEDGE CORE
         { src: join(APP_SRC, 'js/knalledge/index.js'), inject: true, noNorm: true },
@@ -267,33 +149,68 @@ export const SUB_PROJECTS_FILE:IDependencyStructure = {
         { src: join(APP_SRC, 'js/knalledge/vkEdge.js'), inject: true, noNorm: true },
         { src: join(APP_SRC, 'js/knalledge/state.js'), inject: true, noNorm: true },
         { src: join(APP_SRC, 'js/knalledge/mapStructure.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/mapLayout.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/mapVisualization.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/mapLayoutTree.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/mapVisualizationTree.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/mapLayoutFlat.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/mapVisualizationFlat.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/mapLayoutGraph.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/mapVisualizationGraph.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/mapManager.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/knalledge/map.js'), inject: true, noNorm: true },
 
         // COMPONENTS
         { src: join(APP_SRC, 'components/puzzles.js'), inject: true, noNorm: true },
+        // TODO: Load only if knalledgeMap component for visualization is added as a plugin
+        { src: join(APP_SRC, 'js/interaction/interaction.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/interaction/moveAndDrag.js'), inject: true, noNorm: true },
+        // { src: join(APP_SRC, 'js/interaction/mapInteraction.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/interaction/keyboard.js'), inject: true, noNorm: true },
 
+        { src: join(APP_SRC, 'js/mcm/mcm.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/mcm/map.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/mcm/mapLayout.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/mcm/mapVisualization.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/mcm/entitiesToolset.js'), inject: true, noNorm: true },
 
-        { src: join(APP_SRC, 'components/knalledgeMap/js/services.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/mcm/list/list.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/mcm/list/map.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/mcm/list/mapLayout.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'js/mcm/list/mapVisualization.js'), inject: true, noNorm: true },
+
+        { src: join(APP_SRC, 'components/halo/index.js'), inject: true, noNorm: true },
+
+        { src: join(APP_SRC, 'components/mcmMap/js/directives.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'components/mcmMap/js/services.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'components/mcmMap/js/mcmMapAssumption.service.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'components/mcmMap/js/mcmMapSchema.service.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'components/mcmMap/js/mcmMapObject.service.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'components/mcmMap/js/mcmMapVariableQuantity.service.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'components/mcmMap/js/mcmMapVariableOperator.service.js'), inject: true, noNorm: true },
+        { src: join(APP_SRC, 'components/mcmMaps/js/directives.js'), inject: true, noNorm: true },
 
         // PLUGINS: TODO: We want to avoid hardoced registering plugins here!
-        // TODO: should we add all dependencies to the all components
-        // that are not statically imported
-        // Example: components/knalledgeMap/main.js imports
-        // components/topPanel/topPanel.js only if the config.plugins.js says so
-
+        // { src: join(APP_SRC, 'components/ontov/js/vendor/jquery-1.8.3.js'), inject: true, noNorm: true},
 
         // ng1 registration and bootstrap
-        // { src: join(TMP_DIR, 'components/knalledgeMap/knalledgeMapPolicyService.js'), inject: true, noNorm: true},
-        // { src: join(TMP_DIR, 'components/knalledgeMap/knalledgeMapViewService.js'), inject: true, noNorm: true},
+        // { src: join(APP_SRC, 'components/knalledgeMap/knalledgeMapPolicyService.js'), inject: true, noNorm: true},
+        // { src: join(APP_SRC, 'components/knalledgeMap/knalledgeMapViewService.js'), inject: true, noNorm: true},
+        // { src: join(APP_SRC, 'js/app_pre.js'), inject: true, noNorm: true},
+        { src: join(APP_SRC, 'js/app.js'), inject: true, noNorm: true },
 
         // CSS
         // LIBS
         { src: join(APP_SRC, 'css/libs/bootstrap/bootstrap.css'), inject: true, dest: CSS_DEST, noNorm: true },
+        { src: join(APP_SRC, 'css/libs/textAngular/textAngular.css'), inject: true, dest: CSS_DEST, noNorm: true },
 
         // KNALLEDGE CORE
         { src: join(APP_SRC, 'css/libs/wizard/ngWizard.css'), inject: true, dest: CSS_DEST, noNorm: true },
 
         { src: join(APP_SRC, 'css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
         { src: join(APP_SRC, '../bower_components/halo/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
+        { src: join(APP_SRC, 'components/mcmMap/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
+        { src: join(APP_SRC, 'components/mcmMaps/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
 
         // KNALLEDGE PLUGINS, TODO: we want to avoid hardoced registering plugins here
 
@@ -305,23 +222,17 @@ export const SUB_PROJECTS_FILE:IDependencyStructure = {
     ],
     PROD_NPM_DEPENDENCIES: [
         // ng1 templates (build.js.prod:inlineNg1Templates())
-        { src: join(TMP_DIR, 'js/ng1Templates.js'), inject: true, noNorm: true },
-        { src: join(TMP_DIR, '..', DEV_PUZZLES_SRC, 'js/ng1Templates.js'), inject: true, noNorm: true }
+        { src: join(TMP_DIR, 'js/ng1Templates.js'), inject: true, noNorm: true }
     ]
 };
 
 var npmDependencies = SUB_PROJECTS_FILE.NPM_DEPENDENCIES;
 var puzzlesBuild = PluginsConfig.plugins.puzzlesBuild;
-var puzzlesConfig = PluginsConfig.plugins.puzzles;
+var puzzlesConfig = PluginsConfig.plugins.puzzlesConfig;
 
 // Example
 
-/**
- * Analyzes puzzleBuild and extracts and injects JavaScript build dependencies in dependencies
- * @param  {IDependency[]} dependencies dependencies in which puzzle dependencies will be added
- * @param  {any}           puzzleBuild  config object describing build aspects of the puzzle
- */
-function injectJsDependencyFactory(dependencies:IDependency[], puzzleBuild:any, parentPath?:string){
+function injectJsDependencyFactory(dependencies:IDependency[], puzzleBuild:any){
     // Example
     // { src: join('components/gardening/js/services.js'), inject: true, noNorm: true },
 
@@ -329,29 +240,19 @@ function injectJsDependencyFactory(dependencies:IDependency[], puzzleBuild:any, 
         inject: true, noNorm: true
     };
 
-    var path = replaceStrPaths(puzzleBuild.path, parentPath);
-    path = normalize(path);
+    var path = replaceStrPaths(puzzleBuild.path);
 
     function injectJsDependency(injectJs:string){
-        var dPath = injectJs[0] === '.' ? parentPath : path;
-        // console.log("injectJs: ", injectJs, "dPath: ", dPath, "parentPath: ", parentPath, "path: ", path);
         var dependency:any = {};
         Object.assign(dependency, jsDpendencyTemplate);
-        dependency.src = (dPath) ?
-          dPath + "/" + injectJs : injectJs;
-        dependency.src = normalize(dependency.src);
-        console.log("[injectJsDependencyFactory] dependency=", dependency);
+        dependency.src = (path) ?
+            path + "/" + injectJs : injectJs;
         dependencies.push(dependency);
     }
     return injectJsDependency;
 }
 
-/**
- * Analyzes puzzleBuild and extracts and injects CSS build dependencies in dependencies
- * @param  {IDependency[]} dependencies dependencies in which puzzle dependencies will be added
- * @param  {any}           puzzleBuild  config object describing build aspects of the puzzle
- */
-function injectCssDependencyFactory(dependencies:IDependency[], puzzleBuild:any, parentPath?:string){
+function injectCssDependencyFactory(dependencies:IDependency[], puzzleBuild:any){
     // Example
     // { src: join(APP_SRC, 'components/gardening/css/default.css'), inject: true, dest: CSS_DEST, noNorm: true },
 
@@ -359,30 +260,21 @@ function injectCssDependencyFactory(dependencies:IDependency[], puzzleBuild:any,
         inject: true, noNorm: true
     };
 
-    var path = replaceStrPaths(puzzleBuild.path, parentPath);
-    path = normalize(path);
+    var path = replaceStrPaths(puzzleBuild.path);
 
     function injectCssDependency(injectCss:string){
-      var dPath = injectCss[0] === '.' ? parentPath : path;
         var dependency:any = {};
         Object.assign(dependency, cssDpendencyTemplate);
-        dependency.src = (dPath) ?
-          dPath + "/" + injectCss : injectCss;
-        dependency.src = normalize(dependency.src);
-        console.log("[injectCssDependencyFactory] dependency=", dependency);
+        dependency.src = (path) ?
+            path + "/" + injectCss : injectCss;
         dependencies.push(dependency);
     }
     return injectCssDependency;
 }
 
-/**
- * Analyzes puzzleBuild and extracts and injects all build dependencies in dependencies
- * @param  {IDependency[]} dependencies dependencies in which puzzle dependencies will be added
- * @param  {any}           puzzleBuild  config object describing build aspects of the puzzle
- */
-function injectPuzzle(dependencies:IDependency[], puzzleBuild:any, parentPath?:string){
+function injectPuzzle(dependencies:IDependency[], puzzleBuild:any){
 
-    let injectJsDependency = injectJsDependencyFactory(dependencies, puzzleBuild, parentPath);
+    let injectJsDependency = injectJsDependencyFactory(dependencies, puzzleBuild);
 
     if(Array.isArray(puzzleBuild.injectJs)){
         for(let i in puzzleBuild.injectJs){
@@ -394,7 +286,7 @@ function injectPuzzle(dependencies:IDependency[], puzzleBuild:any, parentPath?:s
         injectJsDependency(injectJs);
     }
 
-    let injectCssDependency = injectCssDependencyFactory(dependencies, puzzleBuild, parentPath);
+    let injectCssDependency = injectCssDependencyFactory(dependencies, puzzleBuild);
 
     if(Array.isArray(puzzleBuild.injectCss)){
         for(let i in puzzleBuild.injectCss){
@@ -407,102 +299,25 @@ function injectPuzzle(dependencies:IDependency[], puzzleBuild:any, parentPath?:s
     }
 }
 
-
-/**
- * Analyzes if there are additional sub puzzles/build-folders in the puzzleBuild
- * and calls injectPuzzle on appropriate builds
- * @param  {IDependency[]} dependencies dependencies in which puzzle dependencies will be added
- * @param  {any}           puzzleBuild  config object describing build aspects of the puzzle
- */
-function injectPuzzleWithPossibleSubPuzzles(dependencies:IDependency[], puzzleBuild:any, parentPath?:string){
-  if('path' in puzzleBuild){
-      injectPuzzle(dependencies, puzzleBuild, parentPath);
-  }else{
-      for(var subPuzzleName in puzzleBuild){
-          var subPuzzleBuild = puzzleBuild[subPuzzleName];
-          console.log("subPuzzleBuild: ", subPuzzleBuild);
-          if('path' in subPuzzleBuild){
-              injectPuzzle(dependencies, subPuzzleBuild, parentPath);
-          }
-      }
-  }
-}
-
-/*
- * Iterates through all puzzles inside the puzzlesBuild and injects them in dependencies
- */
 for(var puzzleName in puzzlesBuild){
     var puzzleBuild = puzzlesBuild[puzzleName];
     console.log("puzzleBuild: ", puzzleBuild);
 
     // if not configured or set as unavailable do not inject it
-    if(!(puzzleName in puzzlesConfig) || !puzzlesConfig[puzzleName].active) continue;
-    injectPuzzleWithPossibleSubPuzzles(npmDependencies, puzzleBuild);
-}
+    if(!(puzzleName in puzzlesConfig) || !puzzlesConfig[puzzleName].available) continue;
 
-var puzzles = PluginsConfig.plugins.puzzles;
-
-
-/*
- * INJECTING EXTERNAL PUZZLES
- */
-
-function injectExternalPuzzle(parentPuzzleName:string, puzzle:any){
-  console.log("[injectExternalPuzzle] Injecting external puzzle: ", parentPuzzleName);
-  var puzzlePath = puzzle.path;
-  var puzzlesContainerConfig = require(join(PROJECT_ROOT, puzzlePath, 'config.js'));
-
-  // injecting dependencies
-  var puzzlesBuild = puzzlesContainerConfig.puzzlesBuild;
-  var puzzlesConfig = puzzlesContainerConfig.puzzles;
-  console.log("external puzzlesBuild: ", puzzlesBuild);
-
-  // inject 'config.js' if not already injected
-  // we need this to be accessable during the runtime
-  for(var puzzleName in puzzlesBuild){
-    var puzzleBuild = puzzlesBuild[puzzleName];
-
-    // if not configured or set as unavailable do not inject it
-    if(!(puzzleName in puzzlesConfig) || !puzzlesConfig[puzzleName].active) continue;
-
-    if(typeof puzzleBuild.injectJs === 'string') puzzleBuild.injectJs = [puzzleBuild.injectJs];
-    if(puzzleBuild.injectJs.indexOf('config.js') < 0){
-      puzzleBuild.injectJs.push('./config.js');
-    }
-
-    // if not configured or set as unavailable do not inject it
-    injectPuzzleWithPossibleSubPuzzles(npmDependencies, puzzleBuild, puzzlePath);
-  }
-
-
-  // injecting compass building
-  var compassPaths = COMPASS_CONFIG.PATHS;
-  var compassPathsPuzzle = puzzlesContainerConfig.COMPASS.PATHS;
-  for(var cppPath in compassPathsPuzzle){
-    var compassPathPuzzle = compassPathsPuzzle[cppPath];
-    compassPathPuzzle.isPathFull = true;
-    compassPaths[puzzlePath] = compassPathPuzzle;
-  }
-}
-
-/*
- * Iterates through all puzzles inside the puzzles config and if they are external
- * injects them
- * 1. EXTERNAL PUZZLES - BUILD PHASE
- */
-for(var puzzleName in puzzles){
-    var puzzle = puzzles[puzzleName];
-    if('path' in puzzle && !!puzzle.active){
-      injectExternalPuzzle(puzzleName, puzzle);
+    if('path' in puzzleBuild){
+        injectPuzzle(npmDependencies, puzzleBuild);
+    }else{
+        for(var subPuzzleName in puzzleBuild){
+            var subPuzzleBuild = puzzleBuild[subPuzzleName];
+            console.log("subPuzzleBuild: ", subPuzzleBuild);
+            if('path' in subPuzzleBuild){
+                injectPuzzle(npmDependencies, subPuzzleBuild);
+            }
+        }
     }
 }
-
-// add app.js after all other external puzzles-containers' configs are provided
-// so app.js is capable of accessing external puzzles-containers' configs
-SUB_PROJECTS_FILE.NPM_DEPENDENCIES.push(
-  { src: join(APP_SRC, 'js/app.js'), inject: true, noNorm: true }
-);
-
 
 if (ENABLE_HOT_LOADING) {
     console.log(chalk.bgRed.white.bold('The hot loader is temporary disabled.'));
@@ -533,8 +348,12 @@ const NPM_DEPENDENCIES: IDependency[] = [
     { src: join(APP_SRC, 'js/lib/tween/tween.js'), inject: 'libs', noNorm: true },
     { src: join(APP_SRC, 'js/lib/socket.io/socket.io.js'), inject: 'libs', noNorm: true },
     { src: join(APP_SRC, 'js/lib/ui-bootstrap/ui-bootstrap-tpls-0.12.1.js'), inject: 'libs', noNorm: true },
+    { src: join(APP_SRC, 'js/lib/angular/ui-bootstrap-tpls.min.js'), inject: 'libs', noNorm: true },
+
+    { src: join(APP_SRC, 'js/lib/textAngular/textAngular-rangy.min.js'), inject: 'libs', noNorm: true },
+    { src: join(APP_SRC, 'js/lib/textAngular/textAngular-sanitize.js'), inject: 'libs', noNorm: true },
+    { src: join(APP_SRC, 'js/lib/textAngular/textAngular.min.js'), inject: 'libs', noNorm: true },
     { src: join(APP_SRC, 'js/lib/wizard/ngWizard.js'), inject: 'libs', noNorm: true },
-    // { src: join(APP_SRC, 'js/lib/ng2-file-upload/ng2-file-upload.js'), inject: 'libs', noNorm: true },
     { src: join(APP_SRC, 'js/lib/socket.io/angular.socket.io.js'), inject: 'libs', noNorm: true },
 
     { src: 'rxjs/bundles/Rx.js', inject: 'libs' },
@@ -559,24 +378,19 @@ const PROD_NPM_DEPENDENCIES: IDependency[] = [
     // { src: '@angular/upgrade/index.js', inject: 'libs' }
 ];
 
-console.log("NPM_DEPENDENCIES: ", NPM_DEPENDENCIES);
-console.log("DEV_NPM_DEPENDENCIES: ", DEV_NPM_DEPENDENCIES);
-console.log("SUB_PROJECTS_FILE.NPM_DEPENDENCIES: ", SUB_PROJECTS_FILE.NPM_DEPENDENCIES);
-console.log("SUB_PROJECTS_FILE.DEV_NPM_DEPENDENCIES: ", SUB_PROJECTS_FILE.DEV_NPM_DEPENDENCIES);
-console.log("SUB_PROJECTS_FILE.APP_ASSETS: ", SUB_PROJECTS_FILE.APP_ASSETS);
-
 export const DEV_DEPENDENCIES = normalizeDependencies(NPM_DEPENDENCIES.
     concat(DEV_NPM_DEPENDENCIES, SUB_PROJECTS_FILE.NPM_DEPENDENCIES,
     SUB_PROJECTS_FILE.DEV_NPM_DEPENDENCIES, SUB_PROJECTS_FILE.APP_ASSETS)
-);
+    );
 
 export const PROD_DEPENDENCIES = normalizeDependencies(NPM_DEPENDENCIES.
     concat(PROD_NPM_DEPENDENCIES, SUB_PROJECTS_FILE.NPM_DEPENDENCIES,
     SUB_PROJECTS_FILE.PROD_NPM_DEPENDENCIES, SUB_PROJECTS_FILE.APP_ASSETS)
-);
+    );
 
 export const DEPENDENCIES = ENV === 'dev' ? DEV_DEPENDENCIES : PROD_DEPENDENCIES;
-console.log(chalk.bgWhite.blue.bold(' DEPENDENCIES: '), chalk.blue(JSON.stringify(DEPENDENCIES)));
+// console.log(chalk.bgWhite.blue.bold(' DEPENDENCIES: '), chalk.blue(JSON.stringify(DEPENDENCIES)));
+// console.log(chalk.bgWhite.blue.bold(' PROD_DEPENDENCIES: '), chalk.blue(JSON.stringify(PROD_DEPENDENCIES)));
 
 // ----------------
 // SystemsJS Configuration.
@@ -601,11 +415,11 @@ var config = {
     meta: {
         "components/knalledgeMap/main": {
             format: "global",
-            deps: ["components/topPanel/topPanel"]
+            // deps: ["components/topPanel/topPanel"]
         },
-        "components/topPanel/topPanel": {
-            build: true
-        }
+        // "components/topPanel/topPanel": {
+        //     build: true
+        // }
     },
     packageConfigPaths: ['./node_modules/*/package.json',
         './node_modules/@angular/*/package.json',
@@ -619,7 +433,6 @@ var config = {
         [BOOTSTRAP_MODULE]: `${APP_BASE}${BOOTSTRAP_MODULE}`,
         // 'rxjs/*': `${APP_BASE}rxjs/*`,
         '*': `./node_modules/*`,
-        'dist/*': `./dist/*`,
     }
 };
 
@@ -629,6 +442,7 @@ var materialPkgs = [
     'checkbox',
     'sidenav',
     'checkbox',
+    'forms',
     'input',
     'progress-bar',
     'progress-circle',
@@ -644,10 +458,7 @@ var materialPkgs = [
 
 // put the names of any of your Angular components here
 var angularPkgs = [
-    'common', 'compiler', 'core',
-    'forms', 'http', 'platform-browser',
-    'platform-browser-dynamic', 'router',
-    'router-deprecated', 'upgrade'
+    'common', 'compiler', 'core', 'forms', 'http', 'platform-browser', 'platform-browser-dynamic', 'router', 'router-deprecated', 'upgrade'
 ];
 // for(var pI in angularPkgs){
 //     var pkg = angularPkgs[pI];
@@ -700,7 +511,7 @@ function normalizeDependencies(deps: IDependency[]) {
     return deps;
 }
 
-function appVersion(): number | string {
+function appVersion(): number|string {
     var pkg = JSON.parse(readFileSync('package.json').toString());
     return pkg.version;
 }
@@ -720,6 +531,5 @@ function getEnvironment() {
         env = ENVIRONMENTS.PRODUCTION;
     }
     console.log("[getEnvironment] ENV: ", env);
-
     return env;
 }

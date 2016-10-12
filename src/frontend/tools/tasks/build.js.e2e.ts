@@ -8,7 +8,7 @@ export = function buildJSE2e(gulp, plugins) {
   return function () {
     let tsProject = tsProjectFn(plugins);
     let src = [
-      'typings/browser.d.ts',
+      'typings/index.d.ts',
       join(APP_SRC, '**/*.ts'),
       '!' + join(APP_SRC, '**/*.spec.ts')
     ];

@@ -84,15 +84,7 @@
             </section>
           </md-toolbar>
 
-          <md-toolbar *ngIf="itemContainerProperties.visible" class="toolbar" color="primary" style="width: 100%;" layout-align="center center">
-            <section layout="column" layout-gt-sm="row" layout-align="center center" layout-wrap style="width: 100%;">
-
-              <span class="itemTitle clickable_text" (click)="itemContainerProperties.visible=false;">
-                                {{getEntityFullName(itemContainer)}}
-                            </span>
-
-            </section>
-          </md-toolbar>
+          <navigation-breadcrumb></navigation-breadcrumb>
 
           <!-- MCM Map List -->
           <mcm-list-component [itemContainer]="itemContainer" [existsDialogueOverItem]="existsDialogueOverItem_binded" (selectItem)="onSelectedItem($event)" (enterItem)="onEnteredItem($event)" flex style="overflow: auto; height: 100%;"></mcm-list-component>
@@ -112,12 +104,13 @@
             <span flex></span>
 
             <span class="collaboration">
-                          <span class="collaboration-notification" [ngSwitch]="existsDialogueOverItem()">
+              <span class="collaboration-notification" [ngSwitch]="existsDialogueOverItem()">
 
-                              <button md-raised-button *ngSwitchCase="true" (click)="collaborateOnEntity()" class="md-accent md-hue-1">Join Collabo</button>
+                <button md-raised-button *ngSwitchCase="true" (click)="collaborateOnEntity()" class="md-accent md-hue-1">Join Collabo</button>
 
-                              <button md-raised-button *ngSwitchCase="false" (click)="collaborateOnEntity()" class="md-accent md-hue-1">Start Collabo</button>
-                          </span>
+                <button md-raised-button *ngSwitchCase="false" (click)="collaborateOnEntity()" class="md-accent md-hue-1">Start Collabo</button>
+
+              </span>
 
             <!-- <button md-fab class="md-primary" aria-label="Discuss" (click)="onDiscussItem(itemHighlited)">
                               <i title="Discuss" md-icon>feedback</i>
