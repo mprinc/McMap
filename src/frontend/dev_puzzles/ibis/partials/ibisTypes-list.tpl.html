@@ -1,0 +1,17 @@
+<div class="ibis-types-list tools-controls-group">
+	<div class="switch" (click)="hideShowComponent()">
+		<span class="panel-title">IBIS/Kn</span>
+		<span class='arrows'>
+			<span [hidden]="!componentShown"><i title="hide panel" class="fa fa-caret-square-o-up" aria-hidden="true"></i></span>
+			<span [hidden]="componentShown"><i title="show panel" class="fa fa-caret-square-o-down" aria-hidden="true"></i></span>
+		</span>
+	</div>
+	<div class="content" [hidden]="!componentShown">
+		<table class="list">
+			<tr (click)="selectItem(item)" *ngFor="let item of items"
+			[ngClass]="{'row': true, 'active-selection': item._id === selectedItem._id}">
+				<td>{{item.name}}</td>
+			</tr>
+		</table>
+	</div>
+</div>

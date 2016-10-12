@@ -1,0 +1,62 @@
+/*http://stackoverflow.com/questions/8061166/syntax-to-include-separate-sass-file*/
+
+@import "../../../app/sass/include";
+
+.node_html{
+  /* NODE SEMANTIC / STYLING */
+  &.type_ibis_question{
+    background-color: #ffffaa;
+  }
+  &.type_ibis_idea{
+    background-color: #aaffaa;
+  }
+  &.type_ibis_argument{
+    background-color: transparentize(#ffaaaa, 0.50);
+  }
+  &.type_ibis_comment{
+    background-color: #aaffff;
+  }
+}
+
+/* -------------------------
+	IBIS
+	ibis-types-list
+------------------------- */
+
+.ibis-types-list{
+	.list{
+		margin: 5px;
+		font-size: 18px;
+		border: 1px solid #aaaaaa;
+		@include border-radius(15px, 15px);
+
+		.active-selection{
+			background-color: #eee;
+		}
+		tr{
+			margin-bottom: 3px;
+			border-bottom: solid 2px #aaaaaa;
+			margin-bottom: 3px;
+			@include border-radius(5px, 5px);
+			 &:hover{
+		     	cursor: pointer;
+		     	background-color: #cccccc;
+		  }
+		}
+
+		th{
+			background-color: #aaf;
+			/*border: 1px solid black;*/
+			padding: 5px;
+		}
+		td{
+			/*border: 1px solid black;*/
+			padding: 5px;
+			font-size: 0.75em;
+		}
+
+		.active-selection{
+			background-color: #aaf;
+		}
+	}
+}
