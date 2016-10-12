@@ -1,0 +1,34 @@
+/*http://stackoverflow.com/questions/8061166/syntax-to-include-separate-sass-file*/
+
+@import "../../../app/sass/include";
+
+.knalledge_map_list{
+  .content{
+    position: relative;
+    margin: 0.1em;
+    padding: 0.0em;
+
+    .knalledge-properties{
+      position: relative;
+      width: 90%;
+      height: 100%;
+
+      &.knalledge-view{
+        word-break: break-all;
+        padding: 0.3em;
+      }
+
+      &.knalledge-edit{
+
+      }
+
+      .ta-editor {
+        position: relative;
+      }
+      .ta-scroll-window > .ta-bind {
+        height: 100%;
+        position: relative;
+      }
+    }
+  }
+}

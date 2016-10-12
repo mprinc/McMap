@@ -1,0 +1,36 @@
+/*http://stackoverflow.com/questions/8061166/syntax-to-include-separate-sass-file*/
+/* @import "normalize"; */
+/*
+$medium: 800px;
+$large: 1400px;
+*/
+/*
+	http://compass-style.org/examples/compass/css3/box_sizing/
+	http://www.w3schools.com/cssref/css3_pr_box-sizing.asp
+	http://stackoverflow.com/questions/10808413/css3-box-sizing-margin-box-why-not
+*/
+* {
+  margin: 0px;
+  padding: 0px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.knalledge_map_list .content {
+  position: relative;
+  margin: 0.1em;
+  padding: 0.0em; }
+  .knalledge_map_list .content .knalledge-properties {
+    position: relative;
+    width: 90%;
+    height: 100%; }
+    .knalledge_map_list .content .knalledge-properties.knalledge-view {
+      word-break: break-all;
+      padding: 0.3em; }
+    .knalledge_map_list .content .knalledge-properties .ta-editor {
+      position: relative; }
+    .knalledge_map_list .content .knalledge-properties .ta-scroll-window > .ta-bind {
+      height: 100%;
+      position: relative; }
+
+/*# sourceMappingURL=default.css.map */
