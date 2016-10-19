@@ -14,3 +14,6 @@ export var components:any = {};
 components['/components/gardening/gardening-controls.component'] = GardeningControls;
 components['/components/rima/rimaUsersList'] = RimaUsersList;
 components['/components/knalledgeMap/ibisTypesList'] = IbisTypesList;
+
+import {NavigationBreadcrumb} from '../../dev_puzzles/navigation/breadcrumb';
+components['cf.puzzles.navigation.breadcrumb'] = NavigationBreadcrumb;

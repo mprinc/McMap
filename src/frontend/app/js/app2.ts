@@ -3,7 +3,7 @@ import {upgradeAdapter} from './upgrade_adapter';
 
 import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
 
-import {KnalledgeMapMain} from '../components/knalledgeMap/main';
+// import {KnalledgeMapMain} from '../components/knalledgeMap/main';
 import {MapsList} from '../components/mapsList/maps-list.component';
 import {LoginStatusComponent} from '../components/login/login-status-component';
 import {McmMain} from '../components/mcmMap/mcmMain';
@@ -36,20 +36,20 @@ import { Injector } from '../components/utils/injector';
 import './pluginDependencies';
 
 // registering ng2 directives in ng1 space
-angular.module('knalledgeMapDirectives')
-    .directive({
-       'knalledgeMapMain':
-           upgradeAdapter.downgradeNg2Component(KnalledgeMapMain)
-    })
-    .directive({
-        'loginStatus':
-            upgradeAdapter.downgradeNg2Component(LoginStatusComponent)
-    })
-    .directive({
-       'mapsList':
-           upgradeAdapter.downgradeNg2Component(MapsList)
-   })
-    ;
+// angular.module('knalledgeMapDirectives')
+//     .directive({
+//        'knalledgeMapMain':
+//            upgradeAdapter.downgradeNg2Component(KnalledgeMapMain)
+//     })
+//     .directive({
+//         'loginStatus':
+//             upgradeAdapter.downgradeNg2Component(LoginStatusComponent)
+//     })
+//     .directive({
+//        'mapsList':
+//            upgradeAdapter.downgradeNg2Component(MapsList)
+//    })
+//     ;
 
 // angular.module('McModelarNg2', ['mcmMapsDirectives']);
 

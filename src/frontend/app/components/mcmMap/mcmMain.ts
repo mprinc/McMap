@@ -1,5 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import { AfterViewInit, ViewChild } from
+import { OnInit, OnDestroy, AfterViewInit, ViewChild } from
 '@angular/core';
 import {upgradeAdapter} from '../../js/upgrade_adapter';
 import {MD_SIDENAV_DIRECTIVES} from '@angular2-material/sidenav';
@@ -56,6 +56,20 @@ import {McmMapInteraction} from './mcmMapInteraction';
 declare var knalledge;
 declare var window;
 
+import {PluginsPreloader} from '../collaboPlugins/pluginsPreloader';
+
+var componentDirectives = [
+  MATERIAL_DIRECTIVES,
+  MD_SIDENAV_DIRECTIVES,
+  ROUTER_DIRECTIVES,
+  MdToolbar,
+  McmListComponent,
+  McmSelectEntityComponent,
+  KnalledgeCreateNodeComponent
+];
+
+PluginsPreloader.addDirectivesDependenciesForComponent('mcmMap.McmMain', componentDirectives);
+
 @Component({
     selector: 'mcm-main',
     moduleId: module.id,
@@ -67,20 +81,12 @@ declare var window;
         // RequestService
         // ROUTER_PROVIDERS
     ],
-    directives: [
-        MATERIAL_DIRECTIVES,
-        MD_SIDENAV_DIRECTIVES,
-        ROUTER_DIRECTIVES,
-        MdToolbar,
-        McmListComponent,
-        McmSelectEntityComponent,
-        KnalledgeCreateNodeComponent
-    ],
+    directives: componentDirectives,
     styles: [`
     `]
 })
 
-export class McmMain implements AfterViewInit{
+export class McmMain implements OnInit, OnDestroy, AfterViewInit{
     mcmPolicyConfig: any;
     mcmViewConfig: any;
     policyConfig: any;
@@ -116,6 +122,7 @@ export class McmMain implements AfterViewInit{
         @Inject('McmMapPolicyService') private mcmMapPolicyService: McmMapPolicyService,
         @Inject('KnalledgeMapService') private knalledgeMapService,
         @Inject('KnalledgeMapVOsService') private knalledgeMapVOsService,
+        @Inject('CollaboPluginsService') private collaboPluginsService,
         @Inject('GlobalEmitterServicesArray') private globalEmitterServicesArray: GlobalEmitterServicesArray
     ) {
         console.log('[McmMain]');
@@ -145,6 +152,12 @@ export class McmMain implements AfterViewInit{
     };
     ngOnInit() {
         this.mapLoader.init();
+    }
+
+    ngOnDestroy() {
+      // unregistering references and api to collabo plugins
+    	this.collaboPluginsService.revokeReferences("map");
+    	this.collaboPluginsService.revokeApi("map");
     }
 
     ngAfterViewInit() {
@@ -188,7 +201,7 @@ export class McmMain implements AfterViewInit{
     }
 
     getNumberOfEntities(entityType){
-      console.log("[getNumberOfEntities] entityType:", entityType);
+      // console.log("[getNumberOfEntities] entityType:", entityType);
       return this.mcmMapLayout.getChildrenNumberForEntityType(entityType);
     }
 
@@ -248,6 +261,33 @@ export class McmMain implements AfterViewInit{
             setHighlitedItem: this.setHighlitedItem.bind(this)
         };
         this.mcmMapInteraction = new McmMapInteraction(clientApi, localApi);
+
+
+        // unregistering references and api to collabo plugins
+      	this.collaboPluginsService.revokeReferences("map");
+      	this.collaboPluginsService.revokeApi("map");
+
+        // providing "map-like" references and api to collabo plugins
+      	this.collaboPluginsService.provideReferences("map", {
+      		name: "map",
+      		items: {
+      			mapStructure: this.mapStructure
+      		}
+      	});
+      	this.collaboPluginsService.provideApi("map", {
+      		name: "map",
+      		items: {
+      			/* update(source, callback) */
+
+            /*
+      			update: this.mapVisualization.update.bind(this.mapVisualization),
+      			positionToDatum: this.mapVisualization.positionToDatum.bind(this.mapVisualization),
+      			nodeSelected: this.nodeSelected.bind(this),
+      			disableKeyboard: this.keyboardInteraction.disable.bind(this.keyboardInteraction),
+      			enableKeyboard: this.keyboardInteraction.enable.bind(this.keyboardInteraction)
+            */
+      		}
+      	});
     }
 
     setHighlitedItem(item: NodeWithChildren=null){

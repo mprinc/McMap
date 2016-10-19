@@ -1,8 +1,9 @@
-<md-toolbar *ngIf="itemContainerProperties.visible" class="toolbar" color="primary" style="width: 100%;" layout-align="start center">
+<!-- <md-toolbar *ngIf="itemContainerProperties.visible" class="toolbar" color="primary" style="width: 100%;" layout-align="start center"> -->
+<md-toolbar class="toolbar" color="primary" style="width: 100%;" layout-align="start center">
     <section layout="column" layout-gt-sm="row" layout-align="center center" layout-wrap style="width: 100%;">
 
-    <span class="itemTitle clickable_text" (click)="">
-    	{{getEntityFullName(itemContainer)}}
+    <span class="itemTitle clickable_text">
+    	{{getEntityFullName()}}
     </span>
 
     </section>

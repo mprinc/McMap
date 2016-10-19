@@ -16,7 +16,7 @@ var puzzles = {
     navigation: {
       path: '.',
       css: true,
-      injectJs: 'js/services.js',
+      injectJs: '',
       injectCss: 'css/default.css'
     }
   },

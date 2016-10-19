@@ -62,9 +62,8 @@
               </button>
 
               <span class="itemTitle clickable_text" (click)="itemContainerProperties.visible=!itemContainerProperties.visible">
-                                {{itemContainer?.node?.kNode?.name}}
-                            </span>
-
+                {{itemContainer?.node?.kNode?.name}}
+              </span>
               <span class="itemTitle clickable_text" (click)="filterToolbar.visible=!filterToolbar.visible; itemToolbar.visible = false;">
                                 : {{getEntityFilterText()}}
                                (<span [ngSwitch]="getNumberOfFilteredEntities() === null"><span *ngSwitchCase="true"><i class="fa fa-refresh fa-spin"></i><span class="sr-only">Loading...</span></span><span *ngSwitchCase="false">{{getNumberOfFilteredEntities()}}</span></span>)
