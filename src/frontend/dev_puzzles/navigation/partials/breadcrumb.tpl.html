@@ -2,8 +2,8 @@
 <md-toolbar class="toolbar" color="primary" style="width: 100%;" layout-align="start center">
     <section layout="column" layout-gt-sm="row" layout-align="center center" layout-wrap style="width: 100%;">
 
-    <span class="itemTitle clickable_text">
-    	{{getEntityFullName()}}
+    <span class="itemTitle clickable_text" *ngFor="let item of getEntityFullName()">
+    	{{item?.kNode?.name}}
     </span>
 
     </section>

@@ -59,6 +59,7 @@ export class NavigationBreadcrumb {
   }
 
   getEntityFullName(entity?){
+    var entityPath = [];
     if(!entity) entity = {
       node: this.service.getSelectedNode()
     }
@@ -68,6 +69,8 @@ export class NavigationBreadcrumb {
     do{
       var parentNode = parentNodes[0];
       if(!parentNode) break;
+
+      entityPath.push(parentNode);
 
       if(parentNode.kNode.type === 'object'){
           fullName = parentNode.kNode.name + (fullName ? "_" + fullName : "");
@@ -80,7 +83,7 @@ export class NavigationBreadcrumb {
       parentNodes =
           this.service.getParentNodes(parentNode);
     }while(parentNodes && parentNodes.length);
-    return fullName;
+    return entityPath;
   }
 
 }
