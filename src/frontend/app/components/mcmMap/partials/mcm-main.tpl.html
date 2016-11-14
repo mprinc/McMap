@@ -33,32 +33,32 @@
           <md-toolbar class="toolbar" color="primary" style="width: 100%;">
             <section layout="row" layout-sm="column" layout-align="space-between center" layout-wrap style="width: 100%;">
               <section class="commands" layout="row" layout-sm="column" layout-align="left center" layout-wrap>
-                <!-- <button md-fab class="md-primary" aria-label="Configuration" (click)="settings.toggle()" [hidden]="settings.opened">
-                                    <i title="Settings" md-icon>settings</i>
+                <!-- <button md-mini-fab class="md-primary" aria-label="Configuration" (click)="settings.toggle()" [hidden]="settings.opened">
+                                    <md-icon title="Settings">settings</md-icon>
                                 </button>
 
-                                <button md-fab class="md-primary" aria-label="Options" (click)="options.toggle()">
-                                    <i title="Options" md-icon>chrome_reader_mode</i>
+                                <button md-mini-fab class="md-primary" aria-label="Options" (click)="options.toggle()">
+                                    <md-icon title="Options">chrome_reader_mode</md-icon>
                                 </button> -->
 
-                <button md-fab class="md-primary" aria-label="Maps" (click)="go('maps')">
-                  <i title="Maps List" md-icon>map</i>
+                <button md-mini-fab class="md-primary" aria-label="Maps" (click)="go('maps')">
+                  <md-icon title="Maps List">map</md-icon>
                 </button>
 
-                <button md-fab class="md-primary" aria-label="Filter type" (click)="filterToolbar.visible=!filterToolbar.visible; itemToolbar.visible = false;">
-                  <i title="Filter type" md-icon>filter_center_focus</i>
+                <button md-mini-fab class="md-primary" aria-label="Filter type" (click)="filterToolbar.visible=!filterToolbar.visible; itemToolbar.visible = false;">
+                  <md-icon title="Filter type">filter_center_focus</md-icon>
                 </button>
 
-                <!-- <button md-fab class="md-primary" aria-label="Plugins" (click)="go('plugins')"  [hidden]="!policyConfig.moderating.enabled">
-                                    <i title="Plugins" md-icon>extension</i>
+                <!-- <button md-mini-fab class="md-primary" aria-label="Plugins" (click)="go('plugins')"  [hidden]="!policyConfig.moderating.enabled">
+                                    <md-icon title="Plugins">extension</md-icon>
                                 </button> -->
               </section>
 
-              <button md-fab class="md-primary" aria-label="Navigate Back" (click)="navigateBack()">
-                <i title="Back" md-icon>navigate_before</i>
+              <button md-mini-fab class="md-primary" aria-label="Navigate Back" (click)="navigateBack()">
+                <md-icon title="Back">navigate_before</md-icon>
               </button>
-              <button md-fab class="md-primary" aria-label="Add Entity" (click)="addEntity()">
-                <i title="Add Entity" md-icon>add</i>
+              <button md-mini-fab class="md-primary" aria-label="Add Entity" (click)="addEntity()">
+                <md-icon title="Add Entity">add</md-icon>
               </button>
 
               <span class="itemTitle clickable_text" (click)="itemContainerProperties.visible=!itemContainerProperties.visible">
@@ -72,12 +72,12 @@
               <span flex></span>
 
               <section class="whoAmI" layout="row" layout-sm="column" layout-align="end center" layout-wrap>
-                <button md-fab class="md-primary" aria-label="Person" (click)="go('login')">
-                  <i title="Login" md-icon>person</i>
+                <button md-mini-fab class="md-primary" aria-label="Person" (click)="go('login')">
+                  <md-icon title="Login">person</md-icon>
                 </button>
 
-                <!-- <button md-fab class="md-primary" aria-label="Logout" (click)="go('logout')">
-                                    <i title="Logout" md-icon>directions run</i>
+                <!-- <button md-mini-fab class="md-primary" aria-label="Logout" (click)="go('logout')">
+                                    <md-icon title="Logout">directions run</md-icon>
                                 </button> -->
               </section>
             </section>
@@ -89,11 +89,11 @@
           <mcm-list-component [itemContainer]="itemContainer" [existsDialogueOverItem]="existsDialogueOverItem_binded" (selectItem)="onSelectedItem($event)" (enterItem)="onEnteredItem($event)" flex style="overflow: auto; height: 100%;"></mcm-list-component>
 
           <md-toolbar *ngIf="itemToolbar.visible" class="toolbar" color="accent" style="width: 100%;">
-            <button md-fab class="md-primary" aria-label="Delete" (click)="onDeleteItem(itemHighlited)">
-              <i title="Delete" md-icon>delete</i>
+            <button md-mini-fab class="md-primary" aria-label="Delete" (click)="onDeleteItem(itemHighlited)">
+              <md-icon title="Delete">delete</md-icon>
             </button>
-            <!-- <button md-fab class="md-primary" aria-label="Edit" (click)="options.toggle()">
-                            <i title="Edit" md-icon>border_color</i>
+            <!-- <button md-mini-fab class="md-primary" aria-label="Edit" (click)="options.toggle()">
+                            <md-icon title="Edit">border_color</md-icon>
                         </button> -->
 
             <span class="itemTitle">
@@ -111,26 +111,26 @@
 
               </span>
 
-            <!-- <button md-fab class="md-primary" aria-label="Discuss" (click)="onDiscussItem(itemHighlited)">
-                              <i title="Discuss" md-icon>feedback</i>
+            <!-- <button md-mini-fab class="md-primary" aria-label="Discuss" (click)="onDiscussItem(itemHighlited)">
+                              <md-icon title="Discuss">feedback</md-icon>
                                https://design.google.com/icons/#ic_feedback
                             </button> -->
 
-            <button md-fab class="md-primary" aria-label="Comment" (click)="onCommentItem(itemHighlited)">
-              <i class="commentIcon" title="Comment" md-icon>comment</i>
+            <button md-mini-fab class="md-primary" aria-label="Comment" (click)="onCommentItem(itemHighlited)">
+              <md-icon class="commentIcon" title="Comment">comment</md-icon>
             </button>
 
-            <button md-fab class="md-primary" aria-label="Question" (click)="onQuestionItem(itemHighlited)">
-              <i class="questionIcon" title="Question" md-icon>?</i>
+            <button md-mini-fab class="md-primary" aria-label="Question" (click)="onQuestionItem(itemHighlited)">
+              <md-icon class="questionIcon" title="Question">?</md-icon>
             </button>
 
-            <button md-fab class="md-primary" aria-label="Disapprove" (click)="onDisapprovingItem(itemHighlited)">
-              <i title="disapprove" md-icon>thumb_down</i>
+            <button md-mini-fab class="md-primary" aria-label="Disapprove" (click)="onDisapprovingItem(itemHighlited)">
+              <md-icon title="disapprove">thumb_down</md-icon>
             </button>
             </span>
 
-            <button md-fab class="md-primary" aria-label="Close" (click)="onSelectedItem()">
-              <i title="Close" md-icon>close</i>
+            <button md-mini-fab class="md-primary" aria-label="Close" (click)="onSelectedItem()">
+              <md-icon title="Close">close</md-icon>
             </button>
           </md-toolbar>
 

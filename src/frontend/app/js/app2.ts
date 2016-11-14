@@ -208,6 +208,7 @@ import {MapsListModule} from '../components/mapsList/maps-list.component';
 // moduleDeclarations.push(upgradeAdapter.upgradeNg1Component('knalledgeMapsList'));
 // NG2 components
 moduleDeclarations.push(KnalledgeMapMain);
+moduleDeclarations.push(McmMain);
 
 moduleImports.push(BrowserModule);
 moduleImports.push(FormsModule);
