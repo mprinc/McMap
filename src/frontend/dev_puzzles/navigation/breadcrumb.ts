@@ -1,9 +1,4 @@
 import {Component, Inject} from '@angular/core';
-import {NgIf, CORE_DIRECTIVES} from "@angular/common";
-import {MATERIAL_DIRECTIVES} from 'ng2-material';
-import {MdToolbar} from '@angular2-material/toolbar';
-import {FORM_DIRECTIVES} from '@angular/forms';
-import {MD_INPUT_DIRECTIVES} from '@angular2-material/input';
 
 import {KnalledgeMapViewService} from '../../app/components/knalledgeMap/knalledgeMapViewService';
 import {KnalledgeMapPolicyService} from '../../app/components/knalledgeMap/knalledgeMapPolicyService';
@@ -16,15 +11,6 @@ import {CfPuzzlesNavigationService} from './cf.puzzles.navigation.service';
         //MATERIAL_PROVIDERS
         CfPuzzlesNavigationService
     ],
-    directives: [
-      MATERIAL_DIRECTIVES,
-      MdToolbar,
-      // MdList, MdListItem, MdContent, MdButton, MdSwitch,
-      NgIf, FORM_DIRECTIVES,
-      // MdRadioButton, MdRadioGroup,
-      //
-      MD_INPUT_DIRECTIVES
-   ],
     moduleId: module.id,
     templateUrl: 'partials/breadcrumb.tpl.html',
     styles: [`

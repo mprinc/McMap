@@ -96,12 +96,26 @@
   var plugins = {
     "ViewComponents": {
       "mcmMap.McmMain": {
+        modules: {
+        },
         components: {
           'cf.puzzles.navigation.breadcrumb': {
               active: true,
               path: "cf.puzzles.navigation.breadcrumb"
           },
-        }
+        },
+      },
+      "knalledgeMap.Main": {
+        modules: {
+        },
+        components: {
+        },
+      },
+      "bottomPanel.BottomPanel": {
+        modules: {
+        },
+        components: {
+        },
       },
     },
 
@@ -377,7 +391,11 @@
       navigation: {
         active: true, // is active puzzle
         path: 'dev_puzzles/navigation' // path to the puzzle folder, relative to the project (frontend) root
-      }
+      },
+      ibis: {
+        active: true, // is active puzzle
+        path: 'dev_puzzles/ibis' // path to the puzzle folder, relative to the project (frontend) root
+      },
     }
   };
 

@@ -5,15 +5,20 @@
 // import {TopPanel} from '../components/topPanel/topPanel';
 // var cTopPanel = TopPanel;
 
-import {GardeningControls} from '../components/gardening/gardening-controls.component';
-import {RimaUsersList} from '../components/rima/rimaUsersList';
-import {IbisTypesList} from '../components/knalledgeMap/ibisTypesList';
-
 export var components:any = {};
 
+import {GardeningControls} from '../components/gardening/gardening-controls.component';
 components['/components/gardening/gardening-controls.component'] = GardeningControls;
+
+import {RimaUsersList} from '../components/rima/rimaUsersList';
 components['/components/rima/rimaUsersList'] = RimaUsersList;
-components['/components/knalledgeMap/ibisTypesList'] = IbisTypesList;
+
+import {IbisTypesList} from '../../dev_puzzles/ibis/ibisTypesList';
+components['cf.puzzles.ibis.typesList'] = IbisTypesList;
 
 import {NavigationBreadcrumb} from '../../dev_puzzles/navigation/breadcrumb';
 components['cf.puzzles.navigation.breadcrumb'] = NavigationBreadcrumb;
+
+export var servicesDependencies:any = {};
+
+export var modules:any = {};

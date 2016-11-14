@@ -66,3 +66,4 @@ src/frontend/app/components/puzzles.js
 src/backend/models
 src/backend/modules
 src/backend/tools
+temp_folder

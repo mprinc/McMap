@@ -1,14 +1,8 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { OnInit, OnDestroy, AfterViewInit, ViewChild } from
 '@angular/core';
 import {upgradeAdapter} from '../../js/upgrade_adapter';
-import {MD_SIDENAV_DIRECTIVES} from '@angular2-material/sidenav';
-import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS, Media} from "ng2-material";
-import {MdToolbar} from '@angular2-material/toolbar';
-import {OVERLAY_PROVIDERS} from '@angular2-material/core/overlay/overlay';
 // http://stackoverflow.com/questions/35533783/angular2-unable-to-navigate-to-url-using-location-gourl
-
-import { Router, ROUTER_DIRECTIVES} from '@angular/router';
 
 import {McmListComponent} from './mcmListComponent';
 import {McmSelectEntityComponent} from './mcmSelectEntity.component';
@@ -19,7 +13,6 @@ import {McmMapViewService} from './mcmMapViewService';
 import {KnalledgeMapPolicyService} from '../knalledgeMap/knalledgeMapPolicyService';
 import {ApprovalNodeService} from '../gardening/approval.node.service';
 
-// import {RequestService} from '../request/request.service';
 import {GlobalEmitterServicesArray} from '../collaboPlugins/GlobalEmitterServicesArray';
 
 import {MapLoader} from '../../js/knalledge/mapLoader';
@@ -56,32 +49,12 @@ import {McmMapInteraction} from './mcmMapInteraction';
 declare var knalledge;
 declare var window;
 
-import {PluginsPreloader} from '../collaboPlugins/pluginsPreloader';
-
-var componentDirectives = [
-  MATERIAL_DIRECTIVES,
-  MD_SIDENAV_DIRECTIVES,
-  ROUTER_DIRECTIVES,
-  MdToolbar,
-  McmListComponent,
-  McmSelectEntityComponent,
-  KnalledgeCreateNodeComponent
-];
-
-PluginsPreloader.addDirectivesDependenciesForComponent('mcmMap.McmMain', componentDirectives);
-
 @Component({
     selector: 'mcm-main',
     moduleId: module.id,
     templateUrl: 'partials/mcm-main.tpl.html',
     providers: [
-        MATERIAL_PROVIDERS,
-        OVERLAY_PROVIDERS
-        // provideRouter
-        // RequestService
-        // ROUTER_PROVIDERS
     ],
-    directives: componentDirectives,
     styles: [`
     `]
 })
@@ -446,3 +419,57 @@ export class McmMain implements OnInit, OnDestroy, AfterViewInit{
         window.location.href = '#/' + path;
     };
 }
+
+import { NgModule } from '@angular/core';
+
+import {PluginsPreloader} from '../collaboPlugins/pluginsPreloader';
+
+var componentDirectives = [
+  McmListComponent,
+  McmSelectEntityComponent,
+  KnalledgeCreateNodeComponent
+];
+
+PluginsPreloader.addDirectivesDependenciesForComponent('mcmMap.McmMain', componentDirectives);
+
+import { BrowserModule } from '@angular/platform-browser';
+import {HttpModule} from '@angular/http';
+import {FormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
+
+import {MaterialModule} from '@angular/material';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {Ng2MaterialModule} from 'ng2-material';
+
+var moduleImports = [];
+
+PluginsPreloader.addModulesDependenciesForComponent('mcmMap.McmMain', moduleImports);
+
+moduleImports.push(BrowserModule);
+moduleImports.push(FormsModule);
+moduleImports.push(HttpModule);
+// moduleImports.push(RouterModule.forRoot(DEMO_APP_ROUTES));
+moduleImports.push(MaterialModule);
+moduleImports.push(Ng2MaterialModule);
+moduleImports.push(NgbModule);
+
+let componentExportDirectives = [];
+for (let i = 0; i < componentDirectives.length; i++) {
+    componentExportDirectives.push(componentDirectives[i]);
+}
+
+// needed for coevoludens, temporarily
+// import {BrainstormingService} from '../brainstorming/brainstorming.service';
+var moduleProviders = [
+];
+
+
+// @NgModule for tools
+@NgModule({
+    imports: moduleImports,
+    providers: moduleProviders,
+    exports: componentExportDirectives,
+    declarations: componentDirectives,
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+})
+export class McmMainModule { }

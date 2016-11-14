@@ -1,10 +1,6 @@
 // https://github.com/angular/angular/blob/master/modules/angular2/src/upgrade/upgrade_adapter.ts
-import {upgradeAdapter} from './upgrade_adapter';
+import {upgradeAdapter, moduleProviders, moduleDeclarations, moduleImports} from './upgrade_adapter';
 
-import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
-
-// import {KnalledgeMapMain} from '../components/knalledgeMap/main';
-import {MapsList} from '../components/mapsList/maps-list.component';
 import {LoginStatusComponent} from '../components/login/login-status-component';
 import {McmMain} from '../components/mcmMap/mcmMain';
 import {KnalledgeMapPolicyService} from '../components/knalledgeMap/knalledgeMapPolicyService';
@@ -18,11 +14,8 @@ import {TopiChatConfigService} from '../components/topiChat/topiChatConfigServic
 import {TopiChatService} from '../components/topiChat/topiChatService';
 import {ApprovalNodeService} from '../components/gardening/approval.node.service';
 import {ChangeService} from '../components/change/change.service';
-import {MATERIAL_PROVIDERS} from 'ng2-material';
 
 import {CollaboGrammarService} from '../components/collaboPlugins/CollaboGrammarService';
-
-import { disableDeprecatedForms, provideForms } from '@angular/forms';
 
 // add only if knalledgeMap plugin is added
 import { MapInteraction } from './interaction/mapInteraction';
@@ -35,21 +28,24 @@ import { Injector } from '../components/utils/injector';
 // Loading plugins' dependencies
 import './pluginDependencies';
 
+import {KnalledgeMapMain} from '../components/knalledgeMap/main';
+import {MapsList} from '../components/mapsList/maps-list.component';
+
 // registering ng2 directives in ng1 space
-// angular.module('knalledgeMapDirectives')
-//     .directive({
-//        'knalledgeMapMain':
-//            upgradeAdapter.downgradeNg2Component(KnalledgeMapMain)
-//     })
+angular.module('knalledgeMapDirectives')
+    .directive({
+       'knalledgeMapMain':
+           upgradeAdapter.downgradeNg2Component(KnalledgeMapMain)
+    })
 //     .directive({
 //         'loginStatus':
 //             upgradeAdapter.downgradeNg2Component(LoginStatusComponent)
 //     })
-//     .directive({
-//        'mapsList':
-//            upgradeAdapter.downgradeNg2Component(MapsList)
-//    })
-//     ;
+    .directive({
+       'mapsList':
+           upgradeAdapter.downgradeNg2Component(MapsList)
+   })
+    ;
 
 // angular.module('McModelarNg2', ['mcmMapsDirectives']);
 
@@ -60,8 +56,6 @@ angular.module('mcmMapsDirectives')
     })
     ;
 
-upgradeAdapter.addProvider(MATERIAL_PROVIDERS);
-
 /** for Angular Forms:
 * instead of
 * `bootstrap(AppComponent, [
@@ -70,9 +64,6 @@ upgradeAdapter.addProvider(MATERIAL_PROVIDERS);
 * ])`
 * that cannot be used until we bootstrap as Angular 2
 */
-
-upgradeAdapter.addProvider(disableDeprecatedForms());
-upgradeAdapter.addProvider(provideForms());
 
 var topiChatServices = angular.module('topiChatServices');
 topiChatServices
@@ -151,25 +142,80 @@ angular.module('Config')
 	.constant("injector", injector)
 ;
 
-import { HTTP_PROVIDERS } from '@angular/http';
-upgradeAdapter.addProvider(HTTP_PROVIDERS);
 
-upgradeAdapter.addProvider(ChangeService);
 var changeServices =
     angular.module('changeServices');
 changeServices.
     service('ChangeService', upgradeAdapter.downgradeNg2Provider(ChangeService));
 
-upgradeAdapter.addProvider(CollaboGrammarService);
 var collaboServices =
     angular.module('collaboPluginsServices');
 collaboServices.
     service('CollaboGrammarService', upgradeAdapter.downgradeNg2Provider(CollaboGrammarService));
 
-
 // console.log('GOTOVO ng2 a');
 
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import {HttpModule} from '@angular/http';
+import {FormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
+
+import {MaterialModule} from '@angular/material';
+// Bootstrap 4 + ng2
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {Ng2MaterialModule} from 'ng2-material';
+
+// NG2 TS services
+moduleProviders.push(ChangeService);
+moduleProviders.push(CollaboGrammarService);
+
+// import {KnalledgeMapTools} from '../components/knalledgeMap/tools';
+import {MainModule} from '../components/knalledgeMap/main';
+import {McmMainModule} from '../components/mcmMap/mcmMain';
+import {MapsListModule} from '../components/mapsList/maps-list.component';
+// NG1 components
+// moduleDeclarations.push(upgradeAdapter.upgradeNg1Component('knalledgeMapsList'));
+// NG2 components
+moduleDeclarations.push(KnalledgeMapMain);
+
+moduleImports.push(BrowserModule);
+moduleImports.push(FormsModule);
+moduleImports.push(HttpModule);
+// moduleImports.push(RouterModule.forRoot(DEMO_APP_ROUTES));
+moduleImports.push(MaterialModule.forRoot());
+moduleImports.push(Ng2MaterialModule.forRoot());
+moduleImports.push(NgbModule.forRoot());
+
+// CF modules
+moduleImports.push(MainModule);
+moduleImports.push(MapsListModule);
+moduleImports.push(McmMainModule);
+
+@NgModule({
+  imports: moduleImports,
+  declarations: moduleDeclarations,
+  providers: moduleProviders,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  // entryComponents: [
+  //   // DemoApp,
+  // ],
+})
+export class AppModule {}
+
+// patching fake NgModule with a real one
+// TODO: NOTE: this part is implementation speciffic and needs to be checked against new angular versions
+upgradeAdapter['ng2AppModule'] = AppModule;
+
 // bootstrapping app
-upgradeAdapter.bootstrap(document.body, ['McModelarApp'], {strictDi: false});
+upgradeAdapter.bootstrap(document.body, ['McModelarApp'], {strictDi: false})
+.ready((ref) => {
+  // notify to the rest of the system that ng1 and ng2 ratrace is finished and
+  // that services ara available so loading of the system can start
+  var knalledgeMapPolicyService = ref.ng1Injector.get('KnalledgeMapPolicyService');
+  // alert('KnalledgeMapPolicyService: ' + knalledgeMapPolicyService);
+  knalledgeMapPolicyService.get().config.running.ng1ng2Ready = true;
+});
 
 // console.log('GOTOVO ng2 b');

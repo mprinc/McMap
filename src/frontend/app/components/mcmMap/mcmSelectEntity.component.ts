@@ -1,14 +1,7 @@
 import {Component, Inject, EventEmitter, Output, Input, AfterViewInit, ViewChild} from '@angular/core';
-import {MD_INPUT_DIRECTIVES} from '@angular2-material/input';
 import {upgradeAdapter} from '../../js/upgrade_adapter';
-import {MD_SIDENAV_DIRECTIVES} from '@angular2-material/sidenav';
-import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS, Media} from "ng2-material";
 import {MdDialog} from "ng2-material";
-import {MdToolbar} from '@angular2-material/toolbar';
-import {OVERLAY_PROVIDERS} from '@angular2-material/core/overlay/overlay';
 // http://stackoverflow.com/questions/35533783/angular2-unable-to-navigate-to-url-using-location-gourl
-
-import { Router, ROUTER_DIRECTIVES} from '@angular/router';
 
 import {McmMapPolicyService} from './mcmMapPolicyService';
 import {McmMapViewService} from './mcmMapViewService';
@@ -32,15 +25,6 @@ declare var window;
     moduleId: module.id,
     templateUrl: 'partials/mcm-select-entity-component.tpl.html',
     providers: [
-        MATERIAL_PROVIDERS,
-        OVERLAY_PROVIDERS
-    ],
-    directives: [
-        MATERIAL_DIRECTIVES,
-        MD_SIDENAV_DIRECTIVES,
-        ROUTER_DIRECTIVES,
-        MdToolbar,
-        MD_INPUT_DIRECTIVES
     ],
     styles: [`
     `]

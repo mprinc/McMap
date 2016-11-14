@@ -60,51 +60,87 @@
 
 	    <% if (ENV === 'dev') { %>
 	    <script>
-		var config = {
-			"defaultJSExtensions":true,
-			"defaultExtension": "js",
-			"map": {
-				"ng2-material": "ng2-material/index.js"
-			},
-			"paths":{
-				"bootstrap":"/bootstrap",
-				"*":"../../node_modules/*"
-			},
-			"packages":{
+			var config = {
+				defaultJSExtensions: true,
+				defaultExtension: "js",
+				map: {
+					app: 'app',
+
+					'@angular/core': 'npm:@angular/core/bundles/core.umd.js',
+		      '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
+		      '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
+					'@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
+					'@angular/http': 'npm:@angular/http/bundles/http.umd.js',
+					// '@angular/material': 'npm:@angular/material/bundles/material.umd.js',
+		      '@angular/platform-browser': 'npm:@angular/platform-browser/bundles/platform-browser.umd.js',
+		      '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
+		      '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
+					'@angular/upgrade': 'npm:@angular/upgrade/bundles/upgrade.umd.js',
+
+					'rxjs': 'npm:rxjs',
+					"ng2-material": "ng2-material/index.js",
+					"components/knalledgeMap/main": "components/knalledgeMap/main.js",
+					"@ng-bootstrap/ng-bootstrap": "npm:@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js"
+				},
+				paths: {
+					"bootstrap": "/bootstrap",
+					'npm:': 'node_modules/',
+					"*": "../../node_modules/*"
+				},
+				packages: {
+					app: {
+						main: './js/app2.js',
+						defaultExtension: 'js'
+					},
+					rxjs: {
+						defaultExtension: 'js'
+					},
+					'@angular/material': {
+					      format: 'cjs',
+					      main: 'material.umd.js'
+					    },
+				}
 			}
-		}
 
-		// put the names of any of your Material components here
-		var materialPkgs = [
-		  'core',
-		  'checkbox',
-		  'sidenav',
-		  'checkbox',
-		  'input',
-		  'progress-bar',
-		  'progress-circle',
-		  'radio',
-		  'tabs',
-		  'toolbar',
-			'forms'
-		];
+			// // put the names of any of your Material components here
+			// var materialPkgs = [
+			// 	'core',
+			// 	'checkbox',
+			// 	'sidenav',
+			// 	'checkbox',
+			// 	'input',
+			// 	'progress-bar',
+			// 	'progress-circle',
+			// 	'radio',
+			// 	'tabs',
+			// 	'toolbar',
+			// 	'forms'
+			// ];
+			//
+			// for (var pI in materialPkgs) {
+			// 	var pkg = materialPkgs[pI];
+			// 	config.packages['@angular2-material/' + pkg] = {
+			// 		main: pkg + '.umd.js'
+			// 	};
+			// }
 
-		for(var pI in materialPkgs){
-			var pkg = materialPkgs[pI];
-			config.packages['@angular2-material/'+pkg] = {main: pkg+'.js'};
-		}
+			// // put the names of any of your Angular components here
+			// var angularPkgs = [
+			// 	'common', 'compiler', 'core',
+			//     'forms', 'http', 'platform-browser',
+			// 	'platform-browser-dynamic', 'router',
+			// 	'router-deprecated', 'upgrade'
+			// ];
+			// for (var pI in angularPkgs) {
+			// 	var pkg = angularPkgs[pI];
+			// 	config.packages['@angular/' + pkg] = {
+			// 		main: 'index.js',
+			// 		defaultExtension: 'js'
+			// 	};
+			// }
 
-		// put the names of any of your Angular components here
-		var angularPkgs = [
-			'common', 'compiler', 'core', 'forms', 'http', 'platform-browser', 'platform-browser-dynamic', 'router', 'router-deprecated', 'upgrade'
-		];
-		for(var pI in angularPkgs){
-			var pkg = angularPkgs[pI];
-			config.packages['@angular/'+pkg] = {main: 'index.js', defaultExtension: 'js'};
-		}
-
-
-		System.config(config)</script>
+			System.config(config)
+			</script>
 	    <% } %>
 
 	    <!-- libs:js -->
