@@ -50,6 +50,27 @@ requiresList.push('topiChatServices');
 // requiresList.push('suggestionServices');
 requiresList.push('changeServices');
 
+// This code loads all external puzzles-containers and scans for any ng1 module
+// and adds it as a requirement to the main module
+for(var puzzlesContainerName in window.Config.Plugins.external){
+	var puzzlesContainer = window.Config.Plugins.external[puzzlesContainerName];
+
+	for(var puzzleName in puzzlesContainer.puzzles){
+		var puzzle = puzzlesContainer.puzzles[puzzleName];
+		if(!puzzle.active) continue;
+
+		for(var serviceName in puzzle.services){
+			var service = puzzle.services[serviceName];
+			if(!service.isNG2 || service.isAvailableInNG1){
+				if(requiresList.indexOf(service.module) < 0){
+					console.info("[app] adding module: ", service.module);
+					requiresList.push(service.module);
+				}
+			}
+		}
+	}
+}
+
 angular.module('McModelarApp', requiresList)
 // routes
 .config(['$routeProvider', function($routeProvider) {

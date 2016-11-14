@@ -22,11 +22,41 @@ import { MapInteraction } from './interaction/mapInteraction';
 import { MapLoader } from './knalledge/mapLoader';
 
 import { Injector } from '../components/utils/injector';
+var injector:Injector = new Injector();
 /// <reference path="../../../typings/browser/ambient/angular/angular.d.ts" />
 /// <reference path="../../../typings/browser/ambient/angular-route/angular-route.d.ts" />
 
-// Loading plugins' dependencies
+// Loading external puzzles-containers dependencies
+// like injecting services, providers, etc
 import './pluginDependencies';
+import {PluginsPreloader} from '../components/collaboPlugins/pluginsPreloader';
+injector.addPath("puzzles.collaboPlugins.PluginsPreloader", PluginsPreloader);
+declare var Config:any;
+for(let puzzleName in Config.Plugins.external){
+  let puzzleInfo = Config.Plugins.external[puzzleName];
+  PluginsPreloader.loadServicesFromExternalPuzzleContainer(puzzleInfo);
+}
+
+/** used instead of
+* import {MATERIAL_PROVIDERS} from 'ng2-material';
+* because of the bug
+* https://github.com/justindujardin/ng2-material/issues/271
+*/
+//upgradeAdapter.addProvider(provide(OVERLAY_CONTAINER_TOKEN, {useValue: createOverlayContainer()}));
+// upgradeAdapter.addProvider(MATERIAL_PROVIDERS);
+
+/** for Angular Forms:
+* instead of
+* `bootstrap(AppComponent, [
+* disableDeprecatedForms(),
+* provideForms()
+* ])`
+* that cannot be used until we bootstrap as Angular 2
+*/
+// upgradeAdapter.addProvider(disableDeprecatedForms());
+// upgradeAdapter.addProvider(provideForms());
+
+declare var angular;
 
 import {KnalledgeMapMain} from '../components/knalledgeMap/main';
 import {MapsList} from '../components/mapsList/maps-list.component';
@@ -133,7 +163,6 @@ upgradeAdapter.upgradeNg1Provider('McmMapGridService');
 upgradeAdapter.upgradeNg1Provider('McmMapVisualService');
 upgradeAdapter.upgradeNg1Provider('McmMapViewService');
 
-var injector:Injector = new Injector();
 injector.addPath("utils.Injector", Injector);
 injector.addPath("interaction.MapInteraction", MapInteraction);
 injector.addPath("knalledge.MapLoader", MapLoader);
@@ -211,6 +240,10 @@ upgradeAdapter['ng2AppModule'] = AppModule;
 // bootstrapping app
 upgradeAdapter.bootstrap(document.body, ['McModelarApp'], {strictDi: false})
 .ready((ref) => {
+  var knalledgeMapViewService = ref.ng1Injector.get('KnalledgeMapViewService');
+  knalledgeMapViewService.get().config.edges.showUnknownEdges = true;
+  knalledgeMapViewService.get().config.nodes.showUnknownNodes = true;
+
   // notify to the rest of the system that ng1 and ng2 ratrace is finished and
   // that services ara available so loading of the system can start
   var knalledgeMapPolicyService = ref.ng1Injector.get('KnalledgeMapPolicyService');

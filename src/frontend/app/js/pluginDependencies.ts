@@ -21,4 +21,7 @@ components['cf.puzzles.navigation.breadcrumb'] = NavigationBreadcrumb;
 
 export var servicesDependencies:any = {};
 
+import {CfPuzzlesIbisService} from '../../dev_puzzles/ibis/cf.puzzles.ibis.service';
+servicesDependencies['cf.puzzles.ibis.service'] = CfPuzzlesIbisService;
+
 export var modules:any = {};

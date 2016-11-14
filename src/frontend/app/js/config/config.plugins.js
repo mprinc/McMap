@@ -396,6 +396,10 @@
         active: true, // is active puzzle
         path: 'dev_puzzles/ibis' // path to the puzzle folder, relative to the project (frontend) root
       },
+      editors: {
+          active: true, // is active puzzle
+          path: 'dev_puzzles/editors' // path to the puzzle folder, relative to the project (frontend) root
+      },
     }
   };
 
