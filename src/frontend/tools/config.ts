@@ -122,6 +122,18 @@ WATCH_BUILD_RULES[join(APP_SRC, '**/*.js')] = {
   }
 };
 
+// HTML rule
+WATCH_BUILD_RULES[join(APP_SRC, '**/*.html')] = {
+  steps: {
+    'clean.dev': false,
+    'build.compass': false,
+    'build.assets.dev': true,
+    'tslint': false,
+    'build.js.dev': false,
+    'build.index.dev': true,
+  }
+};
+
 // TS rule
 WATCH_BUILD_RULES[join(APP_SRC, '**/*.ts')] = {
   steps: {
@@ -149,6 +161,18 @@ WATCH_BUILD_RULES[join(DEV_PUZZLES_SRC, '**/*.scss')] = {
 
 // JS rule
 WATCH_BUILD_RULES[join(DEV_PUZZLES_SRC, '**/*.js')] = {
+  steps: {
+    'clean.dev': false,
+    'build.compass': false,
+    'build.assets.dev': true,
+    'tslint': false,
+    'build.js.dev': false,
+    'build.index.dev': true,
+  }
+};
+
+// HTML rule
+WATCH_BUILD_RULES[join(DEV_PUZZLES_SRC, '**/*.html')] = {
   steps: {
     'clean.dev': false,
     'build.compass': false,
