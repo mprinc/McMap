@@ -292,6 +292,10 @@ $map: layout(12 1/4 fluid isolate inside);
 	http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting*/
 	@include user-select(none);
 
+	.md-sidenav-content{
+		width: 100%;
+	}
+
 	.toolbar {
 		$border-color: #000050;
 		.itemTitle {
@@ -346,6 +350,7 @@ $map: layout(12 1/4 fluid isolate inside);
 		md-list-item{
 			cursor: pointer;
 			width: 100%;
+			color: #a00;
 
 			&:nth-child(even) {background: #fff}
 			&:nth-child(odd) {background: #e8e8e8}

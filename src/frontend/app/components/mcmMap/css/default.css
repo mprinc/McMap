@@ -2089,6 +2089,8 @@
   -ms-user-select: none;
   -webkit-user-select: none;
   user-select: none; }
+  .mcm_main .md-sidenav-content {
+    width: 100%; }
   .mcm_main .toolbar .itemTitle {
     font-weight: bold; }
   .mcm_main .toolbar .questionIcon {
@@ -2125,7 +2127,8 @@
       margin-left: 5px; }
   .mcm_list_component md-list md-list-item {
     cursor: pointer;
-    width: 100%; }
+    width: 100%;
+    color: #a00; }
     .mcm_list_component md-list md-list-item:nth-child(even) {
       background: #fff; }
     .mcm_list_component md-list md-list-item:nth-child(odd) {

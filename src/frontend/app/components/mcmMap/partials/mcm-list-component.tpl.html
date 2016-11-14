@@ -2,7 +2,9 @@
   <md-content>
     <md-list>
       <md-list-item [class.selected]="item === itemSelected" class="md-1-line" (click)="onEnterItemClicked(item); $event.stopPropagation()" *ngFor="let item of itemContainer?.children">
-        {{ item?.node?.kNode?.name }}
+        <span  md-line>
+          {{ item?.node?.kNode?.name }}
+        </span>
         <span class="states-actions">
                   <span class='item-collaboration' [hidden]="!_existsDialogueOverItem(item)">
                       <md-icon title="collaboration">speaker_notes</md-icon>
