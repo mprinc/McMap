@@ -67,3 +67,6 @@ src/backend/models
 src/backend/modules
 src/backend/tools
 temp_folder
+
+src/frontend/dev_puzzles/ibis
+src/frontend/dev_puzzles/editors

@@ -1,5 +1,7 @@
-#cf_folder='/Users/sasha/Documents/data/development/KnAllEdge/src'
-cf_folder='/Users/mprinc/Documents/data/development/KnAllEdge/src'
+# COMPONENTS
+
+cf_folder='/Users/sasha/Documents/data/development/KnAllEdge/src'
+# cf_folder='/Users/mprinc/Documents/data/development/KnAllEdge/src'
 export cf_folder
 components_folder='app/components'
 
@@ -13,12 +15,36 @@ do
   echo "checking $component"
   if [ ! -e "$components_folder/$component" ];  then
       echo "linking $component"
-      ln -s $cf_folder/frontend/app/components/$component "$components_folder/$component"
+      ln -s $cf_folder/frontend/$components_folder/$component "$components_folder/$component"
   # else
   #   echo "unlinking $component"
   #   unlink "$components_folder/$component"
   fi
 done
+
+# DEV_PUZZLES
+
+export cf_folder
+puzzles_folder='dev_puzzles'
+
+## declare an array components
+declare -a puzzles=("editors" "ibis")
+
+## now loop through the above array
+for puzzle in "${puzzles[@]}"
+do
+  # You can access them using echo "${puzzles[0]}", "${puzzles[1]}" also
+  echo "checking $puzzle"
+  if [ ! -e "$puzzles_folder/$puzzle" ];  then
+      echo "linking $puzzle"
+      ln -s $cf_folder/frontend/$puzzles_folder/$puzzle "$puzzles_folder/$puzzle"
+  # else
+  #   echo "unlinking $puzzle"
+  #   unlink "$puzzles_folder/$puzzle"
+  fi
+done
+
+
 
 ## declare an array components
 declare -a otherRefs=("app/js/knalledge" "app/js/interaction")
