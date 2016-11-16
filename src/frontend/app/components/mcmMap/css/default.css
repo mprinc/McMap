@@ -2089,6 +2089,10 @@
   -ms-user-select: none;
   -webkit-user-select: none;
   user-select: none; }
+  .mcm_main md-toolbar {
+    min-height: auto; }
+  .mcm_main md-toolbar-row {
+    height: auto; }
   .mcm_main .md-sidenav-content {
     width: 100%; }
   .mcm_main .toolbar .itemTitle {

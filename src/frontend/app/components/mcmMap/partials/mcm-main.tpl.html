@@ -85,6 +85,31 @@
 
           <navigation-breadcrumb></navigation-breadcrumb>
 
+          <!-- Entity types -->
+
+          <md-toolbar *ngIf="filterToolbar.visible" class="toolbar" color="primary" style="width: 100%;" layout-align="center center">
+            <!-- https://material.angularjs.org/latest/layout/container -->
+            <section layout="column" layout-gt-sm="row" layout-align="center center" layout-wrap style="width: 100%;">
+              <div>Select entity type</div>
+              <button *ngIf="getEntityFilter() !== 'object'" md-raised-button class="md-primary" aria-label="Objects" (click)="setEntityFilter('object')">
+                Objects ({{getNumberOfEntities('object')}})
+              </button>
+              <button *ngIf="getEntityFilter() !== 'variable'" md-raised-button class="md-primary" aria-label="Quantities" (click)="setEntityFilter('variable')">
+                Quantities ({{getNumberOfEntities('variable')}})
+              </button>
+              <button *ngIf="getEntityFilter() !== 'assumption'" md-raised-button class="md-primary" aria-label="Assumptions" (click)="setEntityFilter('assumption')">
+                Assumptions ({{getNumberOfEntities('assumption')}})
+              </button>
+              <button *ngIf="getEntityFilter() !== 'grid'" md-raised-button class="md-primary" aria-label="Grids" (click)="setEntityFilter('grid')">
+                Grids ({{getNumberOfEntities('grid')}})
+              </button>
+
+              <button *ngIf="getEntityFilter() !== 'process'" md-raised-button class="md-primary" aria-label="Processes" (click)="setEntityFilter('process')">
+                Processes ({{getNumberOfEntities('process')}})
+              </button>
+            </section>
+          </md-toolbar>
+
           <!-- MCM Map List -->
           <mcm-list-component [itemContainer]="itemContainer" [existsDialogueOverItem]="existsDialogueOverItem_binded" (selectItem)="onSelectedItem($event)" (enterItem)="onEnteredItem($event)" flex style="overflow: auto; height: 100%;"></mcm-list-component>
 
@@ -132,29 +157,6 @@
             <button md-mini-fab class="md-primary" aria-label="Close" (click)="onSelectedItem()">
               <md-icon title="Close">close</md-icon>
             </button>
-          </md-toolbar>
-
-          <md-toolbar *ngIf="filterToolbar.visible" class="toolbar" color="primary" style="width: 100%;" layout-align="center center">
-            <!-- https://material.angularjs.org/latest/layout/container -->
-            <section layout="column" layout-gt-sm="row" layout-align="center center" layout-wrap style="width: 100%;">
-              <div>Select entity type</div>
-              <button *ngIf="getEntityFilter() !== 'object'" md-raised-button class="md-primary" aria-label="Objects" (click)="setEntityFilter('object')">
-                Objects ({{getNumberOfEntities('object')}})
-              </button>
-              <button *ngIf="getEntityFilter() !== 'variable'" md-raised-button class="md-primary" aria-label="Quantities" (click)="setEntityFilter('variable')">
-                Quantities ({{getNumberOfEntities('variable')}})
-              </button>
-              <button *ngIf="getEntityFilter() !== 'assumption'" md-raised-button class="md-primary" aria-label="Assumptions" (click)="setEntityFilter('assumption')">
-                Assumptions ({{getNumberOfEntities('assumption')}})
-              </button>
-              <button *ngIf="getEntityFilter() !== 'grid'" md-raised-button class="md-primary" aria-label="Grids" (click)="setEntityFilter('grid')">
-                Grids ({{getNumberOfEntities('grid')}})
-              </button>
-
-              <button *ngIf="getEntityFilter() !== 'process'" md-raised-button class="md-primary" aria-label="Processes" (click)="setEntityFilter('process')">
-                Processes ({{getNumberOfEntities('process')}})
-              </button>
-            </section>
           </md-toolbar>
 
           <div style="height: 20px;"></div>

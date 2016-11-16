@@ -3,10 +3,18 @@
 
 /* Configuration */
 var envs = {
-	"server": {
+	// "server_prod": {
+	// 	"server": {
+	// 		"frontend": "http://earthcube.headsware.com/app",
+	// 		"backend": "http://earthcube.headsware.com:8042",
+	// 		"parseResponse": true,
+	// 		"jsonPrefixed": ")]}',\n"
+	// 	},
+	// },
+	"server_prod": {
 		"server": {
 			"frontend": "http://earthcube.headsware.com/app",
-			"backend": "http://earthcube.headsware.com:8042",
+			"backend": "http://earthcube-api.headsware.com",
 			"parseResponse": true,
 			"jsonPrefixed": ")]}',\n"
 		},
@@ -19,7 +27,7 @@ var envs = {
 			"jsonPrefixed": ")]}',\n"
 		},
 	},
-	"json": {		
+	"json": {
 		"server": {
 			"frontend": "http://localhost:8310/app",
 			"backend": "http://localhost:8310/app/data",

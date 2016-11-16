@@ -292,6 +292,14 @@ $map: layout(12 1/4 fluid isolate inside);
 	http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting*/
 	@include user-select(none);
 
+	md-toolbar{
+		min-height: auto;
+	}
+
+	md-toolbar-row{
+		height: auto;
+	}
+
 	.md-sidenav-content{
 		width: 100%;
 	}
