@@ -119,3 +119,23 @@ cp -r $cf_folder/backend/config .
 cp $cf_folder/backend/KnAllEdgeBackend.js KnAllEdgeBackend.js
 cp $cf_folder/backend/package.json package.json
 ```
+
+## Proxy forwarding
+
+Add the `http://earthcube-api.headsware.com/` subdomain in the proxy script:
+
+```sh
+joe /var/www/web_fork/index.js
+```
+
+```js
+case 'earthcube-api.headsware.com':
+    proxy.web(req, res, { target: 'http://localhost:8042' });
+    break;
+```
+
+restart:
+
+```sh
+start/status/stop knalledge-fork
+```
